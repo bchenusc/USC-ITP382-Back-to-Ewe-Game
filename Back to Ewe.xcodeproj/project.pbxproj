@@ -1925,6 +1925,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Michael Sheehan (G2XTYK3Y54)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1950,6 +1951,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Michael Sheehan (G2XTYK3Y54)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Back to Ewe/Supporting Files/Prefix.pch";
@@ -1989,6 +1991,7 @@
 				D131073D18EA18520093C94A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D131073E18EA18520093C94A /* Build configuration list for PBXNativeTarget "Back to Ewe" */ = {
 			isa = XCConfigurationList;
@@ -1997,6 +2000,7 @@
 				D131074018EA18520093C94A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
