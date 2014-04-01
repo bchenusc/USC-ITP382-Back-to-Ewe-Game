@@ -9,6 +9,8 @@
 
 #import "HelloWorldScene.h"
 #import "IntroScene.h"
+#import "Sheep.h"
+#import "Node.h"
 
 // -----------------------------------------------------------------------
 #pragma mark - HelloWorldScene
@@ -43,24 +45,45 @@
     CCNodeColor *background = [CCNodeColor nodeWithColor:[CCColor colorWithRed:0.2f green:0.2f blue:0.2f alpha:1.0f]];
     [self addChild:background];
     
-    // Add a sprite
-    _sprite = [CCSprite spriteWithImageNamed:@"Icon-72.png"];
-    _sprite.position  = ccp(self.contentSize.width/2,self.contentSize.height/2);
-    [self addChild:_sprite];
-    
-    // Animate sprite with action
-    CCActionRotateBy* actionSpin = [CCActionRotateBy actionWithDuration:1.5f angle:360];
-    [_sprite runAction:[CCActionRepeatForever actionWithAction:actionSpin]];
-    
     // Create a back button
     CCButton *backButton = [CCButton buttonWithTitle:@"[ Menu ]" fontName:@"Verdana-Bold" fontSize:18.0f];
     backButton.positionType = CCPositionTypeNormalized;
     backButton.position = ccp(0.85f, 0.95f); // Top Right of screen
     [backButton setTarget:self selector:@selector(onBackClicked:)];
     [self addChild:backButton];
+    
+    // Create physics stuff
+    CCPhysicsNode* physics = [CCPhysicsNode node];
+    physics.collisionDelegate = self;
+    physics.debugDraw = YES;
+    physics.gravity = ccp(0, 200);
+    [self addChild:physics];
+    
+    Sheep* sheep = [Sheep node];
+    [physics addChild:sheep];
+    
+    Node* testNode = [Node node];
+    testNode.position = ccp(self.contentSize.width / 2, self.contentSize.height - self.contentSize.height / 8);
+    [physics addChild:testNode];
+    
+    //testNode = [Node node];
+    //testNode.position = ccp(self.contentSize.width / 5 * 4, self.contentSize.height - self.contentSize.height / 8);
+    //[physics addChild:testNode];
 
     // done
 	return self;
+}
+
+-(BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair sheep:(Sheep *)sheep node:(Node *)node
+{
+    //[self resetShip];
+    //[self destroyAsteroid:asteroid];
+	NSLog(@"collissionssnlsdfkjsdl;fkjsdfklfj");
+    
+    // You get to choose if the physics processes the collision or not.
+    // Since we only want to know if the asteroid collided with the ship and not apply forces to it,
+    // the method returns NO.
+    return YES;
 }
 
 // -----------------------------------------------------------------------
@@ -104,8 +127,8 @@
     CCLOG(@"Move sprite to @ %@",NSStringFromCGPoint(touchLoc));
     
     // Move our sprite to touch location
-    CCActionMoveTo *actionMove = [CCActionMoveTo actionWithDuration:1.0f position:touchLoc];
-    [_sprite runAction:actionMove];
+    /*CCActionMoveTo *actionMove = [CCActionMoveTo actionWithDuration:1.0f position:touchLoc];
+    [_sprite runAction:actionMove];*/
 }
 
 // -----------------------------------------------------------------------
