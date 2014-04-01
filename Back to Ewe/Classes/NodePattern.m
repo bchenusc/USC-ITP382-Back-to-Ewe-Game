@@ -10,7 +10,7 @@
 
 @implementation NodePattern
 
-- (void) ChoosePattern : (int) waveNum : (HelloWorldScene*) gameplayScene{
+- (void) ChoosePattern : (int) waveNum : (GameplayScene*) gameplayScene{
     if (waveNum > 20){
         waveNum = arc4random() % 10; // Chooses from 0-10 patterns.
     }else{
@@ -34,7 +34,7 @@
     }
 }
 
-- (void) RandomPattern : (HelloWorldScene*) gameplayScene{
+- (void) RandomPattern : (GameplayScene*) gameplayScene{
     
     
     

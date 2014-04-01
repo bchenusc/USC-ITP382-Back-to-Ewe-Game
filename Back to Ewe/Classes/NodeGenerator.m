@@ -12,7 +12,7 @@
 
 
 //Generate a node pattern to appear on the screen.
--(void)generatePattern:(int)score : (HelloWorldScene*) gameplayScene{
+-(void)generatePattern:(int)score : (GameplayScene*) gameplayScene{
     //1. If it is a boss level, then spawn a boss level node pattern.
     if (waveNum > 9 && waveNum % 10 == 0){
         //Boss level!
