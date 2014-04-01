@@ -8,12 +8,13 @@
 
 #import "cocos2d.h"
 #import "cocos2d-ui.h"
+#import "HelloWorldScene.h"
 
 @interface NodePattern : NSObject{
     
     
 }
 
-- (void) ChoosePattern : (int) seed;
+- (void) ChoosePattern : (int) waveNum : (HelloWorldScene*) gameplayScene;
 
 @end

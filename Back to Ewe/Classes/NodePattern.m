@@ -10,15 +10,34 @@
 
 @implementation NodePattern
 
-- (void) ChoosePattern : (int) seed{
-    switch (seed) {
+- (void) ChoosePattern : (int) waveNum : (HelloWorldScene*) gameplayScene{
+    if (waveNum > 20){
+        waveNum = arc4random() % 10; // Chooses from 0-10 patterns.
+    }else{
+        //First 10 waves just choose from the first 3 patterns
+        waveNum = arc4random() % 3; //Chooses from 0-3;
+    }
+    
+    switch (waveNum) {
         case 0:
             //Pattern 0
+            
+            break;
+            
+        case 1:
+            //Pattern 1
+            
             break;
             
         default:
             break;
     }
+}
+
+- (void) RandomPattern : (HelloWorldScene*) gameplayScene{
+    
+    
+    
 }
 
 @end

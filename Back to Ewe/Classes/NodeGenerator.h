@@ -18,7 +18,7 @@
     
 }
 
--(void) generatePattern: (int) score;
+-(void)generatePattern:(int)score : (HelloWorldScene*) gameplayScene;
 -(void) update: (CCTime)dt;
 
 @end
