@@ -7,16 +7,15 @@
 //
 // -----------------------------------------------------------------------
 
-#import "HelloWorldScene.h"
-#import "IntroScene.h"
-#import "Sheep.h"
+#import "GameplayScene.h"
+#import "MainMenuScene.h"
 #import "Node.h"
 
 // -----------------------------------------------------------------------
 #pragma mark - HelloWorldScene
 // -----------------------------------------------------------------------
 
-@implementation HelloWorldScene
+@implementation GameplayScene
 {
     CCSprite *_sprite;
 }
@@ -25,7 +24,7 @@
 #pragma mark - Create & Destroy
 // -----------------------------------------------------------------------
 
-+ (HelloWorldScene *)scene
++ (GameplayScene *)scene
 {
     return [[self alloc] init];
 }
@@ -78,7 +77,7 @@
 {
     //[self resetShip];
     //[self destroyAsteroid:asteroid];
-	NSLog(@"collissionssnlsdfkjsdl;fkjsdfklfj");
+	NSLog(@"Collision between sheep and node.");
     
     // You get to choose if the physics processes the collision or not.
     // Since we only want to know if the asteroid collided with the ship and not apply forces to it,
@@ -124,7 +123,7 @@
     CGPoint touchLoc = [touch locationInNode:self];
     
     // Log touch location
-    CCLOG(@"Move sprite to @ %@",NSStringFromCGPoint(touchLoc));
+    CCLOG(@"Location touched: %@",NSStringFromCGPoint(touchLoc));
     
     // Move our sprite to touch location
     /*CCActionMoveTo *actionMove = [CCActionMoveTo actionWithDuration:1.0f position:touchLoc];
@@ -138,7 +137,7 @@
 - (void)onBackClicked:(id)sender
 {
     // back to intro scene with transition
-    [[CCDirector sharedDirector] replaceScene:[IntroScene scene]
+    [[CCDirector sharedDirector] replaceScene:[MainMenuScene scene]
                                withTransition:[CCTransition transitionPushWithDirection:CCTransitionDirectionRight duration:1.0f]];
 }
 

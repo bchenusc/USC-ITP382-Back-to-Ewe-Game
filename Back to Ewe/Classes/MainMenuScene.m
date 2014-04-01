@@ -8,20 +8,20 @@
 // -----------------------------------------------------------------------
 
 // Import the interfaces
-#import "IntroScene.h"
-#import "HelloWorldScene.h"
+#import "MainMenuScene.h"
+#import "GameplayScene.h"
 
 // -----------------------------------------------------------------------
 #pragma mark - IntroScene
 // -----------------------------------------------------------------------
 
-@implementation IntroScene
+@implementation MainMenuScene
 
 // -----------------------------------------------------------------------
 #pragma mark - Create & Destroy
 // -----------------------------------------------------------------------
 
-+ (IntroScene *)scene
++ (MainMenuScene *)scene
 {
 	return [[self alloc] init];
 }
@@ -63,7 +63,7 @@
 - (void)onSpinningClicked:(id)sender
 {
     // start spinning scene with transition
-    [[CCDirector sharedDirector] replaceScene:[HelloWorldScene scene]
+    [[CCDirector sharedDirector] replaceScene:[GameplayScene scene]
                                withTransition:[CCTransition transitionPushWithDirection:CCTransitionDirectionLeft duration:1.0f]];
 }
 

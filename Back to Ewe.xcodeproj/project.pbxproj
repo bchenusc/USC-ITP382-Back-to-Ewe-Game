@@ -210,8 +210,9 @@
 		D131072A18EA18520093C94A /* LICENSE_Chipmunk.txt in Resources */ = {isa = PBXBuildFile; fileRef = D131072918EA18520093C94A /* LICENSE_Chipmunk.txt */; };
 		D131072E18EA18520093C94A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D131072D18EA18520093C94A /* main.m */; };
 		D131073218EA18520093C94A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D131073118EA18520093C94A /* AppDelegate.m */; };
-		D131073518EA18520093C94A /* HelloWorldScene.m in Sources */ = {isa = PBXBuildFile; fileRef = D131073418EA18520093C94A /* HelloWorldScene.m */; };
-		D131073818EA18520093C94A /* IntroScene.m in Sources */ = {isa = PBXBuildFile; fileRef = D131073718EA18520093C94A /* IntroScene.m */; };
+		D131073518EA18520093C94A /* GameplayScene.m in Sources */ = {isa = PBXBuildFile; fileRef = D131073418EA18520093C94A /* GameplayScene.m */; };
+		D131073818EA18520093C94A /* MainMenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = D131073718EA18520093C94A /* MainMenuScene.m */; };
+		D1AA4E1618EA6EED0030745C /* UILayer.m in Sources */ = {isa = PBXBuildFile; fileRef = D1AA4E1518EA6EED0030745C /* UILayer.m */; };
 		D1BCE1D618EA4E6200C5FCC1 /* Sheep.m in Sources */ = {isa = PBXBuildFile; fileRef = D1BCE1D518EA4E6200C5FCC1 /* Sheep.m */; };
 		D1BCE1D918EA54D000C5FCC1 /* Node.m in Sources */ = {isa = PBXBuildFile; fileRef = D1BCE1D818EA54D000C5FCC1 /* Node.m */; };
 		D1BCE1DC18EA568D00C5FCC1 /* WoolString.m in Sources */ = {isa = PBXBuildFile; fileRef = D1BCE1DB18EA568D00C5FCC1 /* WoolString.m */; };
@@ -652,10 +653,12 @@
 		D131072D18EA18520093C94A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = main.m; path = "Supporting Files/main.m"; sourceTree = "<group>"; };
 		D131073018EA18520093C94A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Classes/AppDelegate.h; sourceTree = "<group>"; };
 		D131073118EA18520093C94A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Classes/AppDelegate.m; sourceTree = "<group>"; };
-		D131073318EA18520093C94A /* HelloWorldScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = HelloWorldScene.h; path = Classes/HelloWorldScene.h; sourceTree = "<group>"; };
-		D131073418EA18520093C94A /* HelloWorldScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = HelloWorldScene.m; path = Classes/HelloWorldScene.m; sourceTree = "<group>"; };
-		D131073618EA18520093C94A /* IntroScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = IntroScene.h; path = Classes/IntroScene.h; sourceTree = "<group>"; };
-		D131073718EA18520093C94A /* IntroScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = IntroScene.m; path = Classes/IntroScene.m; sourceTree = "<group>"; };
+		D131073318EA18520093C94A /* GameplayScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GameplayScene.h; path = Classes/GameplayScene.h; sourceTree = "<group>"; };
+		D131073418EA18520093C94A /* GameplayScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = GameplayScene.m; path = Classes/GameplayScene.m; sourceTree = "<group>"; };
+		D131073618EA18520093C94A /* MainMenuScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MainMenuScene.h; path = Classes/MainMenuScene.h; sourceTree = "<group>"; };
+		D131073718EA18520093C94A /* MainMenuScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MainMenuScene.m; path = Classes/MainMenuScene.m; sourceTree = "<group>"; };
+		D1AA4E1418EA6EED0030745C /* UILayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UILayer.h; sourceTree = "<group>"; };
+		D1AA4E1518EA6EED0030745C /* UILayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UILayer.m; sourceTree = "<group>"; };
 		D1BCE1D418EA4E6200C5FCC1 /* Sheep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Sheep.h; path = Classes/Sheep.h; sourceTree = "<group>"; };
 		D1BCE1D518EA4E6200C5FCC1 /* Sheep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Sheep.m; path = Classes/Sheep.m; sourceTree = "<group>"; };
 		D1BCE1D718EA54D000C5FCC1 /* Node.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Node.h; sourceTree = "<group>"; };
@@ -1551,16 +1554,18 @@
 			children = (
 				D131073018EA18520093C94A /* AppDelegate.h */,
 				D131073118EA18520093C94A /* AppDelegate.m */,
-				D131073318EA18520093C94A /* HelloWorldScene.h */,
-				D131073418EA18520093C94A /* HelloWorldScene.m */,
-				D131073618EA18520093C94A /* IntroScene.h */,
-				D131073718EA18520093C94A /* IntroScene.m */,
+				D131073318EA18520093C94A /* GameplayScene.h */,
+				D131073418EA18520093C94A /* GameplayScene.m */,
+				D131073618EA18520093C94A /* MainMenuScene.h */,
+				D131073718EA18520093C94A /* MainMenuScene.m */,
 				D1BCE1D418EA4E6200C5FCC1 /* Sheep.h */,
 				D1BCE1D518EA4E6200C5FCC1 /* Sheep.m */,
 				D1BCE1D718EA54D000C5FCC1 /* Node.h */,
 				D1BCE1D818EA54D000C5FCC1 /* Node.m */,
 				D1BCE1DA18EA568D00C5FCC1 /* WoolString.h */,
 				D1BCE1DB18EA568D00C5FCC1 /* WoolString.m */,
+				D1AA4E1418EA6EED0030745C /* UILayer.h */,
+				D1AA4E1518EA6EED0030745C /* UILayer.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -1668,6 +1673,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D131053718EA18510093C94A /* CCParticleBatchNode.m in Sources */,
+				D1AA4E1618EA6EED0030745C /* UILayer.m in Sources */,
 				D13106AF18EA18520093C94A /* CCBReader.m in Sources */,
 				D131065F18EA18510093C94A /* CCButton.m in Sources */,
 				D131060A18EA18510093C94A /* OALAudioActions.m in Sources */,
@@ -1724,7 +1730,7 @@
 				D13105ED18EA18510093C94A /* NSThread+performBlock.m in Sources */,
 				D131057818EA18510093C94A /* CCShaderCache.m in Sources */,
 				D13106B518EA18520093C94A /* CCBSequenceProperty.m in Sources */,
-				D131073818EA18520093C94A /* IntroScene.m in Sources */,
+				D131073818EA18520093C94A /* MainMenuScene.m in Sources */,
 				D13105BC18EA18510093C94A /* CCGLView.m in Sources */,
 				D131057F18EA18510093C94A /* CCSprite.m in Sources */,
 				D13104DB18EA18500093C94A /* CCActionInterval.m in Sources */,
@@ -1764,7 +1770,7 @@
 				D131057B18EA18510093C94A /* ccShaders.m in Sources */,
 				D131068F18EA18520093C94A /* matrix.c in Sources */,
 				D13105A118EA18510093C94A /* CCTiledMapLayer.m in Sources */,
-				D131073518EA18520093C94A /* HelloWorldScene.m in Sources */,
+				D131073518EA18520093C94A /* GameplayScene.m in Sources */,
 				D131069518EA18520093C94A /* neon_matrix_impl.c in Sources */,
 				D131051A18EA18500093C94A /* CCLabelTTF.m in Sources */,
 				D13105CF18EA18510093C94A /* NSEvent+CC.m in Sources */,

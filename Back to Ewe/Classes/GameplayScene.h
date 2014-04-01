@@ -1,5 +1,5 @@
 //
-//  IntroScene.h
+//  HelloWorldScene.h
 //  Back to Ewe
 //
 //  Created by Matthew Pohlmann on 3/31/14.
@@ -7,23 +7,25 @@
 //
 // -----------------------------------------------------------------------
 
-// Importing cocos2d.h and cocos2d-ui.h, will import anything you need to start using cocos2d-v3
+// Importing cocos2d.h and cocos2d-ui.h, will import anything you need to start using Cocos2D v3
 #import "cocos2d.h"
 #import "cocos2d-ui.h"
+#import "Sheep.h"
 
 // -----------------------------------------------------------------------
 
 /**
- *  The intro scene
- *  Note, that scenes should now be based on CCScene, and not CCLayer, as previous versions
- *  Main usage for CCLayer now, is to make colored backgrounds (rectangles)
- *
+ *  The main scene
  */
-@interface IntroScene : CCScene
+@interface GameplayScene : CCScene <CCPhysicsCollisionDelegate> {
+    Sheep* sheep;
+    NSMutableArray* enemies;
+    NSMutableArray* nodes;
+}
 
 // -----------------------------------------------------------------------
 
-+ (IntroScene *)scene;
++ (GameplayScene *)scene;
 - (id)init;
 
 // -----------------------------------------------------------------------
