@@ -7,18 +7,56 @@
 //
 
 #import "WoolString.h"
+#import "CCDrawingPrimitives.h"
+#import "Sheep.h"
+#import "Node.h"
 
 
 @implementation WoolString
 
-- (instancetype)init {
+@synthesize start = m_Start, end = m_End, width = m_Width;
+
+- (instancetype) init {
     self = [super init];
     if (self) {
-        CGSize winSize = [[CCDirector sharedDirector] viewSize];
-        self.position = ccp(winSize.width / 2, winSize.height - winSize.height / 15);
-        [self drawDot:ccp(0, 0) radius:30 color:[CCColor redColor]];
+        self.position = ccp(0, 0);
+        m_Start = ccp(0, 0);
+        m_End = ccp(0, 0);
+        m_Width = 6.5f;
+        
+        m_Joint = nil;
     }
     return self;
+}
+
+- (instancetype) initWithStringFromSheep:(Sheep*)sheep toNode:(Node*)node {
+    m_Start = sheep.position;
+    m_End = node.position;
+    
+    m_Joint = [CCPhysicsJoint connectedSpringJointWithBodyA:sheep.physicsBody
+                                                      bodyB:node.physicsBody
+                                                    anchorA:ccp(0, 0)
+                                                    anchorB:ccp(0, 0)
+                                                 restLength:80.0f
+                                                  stiffness:6.0f
+                                                    damping:2.5f];
+    
+    return self;
+}
+
+- (void) invalidate {
+    [m_Joint invalidate];
+}
+
+- (void) draw {
+    CGSize winSize = [[CCDirector sharedDirector] viewSize];
+    
+    ccDrawColor4F(1, 1, 1, 1);
+    glLineWidth(m_Width);
+    
+    CGPoint t_start = ccp(m_Start.x, winSize.height - m_Start.y);
+    CGPoint t_end = ccp(m_End.x, winSize.height - m_End.y);
+    ccDrawLine([[CCDirector sharedDirector] convertToGL: t_start], [[CCDirector sharedDirector] convertToGL: t_end]);
 }
 
 @end

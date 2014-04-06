@@ -8,9 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
+#import "Node.h"
+#import "WoolString.h"
 
 @interface Sheep : CCDrawNode {
-    
+    WoolString* m_WoolString;
+    Node* m_AttachedNode;
 }
+
+- (void) stringToNode:(Node*)node;
 
 @end

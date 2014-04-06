@@ -1,5 +1,5 @@
 //
-//  IntroScene.m
+//  MainMenuScene.m
 //  Back to Ewe
 //
 //  Created by Matthew Pohlmann on 3/31/14.

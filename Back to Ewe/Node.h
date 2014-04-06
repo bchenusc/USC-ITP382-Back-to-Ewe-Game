@@ -10,7 +10,13 @@
 #import "cocos2d.h"
 
 @interface Node : CCDrawNode {
-    
+    CGFloat m_Radius;
 }
+
+@property (readonly) CGFloat radius;
+
+- (CGRect) rect;
+
+- (BOOL) isPointInNode:(CGPoint)point;
 
 @end

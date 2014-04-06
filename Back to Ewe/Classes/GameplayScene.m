@@ -1,5 +1,5 @@
 //
-//  HelloWorldScene.m
+//  GameplayScene.m
 //  Back to Ewe
 //
 //  Created by Matthew Pohlmann on 3/31/14.
@@ -10,32 +10,33 @@
 #import "GameplayScene.h"
 #import "MainMenuScene.h"
 #import "Node.h"
+#import "WoolString.h"
 
 // -----------------------------------------------------------------------
 #pragma mark - HelloWorldScene
 // -----------------------------------------------------------------------
 
 @implementation GameplayScene
-{
-    CCSprite *_sprite;
-}
 
 // -----------------------------------------------------------------------
 #pragma mark - Create & Destroy
 // -----------------------------------------------------------------------
 
-+ (GameplayScene *)scene
++ (GameplayScene *) scene
 {
     return [[self alloc] init];
 }
 
 // -----------------------------------------------------------------------
 
-- (id)init
+- (id) init
 {
     // Apple recommend assigning self with supers return value
     self = [super init];
     if (!self) return(nil);
+    
+    nodes = [[NSMutableArray alloc] init];
+    enemies = [[NSMutableArray alloc] init];
     
     // Enable touch handling on scene node
     self.userInteractionEnabled = YES;
@@ -55,39 +56,37 @@
     CCPhysicsNode* physics = [CCPhysicsNode node];
     physics.collisionDelegate = self;
     physics.debugDraw = YES;
-    physics.gravity = ccp(0, 200);
+    physics.gravity = ccp(0, -100);
     [self addChild:physics];
     
-    Sheep* sheep = [Sheep node];
+    sheep = [Sheep node];
     [physics addChild:sheep];
     
     Node* testNode = [Node node];
-    testNode.position = ccp(self.contentSize.width / 2, self.contentSize.height - self.contentSize.height / 8);
+    testNode.position = ccp(self.contentSize.width / 5, self.contentSize.height - self.contentSize.height / 8);
+    [nodes addObject:testNode];
     [physics addChild:testNode];
     
-    //testNode = [Node node];
-    //testNode.position = ccp(self.contentSize.width / 5 * 4, self.contentSize.height - self.contentSize.height / 8);
-    //[physics addChild:testNode];
-
-    // done
+    testNode = [Node node];
+    testNode.position = ccp(self.contentSize.width / 5 * 4, self.contentSize.height - self.contentSize.height / 8);
+    [nodes addObject:testNode];
+    [physics addChild:testNode];
+    
 	return self;
 }
 
--(BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair sheep:(Sheep *)sheep node:(Node *)node
+-(BOOL) ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair sheep:(Sheep *)sheep node:(Node *)node
 {
-    //[self resetShip];
-    //[self destroyAsteroid:asteroid];
-	NSLog(@"Collision between sheep and node.");
-    
-    // You get to choose if the physics processes the collision or not.
-    // Since we only want to know if the asteroid collided with the ship and not apply forces to it,
-    // the method returns NO.
+    static int collisionCountSheepNode = 0;
+    collisionCountSheepNode++;
+	//NSLog(@"Collision %d between sheep and node.", collisionCountSheepNode);
+
     return YES;
 }
 
 // -----------------------------------------------------------------------
 
-- (void)dealloc
+- (void) dealloc
 {
     // clean up code goes here
 }
@@ -96,7 +95,7 @@
 #pragma mark - Enter & Exit
 // -----------------------------------------------------------------------
 
-- (void)onEnter
+- (void) onEnter
 {
     // always call super onEnter first
     [super onEnter];
@@ -109,7 +108,7 @@
 
 // -----------------------------------------------------------------------
 
-- (void)onExit
+- (void) onExit
 {
     // always call super onExit last
     [super onExit];
@@ -119,22 +118,25 @@
 #pragma mark - Touch Handler
 // -----------------------------------------------------------------------
 
--(void) touchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
+- (void) touchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
     CGPoint touchLoc = [touch locationInNode:self];
     
     // Log touch location
-    CCLOG(@"Location touched: %@",NSStringFromCGPoint(touchLoc));
+    //CCLOG(@"Location touched: %@",NSStringFromCGPoint(touchLoc));
     
-    // Move our sprite to touch location
-    /*CCActionMoveTo *actionMove = [CCActionMoveTo actionWithDuration:1.0f position:touchLoc];
-    [_sprite runAction:actionMove];*/
+    // Check if user clicked on a node
+    for (Node* n in nodes) {
+        if ([n isPointInNode:touchLoc]) {
+            [sheep stringToNode:n];
+        }
+    }
 }
 
 // -----------------------------------------------------------------------
 #pragma mark - Button Callbacks
 // -----------------------------------------------------------------------
 
-- (void)onBackClicked:(id)sender
+- (void) onBackClicked:(id)sender
 {
     // back to intro scene with transition
     [[CCDirector sharedDirector] replaceScene:[MainMenuScene scene]
