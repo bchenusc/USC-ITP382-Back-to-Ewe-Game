@@ -11,6 +11,8 @@
 #import "cocos2d.h"
 #import "cocos2d-ui.h"
 #import "Sheep.h"
+@class NodeGenerator;
+#import "NodeGenerator.h"
 
 // -----------------------------------------------------------------------
 
@@ -19,13 +21,18 @@
  */
 @interface GameplayScene : CCScene <CCPhysicsCollisionDelegate> {
     Sheep* sheep;
+    CCPhysicsNode* physics;
     NSMutableArray* enemies;
     NSMutableArray* nodes;
+    NodeGenerator* nodeGenerator;
+    int score;
 }
 
 // -----------------------------------------------------------------------
 
 + (GameplayScene *)scene;
+- (void) addNode : (Node*) n Position: (CGPoint) point;
+- (CGSize) getSize;
 - (id)init;
 
 // -----------------------------------------------------------------------

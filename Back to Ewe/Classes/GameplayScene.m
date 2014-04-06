@@ -53,7 +53,7 @@
     [self addChild:backButton];
     
     // Create physics stuff
-    CCPhysicsNode* physics = [CCPhysicsNode node];
+    physics = [CCPhysicsNode node];
     physics.collisionDelegate = self;
     physics.debugDraw = YES;
     physics.gravity = ccp(0, -200);
@@ -62,7 +62,10 @@
     sheep = [Sheep node];
     [physics addChild:sheep];
     
-    Node* testNode = [Node node];
+    nodeGenerator = [NodeGenerator node];
+    [nodeGenerator generatePattern:self];
+    
+    /*Node* testNode = [Node node];
     testNode.position = ccp(self.contentSize.width / 5, self.contentSize.height - self.contentSize.height / 8);
     [nodes addObject:testNode];
     [physics addChild:testNode];
@@ -81,8 +84,19 @@
     testNode.position = ccp(self.contentSize.width / 5, self.contentSize.height / 4);
     [nodes addObject:testNode];
     [physics addChild:testNode];
-    
+    */
 	return self;
+     
+}
+
+-(CGSize) getSize{
+    return self.contentSize;
+}
+
+-(void) addNode : (Node*) n Position:(CGPoint)point{
+    n.position = point;
+    [nodes addObject:n];
+    [physics addChild:n];
 }
 
 -(BOOL) ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair sheep:(Sheep *)sheep node:(Node *)node

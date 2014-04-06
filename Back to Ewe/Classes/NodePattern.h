@@ -10,11 +10,11 @@
 #import "cocos2d-ui.h"
 #import "GameplayScene.h"
 
-@interface NodePattern : NSObject{
-    
-    
+@interface NodePattern : CCNode{
+    GameplayScene* gameplayScene;
+    CGSize winSize;
 }
 
-- (void) ChoosePattern : (int) waveNum : (GameplayScene*) gameplayScene;
+- (void) ChoosePattern: (int) waveNum : (GameplayScene*) gameplayScene;
 
 @end

@@ -10,9 +10,20 @@
 
 @implementation NodeGenerator
 
+- (id) init
+{
+    // Apple recommend assigning self with supers return value
+    self = [super init];
+    if (!self) return(nil);
+    nodePattern = [NodePattern node];
+    
+    
+	return self;
+    
+}
 
 //Generate a node pattern to appear on the screen.
--(void)generatePattern:(int)score : (GameplayScene*) gameplayScene{
+-(void)generatePattern: (GameplayScene*) gameplayScene{
     //1. If it is a boss level, then spawn a boss level node pattern.
     if (waveNum > 9 && waveNum % 10 == 0){
         //Boss level!
@@ -24,14 +35,10 @@
     }else{
     //2. If wave is not a boss level, then spawn a regular node pattern.
         //Random number generator --> currently 1-3
-        [nodePattern ChoosePattern:waveNum : gameplayScene];
+        [nodePattern ChoosePattern: waveNum : gameplayScene];
+        waveNum ++;
     }
     
 }
-
-- (void)update:(CCTime)dt{
-    
-}
-
 
 @end

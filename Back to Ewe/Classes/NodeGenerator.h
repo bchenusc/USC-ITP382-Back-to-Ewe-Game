@@ -8,9 +8,13 @@
 
 #import "cocos2d.h"
 #import "cocos2d-ui.h"
+@class NodePattern;
+@class Node;
+@class GameplayScene;
+#import "Node.h"
 #import "NodePattern.h"
 
-@interface NodeGenerator : NSObject
+@interface NodeGenerator : CCNode
 {
     int roundNum;   //every 10 waves is a round.
     int waveNum;    //every pattern is 1 wave.
@@ -18,7 +22,7 @@
     
 }
 
--(void)generatePattern:(int)score : (GameplayScene*) gameplayScene;
+-(void)generatePattern: (GameplayScene*) gameplayScene;
 -(void) update: (CCTime)dt;
 
 @end
