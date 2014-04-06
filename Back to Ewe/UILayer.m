@@ -18,9 +18,9 @@
 {
     self = [super init];
     if (self) {
-        m_woolRemaining = 50.0f;
+        m_woolRemaining = 1000.0f;
         
-        m_woolCapacity = 100.0f;
+        m_woolCapacity = 1000.0f;
     }
     return self;
 }
