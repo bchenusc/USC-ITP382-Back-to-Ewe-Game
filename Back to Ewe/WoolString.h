@@ -40,9 +40,11 @@
 - (void) invalidate;
 
 /*
- Helper function to validate whether or not the string can be created based upon length
+ Helper functions to validate whether or not the string can be created based upon length
  */
 
 + (float) findStringLengthFromSheep:(Sheep*)sheep toNode:(Node*) node;
+
+- (float) findCurrentStringLength;
 
 @end

@@ -56,6 +56,10 @@
     return length;
 }
 
+- (float) findCurrentStringLength {
+    return sqrtf(m_Start.x*m_Start.x + m_Start.y*m_Start.y);
+}
+
 - (void) draw {
     CGSize winSize = [[CCDirector sharedDirector] viewSize];
     

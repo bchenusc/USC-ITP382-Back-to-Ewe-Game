@@ -15,8 +15,10 @@
     WoolString* m_WoolString;
     Node* m_AttachedNode;
     
-    float m_WoolCapacity;
+    float m_currentWool;
 }
+
+@property float CurrentWool;
 
 - (void) stringToNode:(Node*)node;
 

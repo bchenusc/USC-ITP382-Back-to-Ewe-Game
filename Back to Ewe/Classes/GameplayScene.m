@@ -153,6 +153,7 @@
         if ([n isPointInNode:touchLoc]) {
             [sheep stringToNode:n];
             NSLog(@"StringLength: %f", [WoolString findStringLengthFromSheep:sheep toNode:n]);
+            m_UILayer.Wool = sheep.CurrentWool;
         }
     }
 }

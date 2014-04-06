@@ -11,6 +11,8 @@
 
 @implementation Sheep
 
+@synthesize CurrentWool = m_currentWool;
+
 - (instancetype)init {
     self = [super init];
     if (self) {
@@ -29,7 +31,7 @@
         m_WoolString = nil;
         m_AttachedNode = nil;
         
-        m_WoolCapacity = 1000.0f;
+        m_currentWool = 1000.0f;
     }
     return self;
 }
@@ -44,6 +46,7 @@
     }
     
     m_WoolString = [[WoolString node] initWithStringFromSheep:self toNode:node];
+    m_currentWool -= [m_WoolString findCurrentStringLength];
     [self addChild:m_WoolString];
 }
 
