@@ -7,8 +7,29 @@
 //
 
 #import "UILayer.h"
+#import "CCDrawingPrimitives.h"
 
 
 @implementation UILayer
+
+@synthesize Wool = m_woolRemaining;
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        m_woolRemaining = 50.0f;
+        
+        m_woolCapacity = 100.0f;
+    }
+    return self;
+}
+
+
+- (void) draw {
+    CGSize size = [[CCDirector sharedDirector] viewSize];
+    
+    ccDrawSolidRect(ccp(10,10), ccp((m_woolRemaining/m_woolCapacity)*(size.width - 10), 30), [CCColor blueColor]);
+}
 
 @end

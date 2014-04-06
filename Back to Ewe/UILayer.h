@@ -10,7 +10,15 @@
 #import "cocos2d.h"
 
 @interface UILayer : CCNode {
+    float m_woolRemaining;
     
+    float m_woolCapacity;
 }
+
+@property float Wool;
+
+//----//
+
+//----//
 
 @end

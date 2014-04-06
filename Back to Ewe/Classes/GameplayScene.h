@@ -11,6 +11,7 @@
 #import "cocos2d.h"
 #import "cocos2d-ui.h"
 #import "Sheep.h"
+#import "UILayer.h"
 
 // -----------------------------------------------------------------------
 
@@ -21,6 +22,8 @@
     Sheep* sheep;
     NSMutableArray* enemies;
     NSMutableArray* nodes;
+    
+    UILayer* m_UILayer;
 }
 
 // -----------------------------------------------------------------------

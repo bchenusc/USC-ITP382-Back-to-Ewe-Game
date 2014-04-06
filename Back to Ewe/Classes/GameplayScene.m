@@ -82,6 +82,11 @@
     [nodes addObject:testNode];
     [physics addChild:testNode];
     
+    //UI Layer
+    m_UILayer = [UILayer node];
+    [self addChild:m_UILayer];
+    
+    
 	return self;
 }
 
