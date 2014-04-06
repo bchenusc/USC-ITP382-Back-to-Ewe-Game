@@ -11,6 +11,7 @@
 #import "cocos2d.h"
 #import "cocos2d-ui.h"
 #import "Sheep.h"
+#import "UILayer.h"
 @class NodeGenerator;
 #import "NodeGenerator.h"
 
@@ -24,6 +25,8 @@
     CCPhysicsNode* physics;
     NSMutableArray* enemies;
     NSMutableArray* nodes;
+    
+    UILayer* m_UILayer;
     NodeGenerator* nodeGenerator;
     int score;
 }
