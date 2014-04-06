@@ -22,7 +22,7 @@
         physics.elasticity = 4;
         physics.type = CCPhysicsBodyTypeDynamic;
         physics.collisionCategories = @[@"sheep"];
-        physics.collisionMask = @[@"node"];
+        physics.collisionMask = @[@"enemy", @"projectile", @"wall", @"node"];
         physics.collisionType = @"sheep";
         self.physicsBody = physics;
         

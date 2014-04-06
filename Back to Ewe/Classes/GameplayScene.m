@@ -56,7 +56,7 @@
     CCPhysicsNode* physics = [CCPhysicsNode node];
     physics.collisionDelegate = self;
     physics.debugDraw = YES;
-    physics.gravity = ccp(0, -100);
+    physics.gravity = ccp(0, -200);
     [self addChild:physics];
     
     sheep = [Sheep node];
@@ -69,6 +69,16 @@
     
     testNode = [Node node];
     testNode.position = ccp(self.contentSize.width / 5 * 4, self.contentSize.height - self.contentSize.height / 8);
+    [nodes addObject:testNode];
+    [physics addChild:testNode];
+    
+    testNode = [Node node];
+    testNode.position = ccp(self.contentSize.width / 2, self.contentSize.height / 2);
+    [nodes addObject:testNode];
+    [physics addChild:testNode];
+    
+    testNode = [Node node];
+    testNode.position = ccp(self.contentSize.width / 5, self.contentSize.height / 4);
     [nodes addObject:testNode];
     [physics addChild:testNode];
     

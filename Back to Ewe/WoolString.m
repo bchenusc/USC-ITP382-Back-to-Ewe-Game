@@ -37,9 +37,9 @@
                                                       bodyB:node.physicsBody
                                                     anchorA:ccp(0, 0)
                                                     anchorB:ccp(0, 0)
-                                                 restLength:80.0f
-                                                  stiffness:6.0f
-                                                    damping:2.5f];
+                                                 restLength:30.0f
+                                                  stiffness:5.00f
+                                                    damping:4.25f];
     
     return self;
 }
