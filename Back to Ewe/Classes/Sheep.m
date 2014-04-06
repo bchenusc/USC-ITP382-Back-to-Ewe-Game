@@ -28,6 +28,8 @@
         
         m_WoolString = nil;
         m_AttachedNode = nil;
+        
+        m_WoolCapacity = 1000.0f;
     }
     return self;
 }

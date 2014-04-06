@@ -138,6 +138,7 @@
     for (Node* n in nodes) {
         if ([n isPointInNode:touchLoc]) {
             [sheep stringToNode:n];
+            NSLog(@"StringLength: %f", [WoolString findStringLengthFromSheep:sheep toNode:n]);
         }
     }
 }

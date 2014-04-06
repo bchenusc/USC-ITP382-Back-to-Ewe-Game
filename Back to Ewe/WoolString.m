@@ -48,6 +48,14 @@
     [m_Joint invalidate];
 }
 
++ (float) findStringLengthFromSheep:(Sheep*)sheep toNode:(Node*) node {
+    CGPoint string = ccpSub(sheep.position, node.position);
+    
+    float length = sqrtf(string.x*string.x + string.y*string.y); // ^ = binary operator xor
+    
+    return length;
+}
+
 - (void) draw {
     CGSize winSize = [[CCDirector sharedDirector] viewSize];
     

@@ -14,6 +14,8 @@
 @interface Sheep : CCDrawNode {
     WoolString* m_WoolString;
     Node* m_AttachedNode;
+    
+    float m_WoolCapacity;
 }
 
 - (void) stringToNode:(Node*)node;
