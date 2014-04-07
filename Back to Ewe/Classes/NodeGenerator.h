@@ -22,7 +22,8 @@
     
 }
 
--(void)generatePattern: (GameplayScene*) gameplayScene;
+-(CGPoint)generateFirstPattern : (GameplayScene*) gameplayScene;
+-(CGPoint)generatePattern: (GameplayScene*) gameplayScene;
 -(void) update: (CCTime)dt;
 
 @end

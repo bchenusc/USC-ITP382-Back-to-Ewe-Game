@@ -26,8 +26,12 @@
     NSMutableArray* enemies;
     NSMutableArray* nodes;
     
+    CGPoint scrollCenter;
+    float scrollSpeed;
+    
     UILayer* m_UILayer;
     NodeGenerator* nodeGenerator;
+    CGPoint topNode;
     int score;
 }
 
@@ -37,6 +41,7 @@
 - (void) addNode : (Node*) n Position: (CGPoint) point;
 - (CGSize) getSize;
 - (id)init;
+- (void)spawnNewPattern;
 
 // -----------------------------------------------------------------------
 @end

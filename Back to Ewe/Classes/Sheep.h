@@ -10,11 +10,12 @@
 #import "cocos2d.h"
 #import "Node.h"
 #import "WoolString.h"
+@class GameplayScene;
 
 @interface Sheep : CCDrawNode {
     WoolString* m_WoolString;
     Node* m_AttachedNode;
-    
+
     float m_currentWool;
 }
 

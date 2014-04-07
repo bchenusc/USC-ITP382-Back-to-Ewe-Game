@@ -62,8 +62,11 @@
     sheep = [Sheep node];
     [physics addChild:sheep];
     
+    scrollCenter = ccp(self.contentSize.width / 2, self.contentSize.height/2);
+    scrollSpeed = 100.0f;
+    
     nodeGenerator = [NodeGenerator node];
-    [nodeGenerator generatePattern:self];
+    topNode = [nodeGenerator generateFirstPattern:self];
     
     /*Node* testNode = [Node node];
     testNode.position = ccp(self.contentSize.width / 5, self.contentSize.height - self.contentSize.height / 8);
@@ -93,6 +96,25 @@
     
 	return self;
      
+}
+
+-(void)update:(CCTime)delta{
+    if (sheep.position.y >= topNode.y){
+        topNode = [nodeGenerator generatePattern:self];
+    }
+    
+    if (sheep.position.y > scrollCenter.y){
+        float translation = delta * scrollSpeed;
+        for(Node* node in nodes){
+            node.position = ccp(node.position.x, node.position.y - translation);
+        }
+        sheep.position = ccp (sheep.position.x, sheep.position.y - translation);
+        topNode = ccp(topNode.x, topNode.y - translation);
+    }
+}
+
+-(void) spawnNewPattern{
+    topNode = [nodeGenerator generatePattern:self];
 }
 
 -(CGSize) getSize{

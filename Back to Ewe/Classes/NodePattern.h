@@ -13,8 +13,9 @@
 @interface NodePattern : CCNode{
     GameplayScene* gameplayScene;
     CGSize winSize;
+    CGPoint topNodePosition;
 }
 
-- (void) ChoosePattern: (int) waveNum : (GameplayScene*) gameplayScene;
-
+- (CGPoint) ChoosePattern: (int) waveNum : (GameplayScene*) gameplayScene;
+- (CGPoint) ChooseRandomPattern: (int) waveNum : (GameplayScene*) gameScene;
 @end
