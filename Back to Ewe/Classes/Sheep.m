@@ -42,6 +42,7 @@
     if (m_currentWool <= 0) {
         m_currentWool = 0;
         NSLog(@"No wool");
+        return;
     }
     
     m_AttachedNode = node;
