@@ -12,6 +12,7 @@
 @implementation Sheep
 
 @synthesize CurrentWool = m_currentWool;
+@synthesize MaxWool = m_maxWool;
 
 - (instancetype)init {
     self = [super init];
@@ -24,14 +25,15 @@
         physics.elasticity = 4;
         physics.type = CCPhysicsBodyTypeDynamic;
         physics.collisionCategories = @[@"sheep"];
-        physics.collisionMask = @[@"enemy", @"projectile", @"wall", @"node"];
+        physics.collisionMask = @[@"enemy", @"projectile", @"wall", @"node", @"grass"];
         physics.collisionType = @"sheep";
         self.physicsBody = physics;
         
         m_WoolString = nil;
         m_AttachedNode = nil;
         
-        m_currentWool = 10000.0f;
+        m_maxWool = 10000.0f;
+        m_currentWool = m_maxWool;
     }
     return self;
 }

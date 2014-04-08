@@ -11,6 +11,7 @@
 #import "MainMenuScene.h"
 #import "Node.h"
 #import "WoolString.h"
+#import "Grass.h"
 
 // -----------------------------------------------------------------------
 #pragma mark - HelloWorldScene
@@ -89,6 +90,10 @@
     [physics addChild:testNode];
     */
     
+    Grass* testGrass = [Grass node];
+    testGrass.position = ccp(2*self.contentSize.width / 3, 3*self.contentSize.height /8);
+    [physics addChild:testGrass];
+    
     //UI Layer
     m_UILayer = [UILayer node];
     [self addChild:m_UILayer];
@@ -133,6 +138,17 @@
     collisionCountSheepNode++;
 	//NSLog(@"Collision %d between sheep and node.", collisionCountSheepNode);
 
+    return YES;
+}
+
+-(BOOL) ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair sheep:(Sheep *)_sheep grass:(Grass *)grass {
+    _sheep.CurrentWool += grass.RCVAmount;
+    if (_sheep.CurrentWool >= _sheep.MaxWool) {
+        _sheep.CurrentWool = sheep.MaxWool;
+    }
+    m_UILayer.Wool = _sheep.CurrentWool;
+    
+    NSLog(@"BOOM");
     return YES;
 }
 
