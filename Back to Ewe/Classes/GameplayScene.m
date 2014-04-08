@@ -11,7 +11,9 @@
 #import "MainMenuScene.h"
 #import "Node.h"
 #import "WoolString.h"
+#import "Grass.h"
 #import "Enemy.h"
+#import "ScreenPhysicsBorders.h"
 
 // -----------------------------------------------------------------------
 #pragma mark - HelloWorldScene
@@ -57,8 +59,11 @@
     physics = [CCPhysicsNode node];
     physics.collisionDelegate = self;
     physics.debugDraw = YES;
-    physics.gravity = ccp(0, -200);
+    physics.gravity = ccp(0, -350);
     [self addChild:physics];
+    
+    ScreenPhysicsBorders* borders = [ScreenPhysicsBorders node];
+    [physics addChild:borders];
     
     sheep = [Sheep node];
     [physics addChild:sheep];
@@ -94,6 +99,10 @@
     [nodes addObject:testNode];
     [physics addChild:testNode];
     */
+    
+    Grass* testGrass = [Grass node];
+    testGrass.position = ccp(2*self.contentSize.width / 3, 3*self.contentSize.height /8);
+    [physics addChild:testGrass];
     
     //UI Layer
     m_UILayer = [UILayer node];
@@ -164,6 +173,16 @@
     return YES;
 }
 
+-(BOOL) ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair sheep:(Sheep *)_sheep grass:(Grass *)grass {
+    _sheep.CurrentWool += grass.RCVAmount;
+    if (_sheep.CurrentWool >= _sheep.MaxWool) {
+        _sheep.CurrentWool = sheep.MaxWool;
+    }
+    m_UILayer.Wool = _sheep.CurrentWool;
+    
+    return YES;
+}
+
 -(BOOL) ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair sheep:(Sheep *)sheep enemy:(Enemy *)enemy
 {
 	NSLog(@"Collision:%@ between sheep and enemy.", enemy);
@@ -216,7 +235,7 @@
     for (Node* n in nodes) {
         if ([n isPointInNode:touchLoc]) {
             [sheep stringToNode:n];
-            NSLog(@"StringLength: %f", [WoolString findStringLengthFromSheep:sheep toNode:n]);
+            //NSLog(@"StringLength: %f", [WoolString findStringLengthFromSheep:sheep toNode:n]);
             m_UILayer.Wool = sheep.CurrentWool;
             nodeTouched = YES;
         }

@@ -7,9 +7,12 @@
 //
 
 #import "CCDrawNode.h"
+#import "cocos2d.h"
 
 @interface Grass : CCDrawNode {
     float m_rcvAmount;
 }
+
+@property float RCVAmount;
 
 @end
