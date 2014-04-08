@@ -103,8 +103,8 @@
         topNode = [nodeGenerator generatePattern:self];
     }
     
-    if (sheep.position.y > scrollCenter.y){
-        float translation = delta * scrollSpeed;
+    if (sheep.position.y > scrollCenter.y && sheep.physicsBody.velocity.y > 0){
+        float translation = delta * sheep.physicsBody.velocity.y;
         for(Node* node in nodes){
             node.position = ccp(node.position.x, node.position.y - translation);
         }
