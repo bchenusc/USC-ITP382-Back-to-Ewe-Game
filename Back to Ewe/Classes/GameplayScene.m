@@ -179,6 +179,13 @@
     return YES;
 }
 
+-(BOOL) ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair sheep:(Sheep *)sheep enemy:(Enemy *)enemy
+{
+	NSLog(@"Collision:%@ between sheep and enemy.", enemy);
+    
+    return YES;
+}
+
 // -----------------------------------------------------------------------
 
 - (void) dealloc
