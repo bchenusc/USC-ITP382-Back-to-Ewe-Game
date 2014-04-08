@@ -31,7 +31,7 @@
         m_WoolString = nil;
         m_AttachedNode = nil;
         
-        m_currentWool = 10000.0f;
+        m_currentWool = 1000.0f;
     }
     return self;
 }
