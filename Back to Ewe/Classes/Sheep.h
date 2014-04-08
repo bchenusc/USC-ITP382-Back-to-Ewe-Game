@@ -23,4 +23,6 @@
 
 - (void) stringToNode:(Node*)node;
 
+- (void) breakString;
+
 @end

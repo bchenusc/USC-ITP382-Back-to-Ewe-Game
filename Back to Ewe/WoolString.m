@@ -30,6 +30,9 @@
 }
 
 - (instancetype) initWithStringFromSheep:(Sheep*)sheep toNode:(Node*)node {
+    NSAssert(sheep != nil, @"Argument must be non-nil");
+    NSAssert(node != nil, @"Argument must be non-nil");
+    
     m_Start = sheep.position;
     m_End = node.position;
     
@@ -38,7 +41,7 @@
                                                     anchorA:ccp(0, 0)
                                                     anchorB:ccp(0, 0)
                                                  restLength:30.0f
-                                                  stiffness:5.00f
+                                                  stiffness:20.00f
                                                     damping:4.25f];
     
     return self;
@@ -49,11 +52,10 @@
 }
 
 + (float) findStringLengthFromSheep:(Sheep*)sheep toNode:(Node*) node {
-    CGPoint string = ccpSub(sheep.position, node.position);
+    NSAssert(sheep != nil, @"Argument must be non-nil");
+    NSAssert(node != nil, @"Argument must be non-nil");
     
-    float length = sqrtf(string.x*string.x + string.y*string.y); // ^ = binary operator xor
-    
-    return length;
+    return ccpDistance(sheep.position, node.position);
 }
 
 - (float) findCurrentStringLength {

@@ -117,7 +117,7 @@
     topNode = [nodeGenerator generatePattern:self];
 }
 
--(CGSize) getSize{
+-(CGSize) getSize {
     return self.contentSize;
 }
 
@@ -177,12 +177,19 @@
     //CCLOG(@"Location touched: %@",NSStringFromCGPoint(touchLoc));
     
     // Check if user clicked on a node
+    bool nodeTouched = NO;
     for (Node* n in nodes) {
         if ([n isPointInNode:touchLoc]) {
             [sheep stringToNode:n];
             NSLog(@"StringLength: %f", [WoolString findStringLengthFromSheep:sheep toNode:n]);
             m_UILayer.Wool = sheep.CurrentWool;
+            nodeTouched = YES;
         }
+    }
+    
+    // If node wasn't touched, break the current Wool
+    if (!nodeTouched) {
+        [sheep breakString];
     }
 }
 
