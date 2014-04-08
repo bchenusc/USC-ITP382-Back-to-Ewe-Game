@@ -10,6 +10,8 @@
 		0023EA6118F398C700C27528 /* Grass.m in Sources */ = {isa = PBXBuildFile; fileRef = 0023EA6018F398C700C27528 /* Grass.m */; };
 		3B7F57D018EA644200B8A237 /* NodeGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7F57CF18EA644200B8A237 /* NodeGenerator.m */; };
 		3BC52A7318EA676F00A35420 /* NodePattern.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC52A7218EA676F00A35420 /* NodePattern.m */; };
+		5688381718F38DFB00A79F78 /* Enemy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5688381618F38DFB00A79F78 /* Enemy.m */; };
+		5688381A18F3902200A79F78 /* EnemyGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5688381918F3902200A79F78 /* EnemyGenerator.m */; };
 		D131048918EA18500093C94A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D131048818EA18500093C94A /* QuartzCore.framework */; };
 		D131048B18EA18500093C94A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D131048A18EA18500093C94A /* OpenGLES.framework */; };
 		D131048D18EA18500093C94A /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D131048C18EA18500093C94A /* OpenAL.framework */; };
@@ -238,6 +240,10 @@
 		3B7F57CF18EA644200B8A237 /* NodeGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NodeGenerator.m; path = Classes/NodeGenerator.m; sourceTree = "<group>"; };
 		3BC52A7118EA676E00A35420 /* NodePattern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NodePattern.h; path = Classes/NodePattern.h; sourceTree = "<group>"; };
 		3BC52A7218EA676F00A35420 /* NodePattern.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NodePattern.m; path = Classes/NodePattern.m; sourceTree = "<group>"; };
+		5688381518F38DFB00A79F78 /* Enemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Enemy.h; sourceTree = "<group>"; };
+		5688381618F38DFB00A79F78 /* Enemy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Enemy.m; sourceTree = "<group>"; };
+		5688381818F3902200A79F78 /* EnemyGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EnemyGenerator.h; path = Classes/EnemyGenerator.h; sourceTree = "<group>"; };
+		5688381918F3902200A79F78 /* EnemyGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EnemyGenerator.m; path = Classes/EnemyGenerator.m; sourceTree = "<group>"; };
 		D131048518EA18500093C94A /* Back to Ewe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Back to Ewe.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D131048818EA18500093C94A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		D131048A18EA18500093C94A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -1563,6 +1569,10 @@
 			children = (
 				D131073018EA18520093C94A /* AppDelegate.h */,
 				D131073118EA18520093C94A /* AppDelegate.m */,
+				5688381518F38DFB00A79F78 /* Enemy.h */,
+				5688381618F38DFB00A79F78 /* Enemy.m */,
+				5688381818F3902200A79F78 /* EnemyGenerator.h */,
+				5688381918F3902200A79F78 /* EnemyGenerator.m */,
 				D131073318EA18520093C94A /* GameplayScene.h */,
 				D131073418EA18520093C94A /* GameplayScene.m */,
 				0023EA5F18F398C700C27528 /* Grass.h */,
@@ -1701,6 +1711,7 @@
 				D131063D18EA18510093C94A /* OpenALManager.m in Sources */,
 				D131064918EA18510093C94A /* IOSVersion.m in Sources */,
 				D13104FE18EA18500093C94A /* CCDirector.m in Sources */,
+				5688381A18F3902200A79F78 /* EnemyGenerator.m in Sources */,
 				D131066918EA18510093C94A /* CCScrollView.m in Sources */,
 				D131055C18EA18510093C94A /* CCResponder.m in Sources */,
 				D13104F318EA18500093C94A /* CCClippingNode.m in Sources */,
@@ -1769,6 +1780,7 @@
 				D13106B818EA18520093C94A /* CCBLocalizationManager.m in Sources */,
 				D13105A418EA18510093C94A /* CCTiledMapObjectGroup.m in Sources */,
 				D13106A118EA18520093C94A /* vec3.c in Sources */,
+				5688381718F38DFB00A79F78 /* Enemy.m in Sources */,
 				D131052418EA18510093C94A /* CCLayoutBox.m in Sources */,
 				D131052118EA18510093C94A /* CCLayout.m in Sources */,
 				D131064418EA18510093C94A /* OALSuspendHandler.m in Sources */,

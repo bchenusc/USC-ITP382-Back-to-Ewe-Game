@@ -69,6 +69,11 @@
     nodeGenerator = [NodeGenerator node];
     topNode = [nodeGenerator generateFirstPattern:self];
     
+    enemyGenerator = [EnemyGenerator node];
+    topEnemy = nil;
+    [self spawnNewEnemy];
+    
+    
     /*Node* testNode = [Node node];
     testNode.position = ccp(self.contentSize.width / 5, self.contentSize.height - self.contentSize.height / 8);
     [nodes addObject:testNode];
@@ -113,8 +118,18 @@
         for(Node* node in nodes){
             node.position = ccp(node.position.x, node.position.y - translation);
         }
+        for(Enemy* enemy in enemies) {
+            enemy.position = ccp(enemy.position.x, enemy.position.y - translation);
+        }
         sheep.position = ccp (sheep.position.x, sheep.position.y - translation);
         topNode = ccp(topNode.x, topNode.y - translation);
+    }
+    
+    if(topEnemy == nil) {
+        [self spawnNewEnemy];
+    } else if(topEnemy.position.y < 0) {
+        [self removeEnemy];
+        [self spawnNewEnemy];
     }
 }
 
@@ -122,7 +137,19 @@
     topNode = [nodeGenerator generatePattern:self];
 }
 
--(CGSize) getSize {
+-(void)spawnNewEnemy {
+    topEnemy = [enemyGenerator spawnEnemy];
+    [enemies addObject: topEnemy];
+    [physics addChild:topEnemy];
+}
+
+-(void)removeEnemy {
+    [enemies removeObject:topEnemy];
+    [physics removeChild:topEnemy];
+    topEnemy = nil;
+}
+
+-(CGSize) getSize{
     return self.contentSize;
 }
 
