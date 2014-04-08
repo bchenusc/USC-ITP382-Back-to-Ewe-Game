@@ -14,6 +14,7 @@
 #import "UILayer.h"
 @class NodeGenerator;
 #import "NodeGenerator.h"
+#import "EnemyGenerator.h"
 
 // -----------------------------------------------------------------------
 
@@ -32,6 +33,8 @@
     UILayer* m_UILayer;
     NodeGenerator* nodeGenerator;
     CGPoint topNode;
+    EnemyGenerator* enemyGenerator;
+    Enemy* topEnemy;
     int score;
 }
 
@@ -42,6 +45,7 @@
 - (CGSize) getSize;
 - (id)init;
 - (void)spawnNewPattern;
+-(void)spawnNewEnemy;
 
 // -----------------------------------------------------------------------
 @end

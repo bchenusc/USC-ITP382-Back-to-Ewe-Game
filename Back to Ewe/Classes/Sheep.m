@@ -31,7 +31,7 @@
         m_WoolString = nil;
         m_AttachedNode = nil;
         
-        m_currentWool = 1000.0f;
+        m_currentWool = 10000.0f;
     }
     return self;
 }
@@ -42,6 +42,7 @@
     if (m_currentWool <= 0) {
         m_currentWool = 0;
         NSLog(@"No wool");
+        return;
     }
     
     m_AttachedNode = node;
