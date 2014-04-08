@@ -180,7 +180,6 @@
     }
     m_UILayer.Wool = _sheep.CurrentWool;
     
-    NSLog(@"BOOM");
     return YES;
 }
 
@@ -236,7 +235,7 @@
     for (Node* n in nodes) {
         if ([n isPointInNode:touchLoc]) {
             [sheep stringToNode:n];
-            NSLog(@"StringLength: %f", [WoolString findStringLengthFromSheep:sheep toNode:n]);
+            //NSLog(@"StringLength: %f", [WoolString findStringLengthFromSheep:sheep toNode:n]);
             m_UILayer.Wool = sheep.CurrentWool;
             nodeTouched = YES;
         }
