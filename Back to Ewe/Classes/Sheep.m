@@ -32,7 +32,8 @@
         m_WoolString = nil;
         m_AttachedNode = nil;
         
-        m_currentWool = 1000.0f;
+        m_maxWool = 10000.0f;
+        m_currentWool = m_maxWool;
     }
     return self;
 }

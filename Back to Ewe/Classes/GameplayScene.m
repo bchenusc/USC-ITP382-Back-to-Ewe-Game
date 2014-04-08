@@ -11,6 +11,7 @@
 #import "MainMenuScene.h"
 #import "Node.h"
 #import "WoolString.h"
+#import "Grass.h"
 #import "Enemy.h"
 #import "ScreenPhysicsBorders.h"
 
