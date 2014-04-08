@@ -9,11 +9,30 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
+enum EnemyType {
+    horizontalMover = 0,
+    verticalMover,
+    stationary,
+    expander,
+    EnemyTypeMax
+};
+
 @interface Enemy : CCDrawNode {
     CGFloat m_Radius;
+    
+    enum EnemyType m_EnemyType;
+    
+    CGPoint m_CenterPosition;
+    float m_MovementBounds;
+    float m_MovementSpeed;
 }
 
 @property CGFloat radius;
+@property enum EnemyType ENEMYTYPE;
+
+-(void) setRandomEnemyType;
+
+-(void) setPosition:(CGPoint)position;
 
 - (CGRect) rect;
 

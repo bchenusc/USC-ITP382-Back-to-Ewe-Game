@@ -13,7 +13,6 @@
 {
     int roundNum;   //every 10 waves is a round.
     int waveNum;    //every pattern is 1 wave.
-    
 }
 
 -(Enemy*)spawnEnemy;

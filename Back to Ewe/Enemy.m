@@ -12,6 +12,7 @@
 @implementation Enemy
 
 @synthesize radius = m_Radius;
+@synthesize ENEMYTYPE = m_EnemyType;
 
 - (instancetype)init {
     self = [super init];
@@ -28,6 +29,11 @@
         physics.collisionType = @"enemy";
         physics.sensor = YES;
         self.physicsBody = physics;
+        
+        m_EnemyType = stationary;
+        m_CenterPosition = self.position;
+        m_MovementBounds = 0;
+        m_MovementSpeed = 0;
     }
     return self;
 }
@@ -44,6 +50,49 @@
     CGFloat radiusSqr = m_Radius * m_Radius;
     
     return distanceSqr <= radiusSqr;
+}
+
+-(void) setRandomEnemyType {
+    m_EnemyType = (enum EnemyType) (arc4random() % (int) EnemyTypeMax);
+    m_EnemyType = horizontalMover;
+    NSLog(@"Enemytype:%u", m_EnemyType);
+    switch(m_EnemyType) {
+            case horizontalMover:
+            m_MovementSpeed = m_Radius * 4;
+            m_MovementBounds = m_Radius;
+            break;
+            case verticalMover:
+            m_MovementSpeed = m_Radius / 4;
+            m_MovementBounds = m_Radius * 4;   m_MovementSpeed *= -1;
+            break;
+        default:
+            break;
+    }
+}
+
+-(void) setPosition:(CGPoint)position {
+    m_CenterPosition = position;
+    [super setPosition:position];
+}
+
+-(void)update:(CCTime)delta {
+    
+    switch(m_EnemyType) {
+        case horizontalMover:
+            self.position = ccp(self.position.x + m_MovementSpeed * delta, self.position.y);
+            if(fabsf(m_CenterPosition.x - self.position.x) > m_MovementBounds) {
+                m_MovementSpeed *= -1;
+            }
+            break;
+        case verticalMover:
+            self.position = ccp(self.position.x, self.position.y + m_MovementSpeed * delta);
+            if(fabsf(m_CenterPosition.y - self.position.y) < m_MovementBounds) {
+                m_MovementSpeed *= -1;
+            }
+            break;
+        default:
+            break;
+    }
 }
 
 @end

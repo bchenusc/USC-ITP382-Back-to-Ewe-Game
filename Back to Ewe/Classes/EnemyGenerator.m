@@ -24,7 +24,7 @@
     Enemy* newEnemy = [Enemy node];
     CGSize winSize = [[CCDirector sharedDirector] viewSize];
     newEnemy.position = ccp(((float)(arc4random() % 100)) / 100 * (winSize.width - newEnemy.radius * 2) + newEnemy.radius, winSize.height + newEnemy.radius * 2);
-                            //* winSize.width rand() % (int)(winSize.width - newEnemy.radius * 2) + newEnemy.radius, winSize.height + newEnemy.radius * 2);
+    [newEnemy setRandomEnemyType];
     
     return newEnemy;
 }
