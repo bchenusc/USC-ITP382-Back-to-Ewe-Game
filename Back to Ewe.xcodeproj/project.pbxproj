@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0023EA6118F398C700C27528 /* Grass.m in Sources */ = {isa = PBXBuildFile; fileRef = 0023EA6018F398C700C27528 /* Grass.m */; };
 		3B7F57D018EA644200B8A237 /* NodeGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7F57CF18EA644200B8A237 /* NodeGenerator.m */; };
 		3BC52A7318EA676F00A35420 /* NodePattern.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC52A7218EA676F00A35420 /* NodePattern.m */; };
 		5688381718F38DFB00A79F78 /* Enemy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5688381618F38DFB00A79F78 /* Enemy.m */; };
@@ -233,6 +234,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0023EA5F18F398C700C27528 /* Grass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Grass.h; sourceTree = "<group>"; };
+		0023EA6018F398C700C27528 /* Grass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Grass.m; sourceTree = "<group>"; };
 		3B7F57CE18EA644200B8A237 /* NodeGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NodeGenerator.h; path = Classes/NodeGenerator.h; sourceTree = "<group>"; };
 		3B7F57CF18EA644200B8A237 /* NodeGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NodeGenerator.m; path = Classes/NodeGenerator.m; sourceTree = "<group>"; };
 		3BC52A7118EA676E00A35420 /* NodePattern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NodePattern.h; path = Classes/NodePattern.h; sourceTree = "<group>"; };
@@ -1572,6 +1575,8 @@
 				5688381918F3902200A79F78 /* EnemyGenerator.m */,
 				D131073318EA18520093C94A /* GameplayScene.h */,
 				D131073418EA18520093C94A /* GameplayScene.m */,
+				0023EA5F18F398C700C27528 /* Grass.h */,
+				0023EA6018F398C700C27528 /* Grass.m */,
 				D131073618EA18520093C94A /* MainMenuScene.h */,
 				D131073718EA18520093C94A /* MainMenuScene.m */,
 				D1BCE1D418EA4E6200C5FCC1 /* Sheep.h */,
@@ -1743,6 +1748,7 @@
 				D13104E418EA18500093C94A /* CCActionTween.m in Sources */,
 				D131065218EA18510093C94A /* NSMutableDictionary+WeakReferences.m in Sources */,
 				D131052F18EA18510093C94A /* CCNode+Debug.m in Sources */,
+				0023EA6118F398C700C27528 /* Grass.m in Sources */,
 				D13104E818EA18500093C94A /* CCAnimation.m in Sources */,
 				D131069118EA18520093C94A /* mat3.c in Sources */,
 				D131059D18EA18510093C94A /* CCTiledMap.m in Sources */,

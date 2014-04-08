@@ -109,8 +109,8 @@
         topNode = [nodeGenerator generatePattern:self];
     }
     
-    if (sheep.position.y > scrollCenter.y){
-        float translation = delta * scrollSpeed;
+    if (sheep.position.y > scrollCenter.y && sheep.physicsBody.velocity.y > 0){
+        float translation = delta * sheep.physicsBody.velocity.y;
         for(Node* node in nodes){
             node.position = ccp(node.position.x, node.position.y - translation);
         }
@@ -212,12 +212,19 @@
     //CCLOG(@"Location touched: %@",NSStringFromCGPoint(touchLoc));
     
     // Check if user clicked on a node
+    bool nodeTouched = NO;
     for (Node* n in nodes) {
         if ([n isPointInNode:touchLoc]) {
             [sheep stringToNode:n];
             NSLog(@"StringLength: %f", [WoolString findStringLengthFromSheep:sheep toNode:n]);
             m_UILayer.Wool = sheep.CurrentWool;
+            nodeTouched = YES;
         }
+    }
+    
+    // If node wasn't touched, break the current Wool
+    if (!nodeTouched) {
+        [sheep breakString];
     }
 }
 

@@ -31,12 +31,20 @@
         m_WoolString = nil;
         m_AttachedNode = nil;
         
-        m_currentWool = 1000.0f;
+        m_currentWool = 10000.0f;
     }
     return self;
 }
 
 - (void) stringToNode:(Node*)node {
+    NSAssert(node != nil, @"Argument must be non-nil");
+    
+    if (m_currentWool <= 0) {
+        m_currentWool = 0;
+        NSLog(@"No wool");
+        return;
+    }
+    
     m_AttachedNode = node;
     
     if (m_WoolString) {
@@ -48,6 +56,14 @@
     m_WoolString = [[WoolString node] initWithStringFromSheep:self toNode:node];
     m_currentWool -= [m_WoolString findCurrentStringLength];
     [self addChild:m_WoolString];
+}
+
+- (void) breakString {
+    if (m_WoolString) {
+        [m_WoolString invalidate];
+        [self removeChild:m_WoolString];
+        m_WoolString = nil;
+    }
 }
 
 - (void) update:(CCTime)delta {
