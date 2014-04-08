@@ -43,7 +43,7 @@
     
     if (m_currentWool <= 0) {
         m_currentWool = 0;
-        NSLog(@"No wool");
+        //NSLog(@"No wool");
         return;
     }
     
