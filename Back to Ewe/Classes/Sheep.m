@@ -39,6 +39,11 @@
 - (void) stringToNode:(Node*)node {
     NSAssert(node != nil, @"Argument must be non-nil");
     
+    if (m_currentWool <= 0) {
+        m_currentWool = 0;
+        NSLog(@"No wool");
+    }
+    
     m_AttachedNode = node;
     
     if (m_WoolString) {
@@ -63,7 +68,6 @@
 - (void) update:(CCTime)delta {
     m_WoolString.start = self.position;
     m_WoolString.end = m_AttachedNode.position;
-    
 }
 
 @end
