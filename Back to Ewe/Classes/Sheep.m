@@ -21,7 +21,7 @@
         [self drawDot:ccp(0, 0) radius:30 color:[CCColor blueColor]];
         
         CCPhysicsBody* physics = [CCPhysicsBody bodyWithCircleOfRadius:30 andCenter:self.anchorPointInPoints];
-        physics.elasticity = 4;
+        //physics.elasticity = 4;
         physics.type = CCPhysicsBodyTypeDynamic;
         physics.collisionCategories = @[@"sheep"];
         physics.collisionMask = @[@"enemy", @"projectile", @"wall", @"node"];

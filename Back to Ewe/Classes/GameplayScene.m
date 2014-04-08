@@ -11,6 +11,7 @@
 #import "MainMenuScene.h"
 #import "Node.h"
 #import "WoolString.h"
+#import "ScreenPhysicsBorders.h"
 
 // -----------------------------------------------------------------------
 #pragma mark - HelloWorldScene
@@ -56,8 +57,11 @@
     physics = [CCPhysicsNode node];
     physics.collisionDelegate = self;
     physics.debugDraw = YES;
-    physics.gravity = ccp(0, -200);
+    physics.gravity = ccp(0, -350);
     [self addChild:physics];
+    
+    ScreenPhysicsBorders* borders = [ScreenPhysicsBorders node];
+    [physics addChild:borders];
     
     sheep = [Sheep node];
     [physics addChild:sheep];

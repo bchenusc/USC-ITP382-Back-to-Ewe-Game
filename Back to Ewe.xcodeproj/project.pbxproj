@@ -214,6 +214,7 @@
 		D131073218EA18520093C94A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D131073118EA18520093C94A /* AppDelegate.m */; };
 		D131073518EA18520093C94A /* GameplayScene.m in Sources */ = {isa = PBXBuildFile; fileRef = D131073418EA18520093C94A /* GameplayScene.m */; };
 		D131073818EA18520093C94A /* MainMenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = D131073718EA18520093C94A /* MainMenuScene.m */; };
+		D1A995C318F398F90022C814 /* ScreenPhysicsBorders.m in Sources */ = {isa = PBXBuildFile; fileRef = D1A995C218F398F90022C814 /* ScreenPhysicsBorders.m */; };
 		D1AA4E1618EA6EED0030745C /* UILayer.m in Sources */ = {isa = PBXBuildFile; fileRef = D1AA4E1518EA6EED0030745C /* UILayer.m */; };
 		D1BCE1D618EA4E6200C5FCC1 /* Sheep.m in Sources */ = {isa = PBXBuildFile; fileRef = D1BCE1D518EA4E6200C5FCC1 /* Sheep.m */; };
 		D1BCE1D918EA54D000C5FCC1 /* Node.m in Sources */ = {isa = PBXBuildFile; fileRef = D1BCE1D818EA54D000C5FCC1 /* Node.m */; };
@@ -663,6 +664,8 @@
 		D131073418EA18520093C94A /* GameplayScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = GameplayScene.m; path = Classes/GameplayScene.m; sourceTree = "<group>"; };
 		D131073618EA18520093C94A /* MainMenuScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MainMenuScene.h; path = Classes/MainMenuScene.h; sourceTree = "<group>"; };
 		D131073718EA18520093C94A /* MainMenuScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MainMenuScene.m; path = Classes/MainMenuScene.m; sourceTree = "<group>"; };
+		D1A995C118F398F90022C814 /* ScreenPhysicsBorders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScreenPhysicsBorders.h; sourceTree = "<group>"; };
+		D1A995C218F398F90022C814 /* ScreenPhysicsBorders.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScreenPhysicsBorders.m; sourceTree = "<group>"; };
 		D1AA4E1418EA6EED0030745C /* UILayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UILayer.h; sourceTree = "<group>"; };
 		D1AA4E1518EA6EED0030745C /* UILayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UILayer.m; sourceTree = "<group>"; };
 		D1BCE1D418EA4E6200C5FCC1 /* Sheep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Sheep.h; path = Classes/Sheep.h; sourceTree = "<group>"; };
@@ -1576,6 +1579,8 @@
 				3BC52A7218EA676F00A35420 /* NodePattern.m */,
 				D1AA4E1418EA6EED0030745C /* UILayer.h */,
 				D1AA4E1518EA6EED0030745C /* UILayer.m */,
+				D1A995C118F398F90022C814 /* ScreenPhysicsBorders.h */,
+				D1A995C218F398F90022C814 /* ScreenPhysicsBorders.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -1791,6 +1796,7 @@
 				D13104CF18EA18500093C94A /* CCAction.m in Sources */,
 				D131053318EA18510093C94A /* CCParallaxNode.m in Sources */,
 				D131069B18EA18520093C94A /* ray2.c in Sources */,
+				D1A995C318F398F90022C814 /* ScreenPhysicsBorders.m in Sources */,
 				D131061718EA18510093C94A /* OALAudioTracks.m in Sources */,
 				D131061418EA18510093C94A /* OALAudioTrackNotifications.m in Sources */,
 				D131069918EA18520093C94A /* quaternion.c in Sources */,
