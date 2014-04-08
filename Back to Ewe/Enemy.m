@@ -58,6 +58,7 @@
     NSLog(@"Enemytype:%u", m_EnemyType);
     switch(m_EnemyType) {
             case horizontalMover:
+            m_CenterPosition = self.position;
             m_MovementSpeed = m_Radius * 4;
             m_MovementBounds = m_Radius;
             break;
@@ -70,17 +71,18 @@
     }
 }
 
--(void) setPosition:(CGPoint)position {
-    m_CenterPosition = position;
-    [super setPosition:position];
-}
-
 -(void)update:(CCTime)delta {
     
     switch(m_EnemyType) {
         case horizontalMover:
             self.position = ccp(self.position.x + m_MovementSpeed * delta, self.position.y);
             if(fabsf(m_CenterPosition.x - self.position.x) > m_MovementBounds) {
+                if(self.position.x < m_CenterPosition.x - m_MovementBounds) {
+                    self.position = ccp(m_CenterPosition.x - m_MovementBounds, self.position.y);
+                }
+                if(self.position.x > m_CenterPosition.x + m_MovementBounds) {
+                    self.position = ccp(m_CenterPosition.x + m_MovementBounds, self.position.y);
+                }
                 m_MovementSpeed *= -1;
             }
             break;
