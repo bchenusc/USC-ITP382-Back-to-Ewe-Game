@@ -79,28 +79,6 @@
     topEnemy = nil;
     [self spawnNewEnemy];
     
-    
-    /*Node* testNode = [Node node];
-    testNode.position = ccp(self.contentSize.width / 5, self.contentSize.height - self.contentSize.height / 8);
-    [nodes addObject:testNode];
-    [physics addChild:testNode];
-    
-    testNode = [Node node];
-    testNode.position = ccp(self.contentSize.width / 5 * 4, self.contentSize.height - self.contentSize.height / 8);
-    [nodes addObject:testNode];
-    [physics addChild:testNode];
-    
-    testNode = [Node node];
-    testNode.position = ccp(self.contentSize.width / 2, self.contentSize.height / 2);
-    [nodes addObject:testNode];
-    [physics addChild:testNode];
-    
-    testNode = [Node node];
-    testNode.position = ccp(self.contentSize.width / 5, self.contentSize.height / 4);
-    [nodes addObject:testNode];
-    [physics addChild:testNode];
-    */
-    
     Grass* testGrass = [Grass node];
     testGrass.position = ccp(2*self.contentSize.width / 3, 3*self.contentSize.height /8);
     [physics addChild:testGrass];
@@ -119,6 +97,12 @@
         topNode = [nodeGenerator generatePattern:self];
     }
     
+    for (Node* node  in nodesToDelete){
+        [physics removeChild:node];
+    }
+    [nodes removeObjectsInArray:nodesToDelete];
+    [nodesToDelete removeAllObjects];
+    
     if (sheep.position.y > scrollCenter.y && sheep.physicsBody.velocity.y > 0){
         float translation = delta * sheep.physicsBody.velocity.y;
         for(Node* node in nodes){
@@ -133,12 +117,7 @@
         sheep.position = ccp (sheep.position.x, sheep.position.y - translation);
         topNode = ccp(topNode.x, topNode.y - translation);
     
-        for (Node* node  in nodesToDelete){
-            [physics removeChild:node];
-            //[self removeChild:node cleanup:YES];
-        }
-        [nodes removeObjectsInArray:nodesToDelete];
-        [nodesToDelete removeAllObjects];
+        
     }
     
     if(topEnemy == nil) {

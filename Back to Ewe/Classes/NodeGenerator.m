@@ -22,7 +22,7 @@
 }
 
 -(CGPoint)generateFirstPattern: (GameplayScene*) gameplayScene{
-    return [nodePattern ChoosePattern:0 :gameplayScene];
+    return [nodePattern ChoosePattern:2 :gameplayScene];
 }
 
 //Generate a node pattern to appear on the screen.
