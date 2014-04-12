@@ -112,7 +112,7 @@
             }
         }
         for(Enemy* enemy in enemies) {
-            enemy.position = ccp(enemy.position.x, enemy.position.y - translation);
+            [enemy setPositionAndCenter:ccp(enemy.position.x, enemy.position.y - translation)];
         }
         sheep.position = ccp (sheep.position.x, sheep.position.y - translation);
         topNode = ccp(topNode.x, topNode.y - translation);

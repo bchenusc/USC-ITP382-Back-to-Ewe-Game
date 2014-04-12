@@ -32,7 +32,7 @@ enum EnemyType {
 
 -(void) setRandomEnemyType;
 
--(void) setPosition:(CGPoint)position;
+-(void) setPositionAndCenter:(CGPoint)point;
 
 - (CGRect) rect;
 
