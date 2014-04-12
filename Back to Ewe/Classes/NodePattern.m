@@ -52,23 +52,23 @@
     topNodePosition = ccp(winSize.width / 2, winSize.height / 2);
     [gameplayScene addNode:testNode Position: ccp(winSize.width / 5, winSize.height - winSize.height / 8)];
     testNode = [Node node];
-    [gameplayScene addNode:testNode Position:ccp(winSize.width / 5 * 4, winSize.height - winSize.height / 8) ];
+    [gameplayScene addNode:testNode Position:ccp(winSize.width / 5 * 4, winSize.height - winSize.height / 8 - 80) ];
     testNode = [Node node];
     [gameplayScene addNode:testNode Position:topNodePosition];
     testNode = [Node node];
-    [gameplayScene addNode:testNode Position:ccp(winSize.width / 5, winSize.height / 4)];
+    [gameplayScene addNode:testNode Position:ccp(winSize.width / 2.5f - 20, winSize.height / 4)];
     return topNodePosition;
 }
 - (CGPoint) FourNodesHigh{
     Node* testNode = [Node node];
     topNodePosition = ccp(winSize.width / 2, winSize.height / 2+ 400);
-    [gameplayScene addNode:testNode Position: ccp(winSize.width / 5, winSize.height - winSize.height / 8 + 400)];
+    [gameplayScene addNode:testNode Position: ccp(winSize.width / 3, winSize.height - winSize.height / 8 + 400)];
     testNode = [Node node];
-    [gameplayScene addNode:testNode Position:ccp(winSize.width / 5 * 4, winSize.height - winSize.height / 8+ 400) ];
+    [gameplayScene addNode:testNode Position:ccp(winSize.width / 5 * 4, winSize.height - winSize.height / 8+ 400 - 80) ];
     testNode = [Node node];
     [gameplayScene addNode:testNode Position:topNodePosition];
     testNode = [Node node];
-    [gameplayScene addNode:testNode Position:ccp(winSize.width / 5, winSize.height / 4 + 400)];
+    [gameplayScene addNode:testNode Position:ccp(winSize.width / 7, winSize.height / 4 + 400)];
     return topNodePosition;
 }
 

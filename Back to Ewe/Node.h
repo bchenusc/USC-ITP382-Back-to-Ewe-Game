@@ -11,6 +11,9 @@
 
 @interface Node : CCDrawNode {
     CGFloat m_Radius;
+    bool deleteMe;
+    
+  
 }
 
 @property (readonly) CGFloat radius;

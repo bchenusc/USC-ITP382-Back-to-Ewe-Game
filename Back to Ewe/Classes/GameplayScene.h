@@ -25,6 +25,7 @@
     CCPhysicsNode* physics;
     NSMutableArray* enemies;
     NSMutableArray* nodes;
+    NSMutableArray* nodesToDelete;
     
     CGPoint scrollCenter;
     float scrollSpeed;

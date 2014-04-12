@@ -28,6 +28,8 @@
         physics.collisionType = @"node";
         physics.sensor = YES;
         self.physicsBody = physics;
+        
+        deleteMe = NO;
     }
     return self;
 }

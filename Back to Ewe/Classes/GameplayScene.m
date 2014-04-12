@@ -36,6 +36,7 @@
     if (!self) return(nil);
     
     nodes = [[NSMutableArray alloc] init];
+    nodesToDelete = [[NSMutableArray alloc]init];
     enemies = [[NSMutableArray alloc] init];
     
     // Enable touch handling on scene node
@@ -68,27 +69,6 @@
     nodeGenerator = [NodeGenerator node];
     topNode = [nodeGenerator generateFirstPattern:self];
     
-    /*Node* testNode = [Node node];
-    testNode.position = ccp(self.contentSize.width / 5, self.contentSize.height - self.contentSize.height / 8);
-    [nodes addObject:testNode];
-    [physics addChild:testNode];
-    
-    testNode = [Node node];
-    testNode.position = ccp(self.contentSize.width / 5 * 4, self.contentSize.height - self.contentSize.height / 8);
-    [nodes addObject:testNode];
-    [physics addChild:testNode];
-    
-    testNode = [Node node];
-    testNode.position = ccp(self.contentSize.width / 2, self.contentSize.height / 2);
-    [nodes addObject:testNode];
-    [physics addChild:testNode];
-    
-    testNode = [Node node];
-    testNode.position = ccp(self.contentSize.width / 5, self.contentSize.height / 4);
-    [nodes addObject:testNode];
-    [physics addChild:testNode];
-    */
-    
     //UI Layer
     m_UILayer = [UILayer node];
     [self addChild:m_UILayer];
@@ -107,10 +87,22 @@
         float translation = delta * scrollSpeed;
         for(Node* node in nodes){
             node.position = ccp(node.position.x, node.position.y - translation);
+            if (node.position.y < 0){
+                [nodesToDelete addObject:node];
+            }
         }
         sheep.position = ccp (sheep.position.x, sheep.position.y - translation);
         topNode = ccp(topNode.x, topNode.y - translation);
+    
+        for (Node* node  in nodesToDelete){
+            [physics removeChild:node];
+            //[self removeChild:node cleanup:YES];
+        }
+        [nodes removeObjectsInArray:nodesToDelete];
+        [nodesToDelete removeAllObjects];
     }
+    
+    
 }
 
 -(void) spawnNewPattern{
