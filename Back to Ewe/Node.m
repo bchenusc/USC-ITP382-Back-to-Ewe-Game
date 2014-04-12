@@ -7,18 +7,19 @@
 //
 
 #import "Node.h"
-
+#import "GameplayScene.h"
 
 @implementation Node
 
 @synthesize radius = m_Radius;
 
-- (instancetype)init {
+- (instancetype) init {
     self = [super init];
     if (self) {
         CGSize winSize = [[CCDirector sharedDirector] viewSize];
         self.position = ccp(winSize.width / 2, winSize.height / 2);
         m_Radius = 20;
+        m_BeingRemoved = NO;
         [self drawDot:ccp(0, 0) radius:m_Radius color:[CCColor redColor]];
         
         CCPhysicsBody* physics = [CCPhysicsBody bodyWithCircleOfRadius:m_Radius andCenter:self.anchorPointInPoints];
@@ -28,10 +29,32 @@
         physics.collisionType = @"node";
         physics.sensor = YES;
         self.physicsBody = physics;
-        
-        deleteMe = NO;
     }
     return self;
+}
+
+- (void) setGameplayScene:(GameplayScene*)g {
+    NSAssert(g != nil, @"Argument must be non-nil");
+    
+    m_GameplayScene = g;
+}
+
+- (void) shrinkAndRemove {
+    if (!m_BeingRemoved) {
+        [self scheduleOnce:@selector(remove) delay:3.0f];
+        [self runAction:[CCActionScaleTo actionWithDuration:3.0f scale:0.15f]];
+        m_BeingRemoved = YES;
+    }
+}
+
+- (void) remove {
+    [m_GameplayScene removeNode:self];
+}
+
+- (void) onExit {
+    [self unscheduleAllSelectors];
+    
+    [super onExit];
 }
 
 - (CGRect) rect {

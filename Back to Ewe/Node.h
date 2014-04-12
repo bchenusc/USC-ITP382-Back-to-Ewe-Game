@@ -9,14 +9,19 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
+@class GameplayScene;
+
 @interface Node : CCDrawNode {
     CGFloat m_Radius;
-    bool deleteMe;
-    
-  
+    GameplayScene* m_GameplayScene;
+    BOOL m_BeingRemoved;
 }
 
 @property (readonly) CGFloat radius;
+
+- (void) setGameplayScene:(GameplayScene*)g;
+
+- (void) shrinkAndRemove;
 
 - (CGRect) rect;
 

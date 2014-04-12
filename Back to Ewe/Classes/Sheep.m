@@ -11,6 +11,7 @@
 
 @implementation Sheep
 
+@synthesize attachedNode = m_AttachedNode;
 @synthesize CurrentWool = m_currentWool;
 @synthesize MaxWool = m_maxWool;
 
