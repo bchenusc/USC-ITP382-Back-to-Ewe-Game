@@ -17,10 +17,14 @@
     Node* m_AttachedNode;
 
     float m_currentWool;
+    float m_maxWool;
 }
 
 @property float CurrentWool;
+@property float MaxWool;
 
 - (void) stringToNode:(Node*)node;
+
+- (void) breakString;
 
 @end
