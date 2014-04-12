@@ -54,7 +54,7 @@
 
 -(void) setRandomEnemyType {
     m_EnemyType = (enum EnemyType) (arc4random() % (int) EnemyTypeMax);
-    m_EnemyType = horizontalMover;
+    m_EnemyType = verticalMover;
     NSLog(@"Enemytype:%u", m_EnemyType);
     switch(m_EnemyType) {
             case horizontalMover:
@@ -63,12 +63,18 @@
             m_MovementBounds = m_Radius;
             break;
             case verticalMover:
-            m_MovementSpeed = m_Radius / 4;
-            m_MovementBounds = m_Radius * 4;   m_MovementSpeed *= -1;
+            m_CenterPosition = self.position;
+            m_MovementSpeed = m_Radius * 4;
+            m_MovementBounds = m_Radius;
             break;
         default:
             break;
     }
+}
+
+-(void)setPositionAndCenter:(CGPoint)point {
+    self.position = point;
+    m_CenterPosition = point;
 }
 
 -(void)update:(CCTime)delta {
@@ -78,17 +84,23 @@
             self.position = ccp(self.position.x + m_MovementSpeed * delta, self.position.y);
             if(fabsf(m_CenterPosition.x - self.position.x) > m_MovementBounds) {
                 if(self.position.x < m_CenterPosition.x - m_MovementBounds) {
-                    self.position = ccp(m_CenterPosition.x - m_MovementBounds, self.position.y);
+                    self.position = ccp(m_CenterPosition.x - m_MovementBounds, m_CenterPosition.y);
                 }
                 if(self.position.x > m_CenterPosition.x + m_MovementBounds) {
-                    self.position = ccp(m_CenterPosition.x + m_MovementBounds, self.position.y);
+                    self.position = ccp(m_CenterPosition.x + m_MovementBounds, m_CenterPosition.y);
                 }
                 m_MovementSpeed *= -1;
             }
             break;
         case verticalMover:
             self.position = ccp(self.position.x, self.position.y + m_MovementSpeed * delta);
-            if(fabsf(m_CenterPosition.y - self.position.y) < m_MovementBounds) {
+            if(fabsf(m_CenterPosition.y - self.position.y) > m_MovementBounds) {
+                if(self.position.y < m_CenterPosition.y - m_MovementBounds) {
+                    self.position = ccp(m_CenterPosition.x, m_CenterPosition.y - m_MovementBounds);
+                }
+                if(self.position.y > m_CenterPosition.y + m_MovementBounds) {
+                    self.position = ccp(m_CenterPosition.x, m_CenterPosition.y + m_MovementBounds);
+                }
                 m_MovementSpeed *= -1;
             }
             break;
