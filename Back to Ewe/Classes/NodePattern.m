@@ -104,8 +104,8 @@
 }
 - (CGPoint) Square{
     Node* testNode = [Node node];
-    int randWidth = arc4random() % winSize.width + 1;
-    int randHeight = arc4random() % winSize.height + 1;
+    int randWidth = arc4random() % (int)winSize.width + 1;
+    int randHeight = arc4random() % (int)winSize.height + 1;
     topNodePosition = ccp(winSize.width / 2, winSize.height / 2);
     [gameplayScene addNode:testNode Position: ccp(winSize.width / 5, winSize.height - winSize.height / 5)];
     testNode = [Node node];
