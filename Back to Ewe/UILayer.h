@@ -18,11 +18,15 @@
     
     float m_Score;
     CCLabelTTF *m_scoreLabel;
+    
+    int m_Lives;
+    CCLabelTTF* m_livesLabel;
 }
 
 @property float Wool;
 @property float Health;
 @property float Score;
+@property int Lives;
 
 //----//
 

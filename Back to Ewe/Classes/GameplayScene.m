@@ -88,6 +88,7 @@
     
     //UI Layer
     m_UILayer = [UILayer node];
+    m_UILayer.Lives = m_PlayerLives;
     [self addChild:m_UILayer];
     
     
@@ -200,6 +201,7 @@
 - (void) playerDeath {
     NSLog(@"Player died");
     m_PlayerLives--;
+    m_UILayer.Lives = m_PlayerLives;
     //RESETGAME
     if (m_PlayerLives == 0) {
         [self gameOver];
