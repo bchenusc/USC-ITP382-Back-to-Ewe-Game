@@ -70,9 +70,6 @@
     sheep = [Sheep node];
     [physics addChild:sheep];
     
-    scrollCenter = ccp(self.contentSize.width / 2, self.contentSize.height/2);
-    scrollSpeed = 100.0f;
-    
     nodeGenerator = [NodeGenerator node];
     topNode = [nodeGenerator generateFirstPattern:self];
     
@@ -96,9 +93,7 @@
 }
 
 -(void)update:(CCTime)delta{
-    if (sheep.position.y >= topNode.y){
-        topNode = [nodeGenerator generatePattern:self];
-    }
+    
     
     for (Node* node  in nodesToDelete){
         [physics removeChild:node];
@@ -106,7 +101,7 @@
     [nodes removeObjectsInArray:nodesToDelete];
     [nodesToDelete removeAllObjects];
     
-    if (sheep.position.y > scrollCenter.y && sheep.physicsBody.velocity.y > 0){
+    if (sheep.position.y > 170 && sheep.physicsBody.velocity.y > 0){
         float translation = delta * sheep.physicsBody.velocity.y;
         for(Node* node in nodes){
             node.position = ccp(node.position.x, node.position.y - translation);
@@ -115,6 +110,8 @@
             }
         }
         //TODO: Need to cleanup enemies and grass
+        
+        //Scrolling
         for(Enemy* enemy in enemies) {
             [enemy setPositionAndCenter:ccp(enemy.position.x, enemy.position.y - translation)];
         }
@@ -123,8 +120,12 @@
         }
         sheep.position = ccp (sheep.position.x, sheep.position.y - translation);
         topNode = ccp(topNode.x, topNode.y - translation);
-    
+        newNodePoint = ccp(newNodePoint.x, newNodePoint.y - translation);
         
+    }
+    
+    if (sheep.position.y >= topNode.y){
+        topNode = [nodeGenerator generatePattern:self];
     }
     
     if (sheep.position.y < 0) {
@@ -147,6 +148,12 @@
         [self spawnNewGrass];
     }
     
+}
+-(void) setNewNodePoint : (CGPoint) point {
+    newNodePoint = point;
+}
+-(CGPoint) getNewNodePoint{
+    return newNodePoint;
 }
 
 -(void) spawnNewPattern{
