@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		001B61B518FA0D04006EFCE0 /* GrassGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 001B61B418FA0D04006EFCE0 /* GrassGenerator.m */; };
 		0023EA6118F398C700C27528 /* Grass.m in Sources */ = {isa = PBXBuildFile; fileRef = 0023EA6018F398C700C27528 /* Grass.m */; };
 		3B7F57D018EA644200B8A237 /* NodeGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7F57CF18EA644200B8A237 /* NodeGenerator.m */; };
 		3BC52A7318EA676F00A35420 /* NodePattern.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC52A7218EA676F00A35420 /* NodePattern.m */; };
@@ -235,6 +236,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		001B61B318FA0D04006EFCE0 /* GrassGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GrassGenerator.h; path = Classes/GrassGenerator.h; sourceTree = "<group>"; };
+		001B61B418FA0D04006EFCE0 /* GrassGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GrassGenerator.m; path = Classes/GrassGenerator.m; sourceTree = "<group>"; };
 		0023EA5F18F398C700C27528 /* Grass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Grass.h; sourceTree = "<group>"; };
 		0023EA6018F398C700C27528 /* Grass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Grass.m; sourceTree = "<group>"; };
 		3B7F57CE18EA644200B8A237 /* NodeGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NodeGenerator.h; path = Classes/NodeGenerator.h; sourceTree = "<group>"; };
@@ -1580,6 +1583,8 @@
 				D131073418EA18520093C94A /* GameplayScene.m */,
 				0023EA5F18F398C700C27528 /* Grass.h */,
 				0023EA6018F398C700C27528 /* Grass.m */,
+				001B61B318FA0D04006EFCE0 /* GrassGenerator.h */,
+				001B61B418FA0D04006EFCE0 /* GrassGenerator.m */,
 				D131073618EA18520093C94A /* MainMenuScene.h */,
 				D131073718EA18520093C94A /* MainMenuScene.m */,
 				D1BCE1D418EA4E6200C5FCC1 /* Sheep.h */,
@@ -1742,6 +1747,7 @@
 				D13105E718EA18510093C94A /* CGPointExtension.m in Sources */,
 				D131067218EA18520093C94A /* CCTextField.m in Sources */,
 				D13105DD18EA18510093C94A /* CCProfiling.m in Sources */,
+				001B61B518FA0D04006EFCE0 /* GrassGenerator.m in Sources */,
 				D131060418EA18510093C94A /* OALAction.m in Sources */,
 				D131059A18EA18510093C94A /* CCTexturePVR.m in Sources */,
 				D13106A918EA18520093C94A /* CCBAnimationManager.m in Sources */,

@@ -37,6 +37,7 @@
     EnemyGenerator* enemyGenerator;
     Enemy* topEnemy;
     int score;
+    int m_PlayerLives; 
 }
 
 // -----------------------------------------------------------------------
@@ -48,6 +49,8 @@
 - (id)init;
 - (void)spawnNewPattern;
 -(void)spawnNewEnemy;
+- (void) playerDeath;
+- (void) gameOver;
 
 // -----------------------------------------------------------------------
 @end

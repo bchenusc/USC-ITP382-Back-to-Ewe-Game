@@ -120,6 +120,11 @@
         
     }
     
+    if (sheep.position.y < 0) {
+        NSLog(@"Game Over");
+        //RUN GAMEOVER CODE
+    }
+    
     if(topEnemy == nil) {
         [self spawnNewEnemy];
     } else if(topEnemy.position.y < 0) {
@@ -162,6 +167,14 @@
         [sheep breakString];
     }
     [nodesToDelete addObject:toRemove];
+}
+
+- (void) playerDeath {
+    
+}
+
+- (void) gameOver {
+    
 }
 
 -(BOOL) ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair sheep:(Sheep *)sheep node:(Node *)node
