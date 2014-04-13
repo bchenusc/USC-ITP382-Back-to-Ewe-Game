@@ -71,9 +71,6 @@
     sheep = [Sheep node];
     [physics addChild:sheep];
     
-    scrollCenter = ccp(self.contentSize.width / 2, self.contentSize.height/2);
-    scrollSpeed = 100.0f;
-    
     nodeGenerator = [NodeGenerator node];
     topNode = [nodeGenerator generateFirstPattern:self];
     
@@ -94,6 +91,7 @@
     
     //UI Layer
     m_UILayer = [UILayer node];
+    m_UILayer.Lives = m_PlayerLives;
     [self addChild:m_UILayer];
     
     
@@ -102,9 +100,7 @@
 }
 
 -(void)update:(CCTime)delta{
-    if (sheep.position.y >= topNode.y){
-        topNode = [nodeGenerator generatePattern:self];
-    }
+    
     
     for (Node* node  in nodesToDelete){
         [physics removeChild:node];
@@ -112,7 +108,7 @@
     [nodes removeObjectsInArray:nodesToDelete];
     [nodesToDelete removeAllObjects];
     
-    if (sheep.position.y > scrollCenter.y && sheep.physicsBody.velocity.y > 0){
+    if (sheep.position.y > 170 && sheep.physicsBody.velocity.y > 0){
         float translation = delta * sheep.physicsBody.velocity.y;
         for(Node* node in nodes){
             node.position = ccp(node.position.x, node.position.y - translation);
@@ -121,6 +117,8 @@
             }
         }
         //TODO: Need to cleanup enemies and grass
+        
+        //Scrolling
         for(Enemy* enemy in enemies) {
             [enemy setPositionAndCenter:ccp(enemy.position.x, enemy.position.y - translation)];
         }
@@ -167,6 +165,12 @@
         [self spawnNewPowerup];
     }
     
+}
+-(void) setNewNodePoint : (CGPoint) point {
+    newNodePoint = point;
+}
+-(CGPoint) getNewNodePoint{
+    return newNodePoint;
 }
 
 -(void) spawnNewPattern{
@@ -235,6 +239,7 @@
 - (void) playerDeath {
     //NSLog(@"Player died");
     m_PlayerLives--;
+    m_UILayer.Lives = m_PlayerLives;
     //RESETGAME
     if (m_PlayerLives == 0) {
         [self gameOver];
@@ -254,11 +259,14 @@
     return YES;
 }
 
--(BOOL) ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair sheep:(Sheep *)_sheep grass:(Grass *)grass {
-    _sheep.CurrentWool += grass.RCVAmount;
+-(BOOL) ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair sheep:(Sheep *)_sheep grass:(Grass *)_grass {
+    _sheep.CurrentWool += _grass.RCVAmount;
     if (_sheep.CurrentWool >= _sheep.MaxWool) {
         _sheep.CurrentWool = sheep.MaxWool;
     }
+    [self removeGrass];
+    [self spawnNewGrass];
+    
     m_UILayer.Wool = _sheep.CurrentWool;
     
     return YES;
