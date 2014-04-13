@@ -52,7 +52,6 @@
     m_GameOverLabel.visible = choice;
 }
 
-
 - (void) draw {
     CGSize size = [[CCDirector sharedDirector] viewSize];
     

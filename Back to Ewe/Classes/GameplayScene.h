@@ -64,6 +64,8 @@
 - (void)spawnNewEnemy;
 - (void) spawnNewGrass;
 - (void) playerDeath;
+- (void) resetGame;
+- (void) respawnPlayer;
 - (void) gameOver;
 
 // -----------------------------------------------------------------------
