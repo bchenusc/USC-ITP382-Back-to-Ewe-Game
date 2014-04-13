@@ -19,6 +19,7 @@ enum EnemyType {
 
 @interface Enemy : CCDrawNode {
     CGFloat m_Radius;
+    CGFloat m_OriginalRadius;
     
     enum EnemyType m_EnemyType;
     
@@ -32,7 +33,7 @@ enum EnemyType {
 
 -(void) setRandomEnemyType;
 
--(void) setPosition:(CGPoint)position;
+-(void) setPositionAndCenter:(CGPoint)point;
 
 - (CGRect) rect;
 

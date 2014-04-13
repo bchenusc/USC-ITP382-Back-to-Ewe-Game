@@ -59,7 +59,7 @@
     // Create physics stuff
     physics = [CCPhysicsNode node];
     physics.collisionDelegate = self;
-    physics.debugDraw = YES;
+    //physics.debugDraw = YES;
     physics.gravity = ccp(0, -350);
     [self addChild:physics];
     
@@ -112,7 +112,7 @@
             }
         }
         for(Enemy* enemy in enemies) {
-            enemy.position = ccp(enemy.position.x, enemy.position.y - translation);
+            [enemy setPositionAndCenter:ccp(enemy.position.x, enemy.position.y - translation)];
         }
         sheep.position = ccp (sheep.position.x, sheep.position.y - translation);
         topNode = ccp(topNode.x, topNode.y - translation);
@@ -150,8 +150,18 @@
 
 -(void) addNode : (Node*) n Position:(CGPoint)point{
     n.position = point;
+    [n setGameplayScene:self];
     [nodes addObject:n];
     [physics addChild:n];
+}
+
+- (void) removeNode:(Node*)toRemove {
+    NSAssert(toRemove != nil, @"Argument must be non-nil");
+    
+    if (sheep.attachedNode == toRemove) {
+        [sheep breakString];
+    }
+    [nodesToDelete addObject:toRemove];
 }
 
 -(BOOL) ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair sheep:(Sheep *)sheep node:(Node *)node
@@ -217,17 +227,17 @@
 - (void) touchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
     CGPoint touchLoc = [touch locationInNode:self];
     
-    // Log touch location
-    //CCLOG(@"Location touched: %@",NSStringFromCGPoint(touchLoc));
-    
     // Check if user clicked on a node
     bool nodeTouched = NO;
     for (Node* n in nodes) {
         if ([n isPointInNode:touchLoc]) {
-            [sheep stringToNode:n];
-            //NSLog(@"StringLength: %f", [WoolString findStringLengthFromSheep:sheep toNode:n]);
-            m_UILayer.Wool = sheep.CurrentWool;
             nodeTouched = YES;
+            
+            if (n != sheep.attachedNode) {
+                [sheep stringToNode:n];
+                [n shrinkAndRemove];
+                m_UILayer.Wool = sheep.CurrentWool;
+            }
         }
     }
     
