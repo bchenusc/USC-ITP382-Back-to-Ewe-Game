@@ -21,6 +21,8 @@
     
     int m_Lives;
     CCLabelTTF* m_livesLabel;
+    
+    CCLabelTTF* m_GameOverLabel;
 }
 
 @property float Wool;
@@ -29,7 +31,7 @@
 @property int Lives;
 
 //----//
-
+- (void) showGameOverLabel:(BOOL) choice;
 //----//
 
 @end

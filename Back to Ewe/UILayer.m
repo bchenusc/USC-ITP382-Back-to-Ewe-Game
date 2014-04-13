@@ -40,8 +40,16 @@
         [m_livesLabel setHorizontalAlignment:CCTextAlignmentLeft];
         [self addChild:m_livesLabel];
         
+        m_GameOverLabel = [CCLabelTTF labelWithString:@"Game Over!" fontName:@"Marker Felt" fontSize:36.0f ];
+        m_GameOverLabel.visible = NO;
+        [self addChild:m_GameOverLabel];
+        
     }
     return self;
+}
+
+- (void) showGameOverLabel:(BOOL)choice {
+    m_GameOverLabel.visible = choice;
 }
 
 
