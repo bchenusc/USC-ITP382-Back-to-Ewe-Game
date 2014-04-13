@@ -17,6 +17,4 @@
 
 -(Enemy*)spawnEnemy;
 
--(void) update: (CCTime)dt;
-
 @end

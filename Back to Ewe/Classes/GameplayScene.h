@@ -16,6 +16,7 @@
 #import "NodeGenerator.h"
 #import "EnemyGenerator.h"
 #import "GrassGenerator.h"
+#import "PowerupGenerator.h"
 
 // -----------------------------------------------------------------------
 
@@ -40,8 +41,12 @@
     Enemy* topEnemy;
     GrassGenerator* grassGenerator;
     Grass* topGrass;
+    PowerupGenerator* powerupGenerator;
+    Powerup* topPowerup;
+    float powerupSpacing;
+    float powerupSpacingTolerance;
     
-    int score;
+    float score;
     int m_PlayerLives; 
 }
 

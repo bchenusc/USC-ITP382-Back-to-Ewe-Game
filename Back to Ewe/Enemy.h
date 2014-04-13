@@ -14,7 +14,7 @@ enum EnemyType {
     verticalMover,
     stationary,
 //    expander,
-    EnemyTypeMax
+    PowerupTypeMax
 };
 
 @interface Enemy : CCDrawNode {

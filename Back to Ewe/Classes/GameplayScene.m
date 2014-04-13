@@ -13,6 +13,7 @@
 #import "WoolString.h"
 #import "Grass.h"
 #import "Enemy.h"
+#import "Powerup.h"
 #import "ScreenPhysicsBorders.h"
 
 // -----------------------------------------------------------------------
@@ -84,6 +85,11 @@
     topGrass = nil;
     [self spawnNewGrass];
     
+    powerupGenerator = [PowerupGenerator node];
+    topPowerup = nil;
+    powerupSpacing = 1000.0f;
+    powerupSpacingTolerance = 200.0f;
+    
     m_PlayerLives = 3;
     
     //UI Layer
@@ -121,10 +127,23 @@
         for (Grass* _grass in grass) {
             _grass.position =ccp(_grass.position.x, _grass.position.y - translation);
         }
+        if(topPowerup != nil) {
+            topPowerup.position = ccp(topPowerup.position.x, topPowerup.position.y - translation);
+        }
+        
         sheep.position = ccp (sheep.position.x, sheep.position.y - translation);
         topNode = ccp(topNode.x, topNode.y - translation);
     
-        m_UILayer.Score += translation;
+        score += translation;
+        m_UILayer.Score = score;
+    }
+    
+    if(topPowerup != nil) {
+        if(topPowerup.position.y < -topPowerup.radius) {
+            [self removePowerup];
+        } else {
+            NSLog(@"%f %f", topPowerup.position.x, topPowerup.position.y);
+        }
     }
     
     if (sheep.position.y < 0) {
@@ -146,10 +165,28 @@
         [self removeGrass];
         [self spawnNewGrass];
     }
+    if(score >= powerupSpacing) {
+        [self spawnNewPowerup];
+    }
+    
 }
 
 -(void) spawnNewPattern{
     topNode = [nodeGenerator generatePattern:self];
+}
+
+-(void)spawnNewPowerup {
+    [self removePowerup];
+    topPowerup = [powerupGenerator spawnPowerup];
+    powerupSpacing += powerupSpacing + arc4random() % (int)powerupSpacingTolerance;
+    [physics addChild:topPowerup];
+}
+
+-(void)removePowerup {
+    if(topPowerup != nil) {
+        [physics removeChild:topPowerup];
+        topPowerup = nil;
+    }
 }
 
 -(void)spawnNewEnemy {
