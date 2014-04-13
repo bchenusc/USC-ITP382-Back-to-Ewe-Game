@@ -221,11 +221,14 @@
     return YES;
 }
 
--(BOOL) ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair sheep:(Sheep *)_sheep grass:(Grass *)grass {
-    _sheep.CurrentWool += grass.RCVAmount;
+-(BOOL) ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair sheep:(Sheep *)_sheep grass:(Grass *)_grass {
+    _sheep.CurrentWool += _grass.RCVAmount;
     if (_sheep.CurrentWool >= _sheep.MaxWool) {
         _sheep.CurrentWool = sheep.MaxWool;
     }
+    [self removeGrass];
+    [self spawnNewGrass];
+    
     m_UILayer.Wool = _sheep.CurrentWool;
     
     return YES;
