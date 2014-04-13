@@ -13,7 +13,7 @@ enum EnemyType {
     horizontalMover = 0,
     verticalMover,
     stationary,
-    expander,
+//    expander,
     EnemyTypeMax
 };
 

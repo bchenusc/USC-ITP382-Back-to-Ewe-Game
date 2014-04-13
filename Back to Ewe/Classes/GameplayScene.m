@@ -60,7 +60,7 @@
     // Create physics stuff
     physics = [CCPhysicsNode node];
     physics.collisionDelegate = self;
-    //physics.debugDraw = YES;
+    physics.debugDraw = YES;
     physics.gravity = ccp(0, -350);
     [self addChild:physics];
     
