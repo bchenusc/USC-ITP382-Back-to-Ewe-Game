@@ -15,6 +15,7 @@
 @class NodeGenerator;
 #import "NodeGenerator.h"
 #import "EnemyGenerator.h"
+#import "GrassGenerator.h"
 
 // -----------------------------------------------------------------------
 
@@ -27,6 +28,7 @@
     NSMutableArray* enemies;
     NSMutableArray* nodes;
     NSMutableArray* nodesToDelete;
+    NSMutableArray* grass;
     
     CGPoint scrollCenter;
     float scrollSpeed;
@@ -36,7 +38,11 @@
     CGPoint topNode;
     EnemyGenerator* enemyGenerator;
     Enemy* topEnemy;
+    GrassGenerator* grassGenerator;
+    Grass* topGrass;
+    
     int score;
+    int m_PlayerLives; 
 }
 
 // -----------------------------------------------------------------------
@@ -44,10 +50,14 @@
 + (GameplayScene *)scene;
 - (void) addNode : (Node*) n Position: (CGPoint) point;
 - (void) removeNode:(Node*)toRemove;
+- (void) removeGrass;
 - (CGSize) getSize;
 - (id)init;
 - (void)spawnNewPattern;
--(void)spawnNewEnemy;
+- (void)spawnNewEnemy;
+- (void) spawnNewGrass;
+- (void) playerDeath;
+- (void) gameOver;
 
 // -----------------------------------------------------------------------
 @end

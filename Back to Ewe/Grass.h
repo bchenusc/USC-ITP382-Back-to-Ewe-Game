@@ -11,8 +11,10 @@
 
 @interface Grass : CCDrawNode {
     float m_rcvAmount;
+    float m_Radius;
 }
 
 @property float RCVAmount;
+@property float Radius;
 
 @end
