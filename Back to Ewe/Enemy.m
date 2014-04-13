@@ -9,6 +9,7 @@
 #import "Enemy.h"
 //#import "chipmunk_unsafe.h"
 
+
 @implementation Enemy
 
 @synthesize radius = m_Radius;
@@ -55,7 +56,6 @@
 
 -(void) setRandomEnemyType {
     m_EnemyType = (enum EnemyType) (arc4random() % (int) EnemyTypeMax);
-    m_EnemyType = expander;
     NSLog(@"Enemytype:%u", m_EnemyType);
     switch(m_EnemyType) {
         case horizontalMover:
@@ -73,10 +73,11 @@
             m_MovementSpeed = 0;
             m_MovementBounds = 0;
             break;
-        case expander:
+        /*case expander:
             m_CenterPosition = self.position;
             m_MovementSpeed = m_Radius;
             m_MovementBounds = m_Radius * 2;
+            break;*/
         default:
             break;
     }
@@ -114,9 +115,10 @@
                 m_MovementSpeed *= -1;
             }
             break;
-        case expander:
+        /*case expander:
             m_Radius += m_MovementSpeed * delta;
             self.scale = m_Radius / m_OriginalRadius;
+            
             //cpCircleShapeSetRadius(self, m_Radius);
             if(m_Radius >= m_MovementBounds) {
                 m_Radius = m_MovementBounds;
@@ -125,7 +127,7 @@
             if(m_Radius <= m_OriginalRadius) {
                 m_Radius = m_OriginalRadius;
                 m_MovementSpeed *= -1;
-            }
+            }*/
         default:
             break;
     }
