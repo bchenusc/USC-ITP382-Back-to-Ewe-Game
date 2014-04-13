@@ -210,13 +210,16 @@
 }
 
 - (void) playerDeath {
-    NSLog(@"Player died");
     if (!m_Dead) {
+        NSLog(@"Player died");
         m_PlayerLives--;
         m_UILayer.Lives = m_PlayerLives;
         m_Dead = YES;
-        [m_UILayer showGameOverLabel:YES];
-        [self scheduleOnce:@selector(respawnPlayer) delay:4.0f];
+        if (sheep.attachedNode) {
+            [sheep breakString];
+        }
+        
+        [self scheduleOnce:@selector(respawnPlayer) delay:2.5f];
         if (m_PlayerLives == 0) {
             [self gameOver];
         }
@@ -226,12 +229,14 @@
 - (void) respawnPlayer {
     CGSize winSize = [[CCDirector sharedDirector] viewSize];
     sheep.position = ccp(winSize.width/2, winSize.height/3);
-    sheep.physicsBody.velocity = ccp(0, 100);
+    sheep.physicsBody.velocity = ccp(0, 500);
     m_Dead = NO;
 }
 
 - (void) gameOver {
     NSLog(@"Game Over");
+    [m_UILayer showGameOverLabel:YES];
+    
 }
 
 - (void) resetGame {
@@ -310,6 +315,9 @@
 // -----------------------------------------------------------------------
 
 - (void) touchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
+    if (m_Dead) {
+        return;
+    }
     CGPoint touchLoc = [touch locationInNode:self];
     
     // Check if user clicked on a node
