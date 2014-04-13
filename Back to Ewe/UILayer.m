@@ -45,7 +45,7 @@
     
     ccDrawSolidRect(ccp(0, 10), ccp((m_healthRemaining/m_healthCapacity)*(size.width), 20), [CCColor redColor]);
     
-    [m_scoreLabel setString:[NSString stringWithFormat:@"Score: %d", m_Score]];
+    [m_scoreLabel setString:[NSString stringWithFormat:@"Score: %.f", m_Score]];
     
             [m_scoreLabel setPosition:ccp(m_scoreLabel.texture.contentSize.width / 2, size.height - m_scoreLabel.texture.contentSize.height / 2)];
 }
