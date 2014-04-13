@@ -80,14 +80,11 @@
     topEnemy = nil;
     [self spawnNewEnemy];
     
-//    Grass* testGrass = [Grass node];
-//    testGrass.position = ccp(2*self.contentSize.width / 3, 3*self.contentSize.height /8);
-//    [physics addChild:testGrass];
-    
     grassGenerator = [GrassGenerator node];
     topGrass = nil;
     [self spawnNewGrass];
     
+    m_PlayerLives = 3;
     
     //UI Layer
     m_UILayer = [UILayer node];
@@ -131,8 +128,9 @@
     }
     
     if (sheep.position.y < 0) {
+        [self playerDeath];
         if (m_PlayerLives == 0) {
-            [self gameOver];
+            [self playerDeath];
         }
     }
     
@@ -201,7 +199,12 @@
 }
 
 - (void) playerDeath {
-    
+    NSLog(@"Player died");
+    m_PlayerLives--;
+    //RESETGAME
+    if (m_PlayerLives == 0) {
+        [self gameOver];
+    }
 }
 
 - (void) gameOver {
