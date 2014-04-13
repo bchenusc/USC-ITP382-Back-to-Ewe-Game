@@ -141,8 +141,6 @@
     if(topPowerup != nil) {
         if(topPowerup.position.y < -topPowerup.radius) {
             [self removePowerup];
-        } else {
-            NSLog(@"%f %f", topPowerup.position.x, topPowerup.position.y);
         }
     }
     
@@ -235,7 +233,7 @@
 }
 
 - (void) playerDeath {
-    NSLog(@"Player died");
+    //NSLog(@"Player died");
     m_PlayerLives--;
     //RESETGAME
     if (m_PlayerLives == 0) {
@@ -271,6 +269,14 @@
 	m_UILayer.Health -= 10.0f;
     [self removeEnemy];
     [self spawnNewEnemy];
+    
+    return YES;
+}
+
+-(BOOL) ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair sheep:(Sheep *)sheep powerup:(Powerup *)powerup
+{
+    
+    [self removePowerup];
     
     return YES;
 }

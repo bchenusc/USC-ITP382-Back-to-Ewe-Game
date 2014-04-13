@@ -10,11 +10,13 @@
 #import "cocos2d.h"
 #import "Node.h"
 #import "WoolString.h"
+#import "Powerup.h"
 @class GameplayScene;
 
 @interface Sheep : CCDrawNode {
     WoolString* m_WoolString;
     Node* m_AttachedNode;
+    enum PowerupType m_CurrentPowerup;
 
     float m_currentWool;
     float m_maxWool;
