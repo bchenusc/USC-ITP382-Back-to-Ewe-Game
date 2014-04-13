@@ -11,6 +11,7 @@
 @implementation Grass
 
 @synthesize RCVAmount = m_rcvAmount;
+@synthesize Radius = m_Radius;
 
 - (instancetype)init
 {
@@ -18,7 +19,9 @@
     if (self) {
         m_rcvAmount = 500.0f;
         
-        [self drawDot:ccp(0, 0) radius:30 color:[CCColor greenColor]];
+        m_Radius = 30;
+        
+        [self drawDot:ccp(0, 0) radius:m_Radius color:[CCColor greenColor]];
         
         CCPhysicsBody* physics = [CCPhysicsBody bodyWithCircleOfRadius:20 andCenter:self.anchorPointInPoints];
         

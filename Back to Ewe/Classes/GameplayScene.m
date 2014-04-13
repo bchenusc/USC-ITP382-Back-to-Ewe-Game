@@ -41,6 +41,7 @@
     nodes = [[NSMutableArray alloc] init];
     nodesToDelete = [[NSMutableArray alloc]init];
     enemies = [[NSMutableArray alloc] init];
+    grass = [[NSMutableArray alloc] init];
     
     // Enable touch handling on scene node
     self.userInteractionEnabled = YES;
@@ -79,9 +80,14 @@
     topEnemy = nil;
     [self spawnNewEnemy];
     
-    Grass* testGrass = [Grass node];
-    testGrass.position = ccp(2*self.contentSize.width / 3, 3*self.contentSize.height /8);
-    [physics addChild:testGrass];
+//    Grass* testGrass = [Grass node];
+//    testGrass.position = ccp(2*self.contentSize.width / 3, 3*self.contentSize.height /8);
+//    [physics addChild:testGrass];
+    
+    grassGenerator = [GrassGenerator node];
+    topGrass = nil;
+    [self spawnNewGrass];
+    
     
     //UI Layer
     m_UILayer = [UILayer node];
@@ -111,8 +117,12 @@
                 [nodesToDelete addObject:node];
             }
         }
+        //TODO: Need to cleanup enemies and grass
         for(Enemy* enemy in enemies) {
             [enemy setPositionAndCenter:ccp(enemy.position.x, enemy.position.y - translation)];
+        }
+        for (Grass* _grass in grass) {
+            _grass.position =ccp(_grass.position.x, _grass.position.y - translation);
         }
         sheep.position = ccp (sheep.position.x, sheep.position.y - translation);
         topNode = ccp(topNode.x, topNode.y - translation);
@@ -121,8 +131,9 @@
     }
     
     if (sheep.position.y < 0) {
-        NSLog(@"Game Over");
-        //RUN GAMEOVER CODE
+        if (m_PlayerLives == 0) {
+            [self gameOver];
+        }
     }
     
     if(topEnemy == nil) {
@@ -131,6 +142,13 @@
         [self removeEnemy];
         [self spawnNewEnemy];
     }
+    if (topGrass == nil) {
+        [self spawnNewGrass];
+    } else if (topGrass.position.y < 0) {
+        [self removeGrass];
+        [self spawnNewGrass];
+    }
+    
 }
 
 -(void) spawnNewPattern{
@@ -147,6 +165,19 @@
     [enemies removeObject:topEnemy];
     [physics removeChild:topEnemy];
     topEnemy = nil;
+}
+
+- (void) spawnNewGrass {
+    topGrass = [grassGenerator spawnNewGrass];
+    [grass addObject:topGrass];
+    [physics addChild:topGrass];
+    
+}
+
+- (void) removeGrass{
+    [grass removeObject:topGrass];
+    [physics removeChild:topGrass];
+    topGrass = nil;
 }
 
 -(CGSize) getSize{
@@ -174,7 +205,7 @@
 }
 
 - (void) gameOver {
-    
+    NSLog(@"Game Over");
 }
 
 -(BOOL) ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair sheep:(Sheep *)sheep node:(Node *)node

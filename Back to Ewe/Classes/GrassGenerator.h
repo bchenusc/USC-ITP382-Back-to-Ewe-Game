@@ -8,9 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
+#import "Grass.h"
 
 @interface GrassGenerator : CCNode {
     
 }
+
+- (Grass*) spawnNewGrass;
 
 @end
