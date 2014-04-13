@@ -15,13 +15,12 @@
     winSize = [gameScene getSize];
     gameplayScene = gameScene;
     if (waveNum > 20){
-        waveNum = arc4random_uniform(3)+1; // Chooses from 0-10 patterns.
+        waveNum = arc4random_uniform(2)+5; // Chooses from 0-10 patterns.
     }else{
         if (waveNum > 40){
-            waveNum = arc4random_uniform(3)+1;
+            waveNum = arc4random_uniform(2)+3;
         }else{
             //First 20 waves just choose from the first 3 patterns
-            //waveNum = arc4random() % 3 +1; //Chooses from 0-3;
             waveNum = arc4random_uniform(3)+1;
         }
     }
@@ -201,30 +200,82 @@
 }
 
 - (CGPoint) RandThreeNodesHigh{
+    topNodePosition = [gameplayScene getNewNodePoint];
+    
+    scrollPosition = ccp(winSize.width / 2, winSize.height / 2);
+    //Bottom Left
     Node* testNode = [Node node];
-    topNodePosition = ccp(arc4random() % (int)(winSize.width - 50) + 50, winSize.height / 2 + 400);
-    [gameplayScene addNode:testNode Position: ccp(arc4random() % (int)(winSize.width - 50) + 50, arc4random() % (int)(winSize.height - 50) + 450)];
+    [gameplayScene addNode:testNode Position: ccp(
+                                                  arc4random_uniform((int)(winSize.width/2 - 100)) + 50 ,
+                                                  topNodePosition.y + arc4random_uniform((int)(winSize.height/2 - 100)) + 50)];
+    
+    
+    //Top left
+    int topLeftY =
+    topNodePosition.y + arc4random_uniform((int)(winSize.height/2 - 100)) + (int)((winSize.height/2)+ 50);
     testNode = [Node node];
-    [gameplayScene addNode:testNode Position: topNodePosition];
+    [gameplayScene addNode:testNode Position: ccp(
+                                                  arc4random_uniform((int)(winSize.width/2 - 100)) + 50,
+                                                  topLeftY)];
+    
+    //Top right
+    int topRightY =
+    topNodePosition.y + arc4random_uniform((int)(winSize.height/2 - 100)) + (int)((winSize.height/2)+ 50);
     testNode = [Node node];
-    [gameplayScene addNode:testNode Position: ccp(arc4random() % (int)(winSize.width - 50) + 50, arc4random() % (int)(winSize.height - 50) + 450)];
-    return topNodePosition;
+    [gameplayScene addNode:testNode Position: ccp(
+                                                  arc4random_uniform((int)(winSize.width/2 - 100)) + (int)((winSize.width/2)+ 50),
+                                                  topLeftY)];
+    //Top node
+    if (topLeftY > topRightY){
+        topNodePosition =ccp(0, topLeftY + 50);
+        
+    }else{
+        topNodePosition =ccp(0, topRightY + 50);
+    }
+    [gameplayScene setNewNodePoint:topNodePosition];
+    return scrollPosition;
+
 }
 - (CGPoint) RandTwoNodesHigh{
+    topNodePosition = [gameplayScene getNewNodePoint];
+    
+    scrollPosition = ccp(winSize.width / 2, winSize.height / 2);
+    CGPoint bottomLeft = ccp(arc4random_uniform(winSize.width/2) + 50, topNodePosition.y + arc4random_uniform(winSize.height/2) + 50);
+    CGPoint topRight = ccp((arc4random_uniform(abs(winSize.width - bottomLeft.x) * 2/5) + bottomLeft.x + 50) / 2,
+                           topNodePosition.y + arc4random_uniform(abs(winSize.height/2) + 50));
+    
+    //Bottom Left
     Node* testNode = [Node node];
-    topNodePosition = ccp(arc4random() % (int)(winSize.width - 50) + 50, winSize.height / 2 + 400);
-    [gameplayScene addNode:testNode Position: ccp(arc4random() % (int)(winSize.width - 50) + 50, arc4random() % (int)(winSize.height - 50) + 450)];
+    [gameplayScene addNode:testNode Position: bottomLeft];
+    
+    //Bottom Right
     testNode = [Node node];
-    [gameplayScene addNode:testNode Position: topNodePosition];
-    testNode = [Node node];
-    return topNodePosition;
+    [gameplayScene addNode:testNode Position: topRight
+     ];
+    
+    topRight = ccp(0, topRight.y + 160);
+    
+    [gameplayScene setNewNodePoint:topRight];
+    return scrollPosition;
 }
 - (CGPoint) RandOneNodeHigh{
+    topNodePosition = [gameplayScene getNewNodePoint];
+    
+    scrollPosition = ccp(winSize.width / 2, winSize.height / 2);
+    
+    topNodePosition =ccp(
+                         arc4random_uniform((int)(winSize.width - 100)) + 50 ,
+                         topNodePosition.y + arc4random_uniform((int)(winSize.height/2 - 100)) + 50);
+    //Bottom Left
     Node* testNode = [Node node];
-    topNodePosition = ccp(arc4random() % (int)(winSize.width - 50) + 50, winSize.height / 2 + 400);
-    testNode = [Node node];
     [gameplayScene addNode:testNode Position: topNodePosition];
-    return topNodePosition;
+    
+    topNodePosition = ccp(topNodePosition.x, topNodePosition.y + 160);
+    
+    
+    [gameplayScene setNewNodePoint:topNodePosition];
+    return scrollPosition;
+
 }
 
 - (CGPoint) Square{
@@ -264,18 +315,32 @@
 }
 
 - (CGPoint) Triangle{
+    topNodePosition = [gameplayScene getNewNodePoint];
+    
+    scrollPosition = ccp(winSize.width / 2, winSize.height / 2);
+    CGPoint bottomLeft = ccp(arc4random_uniform(winSize.width/2) + 50, topNodePosition.y + arc4random_uniform(winSize.height/2) + 50);
+    CGPoint topRight = ccp((arc4random_uniform(abs(winSize.width - bottomLeft.x) * 2/5) + bottomLeft.x + 50) / 2,
+                           topNodePosition.y + arc4random_uniform(abs(winSize.height/2) + 50));
+    
+    //Bottom Left
     Node* testNode = [Node node];
-    int offsetw = arc4random() % ((int) winSize.width-30) + 20;
-    int offseth = arc4random() % ((int) winSize.height-100) + 1;
-    int randWidth = arc4random() % (int)(offsetw/2) + 20;
-    int randHeight = arc4random() % (int)(offseth/4) + 50;
-    topNodePosition = ccp(winSize.width / 2, offseth + randHeight/2 + 300);
-    [gameplayScene addNode:testNode Position: ccp(offsetw, offseth+ randHeight + 400)];
+    [gameplayScene addNode:testNode Position: bottomLeft];
+    
+    //Bottom Right
     testNode = [Node node];
-    [gameplayScene addNode:testNode Position:ccp(offsetw + randWidth, offseth - randHeight + 400) ];
+    [gameplayScene addNode:testNode Position: ccp(
+                                                  topRight.x * 2,
+                                                  bottomLeft.y)
+     ];
+    
+    //Top Right
     testNode = [Node node];
-    [gameplayScene addNode:testNode Position:ccp(offsetw - randWidth, offseth- randHeight + 400)];
-    return topNodePosition;
+    [gameplayScene addNode:testNode Position: topRight];
+    
+    topRight = ccp(0, topRight.y + 160);
+    
+    [gameplayScene setNewNodePoint:topRight];
+    return scrollPosition;
 }
 
 @end
