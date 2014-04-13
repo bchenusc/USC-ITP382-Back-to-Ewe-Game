@@ -29,8 +29,4 @@
     return newEnemy;
 }
 
--(void)update:(CCTime)dt {
-    [super update:dt];
-}
-
 @end
