@@ -20,6 +20,7 @@
     float m_maxWool;
 }
 
+@property (readonly) Node* attachedNode;
 @property float CurrentWool;
 @property float MaxWool;
 

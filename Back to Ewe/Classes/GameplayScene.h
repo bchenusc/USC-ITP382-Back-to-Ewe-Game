@@ -43,6 +43,7 @@
 
 + (GameplayScene *)scene;
 - (void) addNode : (Node*) n Position: (CGPoint) point;
+- (void) removeNode:(Node*)toRemove;
 - (CGSize) getSize;
 - (id)init;
 - (void)spawnNewPattern;
