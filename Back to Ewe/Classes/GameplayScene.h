@@ -26,10 +26,10 @@
 @interface GameplayScene : CCScene <CCPhysicsCollisionDelegate> {
     Sheep* sheep;
     CCPhysicsNode* physics;
-    NSMutableArray* enemies;
     NSMutableArray* nodes;
     NSMutableArray* nodesToDelete;
     NSMutableArray* grass;
+    NSMutableArray* enemies;
     
     CGPoint newNodePoint;
     
@@ -42,6 +42,7 @@
     Grass* topGrass;
     PowerupGenerator* powerupGenerator;
     Powerup* topPowerup;
+    Powerup* powerupToDelete;
     float powerupSpacing;
     float powerupSpacingTolerance;
     

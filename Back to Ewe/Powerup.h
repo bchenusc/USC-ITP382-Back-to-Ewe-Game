@@ -13,7 +13,8 @@ enum PowerupType {
     shield = 0,
     unlimitedWool,
     puffBomb,
-    powerupTypeMax
+    powerupTypeMax,
+    NONE
 };
 
 @interface Powerup : CCDrawNode {

@@ -38,6 +38,7 @@
 
 -(void) setRandomPowerupType {
     m_PowerupType = (enum PowerupType) (arc4random() % (int) powerupTypeMax);
+    m_PowerupType = shield;
 }
 
 - (CGRect) rect {

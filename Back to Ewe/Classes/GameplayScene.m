@@ -272,18 +272,20 @@
     return YES;
 }
 
--(BOOL) ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair sheep:(Sheep *)sheep enemy:(Enemy *)enemy
+-(BOOL) ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair sheep:(Sheep *)_sheep enemy:(Enemy *)enemy
 {
-	m_UILayer.Health -= 10.0f;
+    if(_sheep.CurrentPowerup != shield) {
+        m_UILayer.Health -= 10.0f;
+    }
     [self removeEnemy];
     [self spawnNewEnemy];
     
     return YES;
 }
 
--(BOOL) ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair sheep:(Sheep *)sheep powerup:(Powerup *)powerup
+-(BOOL) ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair sheep:(Sheep *)_sheep powerup:(Powerup *)powerup
 {
-    
+    [_sheep setPowerup:powerup.POWERUPTYPE];
     [self removePowerup];
     
     return YES;
