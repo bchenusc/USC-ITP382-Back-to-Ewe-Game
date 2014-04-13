@@ -85,6 +85,7 @@
     
     //UI Layer
     m_UILayer = [UILayer node];
+    m_UILayer.Lives = m_PlayerLives;
     [self addChild:m_UILayer];
     
     
@@ -147,7 +148,6 @@
         [self removeGrass];
         [self spawnNewGrass];
     }
-    
 }
 -(void) setNewNodePoint : (CGPoint) point {
     newNodePoint = point;
@@ -208,6 +208,7 @@
 - (void) playerDeath {
     NSLog(@"Player died");
     m_PlayerLives--;
+    m_UILayer.Lives = m_PlayerLives;
     //RESETGAME
     if (m_PlayerLives == 0) {
         [self gameOver];
@@ -227,11 +228,14 @@
     return YES;
 }
 
--(BOOL) ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair sheep:(Sheep *)_sheep grass:(Grass *)grass {
-    _sheep.CurrentWool += grass.RCVAmount;
+-(BOOL) ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair sheep:(Sheep *)_sheep grass:(Grass *)_grass {
+    _sheep.CurrentWool += _grass.RCVAmount;
     if (_sheep.CurrentWool >= _sheep.MaxWool) {
         _sheep.CurrentWool = sheep.MaxWool;
     }
+    [self removeGrass];
+    [self spawnNewGrass];
+    
     m_UILayer.Wool = _sheep.CurrentWool;
     
     return YES;
@@ -239,7 +243,9 @@
 
 -(BOOL) ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair sheep:(Sheep *)sheep enemy:(Enemy *)enemy
 {
-	NSLog(@"Collision:%@ between sheep and enemy.", enemy);
+	m_UILayer.Health -= 10.0f;
+    [self removeEnemy];
+    [self spawnNewEnemy];
     
     return YES;
 }

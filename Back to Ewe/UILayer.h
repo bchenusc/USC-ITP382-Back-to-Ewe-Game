@@ -11,14 +11,27 @@
 
 @interface UILayer : CCNode {
     float m_woolRemaining;
-    
     float m_woolCapacity;
+    
+    float m_healthRemaining;
+    float m_healthCapacity;
+    
+    float m_Score;
+    CCLabelTTF *m_scoreLabel;
+    
+    int m_Lives;
+    CCLabelTTF* m_livesLabel;
+    
+    CCLabelTTF* m_GameOverLabel;
 }
 
 @property float Wool;
+@property float Health;
+@property float Score;
+@property int Lives;
 
 //----//
-
+- (void) showGameOverLabel:(BOOL) choice;
 //----//
 
 @end
