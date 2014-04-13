@@ -121,6 +121,8 @@
         }
         sheep.position = ccp (sheep.position.x, sheep.position.y - translation);
         topNode = ccp(topNode.x, topNode.y - translation);
+    
+        m_UILayer.Score += translation;
         newNodePoint = ccp(newNodePoint.x, newNodePoint.y - translation);
         
     }
