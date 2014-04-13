@@ -42,7 +42,8 @@
     Grass* topGrass;
     
     int score;
-    int m_PlayerLives; 
+    int m_PlayerLives;
+    bool m_Dead;
 }
 
 // -----------------------------------------------------------------------
@@ -57,6 +58,8 @@
 - (void)spawnNewEnemy;
 - (void) spawnNewGrass;
 - (void) playerDeath;
+- (void) resetGame;
+- (void) respawnPlayer;
 - (void) gameOver;
 
 // -----------------------------------------------------------------------

@@ -85,6 +85,7 @@
     [self spawnNewGrass];
     
     m_PlayerLives = 3;
+    m_Dead = NO;
     
     //UI Layer
     m_UILayer = [UILayer node];
@@ -133,6 +134,7 @@
         if (m_PlayerLives == 0) {
             [self playerDeath];
         }
+        return;
     }
     
     if(topEnemy == nil) {
@@ -200,16 +202,37 @@
 
 - (void) playerDeath {
     NSLog(@"Player died");
-    m_PlayerLives--;
-    m_UILayer.Lives = m_PlayerLives;
-    //RESETGAME
-    if (m_PlayerLives == 0) {
-        [self gameOver];
+    if (!m_Dead) {
+        m_PlayerLives--;
+        m_UILayer.Lives = m_PlayerLives;
+        m_Dead = YES;
+        [m_UILayer showGameOverLabel:YES];
+        [self scheduleOnce:@selector(respawnPlayer) delay:4.0f];
+        if (m_PlayerLives == 0) {
+            [self gameOver];
+        }
     }
+}
+
+- (void) respawnPlayer {
+    CGSize winSize = [[CCDirector sharedDirector] viewSize];
+    sheep.position = ccp(winSize.width/2, winSize.height/3);
+    sheep.physicsBody.velocity = ccp(0, 100);
+    m_Dead = NO;
 }
 
 - (void) gameOver {
     NSLog(@"Game Over");
+}
+
+- (void) resetGame {
+    [m_UILayer showGameOverLabel:NO];
+    for (Node* n in nodes) {
+        [nodesToDelete addObject:n];
+    }
+    [nodes removeObjectsInArray:nodesToDelete];
+    [nodesToDelete removeAllObjects];
+    m_Dead = NO;
 }
 
 -(BOOL) ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair sheep:(Sheep *)sheep node:(Node *)node
