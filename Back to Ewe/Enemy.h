@@ -19,7 +19,6 @@ enum EnemyType {
 
 @interface Enemy : CCDrawNode {
     CGFloat m_Radius;
-    CGFloat m_OriginalRadius;
     
     enum EnemyType m_EnemyType;
     
