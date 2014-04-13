@@ -47,7 +47,8 @@
     float powerupSpacingTolerance;
     
     float score;
-    int m_PlayerLives; 
+    int m_PlayerLives;
+    bool m_Dead;
 }
 
 // -----------------------------------------------------------------------
