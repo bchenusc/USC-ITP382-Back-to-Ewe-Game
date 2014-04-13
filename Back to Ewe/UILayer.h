@@ -11,11 +11,14 @@
 
 @interface UILayer : CCNode {
     float m_woolRemaining;
-    
     float m_woolCapacity;
+    
+    float m_healthRemaining;
+    float m_healthCapacity;
 }
 
 @property float Wool;
+@property float Health;
 
 //----//
 

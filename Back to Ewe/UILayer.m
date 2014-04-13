@@ -13,14 +13,17 @@
 @implementation UILayer
 
 @synthesize Wool = m_woolRemaining;
+@synthesize Health = m_healthRemaining;
 
 - (instancetype)init
 {
     self = [super init];
     if (self) {
         m_woolRemaining = 10000.0f;
-        
         m_woolCapacity = 10000.0f;
+        
+        m_healthRemaining = 100.0f;
+        m_healthCapacity = 100.0f;
     }
     return self;
 }
@@ -29,7 +32,9 @@
 - (void) draw {
     CGSize size = [[CCDirector sharedDirector] viewSize];
     
-    ccDrawSolidRect(ccp(10,10), ccp((m_woolRemaining/m_woolCapacity)*(size.width - 10), 30), [CCColor blueColor]);
+    ccDrawSolidRect(ccp(0, 0), ccp((m_woolRemaining/m_woolCapacity)*(size.width), 10), [CCColor greenColor]);
+    
+    ccDrawSolidRect(ccp(0, 10), ccp((m_healthRemaining/m_healthCapacity)*(size.width), 20), [CCColor redColor]);
 }
 
 @end

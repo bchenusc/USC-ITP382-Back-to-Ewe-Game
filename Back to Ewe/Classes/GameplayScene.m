@@ -229,7 +229,9 @@
 
 -(BOOL) ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair sheep:(Sheep *)sheep enemy:(Enemy *)enemy
 {
-	NSLog(@"Collision:%@ between sheep and enemy.", enemy);
+	m_UILayer.Health -= 10.0f;
+    [self removeEnemy];
+    [self spawnNewEnemy];
     
     return YES;
 }
