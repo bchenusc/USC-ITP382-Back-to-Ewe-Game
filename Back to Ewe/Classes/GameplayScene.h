@@ -30,8 +30,7 @@
     NSMutableArray* nodesToDelete;
     NSMutableArray* grass;
     
-    CGPoint scrollCenter;
-    float scrollSpeed;
+    CGPoint newNodePoint;
     
     UILayer* m_UILayer;
     NodeGenerator* nodeGenerator;
@@ -53,6 +52,8 @@
 - (void) removeNode:(Node*)toRemove;
 - (void) removeGrass;
 - (CGSize) getSize;
+- (void) setNewNodePoint : (CGPoint) point;
+- (CGPoint) getNewNodePoint;
 - (id)init;
 - (void)spawnNewPattern;
 - (void)spawnNewEnemy;

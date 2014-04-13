@@ -14,6 +14,7 @@
     GameplayScene* gameplayScene;
     CGSize winSize;
     CGPoint topNodePosition;
+    CGPoint scrollPosition;
 }
 
 - (CGPoint) ChoosePattern: (int) waveNum : (GameplayScene*) gameplayScene;
