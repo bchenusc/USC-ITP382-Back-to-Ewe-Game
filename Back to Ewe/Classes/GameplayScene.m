@@ -40,6 +40,8 @@
     self = [super init];
     if (!self) return(nil);
     
+    CCLOG(@"SIZE: (%.f, %.f)", self.contentSize.width, self.contentSize.height);
+    
     nodes = [[NSMutableArray alloc] init];
     nodesToDelete = [[NSMutableArray alloc]init];
     enemies = [[NSMutableArray alloc] init];
@@ -48,9 +50,16 @@
     // Enable touch handling on scene node
     self.userInteractionEnabled = YES;
     
-    // Create a colored background (Dark Grey)
-    CCNodeColor *background = [CCNodeColor nodeWithColor:[CCColor colorWithRed:0.2f green:0.2f blue:0.2f alpha:1.0f]];
-    [self addChild:background];
+    // Create backgrounds for scrolling
+    m_Background1 = [CCSprite spriteWithImageNamed:@"itp382ewe_bg.png"];
+    m_Background1.position = ccp(self.contentSize.width / 2, self.contentSize.height/2);
+    [m_Background1 setBlendFunc:(ccBlendFunc){GL_ONE,GL_ZERO}];
+    [self addChild:m_Background1];
+    
+    m_Background2 = [CCSprite spriteWithImageNamed:@"itp382ewe_bg.png"];
+    m_Background2.position = ccp(self.contentSize.width / 2, self.contentSize.height/2 + self.contentSize.height);
+    [m_Background2 setBlendFunc:(ccBlendFunc){GL_ONE,GL_ZERO}];
+    [self addChild:m_Background2];
     
     // Create physics stuff
     physics = [CCPhysicsNode node];
@@ -162,6 +171,15 @@
         }
         if(topPowerup != nil) {
             topPowerup.position = ccp(topPowerup.position.x, topPowerup.position.y - translation);
+        }
+        
+        m_Background1.position = ccp(m_Background1.position.x, roundf(m_Background1.position.y - translation/3));
+        m_Background2.position = ccp(m_Background2.position.x, roundf(m_Background2.position.y - translation/3));
+        if (m_Background1.position.y <= -self.contentSize.height/2) {
+            m_Background1.position = ccp(m_Background1.position.x, m_Background2.position.y + self.contentSize.height);
+            CCSprite* temp = m_Background1;
+            m_Background1 = m_Background2;
+            m_Background2 = temp;
         }
         
         m_Sheep.position = ccp (m_Sheep.position.x, m_Sheep.position.y - translation);
