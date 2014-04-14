@@ -20,9 +20,13 @@
     if (self) {
         CGSize winSize = [[CCDirector sharedDirector] viewSize];
         self.position = ccp(winSize.width / 2, winSize.height / 2);
-        m_Radius = 20;
-        m_OriginalRadius = 20;
-        [self drawDot:ccp(0, 0) radius:m_Radius color:[CCColor purpleColor]];
+        
+        CCSprite* sprite = [CCSprite spriteWithImageNamed:@"enemy_alien.png"];
+        sprite.position = ccp(0, 0);
+        [self addChild:sprite];
+        
+        m_Radius = max(sprite.contentSize.width / 2, sprite.contentSize.height / 2) * 1.2f;
+        m_OriginalRadius = m_Radius;
         
         CCPhysicsBody* physics = [CCPhysicsBody bodyWithCircleOfRadius:m_Radius andCenter:self.anchorPointInPoints];
         physics.type = CCPhysicsBodyTypeStatic;

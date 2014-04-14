@@ -19,12 +19,14 @@ enum PowerupType {
     NONE
 };
 
-@interface Powerup : CCDrawNode {
+@interface Powerup : CCNode {
     CGFloat m_Radius;
     
     enum PowerupType m_PowerupType;
     
     CCLabelTTF* m_PowerupLabel;
+    
+    CCSprite* m_Sprite;
 }
 
 @property CGFloat radius;

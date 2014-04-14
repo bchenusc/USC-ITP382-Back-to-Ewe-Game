@@ -17,7 +17,7 @@ enum EnemyType {
     PowerupTypeMax
 };
 
-@interface Enemy : CCDrawNode {
+@interface Enemy : CCNode {
     CGFloat m_Radius;
     CGFloat m_OriginalRadius;
     
