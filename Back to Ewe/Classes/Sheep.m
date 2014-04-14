@@ -39,6 +39,9 @@
         m_maxWool = 10000.0f;
         m_currentWool = m_maxWool;
         
+        m_maxHealth = 100;
+        m_currentHealth = 100;
+        
         m_CurrentPowerup = NONE;
     }
     return self;
