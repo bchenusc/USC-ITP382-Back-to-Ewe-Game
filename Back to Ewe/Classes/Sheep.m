@@ -11,7 +11,6 @@
 
 @implementation Sheep
 
-@synthesize CurrentPowerup = m_CurrentPowerup;
 @synthesize attachedNode = m_AttachedNode;
 @synthesize CurrentWool = m_currentWool;
 @synthesize MaxWool = m_maxWool;
@@ -44,7 +43,6 @@
         m_currentHealth = 100;
         
         m_CurrentPowerups = [NSMutableArray new];
-        m_CurrentPowerup = NONE;
         
         m_numPuffBombs = 0;
     }
@@ -85,24 +83,14 @@
     }
 }
 
--(void)setPowerup:(enum PowerupType)powerup {
-    [m_CurrentPowerups addObject:[NSNumber numberWithInt:powerup]];
-    m_CurrentPowerup = powerup;
-
-    if(powerup == puffBomb) {
-        m_numPuffBombs++;
-    } else if(powerup == shield) {
-        [self schedule:@selector(blinkShield) interval: 7.0f];
+-(void)addPowerup:(enum PowerupType)powerup {
+    if(powerup == shield || powerup == unlimitedWool) {
+        [m_CurrentPowerups addObject:[NSNumber numberWithInt:powerup]];
+        [self scheduleOnce:@selector(cancelOldestPowerup) delay:10.0f];
     }
-    
-    [self scheduleOnce:@selector(cancelCurrentPowerup) delay:10.0f];
 }
 
--(void) blinkShield {
-    
-}
-
--(void) cancelCurrentPowerup {
+-(void) cancelOldestPowerup {
     if(m_CurrentPowerups.count != 0) {
         [m_CurrentPowerups removeObjectAtIndex:0];
     }

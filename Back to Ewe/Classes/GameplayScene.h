@@ -37,13 +37,14 @@
     CGPoint topNode;
     EnemyGenerator* enemyGenerator;
     Enemy* topEnemy;
+    BOOL m_CanSpawnEnemies;
     GrassGenerator* grassGenerator;
     Grass* topGrass;
     PowerupGenerator* powerupGenerator;
     Powerup* topPowerup;
     Powerup* powerupToDelete;
+    float nextPowerupSpawnYPos;
     float powerupSpacing;
-    float powerupSpacingTolerance;
     
     bool bossLevel;
     
@@ -67,6 +68,7 @@
 - (void)spawnNewPattern;
 - (void)spawnNewEnemy;
 - (void) spawnNewGrass;
+- (void) detonateBomb;
 - (void) playerDeath;
 - (void) resetGame;
 - (void) respawnPlayer;

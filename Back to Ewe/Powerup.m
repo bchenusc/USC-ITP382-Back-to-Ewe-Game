@@ -45,7 +45,6 @@
 
 -(void) setRandomPowerupType {
     m_PowerupType = (enum PowerupType) (arc4random() % (int) powerupTypeMax);
-    m_PowerupType = unlimitedWool;
     switch(m_PowerupType) {
         case shield:
             [m_PowerupLabel setString:@"S"];

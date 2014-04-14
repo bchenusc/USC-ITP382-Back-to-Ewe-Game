@@ -9,8 +9,14 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
-@interface Projectile : CCNode {
-    
+@interface Projectile : CCDrawNode {
+    CCSprite* sprite;
+    int m_Speed;
+    CGPoint m_Target;
 }
+
+- (instancetype) initWithTarget:(CGPoint)projectileTarget atPosition:(CGPoint) initialPosition;
+
+@property CGPoint Target;
 
 @end
