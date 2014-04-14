@@ -100,70 +100,74 @@
 
 -(void)update:(CCTime)delta{
     
-    if (!m_Paused) {
-        for (Node* node  in nodesToDelete){
-            [physics removeChild:node];
+    if (m_Paused) return;
+    
+    for (Node* node  in nodesToDelete){
+        [physics removeChild:node];
+    }
+    [nodes removeObjectsInArray:nodesToDelete];
+    [nodesToDelete removeAllObjects];
+    
+    if (sheep.position.y > 170 && sheep.physicsBody.velocity.y > 0){
+        float translation = delta * sheep.physicsBody.velocity.y;
+        for(Node* node in nodes){
+            node.position = ccp(node.position.x, node.position.y - translation);
+            if (node.position.y < 0){
+                [nodesToDelete addObject:node];
+            }
         }
-        [nodes removeObjectsInArray:nodesToDelete];
-        [nodesToDelete removeAllObjects];
+        //TODO: Need to cleanup enemies and grass
         
-        if (sheep.position.y > 170 && sheep.physicsBody.velocity.y > 0){
-            float translation = delta * sheep.physicsBody.velocity.y;
-            for(Node* node in nodes){
-                node.position = ccp(node.position.x, node.position.y - translation);
-                if (node.position.y < 0){
-                    [nodesToDelete addObject:node];
-                }
-            }
-            //TODO: Need to cleanup enemies and grass
-            
-            //Scrolling
-            for(Enemy* enemy in enemies) {
-                [enemy setPositionAndCenter:ccp(enemy.position.x, enemy.position.y - translation)];
-            }
-            for (Grass* _grass in grass) {
-                _grass.position =ccp(_grass.position.x, _grass.position.y - translation);
-            }
-            if(topPowerup != nil) {
-                topPowerup.position = ccp(topPowerup.position.x, topPowerup.position.y - translation);
-            }
-            
-            sheep.position = ccp (sheep.position.x, sheep.position.y - translation);
-            topNode = ccp(topNode.x, topNode.y - translation);
-        
-            score += translation;
-            m_UILayer.Score = score;
+        //Scrolling
+        for(Enemy* enemy in enemies) {
+            [enemy setPositionAndCenter:ccp(enemy.position.x, enemy.position.y - translation)];
         }
-        
+        for (Grass* _grass in grass) {
+            _grass.position =ccp(_grass.position.x, _grass.position.y - translation);
+        }
         if(topPowerup != nil) {
-            if(topPowerup.position.y < -topPowerup.radius) {
-                [self removePowerup];
-            }
+            topPowerup.position = ccp(topPowerup.position.x, topPowerup.position.y - translation);
         }
         
-        if (sheep.position.y < 0) {
+        sheep.position = ccp (sheep.position.x, sheep.position.y - translation);
+        topNode = ccp(topNode.x, topNode.y - translation);
+    
+        score += translation;
+        m_UILayer.Score = score;
+    }
+    
+    if (sheep.position.y >= topNode.y) {
+        topNode = [nodeGenerator generatePattern:self];
+    }
+    
+    if(topPowerup != nil) {
+        if(topPowerup.position.y < -topPowerup.radius) {
+            [self removePowerup];
+        }
+    }
+    
+    if (sheep.position.y < 0) {
+        [self playerDeath];
+        if (m_PlayerLives == 0) {
             [self playerDeath];
-            if (m_PlayerLives == 0) {
-                [self playerDeath];
-            }
-            return;
         }
-        
-        if(topEnemy == nil) {
-            [self spawnNewEnemy];
-        } else if(topEnemy.position.y < 0) {
-            [self removeEnemy];
-            [self spawnNewEnemy];
-        }
-        if (topGrass == nil) {
-            [self spawnNewGrass];
-        } else if (topGrass.position.y < 0) {
-            [self removeGrass];
-            [self spawnNewGrass];
-        }
-        if(score >= powerupSpacing) {
-            [self spawnNewPowerup];
-        }
+        return;
+    }
+    
+    if(topEnemy == nil) {
+        [self spawnNewEnemy];
+    } else if(topEnemy.position.y < 0) {
+        [self removeEnemy];
+        [self spawnNewEnemy];
+    }
+    if (topGrass == nil) {
+        [self spawnNewGrass];
+    } else if (topGrass.position.y < 0) {
+        [self removeGrass];
+        [self spawnNewGrass];
+    }
+    if(score >= powerupSpacing) {
+        [self spawnNewPowerup];
     }
     
 }
