@@ -15,6 +15,7 @@
 #import "Enemy.h"
 #import "Powerup.h"
 #import "ScreenPhysicsBorders.h"
+#import "Projectile.h"
 
 // -----------------------------------------------------------------------
 #pragma mark - HelloWorldScene
@@ -390,6 +391,9 @@
     [self spawnNewGrass];
     
     m_UILayer.Wool = _sheep.CurrentWool;
+    CGSize winSize = [[CCDirector sharedDirector] viewSize];
+    Projectile* newProjectile = [[Projectile node] initWithTarget:ccp(winSize.width/2, winSize.height) atPosition:_grass.position];
+    [physics addChild:newProjectile];
     
     return YES;
 }
