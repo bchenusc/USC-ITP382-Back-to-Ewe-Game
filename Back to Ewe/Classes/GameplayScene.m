@@ -104,14 +104,14 @@
         @try{
         [physics removeChild:node];
         }
-        @catch(NSException* e){
-            
-        };
+        @catch (NSException* e) {
+                
+        }
     }
     [nodes removeObjectsInArray:nodesToDelete];
     [nodesToDelete removeAllObjects];
     
-    if (bossLevel){
+    /*if (bossLevel){
         //Translates automatically.
         float translation = delta * 100;
         for(Node* node in nodes){
@@ -146,6 +146,7 @@
                 [nodesToDelete addObject:node];
             }
         }
+        
         //TODO: Need to cleanup enemies and grass
         
         //Scrolling
@@ -161,6 +162,7 @@
         
         m_Sheep.position = ccp (m_Sheep.position.x, m_Sheep.position.y - translation);
         topNode = ccp(topNode.x, topNode.y - translation);
+        //NSLog(@"Scroll position : %f", newNodePoint.y);
     
         score += translation;
         m_UILayer.Score = score;
@@ -169,6 +171,7 @@
     if (m_Sheep.position.y >= topNode.y) {
         topNode = [nodeGenerator generatePattern:self];
     }
+    
     
     if(topPowerup != nil) {
         if(topPowerup.position.y < -topPowerup.radius) {
@@ -256,6 +259,9 @@
 }
 
 -(void) addNode : (Node*) n Position:(CGPoint)point{
+    /*if (nodes.count > 10){
+        [nodesToDelete addObject:[nodes objectAtIndex:(nodes.count - 1)]];
+    }*/
     n.position = point;
     [n setGameplayScene:self];
     [nodes addObject:n];
@@ -313,12 +319,13 @@
     m_Sheep.visible = NO;
     [m_Sheep breakString];
     
-    for(Node* n in nodes) {
+    /*for(Node* n in nodes) {
         [physics removeChild:n];
     }
-    [nodes removeAllObjects];
+    [nodes removeAllObjects];*/
     
-    [nodesToDelete removeAllObjects];
+    
+    [nodesToDelete addObjectsFromArray:nodes];
     
     for(Grass* g in grass) {
         [physics removeChild:g];
@@ -386,7 +393,7 @@
 
 -(BOOL) ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair sheep:(Sheep *)_sheep enemy:(Enemy *)enemy
 {
-    if(_sheep.CurrentPowerup != shield) {
+    if([_sheep.CurrentPowerups indexOfObject:[NSNumber numberWithInt:shield]] == NSNotFound) {
         _sheep.CurrentHealth -= 10.0f;
         m_UILayer.Health = _sheep.CurrentHealth;
     }
