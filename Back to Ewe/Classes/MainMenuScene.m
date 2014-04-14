@@ -34,8 +34,10 @@
     self = [super init];
     if (!self) return(nil);
     
-    // Create a colored background (Dark Grey)
+    /*// Create a colored background (Dark Grey)
     CCNodeColor *background = [CCNodeColor nodeWithColor:[CCColor colorWithRed:0.2f green:0.2f blue:0.2f alpha:1.0f]];
+    [self addChild:background];*/
+    CCSprite *background = [CCSprite spriteWithImageNamed:@"itp382ewe_title@hd.png"];
     [self addChild:background];
     
     // Hello world
