@@ -25,10 +25,10 @@
 - (instancetype) initWithTarget:(CGPoint)projectileTarget atPosition:(CGPoint) initialPosition{
     self = [super init];
     if (self) {
-        m_Target = projectileTarget;
         
+        m_Speed = 10;
         self.position = initialPosition;
-        
+        m_Target = ccp(projectileTarget.x - initialPosition.x, projectileTarget.y*m_Speed - initialPosition.y);
         
         [self drawDot:ccp(0, 0) radius:10 color:[CCColor purpleColor]];
         
@@ -36,6 +36,7 @@
         physics.type = CCPhysicsBodyTypeDynamic;
         physics.collisionCategories = @[@"projectile"];
         physics.collisionMask = @[@"enemy"];
+        physics.affectedByGravity = NO;
         
         self.physicsBody = physics;
         

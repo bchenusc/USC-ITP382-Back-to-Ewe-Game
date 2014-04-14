@@ -11,7 +11,7 @@
 
 @interface Projectile : CCDrawNode {
     CCSprite* sprite;
-    
+    int m_Speed;
     CGPoint m_Target;
 }
 
