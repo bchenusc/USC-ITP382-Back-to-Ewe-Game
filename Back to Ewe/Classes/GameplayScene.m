@@ -94,6 +94,8 @@
     
     m_Paused = NO;
     
+    [self newGame];
+    
 	return self;
      
 }
