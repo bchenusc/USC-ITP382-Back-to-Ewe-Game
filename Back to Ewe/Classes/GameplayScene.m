@@ -249,6 +249,8 @@
         m_PlayerLives--;
         m_UILayer.Lives = m_PlayerLives;
         m_Dead = YES;
+        sheep.visible = NO;
+        sheep.physicsBody.velocity = ccp(0,0);
         if (sheep.attachedNode) {
             [sheep breakString];
         }
@@ -265,6 +267,8 @@
     sheep.position = ccp(winSize.width/2, winSize.height/3);
     sheep.physicsBody.velocity = ccp(0, 500);
     sheep.visible = YES;
+    sheep.CurrentHealth = sheep.MaxHealth;
+    m_UILayer.Health = sheep.CurrentHealth;
     m_Dead = NO;
 }
 
@@ -357,6 +361,10 @@
     }
     [self removeEnemy];
     [self spawnNewEnemy];
+    
+    if (_sheep.CurrentHealth <= 0) {
+        [self playerDeath];
+    }
     
     return YES;
 }
