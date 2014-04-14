@@ -61,8 +61,8 @@
     ScreenPhysicsBorders* borders = [ScreenPhysicsBorders node];
     [physics addChild:borders];
     
-    sheep = [Sheep node];
-    [physics addChild:sheep];
+    m_Sheep = [Sheep node];
+    [physics addChild:m_Sheep];
     
     nodeGenerator = [NodeGenerator node];
     
@@ -77,7 +77,7 @@
     powerupSpacing = 1000.0f;
     powerupSpacingTolerance = 200.0f;
     
-    bossLevel = true;
+    bossLevel = NO;
     
     m_PlayerLives = 3;
     m_Dead = NO;
@@ -131,15 +131,15 @@
             topPowerup.position = ccp(topPowerup.position.x, topPowerup.position.y - translation);
         }
         
-        sheep.position = ccp (sheep.position.x, sheep.position.y - translation);
+        m_Sheep.position = ccp (m_Sheep.position.x, m_Sheep.position.y - translation);
         topNode = ccp(topNode.x, topNode.y - translation);
 
         m_UILayer.Score = score;
         
     }
     else
-    if (sheep.position.y > 170 && sheep.physicsBody.velocity.y > 0){
-        float translation = delta * sheep.physicsBody.velocity.y;
+    if (m_Sheep.position.y > 170 && m_Sheep.physicsBody.velocity.y > 0){
+        float translation = delta * m_Sheep.physicsBody.velocity.y;
         for(Node* node in nodes){
             node.position = ccp(node.position.x, node.position.y - translation);
             if (node.position.y < 0){
@@ -159,14 +159,14 @@
             topPowerup.position = ccp(topPowerup.position.x, topPowerup.position.y - translation);
         }
         
-        sheep.position = ccp (sheep.position.x, sheep.position.y - translation);
+        m_Sheep.position = ccp (m_Sheep.position.x, m_Sheep.position.y - translation);
         topNode = ccp(topNode.x, topNode.y - translation);
     
         score += translation;
         m_UILayer.Score = score;
     }
     
-    if (sheep.position.y >= topNode.y) {
+    if (m_Sheep.position.y >= topNode.y) {
         topNode = [nodeGenerator generatePattern:self];
     }
     
@@ -176,7 +176,7 @@
         }
     }
     
-    if (sheep.position.y < 0) {
+    if (m_Sheep.position.y < 0) {
         [self playerDeath];
         if (m_PlayerLives == 0) {
             [self playerDeath];
@@ -265,8 +265,8 @@
 - (void) removeNode:(Node*)toRemove {
     NSAssert(toRemove != nil, @"Argument must be non-nil");
     
-    if (sheep.attachedNode == toRemove) {
-        [sheep breakString];
+    if (m_Sheep.attachedNode == toRemove) {
+        [m_Sheep breakString];
     }
     [nodesToDelete addObject:toRemove];
 }
@@ -277,10 +277,10 @@
         m_PlayerLives--;
         m_UILayer.Lives = m_PlayerLives;
         m_Dead = YES;
-        sheep.visible = NO;
-        sheep.physicsBody.velocity = ccp(0,0);
-        if (sheep.attachedNode) {
-            [sheep breakString];
+        m_Sheep.visible = NO;
+        m_Sheep.physicsBody.velocity = ccp(0,0);
+        if (m_Sheep.attachedNode) {
+            [m_Sheep breakString];
         }
         
         [self scheduleOnce:@selector(respawnPlayer) delay:2.5f];
@@ -292,26 +292,26 @@
 
 - (void) respawnPlayer {
     CGSize winSize = [[CCDirector sharedDirector] viewSize];
-    sheep.position = ccp(winSize.width/2, winSize.height/3);
-    sheep.physicsBody.velocity = ccp(0, 500);
-    sheep.visible = YES;
-    sheep.CurrentHealth = sheep.MaxHealth;
-    sheep.CurrentWool = sheep.MaxWool;
-    m_UILayer.Health = sheep.CurrentHealth;
+    m_Sheep.position = ccp(winSize.width/2, winSize.height/3);
+    m_Sheep.physicsBody.velocity = ccp(0, 500);
+    m_Sheep.visible = YES;
+    m_Sheep.CurrentHealth = m_Sheep.MaxHealth;
+    m_Sheep.CurrentWool = m_Sheep.MaxWool;
+    m_UILayer.Health = m_Sheep.CurrentHealth;
     m_Dead = NO;
 }
 
 - (void) gameOver {
     NSLog(@"Game Over");
-    [m_UILayer showGameOverLabel:YES];
+    [m_UILayer gameOver];
     
 }
 
 - (void) resetGame {
     [self pause];
     
-    sheep.visible = NO;
-    [sheep breakString];
+    m_Sheep.visible = NO;
+    [m_Sheep breakString];
     
     for(Node* n in nodes) {
         [physics removeChild:n];
@@ -362,29 +362,19 @@
 }
 
 - (void) pause {
+    self.paused = YES;
     m_Paused = YES;
-    physics.paused = YES;
 }
 
 - (void) resume {
+    self.paused = NO;
     m_Paused = NO;
-    physics.paused = NO;
 }
-
-//unused
-/*-(BOOL) ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair sheep:(Sheep *)sheep node:(Node *)node
-{
-    static int collisionCountSheepNode = 0;
-    collisionCountSheepNode++;
-	//NSLog(@"Collision %d between sheep and node.", collisionCountSheepNode);
-
-    return YES;
-}*/
 
 -(BOOL) ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair sheep:(Sheep *)_sheep grass:(Grass *)_grass {
     _sheep.CurrentWool += _grass.RCVAmount;
     if (_sheep.CurrentWool >= _sheep.MaxWool) {
-        _sheep.CurrentWool = sheep.MaxWool;
+        _sheep.CurrentWool = m_Sheep.MaxWool;
     }
     [self removeGrass];
     [self spawnNewGrass];
@@ -468,17 +458,17 @@
         if ([n isPointInNode:touchLoc]) {
             nodeTouched = YES;
             
-            if (n != sheep.attachedNode) {
-                [sheep stringToNode:n];
+            if (n != m_Sheep.attachedNode) {
+                [m_Sheep stringToNode:n];
                 [n shrinkAndRemove];
-                m_UILayer.Wool = sheep.CurrentWool;
+                m_UILayer.Wool = m_Sheep.CurrentWool;
             }
         }
     }
     
     // If node wasn't touched, break the current Wool
     if (!nodeTouched) {
-        [sheep breakString];
+        [m_Sheep breakString];
     }
 }
 

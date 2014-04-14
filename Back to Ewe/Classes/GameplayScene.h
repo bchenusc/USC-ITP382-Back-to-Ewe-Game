@@ -23,7 +23,7 @@
  *  The main scene
  */
 @interface GameplayScene : CCScene <CCPhysicsCollisionDelegate> {
-    Sheep* sheep;
+    Sheep* m_Sheep;
     CCPhysicsNode* physics;
     NSMutableArray* nodes;
     NSMutableArray* nodesToDelete;

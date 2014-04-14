@@ -42,7 +42,7 @@
 
 //----//
 - (void) setGameplayScene:(GameplayScene*)g;
-- (void) showGameOverLabel:(BOOL) choice;
+- (void) gameOver;
 - (void) reset;
 //----//
 

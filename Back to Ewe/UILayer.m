@@ -34,26 +34,29 @@
         m_healthCapacity = 100.0f;
         
         m_Score = 0;
-        m_scoreLabel = [CCLabelTTF node];
-        [m_scoreLabel setFontName:@"Verdana-Bold"];
-        [m_scoreLabel setFontSize:18.0f];
-        [m_scoreLabel setHorizontalAlignment:CCTextAlignmentLeft];
+        m_scoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Score: %.f", m_Score] fontName:@"Verdana-Bold" fontSize:18.0f];
+        m_scoreLabel.horizontalAlignment = CCTextAlignmentLeft;
+        m_scoreLabel.positionType = CCPositionTypeNormalized;
+        m_scoreLabel.position = ccp(0.15f, 0.98f);
         [self addChild:m_scoreLabel];
         
         m_Lives = 0;
-        m_livesLabel = [CCLabelTTF labelWithString:@"n/a" fontName:@"Verdana-Bold" fontSize:18.0f];
-        [m_livesLabel setHorizontalAlignment:CCTextAlignmentLeft];
+        m_livesLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Lives: %d", m_Lives] fontName:@"Verdana-Bold" fontSize:18.0f];
+        m_livesLabel.positionType = CCPositionTypeNormalized;
+        m_livesLabel.position = ccp(0.15f, 0.95f);
         [self addChild:m_livesLabel];
         
+        // Game Over label
         m_GameOverLabel = [CCLabelTTF labelWithString:@"Game Over!" fontName:@"Marker Felt" fontSize:36.0f ];
         m_GameOverLabel.visible = NO;
-        m_GameOverLabel.position = ccp(size.width/2, size.height/2);
+        m_GameOverLabel.positionType = CCPositionTypeNormalized;
+        m_GameOverLabel.position = ccp(0.5f, 0.6f);
         [self addChild:m_GameOverLabel];
         
-        // Create a back button
+        // Pause button
         m_PauseButton = [CCButton buttonWithTitle:@"[ Pause ]" fontName:@"Verdana-Bold" fontSize:18.0f];
         m_PauseButton.positionType = CCPositionTypeNormalized;
-        m_PauseButton.position = ccp(0.85f, 0.95f); // Top Right of screen
+        m_PauseButton.position = ccp(0.85f, 0.98f);
         [m_PauseButton setTarget:self selector:@selector(onPauseClicked:)];
         [self addChild:m_PauseButton];
         
@@ -133,8 +136,14 @@
     m_GameOverLabel.visible = NO;
 }
 
-- (void) showGameOverLabel:(BOOL)choice {
-    m_GameOverLabel.visible = choice;
+- (void) gameOver {
+    m_GameOverLabel.visible = YES;
+    
+    m_PauseButton.visible = NO;
+    m_NewGameButton.visible = YES;
+    m_MainMenuButton.visible = YES;
+    m_ResumeButton.visible = NO;
+    [m_gameplayScene pause];
 }
 
 - (void) draw {
@@ -146,10 +155,7 @@
     
     [m_scoreLabel setString:[NSString stringWithFormat:@"Score: %.f", m_Score]];
     
-            [m_scoreLabel setPosition:ccp(m_scoreLabel.texture.contentSize.width / 2, size.height - m_scoreLabel.texture.contentSize.height / 2)];
-    
     [m_livesLabel setString:[NSString stringWithFormat:@"Lives: %i", m_Lives]];
-    [m_livesLabel setPosition:ccp(m_livesLabel.texture.contentSize.width / 2, size.height - m_livesLabel.texture.contentSize.height - m_scoreLabel.texture.contentSize.height / 2)];
     
 }
 
