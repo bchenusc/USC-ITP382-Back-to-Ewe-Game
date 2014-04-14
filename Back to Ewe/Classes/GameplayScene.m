@@ -406,7 +406,7 @@
 
 -(BOOL) ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair sheep:(Sheep *)_sheep enemy:(Enemy *)enemy
 {
-    if(_sheep.CurrentPowerup != shield) {
+    if([_sheep.CurrentPowerups indexOfObject:[NSNumber numberWithInt:shield]] == NSNotFound) {
         _sheep.CurrentHealth -= 10.0f;
         m_UILayer.Health = _sheep.CurrentHealth;
     }
