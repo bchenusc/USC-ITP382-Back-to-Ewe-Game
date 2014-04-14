@@ -785,6 +785,7 @@
 		D13104A118EA18500093C94A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D1A613CE18FBCB0E00E1887B /* Backgrounds */,
 				3B5B38EA18FBE23E0064D669 /* ewe_missile.png */,
 				3B5B38E818FBBE020064D669 /* ewe_mothership.png */,
 				3B5B38E618FBAEAC0064D669 /* asteroid.png */,
@@ -1740,6 +1741,7 @@
 				D13104A918EA18500093C94A /* Default-Landscape~ipad.png in Resources */,
 				D13104BE18EA18500093C94A /* Icon-Small.png in Resources */,
 				D13104BC18EA18500093C94A /* Icon-Small-50.png in Resources */,
+				D1A613D818FBCB2B00E1887B /* itp382ewe_title2-iphone5hd.png in Resources */,
 				3B5B38EB18FBE23E0064D669 /* ewe_missile.png in Resources */,
 				D13106A518EA18520093C94A /* LICENSE_Kazmath.txt in Resources */,
 				D13104B018EA18500093C94A /* Icon-72.png in Resources */,
