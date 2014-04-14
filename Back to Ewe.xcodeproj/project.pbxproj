@@ -19,6 +19,7 @@
 		3B5B38F518FBF36E0064D669 /* enemy_alien.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B5B38F218FBF36E0064D669 /* enemy_alien.png */; };
 		3B5B38F618FBF36E0064D669 /* puff_bomb.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B5B38F318FBF36E0064D669 /* puff_bomb.png */; };
 		3B5B38F718FBF36E0064D669 /* puff_boost_infinite.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B5B38F418FBF36E0064D669 /* puff_boost_infinite.png */; };
+		3B5B38F918FBF63C0064D669 /* missile_boost.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B5B38F818FBF63C0064D669 /* missile_boost.png */; };
 		3B7F57D018EA644200B8A237 /* NodeGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7F57CF18EA644200B8A237 /* NodeGenerator.m */; };
 		3BC52A7318EA676F00A35420 /* NodePattern.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC52A7218EA676F00A35420 /* NodePattern.m */; };
 		3BD376D118FB635200A990BB /* itp382sheep.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BD376CE18FB635200A990BB /* itp382sheep.png */; };
@@ -269,6 +270,7 @@
 		3B5B38F218FBF36E0064D669 /* enemy_alien.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = enemy_alien.png; path = Resources/enemy_alien.png; sourceTree = "<group>"; };
 		3B5B38F318FBF36E0064D669 /* puff_bomb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = puff_bomb.png; path = Resources/puff_bomb.png; sourceTree = "<group>"; };
 		3B5B38F418FBF36E0064D669 /* puff_boost_infinite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = puff_boost_infinite.png; path = Resources/puff_boost_infinite.png; sourceTree = "<group>"; };
+		3B5B38F818FBF63C0064D669 /* missile_boost.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = missile_boost.png; path = Resources/missile_boost.png; sourceTree = "<group>"; };
 		3B7F57CE18EA644200B8A237 /* NodeGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NodeGenerator.h; path = Classes/NodeGenerator.h; sourceTree = "<group>"; };
 		3B7F57CF18EA644200B8A237 /* NodeGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NodeGenerator.m; path = Classes/NodeGenerator.m; sourceTree = "<group>"; };
 		3BC52A7118EA676E00A35420 /* NodePattern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NodePattern.h; path = Classes/NodePattern.h; sourceTree = "<group>"; };
@@ -797,6 +799,7 @@
 		D13104A118EA18500093C94A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				3B5B38F818FBF63C0064D669 /* missile_boost.png */,
 				3B5B38F218FBF36E0064D669 /* enemy_alien.png */,
 				3B5B38F318FBF36E0064D669 /* puff_bomb.png */,
 				3B5B38F418FBF36E0064D669 /* puff_boost_infinite.png */,
@@ -1769,6 +1772,7 @@
 				D13104B018EA18500093C94A /* Icon-72.png in Resources */,
 				D13105FE18EA18510093C94A /* LICENSE_cocos2d.txt in Resources */,
 				D13104A718EA18500093C94A /* Default-568h@2x.png in Resources */,
+				3B5B38F918FBF63C0064D669 /* missile_boost.png in Resources */,
 				D13104C718EA18500093C94A /* iTunesArtwork in Resources */,
 				D13104C218EA18500093C94A /* Icon-Spotlight-iOS7.png in Resources */,
 				D13104B618EA18500093C94A /* Icon-76@2x.png in Resources */,
