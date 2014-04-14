@@ -76,8 +76,8 @@
     
     powerupGenerator = [PowerupGenerator node];
     topPowerup = nil;
-    powerupSpacing = 1000.0f;
-    powerupSpacingTolerance = 200.0f;
+    nextPowerupSpawnYPos = 1000.0f;
+    powerupSpacing = 750.0f;
     
     bossLevel = NO;
     
@@ -204,7 +204,7 @@
         [self removeGrass];
         [self spawnNewGrass];
     }
-    if(m_Score >= powerupSpacing) {
+    if(m_Score >= nextPowerupSpawnYPos) {
         [self spawnNewPowerup];
     }
     
@@ -223,7 +223,7 @@
 -(void)spawnNewPowerup {
     [self removePowerup];
     topPowerup = [powerupGenerator spawnPowerup];
-    powerupSpacing += powerupSpacing + arc4random() % (int)powerupSpacingTolerance;
+    nextPowerupSpawnYPos += powerupSpacing + arc4random() % (int)powerupSpacing;
     [physics addChild:topPowerup];
 }
 

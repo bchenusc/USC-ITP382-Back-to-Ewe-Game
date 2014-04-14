@@ -43,8 +43,8 @@
     PowerupGenerator* powerupGenerator;
     Powerup* topPowerup;
     Powerup* powerupToDelete;
+    float nextPowerupSpawnYPos;
     float powerupSpacing;
-    float powerupSpacingTolerance;
     
     bool bossLevel;
     
