@@ -15,6 +15,7 @@
 #import "Enemy.h"
 #import "Powerup.h"
 #import "ScreenPhysicsBorders.h"
+#import "Projectile.h"
 
 // -----------------------------------------------------------------------
 #pragma mark - HelloWorldScene
@@ -410,6 +411,12 @@
     
     m_UILayer.Wool = _sheep.CurrentWool;
     
+    
+    CGSize winSize = [[CCDirector sharedDirector] viewSize];
+    Projectile* newProjectile = [[Projectile node] initWithTarget:ccp(winSize.width/2, winSize.height) atPosition:_grass.position];
+    //Projectile* newProjectile = [[Projectile node] initWithTarget:ccp(-10,-10) atPosition:_grass.position];
+    [physics addChild:newProjectile];
+    
     return YES;
 }
 
@@ -446,6 +453,10 @@
     [self removePowerup];
     
     return YES;
+}
+
+-(BOOL) ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair projectile:(Projectile *)bullet border:(ScreenPhysicsBorders *)screenWall {
+    [physics removeChild:bullet];
 }
 
 // -----------------------------------------------------------------------
