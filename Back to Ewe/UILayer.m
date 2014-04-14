@@ -131,6 +131,7 @@
     m_ResumeButton.visible = NO;
     m_gameplayScene.paused = NO;
     m_GameOverLabel.visible = NO;
+    [self setLivesLabel:3];
 }
 
 - (void) gameOver {

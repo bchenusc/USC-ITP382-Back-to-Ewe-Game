@@ -26,9 +26,9 @@
     self = [super init];
     if (self) {
         
-        m_Speed = 10;
+        m_Speed = 100;
         self.position = initialPosition;
-        m_Target = ccp(projectileTarget.x - initialPosition.x, projectileTarget.y*m_Speed - initialPosition.y);
+        m_Target = ccp((projectileTarget.x - initialPosition.x)*m_Speed, (projectileTarget.y - initialPosition.y)*m_Speed);
         
         [self drawDot:ccp(0, 0) radius:10 color:[CCColor purpleColor]];
         
@@ -40,7 +40,7 @@
         
         self.physicsBody = physics;
         
-        [physics applyForce:m_Target];
+        [self.physicsBody applyForce:m_Target];
     }
     return self;
 }
