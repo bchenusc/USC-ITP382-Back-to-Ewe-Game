@@ -59,11 +59,16 @@
             break;
         case unlimitedWool:
             [m_PowerupLabel setString:@"W"];
+            [self removeChild:m_Sprite];
+            m_Sprite = [CCSprite spriteWithImageNamed:@"puff_boost.png"];
+            m_Sprite.position = ccp(0, 0);
+            m_Sprite.scale = 0.55f;
+            [self addChild:m_Sprite];
             break;
         case puffBomb:
             [m_PowerupLabel setString:@"B"];
             [self removeChild:m_Sprite];
-            m_Sprite = [CCSprite spriteWithImageNamed:@"puff_boost.png"];
+            m_Sprite = [CCSprite spriteWithImageNamed:@"puff_bomb.png"];
             m_Sprite.position = ccp(0, 0);
             m_Sprite.scale = 0.55f;
             [self addChild:m_Sprite];
@@ -78,9 +83,15 @@
             break;
         case projectile:
             [m_PowerupLabel setString:@"P"];
+            [self removeChild:m_Sprite];
+            m_Sprite = [CCSprite spriteWithImageNamed:@"missile_boost.png"];
+            m_Sprite.position = ccp(0, 0);
+            m_Sprite.scale = 0.80f;
+            [self addChild:m_Sprite];
             break;
         default:
             [m_PowerupLabel setString:@"N"];
+            [self removeChild:m_Sprite];
             break;
     }
 }
