@@ -137,6 +137,10 @@
         m_UILayer.Score = score;
     }
     
+    if (sheep.position.y >= topNode.y) {
+        topNode = [nodeGenerator generatePattern:self];
+    }
+    
     if(topPowerup != nil) {
         if(topPowerup.position.y < -topPowerup.radius) {
             [self removePowerup];
