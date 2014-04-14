@@ -32,6 +32,8 @@
 
 //----//
 - (void) showGameOverLabel:(BOOL) choice;
+- (void) resetGame;
+- (void) showPauseMenu;
 //----//
 
 @end

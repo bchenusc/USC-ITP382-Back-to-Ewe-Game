@@ -72,15 +72,12 @@
     [physics addChild:sheep];
     
     nodeGenerator = [NodeGenerator node];
-    topNode = [nodeGenerator generateFirstPattern:self];
     
     enemyGenerator = [EnemyGenerator node];
     topEnemy = nil;
-    [self spawnNewEnemy];
     
     grassGenerator = [GrassGenerator node];
     topGrass = nil;
-    [self spawnNewGrass];
     
     powerupGenerator = [PowerupGenerator node];
     topPowerup = nil;
@@ -95,6 +92,9 @@
     m_UILayer.Lives = m_PlayerLives;
     [self addChild:m_UILayer];
     
+    m_Paused = NO;
+    
+    [self newGame];
     
 	return self;
      
@@ -102,6 +102,7 @@
 
 -(void)update:(CCTime)delta{
     
+    if (m_Paused) return;
     
     for (Node* node  in nodesToDelete){
         [physics removeChild:node];
@@ -263,6 +264,7 @@
     CGSize winSize = [[CCDirector sharedDirector] viewSize];
     sheep.position = ccp(winSize.width/2, winSize.height/3);
     sheep.physicsBody.velocity = ccp(0, 500);
+    sheep.visible = YES;
     m_Dead = NO;
 }
 
@@ -273,13 +275,56 @@
 }
 
 - (void) resetGame {
-    [m_UILayer showGameOverLabel:NO];
-    for (Node* n in nodes) {
-        [nodesToDelete addObject:n];
+    m_Paused = YES;
+    
+    sheep.visible = NO;
+    
+    for(Node* n in nodes) {
+        [physics removeChild:n];
     }
-    [nodes removeObjectsInArray:nodesToDelete];
+    [nodes removeAllObjects];
+    
     [nodesToDelete removeAllObjects];
+    
+    for(Grass* g in grass) {
+        [physics removeChild:g];
+    }
+    [grass removeAllObjects];
+    
+    for(Enemy* e in enemies) {
+        [physics removeChild:e];
+    }
+    [enemies removeAllObjects];
+    
+    newNodePoint = ccp(0, 0);
+    
+    topNode = ccp(0, 0);
+    
+    topEnemy = nil;
+    
+    topGrass = nil;
+    
+    topPowerup = nil;
+    
+    powerupToDelete = nil;
+    
+    score = 0;
+    
+    m_PlayerLives = 3;
+    
     m_Dead = NO;
+    
+    [m_UILayer resetGame];
+    
+    [self newGame];
+}
+
+- (void) newGame {
+    topNode = [nodeGenerator generateFirstPattern:self];
+    [self spawnNewEnemy];
+    [self spawnNewGrass];
+    [self respawnPlayer];
+    m_Paused = NO;
 }
 
 -(BOOL) ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair sheep:(Sheep *)sheep node:(Node *)node
