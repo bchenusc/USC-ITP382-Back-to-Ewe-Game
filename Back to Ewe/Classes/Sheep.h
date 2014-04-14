@@ -16,9 +16,7 @@
 @interface Sheep : CCDrawNode {
     WoolString* m_WoolString;
     Node* m_AttachedNode;
-    NSMutableArray* m_CurrentPowerups;
-    
-    enum PowerupType m_CurrentPowerup;
+    NSMutableArray* m_CurrentPowerups;;
 
     float m_currentWool;
     float m_maxWool;
@@ -29,7 +27,6 @@
     int m_numPuffBombs;
 }
 
-@property (readonly) enum PowerupType CurrentPowerup;
 @property NSMutableArray* CurrentPowerups;
 @property (readonly) Node* attachedNode;
 @property float CurrentWool;
@@ -40,7 +37,7 @@
 
 - (void) stringToNode:(Node*)node;
 
--(void) setPowerup:(enum PowerupType)powerup;
+-(void) addPowerup:(enum PowerupType)powerup;
 
 - (void) breakString;
 

@@ -15,6 +15,7 @@
 #import "Enemy.h"
 #import "Powerup.h"
 #import "ScreenPhysicsBorders.h"
+#import "Projectile.h"
 
 // -----------------------------------------------------------------------
 #pragma mark - HelloWorldScene
@@ -77,14 +78,15 @@
     
     enemyGenerator = [EnemyGenerator node];
     topEnemy = nil;
+    m_CanSpawnEnemies = YES;
     
     grassGenerator = [GrassGenerator node];
     topGrass = nil;
     
     powerupGenerator = [PowerupGenerator node];
     topPowerup = nil;
-    powerupSpacing = 1000.0f;
-    powerupSpacingTolerance = 200.0f;
+    nextPowerupSpawnYPos = 1000.0f;
+    powerupSpacing = 750.0f;
     
     bossLevel = NO;
     
@@ -220,7 +222,7 @@
         [self removeGrass];
         [self spawnNewGrass];
     }
-    if(m_Score >= powerupSpacing) {
+    if(m_Score >= nextPowerupSpawnYPos) {
         [self spawnNewPowerup];
     }
     
@@ -239,7 +241,7 @@
 -(void)spawnNewPowerup {
     [self removePowerup];
     topPowerup = [powerupGenerator spawnPowerup];
-    powerupSpacing += powerupSpacing + arc4random() % (int)powerupSpacingTolerance;
+    nextPowerupSpawnYPos += powerupSpacing + arc4random() % (int)powerupSpacing;
     [physics addChild:topPowerup];
 }
 
@@ -251,9 +253,11 @@
 }
 
 -(void)spawnNewEnemy {
-    topEnemy = [enemyGenerator spawnEnemy];
-    [enemies addObject: topEnemy];
-    [physics addChild:topEnemy];
+    if(m_CanSpawnEnemies) {
+        topEnemy = [enemyGenerator spawnEnemy];
+        [enemies addObject: topEnemy];
+        [physics addChild:topEnemy];
+    }
 }
 
 -(void)removeEnemy {
@@ -273,6 +277,22 @@
     [grass removeObject:topGrass];
     [physics removeChild:topGrass];
     topGrass = nil;
+}
+
+- (void) detonateBomb {
+    m_CanSpawnEnemies = NO;
+    [self scheduleOnce:@selector(allowEnemySpawn) delay:5.0f];
+    while(enemies.count > 0) {
+        [self removeEnemy];
+    }
+    m_Sheep.NumPuffBombs--;
+    if(m_Sheep.NumPuffBombs == 0) {
+        [m_UILayer setBombsButtonInactive];
+    }
+}
+
+-(void) allowEnemySpawn {
+    m_CanSpawnEnemies = YES;
 }
 
 -(CGSize) getSize{
@@ -409,6 +429,12 @@
     
     m_UILayer.Wool = _sheep.CurrentWool;
     
+    
+    CGSize winSize = [[CCDirector sharedDirector] viewSize];
+    Projectile* newProjectile = [[Projectile node] initWithTarget:ccp(winSize.width/2, winSize.height) atPosition:_grass.position];
+    //Projectile* newProjectile = [[Projectile node] initWithTarget:ccp(-10,-10) atPosition:_grass.position];
+    [physics addChild:newProjectile];
+    
     return YES;
 }
 
@@ -430,10 +456,25 @@
 
 -(BOOL) ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair sheep:(Sheep *)_sheep powerup:(Powerup *)powerup
 {
-    [_sheep setPowerup:powerup.POWERUPTYPE];
+    [_sheep addPowerup:powerup.POWERUPTYPE];
+    
+    if(powerup.POWERUPTYPE == puffBomb) {
+        _sheep.NumPuffBombs++;
+        [m_UILayer setBombsButtonActive];
+    } else if(powerup.POWERUPTYPE == health) {
+        if(_sheep.CurrentHealth < _sheep.MaxHealth) {
+            _sheep.CurrentHealth += 10.0f;
+            [m_UILayer setHealth:_sheep.CurrentHealth];
+        }
+    }
+    
     [self removePowerup];
     
     return YES;
+}
+
+-(BOOL) ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair projectile:(Projectile *)bullet border:(ScreenPhysicsBorders *)screenWall {
+    [physics removeChild:bullet];
 }
 
 // -----------------------------------------------------------------------
