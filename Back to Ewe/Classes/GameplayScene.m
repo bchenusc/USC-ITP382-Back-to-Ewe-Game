@@ -425,6 +425,10 @@
     return YES;
 }
 
+-(BOOL) ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair projectile:(Projectile *)bullet border:(ScreenPhysicsBorders *)screenWall {
+    [physics removeChild:bullet];
+}
+
 // -----------------------------------------------------------------------
 
 - (void) dealloc

@@ -35,7 +35,8 @@
         CCPhysicsBody* physics = [CCPhysicsBody bodyWithCircleOfRadius:10.0f andCenter:self.anchorPointInPoints];
         physics.type = CCPhysicsBodyTypeDynamic;
         physics.collisionCategories = @[@"projectile"];
-        physics.collisionMask = @[@"enemy"];
+        physics.collisionMask = @[@"enemy", @"wall"];
+        physics.collisionType = @"projectile";
         physics.affectedByGravity = NO;
         
         self.physicsBody = physics;
