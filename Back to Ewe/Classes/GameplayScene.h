@@ -49,6 +49,8 @@
     float score;
     int m_PlayerLives;
     bool m_Dead;
+    
+    bool m_Paused;
 }
 
 // -----------------------------------------------------------------------
