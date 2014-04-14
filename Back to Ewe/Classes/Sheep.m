@@ -45,6 +45,8 @@
         
         m_CurrentPowerups = [NSMutableArray new];
         m_CurrentPowerup = NONE;
+        
+        m_numPuffBombs = 0;
     }
     return self;
 }

@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
+#import "CCButton.h"
 
 @interface UILayer : CCNode {
     float m_woolRemaining;
@@ -22,6 +23,9 @@
     int m_Lives;
     CCLabelTTF* m_livesLabel;
     
+    int m_Bombs;
+    CCButton* m_bombsButton;
+    
     CCLabelTTF* m_GameOverLabel;
 }
 
@@ -32,6 +36,9 @@
 
 //----//
 - (void) showGameOverLabel:(BOOL) choice;
+-(void) setScoreString:(NSString*) string;
+-(void) setLivesString:(NSString*) string;
+-(void) setBombsLabel:(NSString*) string;
 - (void) resetGame;
 - (void) showPauseMenu;
 //----//
