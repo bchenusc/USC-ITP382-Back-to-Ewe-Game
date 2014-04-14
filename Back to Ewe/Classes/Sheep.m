@@ -80,10 +80,10 @@
     if(powerup == puffBomb) {
         m_numPuffBombs++;
     } else if(powerup == shield) {
-        [self schedule:@selector(blinkShield:) interval: 7.0f];
+        [self schedule:@selector(blinkShield) interval: 7.0f];
     }
     
-    [self schedule:@selector(cancelCurrentPowerup:) interval:10.0f];
+    [self schedule:@selector(cancelCurrentPowerup) interval:10.0f];
 }
 
 -(void)removePowerup {
