@@ -43,7 +43,7 @@
         CCPhysicsBody* physics = [CCPhysicsBody bodyWithPillFrom:ccp(0, -sprite.contentSize.height * 3 / 8) to:ccp(0, sprite.contentSize.height * 3 / 8) cornerRadius:5];
         physics.type = CCPhysicsBodyTypeDynamic;
         physics.collisionCategories = @[@"projectile"];
-        physics.collisionMask = @[@"enemy", @"wall"];
+        physics.collisionMask = @[@"enemy", @"wall", @"boss"];
         physics.collisionType = @"projectile";
         physics.affectedByGravity = NO;
         

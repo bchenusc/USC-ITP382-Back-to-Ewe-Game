@@ -25,6 +25,8 @@
     float m_maxHealth;
     
     int m_numPuffBombs;
+    
+    BOOL m_CanTakeDamage;
 }
 
 @property NSMutableArray* CurrentPowerups;
@@ -40,5 +42,7 @@
 -(void) addPowerup:(enum PowerupType)powerup;
 
 - (void) breakString;
+
+-(void)hitEnemy;
 
 @end
