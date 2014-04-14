@@ -110,6 +110,7 @@
     m_MainMenuButton.visible = YES;
     m_ResumeButton.visible = YES;
     [m_gameplayScene pause];
+    [OALSimpleAudio sharedInstance].paused = true;
 }
 
 - (void) onNewGameClicked:(id)sender {
@@ -120,6 +121,7 @@
     // back to intro scene with transition
     [[CCDirector sharedDirector] replaceScene:[MainMenuScene scene]
                                withTransition:[CCTransition transitionPushWithDirection:CCTransitionDirectionRight duration:1.0f]];
+    [[OALSimpleAudio sharedInstance] stopAllEffects];
 }
 
 - (void) onResumeClicked:(id)sender {
@@ -129,6 +131,7 @@
     m_ResumeButton.visible = NO;
     m_gameplayScene.paused = NO;
     [m_gameplayScene resume];
+    [OALSimpleAudio sharedInstance].paused = false;
 }
 
 - (void) onBombsClicked:(id)sender {
