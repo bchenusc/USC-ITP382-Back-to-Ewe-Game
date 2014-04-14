@@ -48,6 +48,8 @@
 
 - (void) setScoreLabel:(CGFloat)score;
 - (void) setLivesLabel:(int)lives;
+- (void) setBombsButtonActive;
+- (void) setBombsButtonInactive;
 //----//
 
 @end

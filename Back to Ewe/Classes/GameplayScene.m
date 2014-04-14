@@ -68,6 +68,7 @@
     
     enemyGenerator = [EnemyGenerator node];
     topEnemy = nil;
+    m_CanSpawnEnemies = YES;
     
     grassGenerator = [GrassGenerator node];
     topGrass = nil;
@@ -233,9 +234,11 @@
 }
 
 -(void)spawnNewEnemy {
-    topEnemy = [enemyGenerator spawnEnemy];
-    [enemies addObject: topEnemy];
-    [physics addChild:topEnemy];
+    if(m_CanSpawnEnemies) {
+        topEnemy = [enemyGenerator spawnEnemy];
+        [enemies addObject: topEnemy];
+        [physics addChild:topEnemy];
+    }
 }
 
 -(void)removeEnemy {
@@ -255,6 +258,22 @@
     [grass removeObject:topGrass];
     [physics removeChild:topGrass];
     topGrass = nil;
+}
+
+- (void) detonateBomb {
+    m_CanSpawnEnemies = NO;
+    [self scheduleOnce:@selector(allowEnemySpawn) delay:5.0f];
+    while(enemies.count > 0) {
+        [self removeEnemy];
+    }
+    m_Sheep.NumPuffBombs--;
+    if(m_Sheep.NumPuffBombs == 0) {
+        [m_UILayer setBombsButtonInactive];
+    }
+}
+
+-(void) allowEnemySpawn {
+    m_CanSpawnEnemies = YES;
 }
 
 -(CGSize) getSize{
@@ -412,7 +431,18 @@
 
 -(BOOL) ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair sheep:(Sheep *)_sheep powerup:(Powerup *)powerup
 {
-    [_sheep setPowerup:powerup.POWERUPTYPE];
+    [_sheep addPowerup:powerup.POWERUPTYPE];
+    
+    if(powerup.POWERUPTYPE == puffBomb) {
+        _sheep.NumPuffBombs++;
+        [m_UILayer setBombsButtonActive];
+    } else if(powerup.POWERUPTYPE == health) {
+        if(_sheep.CurrentHealth < _sheep.MaxHealth) {
+            _sheep.CurrentHealth += 10.0f;
+            [m_UILayer setHealth:_sheep.CurrentHealth];
+        }
+    }
+    
     [self removePowerup];
     
     return YES;

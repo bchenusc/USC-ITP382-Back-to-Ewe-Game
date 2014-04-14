@@ -81,6 +81,15 @@
         [m_ResumeButton setTarget:self selector:@selector(onResumeClicked:)];
         [self addChild:m_ResumeButton];
         m_ResumeButton.visible = NO;
+        
+        // Bombs button
+        m_Bombs = 0;
+        m_bombsButton = [CCButton buttonWithTitle:@"Bomb" fontName:@"Verdana-Bold" fontSize:18.0f];
+        m_bombsButton.positionType = CCPositionTypeNormalized;
+        m_bombsButton.position = ccp(.9f, 0.1f); // Middle Right of screen
+        [m_bombsButton setTarget:self selector:@selector(onBombsClicked:)];
+        [self addChild:m_bombsButton];
+        m_bombsButton.visible = NO;
     }
     return self;
 }
@@ -122,6 +131,10 @@
     [m_gameplayScene resume];
 }
 
+- (void) onBombsClicked:(id)sender {
+    [m_gameplayScene detonateBomb];
+}
+
 // -----------------------------------------------------------------------
 
 - (void) reset {
@@ -148,6 +161,14 @@
 
 - (void) setLivesLabel:(int)lives {
     m_livesLabel.string = [NSString stringWithFormat:@"Lives: %d", lives];
+}
+
+-(void)setBombsButtonActive {
+    m_bombsButton.visible = YES;
+}
+
+-(void)setBombsButtonInactive {
+    m_bombsButton.visible = NO;
 }
 
 - (void) draw {

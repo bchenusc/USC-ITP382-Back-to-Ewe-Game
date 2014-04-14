@@ -37,6 +37,7 @@
     CGPoint topNode;
     EnemyGenerator* enemyGenerator;
     Enemy* topEnemy;
+    BOOL m_CanSpawnEnemies;
     GrassGenerator* grassGenerator;
     Grass* topGrass;
     PowerupGenerator* powerupGenerator;
@@ -67,6 +68,7 @@
 - (void)spawnNewPattern;
 - (void)spawnNewEnemy;
 - (void) spawnNewGrass;
+- (void) detonateBomb;
 - (void) playerDeath;
 - (void) resetGame;
 - (void) respawnPlayer;
