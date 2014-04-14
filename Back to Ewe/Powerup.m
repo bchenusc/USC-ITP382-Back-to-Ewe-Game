@@ -67,6 +67,11 @@
     }
 }
 
+-(void) setProjectileType {
+    m_PowerupType = projectile;
+    [m_PowerupLabel setString:@"P"];
+}
+
 - (CGRect) rect {
     return CGRectMake(self.position.x - self.contentSize.width * self.anchorPoint.x,
                       self.position.y - self.contentSize.height * self.anchorPoint.y,

@@ -12,6 +12,10 @@
 @implementation Boss
 
 @synthesize BOSSTYPE = m_Boss;
+@synthesize Radius = m_Radius;
+@synthesize Health = m_Health;
+@synthesize DamageFromSheep = m_DamageFromSheep;
+@synthesize DamageFromProjectile = m_DamageFromProjectile;
 
 - (instancetype)init {
     self = [super init];
@@ -20,10 +24,10 @@
         self.position = ccp(winSize.width / 2, winSize.height);
         
         m_Radius = winSize.width / 2;
+        [self drawDot:ccp(0, 0) radius:m_Radius color:[CCColor yellowColor]];
         
-        [self drawDot:ccp(0, 0) radius:m_Radius color:[CCColor whiteColor]];
+        CCPhysicsBody* physics = [CCPhysicsBody bodyWithRect:CGRectMake(-m_Radius, -m_Radius, m_Radius, 0) cornerRadius:0.0f];
         
-        CCPhysicsBody* physics = [CCPhysicsBody bodyWithCircleOfRadius:m_Radius andCenter:self.anchorPointInPoints];
         physics.type = CCPhysicsBodyTypeStatic;
         physics.collisionCategories = @[@"boss"];
         physics.collisionMask = @[@"sheep", @"projectile"];
@@ -32,6 +36,10 @@
         self.physicsBody = physics;
         
         m_BossType = spaceBoss;
+        
+        m_Health = 100;
+        m_DamageFromProjectile = 15;
+        m_DamageFromSheep = 35;
     }
     return self;
 }
