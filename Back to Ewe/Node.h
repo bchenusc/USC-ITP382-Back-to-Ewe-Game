@@ -14,7 +14,8 @@
 @interface Node : CCDrawNode {
     CGFloat m_Radius;
     GameplayScene* m_GameplayScene;
-    BOOL m_BeingRemoved;
+    bool m_BeingRemoved;
+    CGFloat m_ShrinkTime;
 }
 
 @property (readonly) CGFloat radius;
@@ -25,6 +26,6 @@
 
 - (CGRect) rect;
 
-- (BOOL) isPointInNode:(CGPoint)point;
+- (bool) isPointInNode:(CGPoint)point;
 
 @end
