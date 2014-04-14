@@ -52,6 +52,9 @@
     bool m_Dead;
     
     bool m_Paused;
+    
+    CCSprite* m_Background1;
+    CCSprite* m_Background2;
 }
 
 // -----------------------------------------------------------------------
