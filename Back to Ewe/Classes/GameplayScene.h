@@ -16,6 +16,7 @@
 #import "NodeGenerator.h"
 #import "EnemyGenerator.h"
 #import "GrassGenerator.h"
+#import "PowerupGenerator.h"
 
 // -----------------------------------------------------------------------
 
@@ -25,10 +26,10 @@
 @interface GameplayScene : CCScene <CCPhysicsCollisionDelegate> {
     Sheep* sheep;
     CCPhysicsNode* physics;
-    NSMutableArray* enemies;
     NSMutableArray* nodes;
     NSMutableArray* nodesToDelete;
     NSMutableArray* grass;
+    NSMutableArray* enemies;
     
     CGPoint newNodePoint;
     
@@ -39,9 +40,17 @@
     Enemy* topEnemy;
     GrassGenerator* grassGenerator;
     Grass* topGrass;
+    PowerupGenerator* powerupGenerator;
+    Powerup* topPowerup;
+    Powerup* powerupToDelete;
+    float powerupSpacing;
+    float powerupSpacingTolerance;
     
-    int score;
-    int m_PlayerLives; 
+    float score;
+    int m_PlayerLives;
+    bool m_Dead;
+    
+    bool m_Paused;
 }
 
 // -----------------------------------------------------------------------
@@ -58,6 +67,8 @@
 - (void)spawnNewEnemy;
 - (void) spawnNewGrass;
 - (void) playerDeath;
+- (void) resetGame;
+- (void) respawnPlayer;
 - (void) gameOver;
 
 // -----------------------------------------------------------------------

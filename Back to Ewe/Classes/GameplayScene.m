@@ -13,6 +13,7 @@
 #import "WoolString.h"
 #import "Grass.h"
 #import "Enemy.h"
+#import "Powerup.h"
 #import "ScreenPhysicsBorders.h"
 
 // -----------------------------------------------------------------------
@@ -71,23 +72,29 @@
     [physics addChild:sheep];
     
     nodeGenerator = [NodeGenerator node];
-    topNode = [nodeGenerator generateFirstPattern:self];
     
     enemyGenerator = [EnemyGenerator node];
     topEnemy = nil;
-    [self spawnNewEnemy];
     
     grassGenerator = [GrassGenerator node];
     topGrass = nil;
-    [self spawnNewGrass];
+    
+    powerupGenerator = [PowerupGenerator node];
+    topPowerup = nil;
+    powerupSpacing = 1000.0f;
+    powerupSpacingTolerance = 200.0f;
     
     m_PlayerLives = 3;
+    m_Dead = NO;
     
     //UI Layer
     m_UILayer = [UILayer node];
     m_UILayer.Lives = m_PlayerLives;
     [self addChild:m_UILayer];
     
+    m_Paused = NO;
+    
+    [self newGame];
     
 	return self;
      
@@ -95,6 +102,7 @@
 
 -(void)update:(CCTime)delta{
     
+    if (m_Paused) return;
     
     for (Node* node  in nodesToDelete){
         [physics removeChild:node];
@@ -119,16 +127,25 @@
         for (Grass* _grass in grass) {
             _grass.position =ccp(_grass.position.x, _grass.position.y - translation);
         }
+        if(topPowerup != nil) {
+            topPowerup.position = ccp(topPowerup.position.x, topPowerup.position.y - translation);
+        }
+        
         sheep.position = ccp (sheep.position.x, sheep.position.y - translation);
         topNode = ccp(topNode.x, topNode.y - translation);
     
-        m_UILayer.Score += translation;
-        newNodePoint = ccp(newNodePoint.x, newNodePoint.y - translation);
-        
+        score += translation;
+        m_UILayer.Score = score;
     }
     
-    if (sheep.position.y >= topNode.y){
+    if (sheep.position.y >= topNode.y) {
         topNode = [nodeGenerator generatePattern:self];
+    }
+    
+    if(topPowerup != nil) {
+        if(topPowerup.position.y < -topPowerup.radius) {
+            [self removePowerup];
+        }
     }
     
     if (sheep.position.y < 0) {
@@ -136,6 +153,7 @@
         if (m_PlayerLives == 0) {
             [self playerDeath];
         }
+        return;
     }
     
     if(topEnemy == nil) {
@@ -150,6 +168,10 @@
         [self removeGrass];
         [self spawnNewGrass];
     }
+    if(score >= powerupSpacing) {
+        [self spawnNewPowerup];
+    }
+    
 }
 -(void) setNewNodePoint : (CGPoint) point {
     newNodePoint = point;
@@ -160,6 +182,20 @@
 
 -(void) spawnNewPattern{
     topNode = [nodeGenerator generatePattern:self];
+}
+
+-(void)spawnNewPowerup {
+    [self removePowerup];
+    topPowerup = [powerupGenerator spawnPowerup];
+    powerupSpacing += powerupSpacing + arc4random() % (int)powerupSpacingTolerance;
+    [physics addChild:topPowerup];
+}
+
+-(void)removePowerup {
+    if(topPowerup != nil) {
+        [physics removeChild:topPowerup];
+        topPowerup = nil;
+    }
 }
 
 -(void)spawnNewEnemy {
@@ -208,17 +244,87 @@
 }
 
 - (void) playerDeath {
-    NSLog(@"Player died");
-    m_PlayerLives--;
-    m_UILayer.Lives = m_PlayerLives;
-    //RESETGAME
-    if (m_PlayerLives == 0) {
-        [self gameOver];
+    if (!m_Dead) {
+        NSLog(@"Player died");
+        m_PlayerLives--;
+        m_UILayer.Lives = m_PlayerLives;
+        m_Dead = YES;
+        if (sheep.attachedNode) {
+            [sheep breakString];
+        }
+        
+        [self scheduleOnce:@selector(respawnPlayer) delay:2.5f];
+        if (m_PlayerLives == 0) {
+            [self gameOver];
+        }
     }
+}
+
+- (void) respawnPlayer {
+    CGSize winSize = [[CCDirector sharedDirector] viewSize];
+    sheep.position = ccp(winSize.width/2, winSize.height/3);
+    sheep.physicsBody.velocity = ccp(0, 500);
+    sheep.visible = YES;
+    m_Dead = NO;
 }
 
 - (void) gameOver {
     NSLog(@"Game Over");
+    [m_UILayer showGameOverLabel:YES];
+    
+}
+
+- (void) resetGame {
+    m_Paused = YES;
+    
+    sheep.visible = NO;
+    
+    for(Node* n in nodes) {
+        [physics removeChild:n];
+    }
+    [nodes removeAllObjects];
+    
+    [nodesToDelete removeAllObjects];
+    
+    for(Grass* g in grass) {
+        [physics removeChild:g];
+    }
+    [grass removeAllObjects];
+    
+    for(Enemy* e in enemies) {
+        [physics removeChild:e];
+    }
+    [enemies removeAllObjects];
+    
+    newNodePoint = ccp(0, 0);
+    
+    topNode = ccp(0, 0);
+    
+    topEnemy = nil;
+    
+    topGrass = nil;
+    
+    topPowerup = nil;
+    
+    powerupToDelete = nil;
+    
+    score = 0;
+    
+    m_PlayerLives = 3;
+    
+    m_Dead = NO;
+    
+    [m_UILayer resetGame];
+    
+    [self newGame];
+}
+
+- (void) newGame {
+    topNode = [nodeGenerator generateFirstPattern:self];
+    [self spawnNewEnemy];
+    [self spawnNewGrass];
+    [self respawnPlayer];
+    m_Paused = NO;
 }
 
 -(BOOL) ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair sheep:(Sheep *)sheep node:(Node *)node
@@ -243,11 +349,22 @@
     return YES;
 }
 
--(BOOL) ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair sheep:(Sheep *)sheep enemy:(Enemy *)enemy
+-(BOOL) ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair sheep:(Sheep *)_sheep enemy:(Enemy *)enemy
 {
-	m_UILayer.Health -= 10.0f;
+    if(_sheep.CurrentPowerup != shield) {
+        _sheep.CurrentHealth -= 10.0f;
+        m_UILayer.Health = _sheep.CurrentHealth;
+    }
     [self removeEnemy];
     [self spawnNewEnemy];
+    
+    return YES;
+}
+
+-(BOOL) ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair sheep:(Sheep *)_sheep powerup:(Powerup *)powerup
+{
+    [_sheep setPowerup:powerup.POWERUPTYPE];
+    [self removePowerup];
     
     return YES;
 }
@@ -287,6 +404,9 @@
 // -----------------------------------------------------------------------
 
 - (void) touchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
+    if (m_Dead) {
+        return;
+    }
     CGPoint touchLoc = [touch locationInNode:self];
     
     // Check if user clicked on a node

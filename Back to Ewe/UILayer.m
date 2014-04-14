@@ -22,6 +22,8 @@
 {
     self = [super init];
     if (self) {
+        CGSize size = [[CCDirector sharedDirector] viewSize];
+        
         m_woolRemaining = 10000.0f;
         m_woolCapacity = 10000.0f;
         
@@ -42,6 +44,7 @@
         
         m_GameOverLabel = [CCLabelTTF labelWithString:@"Game Over!" fontName:@"Marker Felt" fontSize:36.0f ];
         m_GameOverLabel.visible = NO;
+        m_GameOverLabel.position = ccp(size.width/2, size.height/2);
         [self addChild:m_GameOverLabel];
         
     }
@@ -51,7 +54,6 @@
 - (void) showGameOverLabel:(BOOL)choice {
     m_GameOverLabel.visible = choice;
 }
-
 
 - (void) draw {
     CGSize size = [[CCDirector sharedDirector] viewSize];

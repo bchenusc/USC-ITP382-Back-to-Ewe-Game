@@ -11,9 +11,12 @@
 
 @implementation Sheep
 
+@synthesize CurrentPowerup = m_CurrentPowerup;
 @synthesize attachedNode = m_AttachedNode;
 @synthesize CurrentWool = m_currentWool;
 @synthesize MaxWool = m_maxWool;
+@synthesize CurrentHealth = m_currentHealth;
+@synthesize MaxHealth = m_maxHealth;
 
 - (instancetype)init {
     self = [super init];
@@ -26,7 +29,7 @@
         //physics.elasticity = 4;
         physics.type = CCPhysicsBodyTypeDynamic;
         physics.collisionCategories = @[@"sheep"];
-        physics.collisionMask = @[@"enemy", @"projectile", @"wall", @"node", @"grass"];
+        physics.collisionMask = @[@"enemy", @"projectile", @"wall", @"node", @"grass", @"powerup"];
         physics.collisionType = @"sheep";
         self.physicsBody = physics;
         
@@ -35,6 +38,11 @@
         
         m_maxWool = 10000.0f;
         m_currentWool = m_maxWool;
+        
+        m_maxHealth = 100;
+        m_currentHealth = 100;
+        
+        m_CurrentPowerup = NONE;
     }
     return self;
 }
@@ -69,7 +77,34 @@
     }
 }
 
+-(void)setPowerup:(enum PowerupType)powerup {
+    m_CurrentPowerup = powerup;
+
+    if(powerup == puffBomb) {
+        m_numPuffBombs++;
+    } else if(powerup == shield) {
+        [self schedule:@selector(blinkShield) interval: 7.0f];
+    }
+    
+    [self schedule:@selector(cancelCurrentPowerup) interval:10.0f];
+}
+
+-(void)removePowerup {
+    m_CurrentPowerup = NONE;
+}
+
+-(void) blinkShield {
+    
+}
+
+-(void) cancelCurrentPowerup {
+    m_CurrentPowerup = NONE;
+}
+
 - (void) update:(CCTime)delta {
+    if(m_CurrentPowerup == shield) {
+        [self drawDot:self.position radius:40 color:[CCColor lightGrayColor]];
+    }
     m_WoolString.start = self.position;
     m_WoolString.end = m_AttachedNode.position;
 }

@@ -55,8 +55,7 @@
 }
 
 -(void) setRandomEnemyType {
-    m_EnemyType = (enum EnemyType) (arc4random() % (int) EnemyTypeMax);
-    NSLog(@"Enemytype:%u", m_EnemyType);
+    m_EnemyType = (enum EnemyType) (arc4random() % (int) PowerupTypeMax);
     switch(m_EnemyType) {
         case horizontalMover:
             m_CenterPosition = self.position;
