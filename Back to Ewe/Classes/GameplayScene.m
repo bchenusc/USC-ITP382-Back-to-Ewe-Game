@@ -110,14 +110,14 @@
         @try{
         [physics removeChild:node];
         }
-        @catch(NSException* e){
-            
-        };
+        @catch (NSException* e) {
+                
+        }
     }
     [nodes removeObjectsInArray:nodesToDelete];
     [nodesToDelete removeAllObjects];
     
-    if (bossLevel){
+    /*if (bossLevel){
         //Translates automatically.
         float translation = delta * 100;
         for(Node* node in nodes){
@@ -142,16 +142,18 @@
 
         m_UILayer.Score = score;
         
-    }
-    else
+    }*/
+   // else
     if (sheep.position.y > 170 && sheep.physicsBody.velocity.y > 0){
         float translation = delta * sheep.physicsBody.velocity.y;
+        
         for(Node* node in nodes){
             node.position = ccp(node.position.x, node.position.y - translation);
             if (node.position.y < 0){
                 [nodesToDelete addObject:node];
             }
         }
+        
         //TODO: Need to cleanup enemies and grass
         
         //Scrolling
@@ -166,15 +168,19 @@
         }
         
         sheep.position = ccp (sheep.position.x, sheep.position.y - translation);
+        newNodePoint = ccp(newNodePoint.x, newNodePoint.y - translation);
         topNode = ccp(topNode.x, topNode.y - translation);
+        //NSLog(@"Scroll position : %f", newNodePoint.y);
     
         score += translation;
         m_UILayer.Score = score;
     }
     
     if (sheep.position.y >= topNode.y) {
+        //NSLog(@"topNode is : %f", topNode.y);
         topNode = [nodeGenerator generatePattern:self];
     }
+    
     
     if(topPowerup != nil) {
         if(topPowerup.position.y < -topPowerup.radius) {
@@ -262,6 +268,9 @@
 }
 
 -(void) addNode : (Node*) n Position:(CGPoint)point{
+    /*if (nodes.count > 10){
+        [nodesToDelete addObject:[nodes objectAtIndex:(nodes.count - 1)]];
+    }*/
     n.position = point;
     [n setGameplayScene:self];
     [nodes addObject:n];
@@ -317,12 +326,13 @@
     
     sheep.visible = NO;
     
-    for(Node* n in nodes) {
+    /*for(Node* n in nodes) {
         [physics removeChild:n];
     }
-    [nodes removeAllObjects];
+    [nodes removeAllObjects];*/
     
-    [nodesToDelete removeAllObjects];
+    
+    [nodesToDelete addObjectsFromArray:nodes];
     
     for(Grass* g in grass) {
         [physics removeChild:g];
