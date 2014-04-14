@@ -11,6 +11,7 @@
 		0023EA6118F398C700C27528 /* Grass.m in Sources */ = {isa = PBXBuildFile; fileRef = 0023EA6018F398C700C27528 /* Grass.m */; };
 		00DEC68118FB74A900382BBD /* Projectile.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DEC68018FB74A900382BBD /* Projectile.m */; };
 		3B5B38E718FBAEAC0064D669 /* asteroid.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B5B38E618FBAEAC0064D669 /* asteroid.png */; };
+		3B5B38E918FBBE020064D669 /* ewe_mothership.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B5B38E818FBBE020064D669 /* ewe_mothership.png */; };
 		3B7F57D018EA644200B8A237 /* NodeGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7F57CF18EA644200B8A237 /* NodeGenerator.m */; };
 		3BC52A7318EA676F00A35420 /* NodePattern.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC52A7218EA676F00A35420 /* NodePattern.m */; };
 		3BD376CF18FB635200A990BB /* itp382ewe_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BD376CC18FB635200A990BB /* itp382ewe_bg.png */; };
@@ -250,6 +251,7 @@
 		00DEC67F18FB74A900382BBD /* Projectile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Projectile.h; path = Classes/Projectile.h; sourceTree = "<group>"; };
 		00DEC68018FB74A900382BBD /* Projectile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Projectile.m; path = Classes/Projectile.m; sourceTree = "<group>"; };
 		3B5B38E618FBAEAC0064D669 /* asteroid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = asteroid.png; path = Resources/asteroid.png; sourceTree = "<group>"; };
+		3B5B38E818FBBE020064D669 /* ewe_mothership.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ewe_mothership.png; path = Resources/ewe_mothership.png; sourceTree = "<group>"; };
 		3B7F57CE18EA644200B8A237 /* NodeGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NodeGenerator.h; path = Classes/NodeGenerator.h; sourceTree = "<group>"; };
 		3B7F57CF18EA644200B8A237 /* NodeGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NodeGenerator.m; path = Classes/NodeGenerator.m; sourceTree = "<group>"; };
 		3BC52A7118EA676E00A35420 /* NodePattern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NodePattern.h; path = Classes/NodePattern.h; sourceTree = "<group>"; };
@@ -774,6 +776,7 @@
 		D13104A118EA18500093C94A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				3B5B38E818FBBE020064D669 /* ewe_mothership.png */,
 				3B5B38E618FBAEAC0064D669 /* asteroid.png */,
 				3BD376CC18FB635200A990BB /* itp382ewe_bg.png */,
 				3BD376CD18FB635200A990BB /* itp382ewe_title2-iphone5hd.png */,
@@ -1725,6 +1728,7 @@
 				D13104B618EA18500093C94A /* Icon-76@2x.png in Resources */,
 				D131072A18EA18520093C94A /* LICENSE_Chipmunk.txt in Resources */,
 				D13104C418EA18500093C94A /* Icon-Spotlight-iOS7@2x.png in Resources */,
+				3B5B38E918FBBE020064D669 /* ewe_mothership.png in Resources */,
 				D13104B418EA18500093C94A /* Icon-76.png in Resources */,
 				D131068A18EA18520093C94A /* ChangeLog in Resources */,
 				D13104C918EA18500093C94A /* iTunesArtwork@2x in Resources */,
