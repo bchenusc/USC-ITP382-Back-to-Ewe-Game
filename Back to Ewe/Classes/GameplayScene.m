@@ -80,6 +80,7 @@
     powerupSpacing = 750.0f;
     
     bossLevel = NO;
+    m_BossLevelTriggerYPos = 15000.0f;
     
     m_PlayerLives = 3;
     m_Dead = NO;
@@ -372,6 +373,9 @@
     
     powerupToDelete = nil;
     
+    [self detonateBomb];
+    m_Sheep.NumPuffBombs = 0;
+    
     m_Score = 0;
     
     m_PlayerLives = 3;
@@ -385,6 +389,9 @@
 
 - (void) newGame {
     topNode = [nodeGenerator generateFirstPattern:self];
+    [self detonateBomb];
+    m_Sheep.NumPuffBombs = 0;
+    nextPowerupSpawnYPos = powerupSpacing;
     [self spawnNewEnemy];
     [self spawnNewGrass];
     [self respawnPlayer];
@@ -410,12 +417,6 @@
     [self spawnNewGrass];
     
     m_UILayer.Wool = _sheep.CurrentWool;
-    
-    
-    CGSize winSize = [[CCDirector sharedDirector] viewSize];
-    Projectile* newProjectile = [[Projectile node] initWithTarget:ccp(winSize.width/2, winSize.height) atPosition:_grass.position];
-    //Projectile* newProjectile = [[Projectile node] initWithTarget:ccp(-10,-10) atPosition:_grass.position];
-    [physics addChild:newProjectile];
     
     return YES;
 }
@@ -448,6 +449,10 @@
             _sheep.CurrentHealth += 10.0f;
             [m_UILayer setHealth:_sheep.CurrentHealth];
         }
+    } else if(powerup.POWERUPTYPE == projectile) {
+        CGSize winSize = [[CCDirector sharedDirector] viewSize];
+        Projectile* newProjectile = [[Projectile node] initWithTarget:ccp(winSize.width/2, winSize.height) atPosition:powerup.position];
+        [physics addChild:newProjectile];
     }
     
     [self removePowerup];
@@ -457,6 +462,8 @@
 
 -(BOOL) ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair projectile:(Projectile *)bullet border:(ScreenPhysicsBorders *)screenWall {
     [physics removeChild:bullet];
+    
+    return YES;
 }
 
 // -----------------------------------------------------------------------
