@@ -47,6 +47,7 @@
     float powerupSpacing;
     
     bool bossLevel;
+    float m_BossLevelTriggerYPos;
     
     float m_Score;
     int m_PlayerLives;
