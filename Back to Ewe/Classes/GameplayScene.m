@@ -268,6 +268,7 @@
     sheep.physicsBody.velocity = ccp(0, 500);
     sheep.visible = YES;
     sheep.CurrentHealth = sheep.MaxHealth;
+    sheep.CurrentWool = sheep.MaxWool;
     m_UILayer.Health = sheep.CurrentHealth;
     m_Dead = NO;
 }
