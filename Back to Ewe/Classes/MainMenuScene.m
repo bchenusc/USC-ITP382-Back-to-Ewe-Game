@@ -52,7 +52,11 @@
     [background2 setBlendFunc:(ccBlendFunc){GL_ONE,GL_ZERO}];
     [self addChild:background2];*/
     
+    
+    [CCTexture setDefaultAlphaPixelFormat:CCTexturePixelFormat_RGB565];
+    
     CCSprite *background = [CCSprite spriteWithImageNamed:@"itp382ewe_title2.png"];
+    //CCSprite *background = [CCSprite spriteWithImageNamed:@"Default.png"];
     background.position = ccp(winSize.width / 2, winSize.height/2);
     [background setBlendFunc:(ccBlendFunc){GL_ONE,GL_ZERO}];
     [self addChild:background];

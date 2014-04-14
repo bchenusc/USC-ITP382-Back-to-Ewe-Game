@@ -781,6 +781,10 @@
 			isa = PBXGroup;
 			children = (
 				D14D28DA18FBBC3D001A76AB /* Backgrounds */,
+				3B5B38E818FBBE020064D669 /* ewe_mothership.png */,
+				3B5B38E618FBAEAC0064D669 /* asteroid.png */,
+				3BD376CC18FB635200A990BB /* itp382ewe_bg.png */,
+				3BD376CD18FB635200A990BB /* itp382ewe_title2-iphone5hd.png */,
 				3BD376CE18FB635200A990BB /* itp382sheep.png */,
 				D13104A218EA18500093C94A /* Default.png */,
 				D13104A418EA18500093C94A /* Default@2x.png */,
