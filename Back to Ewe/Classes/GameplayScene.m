@@ -419,6 +419,8 @@ newNodePoint = ccp(newNodePoint.x, newNodePoint.y - translation);
             [m_Sheep breakString];
         }
         
+        [self detonateBomb];
+        
         [self scheduleOnce:@selector(respawnPlayer) delay:2.5f];
         if (m_PlayerLives == 0) {
             [self gameOver];

@@ -9,8 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
-@interface Projectile : CCDrawNode {
-    CCSprite* sprite;
+@interface Projectile : CCNode {
     int m_Speed;
     CGPoint m_Target;
 }

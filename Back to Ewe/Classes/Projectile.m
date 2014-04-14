@@ -26,13 +26,21 @@
     self = [super init];
     if (self) {
         
-        m_Speed = 100;
+        m_Speed = 0;
         self.position = initialPosition;
         m_Target = ccp((projectileTarget.x - initialPosition.x)*m_Speed, (projectileTarget.y - initialPosition.y)*m_Speed);
         
-        [self drawDot:ccp(0, 0) radius:10 color:[CCColor purpleColor]];
+        CGPoint dirVector = ccpNormalize(ccpSub(projectileTarget, initialPosition));
+        CGFloat angle = atanf(dirVector.x / dirVector.y) * 180.0 / M_PI;
         
-        CCPhysicsBody* physics = [CCPhysicsBody bodyWithCircleOfRadius:10.0f andCenter:self.anchorPointInPoints];
+        self.anchorPoint = ccp(0, 0);
+        self.rotation = angle;
+        
+        CCSprite* sprite = [CCSprite spriteWithImageNamed:@"ewe_missile.png"];
+        sprite.position = ccp(0, 0);
+        [self addChild:sprite];
+        
+        CCPhysicsBody* physics = [CCPhysicsBody bodyWithPillFrom:ccp(0, -sprite.contentSize.height * 3 / 8) to:ccp(0, sprite.contentSize.height * 3 / 8) cornerRadius:5];
         physics.type = CCPhysicsBodyTypeDynamic;
         physics.collisionCategories = @[@"projectile"];
         physics.collisionMask = @[@"enemy", @"wall", @"boss"];
