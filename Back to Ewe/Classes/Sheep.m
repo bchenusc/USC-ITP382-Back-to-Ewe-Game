@@ -19,14 +19,14 @@
 @synthesize CurrentPowerups = m_CurrentPowerups;
 
 - (instancetype)init {
-    self = [super init];
+    self = [super initWithImageNamed:@"itp382sheep.png"];
     if (self) {
         CGSize winSize = [[CCDirector sharedDirector] viewSize];
         self.position = ccp(winSize.width / 2, 60);
-        [self drawDot:ccp(0, 0) radius:30 color:[CCColor blueColor]];
         
-        CCPhysicsBody* physics = [CCPhysicsBody bodyWithCircleOfRadius:30 andCenter:self.anchorPointInPoints];
-        //physics.elasticity = 4;
+        CGFloat _radius = powf(powf(self.contentSize.width, 2) + powf(self.contentSize.height, 2), 0.5f) / 2 * 0.9f;
+        
+        CCPhysicsBody* physics = [CCPhysicsBody bodyWithCircleOfRadius:_radius andCenter:self.anchorPointInPoints];
         physics.type = CCPhysicsBodyTypeDynamic;
         physics.collisionCategories = @[@"sheep"];
         physics.collisionMask = @[@"enemy", @"projectile", @"border", @"node", @"grass", @"powerup", @"boss"];

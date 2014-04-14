@@ -39,7 +39,7 @@
     m_Joint = [CCPhysicsJoint connectedSpringJointWithBodyA:sheep.physicsBody
                                                       bodyB:node.physicsBody
                                                     anchorA:ccp(0, 0)
-                                                    anchorB:ccp(0, 0)
+                                                    anchorB:node.anchorPointInPoints
                                                  restLength:30.0f
                                                   stiffness:20.00f
                                                     damping:4.25f];

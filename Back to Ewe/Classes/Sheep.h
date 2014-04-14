@@ -13,7 +13,7 @@
 #import "Powerup.h"
 @class GameplayScene;
 
-@interface Sheep : CCDrawNode {
+@interface Sheep : CCSprite {
     WoolString* m_WoolString;
     Node* m_AttachedNode;
     NSMutableArray* m_CurrentPowerups;;

@@ -12,6 +12,7 @@
 		00DEC68118FB74A900382BBD /* Projectile.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DEC68018FB74A900382BBD /* Projectile.m */; };
 		3B5B38E718FBAEAC0064D669 /* asteroid.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B5B38E618FBAEAC0064D669 /* asteroid.png */; };
 		3B5B38E918FBBE020064D669 /* ewe_mothership.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B5B38E818FBBE020064D669 /* ewe_mothership.png */; };
+		3B5B38EB18FBE23E0064D669 /* ewe_missile.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B5B38EA18FBE23E0064D669 /* ewe_missile.png */; };
 		3B7F57D018EA644200B8A237 /* NodeGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7F57CF18EA644200B8A237 /* NodeGenerator.m */; };
 		3BC52A7318EA676F00A35420 /* NodePattern.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC52A7218EA676F00A35420 /* NodePattern.m */; };
 		3BD376D118FB635200A990BB /* itp382sheep.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BD376CE18FB635200A990BB /* itp382sheep.png */; };
@@ -255,6 +256,7 @@
 		00DEC68018FB74A900382BBD /* Projectile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Projectile.m; path = Classes/Projectile.m; sourceTree = "<group>"; };
 		3B5B38E618FBAEAC0064D669 /* asteroid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = asteroid.png; path = Resources/asteroid.png; sourceTree = "<group>"; };
 		3B5B38E818FBBE020064D669 /* ewe_mothership.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ewe_mothership.png; path = Resources/ewe_mothership.png; sourceTree = "<group>"; };
+		3B5B38EA18FBE23E0064D669 /* ewe_missile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ewe_missile.png; path = Resources/ewe_missile.png; sourceTree = "<group>"; };
 		3B7F57CE18EA644200B8A237 /* NodeGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NodeGenerator.h; path = Classes/NodeGenerator.h; sourceTree = "<group>"; };
 		3B7F57CF18EA644200B8A237 /* NodeGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NodeGenerator.m; path = Classes/NodeGenerator.m; sourceTree = "<group>"; };
 		3BC52A7118EA676E00A35420 /* NodePattern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NodePattern.h; path = Classes/NodePattern.h; sourceTree = "<group>"; };
@@ -784,6 +786,7 @@
 			isa = PBXGroup;
 			children = (
 				D1A613CE18FBCB0E00E1887B /* Backgrounds */,
+				3B5B38EA18FBE23E0064D669 /* ewe_missile.png */,
 				3B5B38E818FBBE020064D669 /* ewe_mothership.png */,
 				3B5B38E618FBAEAC0064D669 /* asteroid.png */,
 				3BD376CE18FB635200A990BB /* itp382sheep.png */,
@@ -1739,6 +1742,7 @@
 				D13104BE18EA18500093C94A /* Icon-Small.png in Resources */,
 				D13104BC18EA18500093C94A /* Icon-Small-50.png in Resources */,
 				D1A613D818FBCB2B00E1887B /* itp382ewe_title2-iphone5hd.png in Resources */,
+				3B5B38EB18FBE23E0064D669 /* ewe_missile.png in Resources */,
 				D13106A518EA18520093C94A /* LICENSE_Kazmath.txt in Resources */,
 				D13104B018EA18500093C94A /* Icon-72.png in Resources */,
 				D13105FE18EA18510093C94A /* LICENSE_cocos2d.txt in Resources */,
