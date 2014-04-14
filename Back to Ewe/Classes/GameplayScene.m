@@ -84,6 +84,8 @@
     powerupSpacing = 1000.0f;
     powerupSpacingTolerance = 200.0f;
     
+    bossLevel = true;
+    
     m_PlayerLives = 3;
     m_Dead = NO;
     
@@ -105,11 +107,43 @@
     if (m_Paused) return;
     
     for (Node* node  in nodesToDelete){
+        @try{
         [physics removeChild:node];
+        }
+        @catch(NSException* e){
+            
+        };
     }
     [nodes removeObjectsInArray:nodesToDelete];
     [nodesToDelete removeAllObjects];
     
+    if (bossLevel){
+        //Translates automatically.
+        float translation = delta * 100;
+        for(Node* node in nodes){
+            node.position = ccp(node.position.x, node.position.y - translation);
+            if (node.position.y < 0){
+                [nodesToDelete addObject:node];
+            }
+        }
+        //Scrolling
+        for(Enemy* enemy in enemies) {
+            [enemy setPositionAndCenter:ccp(enemy.position.x, enemy.position.y - translation)];
+        }
+        for (Grass* _grass in grass) {
+            _grass.position =ccp(_grass.position.x, _grass.position.y - translation);
+        }
+        if(topPowerup != nil) {
+            topPowerup.position = ccp(topPowerup.position.x, topPowerup.position.y - translation);
+        }
+        
+        sheep.position = ccp (sheep.position.x, sheep.position.y - translation);
+        topNode = ccp(topNode.x, topNode.y - translation);
+
+        m_UILayer.Score = score;
+        
+    }
+    else
     if (sheep.position.y > 170 && sheep.physicsBody.velocity.y > 0){
         float translation = delta * sheep.physicsBody.velocity.y;
         for(Node* node in nodes){
