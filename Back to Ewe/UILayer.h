@@ -40,13 +40,14 @@
 
 @property float Wool;
 @property float Health;
-@property float Score;
-@property int Lives;
 
 //----//
 - (void) setGameplayScene:(GameplayScene*)g;
 - (void) gameOver;
 - (void) reset;
+
+- (void) setScoreLabel:(CGFloat)score;
+- (void) setLivesLabel:(int)lives;
 //----//
 
 @end

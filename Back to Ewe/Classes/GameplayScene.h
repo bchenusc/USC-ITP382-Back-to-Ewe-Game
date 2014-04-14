@@ -47,7 +47,7 @@
     
     bool bossLevel;
     
-    float score;
+    float m_Score;
     int m_PlayerLives;
     bool m_Dead;
     

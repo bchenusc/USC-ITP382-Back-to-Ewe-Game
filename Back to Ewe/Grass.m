@@ -23,7 +23,7 @@
         
         [self drawDot:ccp(0, 0) radius:m_Radius color:[CCColor greenColor]];
         
-        CCPhysicsBody* physics = [CCPhysicsBody bodyWithCircleOfRadius:20 andCenter:self.anchorPointInPoints];
+        CCPhysicsBody* physics = [CCPhysicsBody bodyWithCircleOfRadius:30 andCenter:self.anchorPointInPoints];
         
         physics.elasticity = 4;
         physics.type = CCPhysicsBodyTypeStatic;

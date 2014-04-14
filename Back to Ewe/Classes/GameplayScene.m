@@ -84,7 +84,7 @@
     
     //UI Layer
     m_UILayer = [UILayer node];
-    m_UILayer.Lives = m_PlayerLives;
+    [m_UILayer setLivesLabel:m_PlayerLives];
     [m_UILayer setGameplayScene:self];
     [self addChild:m_UILayer];
     
@@ -166,8 +166,8 @@
         topNode = ccp(topNode.x, topNode.y - translation);
         //NSLog(@"Scroll position : %f", newNodePoint.y);
     
-        score += translation;
-        m_UILayer.Score = score;
+        m_Score += translation;
+        [m_UILayer setScoreLabel:m_Score];
     }
     
     if (m_Sheep.position.y >= topNode.y) {
@@ -202,7 +202,7 @@
         [self removeGrass];
         [self spawnNewGrass];
     }
-    if(score >= powerupSpacing) {
+    if(m_Score >= powerupSpacing) {
         [self spawnNewPowerup];
     }
     
@@ -284,7 +284,7 @@
     if (!m_Dead) {
         NSLog(@"Player died");
         m_PlayerLives--;
-        m_UILayer.Lives = m_PlayerLives;
+        [m_UILayer setLivesLabel:m_PlayerLives];
         m_Dead = YES;
         m_Sheep.visible = NO;
         m_Sheep.physicsBody.velocity = ccp(0,0);
@@ -352,7 +352,7 @@
     
     powerupToDelete = nil;
     
-    score = 0;
+    m_Score = 0;
     
     m_PlayerLives = 3;
     

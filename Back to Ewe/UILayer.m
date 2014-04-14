@@ -17,8 +17,6 @@
 
 @synthesize Wool = m_woolRemaining;
 @synthesize Health = m_healthRemaining;
-@synthesize Score = m_Score;
-@synthesize Lives = m_Lives;
 
 - (instancetype)init
 {
@@ -36,13 +34,13 @@
         m_Score = 0;
         m_scoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Score: %.f", m_Score] fontName:@"Verdana-Bold" fontSize:18.0f];
         m_scoreLabel.horizontalAlignment = CCTextAlignmentLeft;
-        m_scoreLabel.positionType = CCPositionTypeNormalized;
+        //m_scoreLabel.positionType = CCPositionTypeNormalized;
         m_scoreLabel.position = ccp(0.15f, 0.98f);
         [self addChild:m_scoreLabel];
         
         m_Lives = 0;
         m_livesLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Lives: %d", m_Lives] fontName:@"Verdana-Bold" fontSize:18.0f];
-        m_livesLabel.positionType = CCPositionTypeNormalized;
+        //m_livesLabel.positionType = CCPositionTypeNormalized;
         m_livesLabel.position = ccp(0.15f, 0.95f);
         [self addChild:m_livesLabel];
         
@@ -132,18 +130,24 @@
     m_MainMenuButton.visible = NO;
     m_ResumeButton.visible = NO;
     m_gameplayScene.paused = NO;
-    
     m_GameOverLabel.visible = NO;
 }
 
 - (void) gameOver {
     m_GameOverLabel.visible = YES;
-    
     m_PauseButton.visible = NO;
     m_NewGameButton.visible = YES;
     m_MainMenuButton.visible = YES;
     m_ResumeButton.visible = NO;
     [m_gameplayScene pause];
+}
+
+- (void) setScoreLabel:(CGFloat)score {
+    m_scoreLabel.string = [NSString stringWithFormat:@"Score: %.f", score];
+}
+
+- (void) setLivesLabel:(int)lives {
+    m_livesLabel.string = [NSString stringWithFormat:@"Lives: %d", lives];
 }
 
 - (void) draw {
@@ -153,9 +157,9 @@
     
     ccDrawSolidRect(ccp(0, 10), ccp((m_healthRemaining/m_healthCapacity)*(size.width), 20), [CCColor redColor]);
     
-    [m_scoreLabel setString:[NSString stringWithFormat:@"Score: %.f", m_Score]];
+    [m_scoreLabel setPosition:ccp(m_scoreLabel.texture.contentSize.width / 2, size.height - m_scoreLabel.texture.contentSize.height / 2)];
     
-    [m_livesLabel setString:[NSString stringWithFormat:@"Lives: %i", m_Lives]];
+    [m_livesLabel setPosition:ccp(m_livesLabel.texture.contentSize.width / 2, size.height - m_livesLabel.texture.contentSize.height - m_scoreLabel.texture.contentSize.height / 2)];
 }
 
 @end
