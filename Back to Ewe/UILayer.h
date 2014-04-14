@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
-#import "cocos2d-ui.h"
+#import "CCButton.h"
 
 @class GameplayScene;
 
@@ -25,6 +25,9 @@
     int m_Lives;
     CCLabelTTF* m_livesLabel;
     
+    int m_Bombs;
+    CCButton* m_bombsButton;
+    
     CCLabelTTF* m_GameOverLabel;
     
     CCButton* m_PauseButton;
@@ -37,13 +40,14 @@
 
 @property float Wool;
 @property float Health;
-@property float Score;
-@property int Lives;
 
 //----//
 - (void) setGameplayScene:(GameplayScene*)g;
-- (void) showGameOverLabel:(BOOL) choice;
+- (void) gameOver;
 - (void) reset;
+
+- (void) setScoreLabel:(CGFloat)score;
+- (void) setLivesLabel:(int)lives;
 //----//
 
 @end

@@ -13,6 +13,7 @@ enum PowerupType {
     shield = 0,
     unlimitedWool,
     puffBomb,
+    health,
     powerupTypeMax,
     NONE
 };
@@ -21,6 +22,8 @@ enum PowerupType {
     CGFloat m_Radius;
     
     enum PowerupType m_PowerupType;
+    
+    CCLabelTTF* m_PowerupLabel;
 }
 
 @property CGFloat radius;

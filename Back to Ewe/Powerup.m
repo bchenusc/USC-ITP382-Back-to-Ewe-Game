@@ -31,14 +31,38 @@
         physics.sensor = YES;
         self.physicsBody = physics;
         
-        m_PowerupType = shield;
+        m_PowerupType = NONE;
+        
+        m_PowerupLabel = [CCLabelTTF node];
+        [m_PowerupLabel setFontName:@"Verdana"];
+        [m_PowerupLabel setFontSize:10.0f];
+        [m_PowerupLabel setPosition:ccp(0, 0)];
+        [m_PowerupLabel setString:@"N"];
+        [self addChild:m_PowerupLabel];
     }
     return self;
 }
 
 -(void) setRandomPowerupType {
     m_PowerupType = (enum PowerupType) (arc4random() % (int) powerupTypeMax);
-    m_PowerupType = shield;
+    m_PowerupType = unlimitedWool;
+    switch(m_PowerupType) {
+        case shield:
+            [m_PowerupLabel setString:@"S"];
+            break;
+        case unlimitedWool:
+            [m_PowerupLabel setString:@"W"];
+            break;
+        case puffBomb:
+            [m_PowerupLabel setString:@"B"];
+            break;
+        case health:
+            [m_PowerupLabel setString:@"H"];
+            break;
+        default:
+            [m_PowerupLabel setString:@"N"];
+            break;
+    }
 }
 
 - (CGRect) rect {

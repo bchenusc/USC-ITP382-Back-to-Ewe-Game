@@ -18,7 +18,7 @@
         waveNum = arc4random_uniform(7)+1; // Chooses from 0-10 patterns.
     }else{
         //First 20 waves just choose from the first 3 patterns
-        waveNum = arc4random_uniform(2)+1;
+        waveNum = 1;
     }
     
     return [self PatternSwitchStatement:waveNum];
@@ -33,37 +33,37 @@
     switch (patternNum) {
         case 0:
             //Pattern 0 = Test 4 nodes.
-            NSLog(@"Spawning : %i" , patternNum);
+            //NSLog(@"Spawning : %i" , patternNum);
             return [self FourNodesInit];
         case 1:
             //Pattern 1
-            NSLog(@"Spawning : %i" , patternNum);
+            //NSLog(@"Spawning : %i" , patternNum);
             return [self FourNodesHigh];
             break;
         case 2:
             //Square
-            NSLog(@"Spawning : %i" , patternNum);
+            //NSLog(@"Spawning : %i" , patternNum);
             return [self Square];
             break;
         case 3:
-            NSLog(@"Spawning : %i" , patternNum);
+            //NSLog(@"Spawning : %i" , patternNum);
             return [self Diagonal];
             break;
         case 4:
             //Triangle
-            NSLog(@"Spawning : %i" , patternNum);
+            //NSLog(@"Spawning : %i" , patternNum);
             return [self Triangle];
             break;
         case 5:
-            NSLog(@"Spawning : %i" , patternNum);
+            //NSLog(@"Spawning : %i" , patternNum);
             return [self RandThreeNodesHigh];
             break;
         case 6:
-            NSLog(@"Spawning : %i" , patternNum);
+            //NSLog(@"Spawning : %i" , patternNum);
             return [self RandTwoNodesHigh];
             break;
         case 7:
-            NSLog(@"Spawning : %i" , patternNum);
+            //NSLog(@"Spawning : %i" , patternNum);
             return [self RandOneNodeHigh];
             break;
             
@@ -76,15 +76,15 @@
 
 -(CGPoint) ScrollPosition{
     topNodePosition = [gameplayScene getNewNodePoint];
-    return ccp(0, topNodePosition.y - 50);
+    return ccp(0, topNodePosition.y + 240);
 }
 
 
 //Spawns 4 nodes at set locations.
 - (CGPoint) FourNodesInit{
     topNodePosition = [gameplayScene getNewNodePoint];
-    
     scrollPosition = [self ScrollPosition];
+    
     //Bottom Left
     Node* testNode = [Node node];
     [gameplayScene addNode:testNode Position: ccp(
@@ -119,19 +119,20 @@
     }else{
         topNodePosition =ccp(0, topRightY + 50);
     }
+
     [gameplayScene setNewNodePoint:topNodePosition];
     return scrollPosition;
 }
 
 - (CGPoint) FourNodesHigh{
     topNodePosition = [gameplayScene getNewNodePoint];
-    
     scrollPosition = [self ScrollPosition];
+    
     //Bottom Left
     Node* testNode = [Node node];
     [gameplayScene addNode:testNode Position: ccp(
                                                   arc4random_uniform((int)(winSize.width/2 - 100)) + 50 ,
-                                                  topNodePosition.y)];
+                                                  topNodePosition.y + 100)];
     
     //Bottom Right
     testNode = [Node node];
@@ -168,6 +169,7 @@
     }else{
         topNodePosition =ccp(0, topRightY);
     }
+    
     [gameplayScene setNewNodePoint:topNodePosition];
     return scrollPosition;
 }
@@ -179,7 +181,7 @@
     Node* testNode = [Node node];
     [gameplayScene addNode:testNode Position: ccp(
                                                   arc4random_uniform((int)(winSize.width/4 - 80)) + 40,
-                                                  topNodePosition.y)];
+                                                  topNodePosition.y + 100)];
     
     //Bottom Left #2
     testNode = [Node node];
@@ -216,13 +218,12 @@
 
 - (CGPoint) RandThreeNodesHigh{
     topNodePosition = [gameplayScene getNewNodePoint];
-    
-    scrollPosition = [self ScrollPosition];
+scrollPosition = [self ScrollPosition];
     //Bottom Left
     Node* testNode = [Node node];
     [gameplayScene addNode:testNode Position: ccp(
                                                   arc4random_uniform((int)(winSize.width/2 - 100)) + 50 ,
-                                                  topNodePosition.y)];
+                                                  topNodePosition.y + 100)];
     
     
     //Top left
@@ -258,9 +259,9 @@
 }
 - (CGPoint) RandTwoNodesHigh{
     topNodePosition = [gameplayScene getNewNodePoint];
-    
     scrollPosition = [self ScrollPosition];
-    CGPoint bottomLeft = ccp(arc4random_uniform(winSize.width/2) + 50, topNodePosition.y);
+    
+    CGPoint bottomLeft = ccp(arc4random_uniform(winSize.width/2) + 50, topNodePosition.y + 100);
     CGPoint topRight = ccp((arc4random_uniform(abs(winSize.width - bottomLeft.x) * 2/5) + bottomLeft.x + 50) / 2,
                            topNodePosition.y + arc4random_uniform(winSize.height/2) + 50);
     
@@ -285,7 +286,7 @@
     
     topNodePosition =ccp(
                          arc4random_uniform((int)(winSize.width - 100)) + 50 ,
-                         topNodePosition.y);
+                         topNodePosition.y + 100);
     //Bottom Left
     Node* testNode = [Node node];
     [gameplayScene addNode:testNode Position: topNodePosition];
@@ -307,7 +308,7 @@
 - (CGPoint) Square{
     topNodePosition = [gameplayScene getNewNodePoint];
     scrollPosition = [self ScrollPosition];
-    
+
     CGPoint bottomLeft = ccp(arc4random_uniform(winSize.width/2) + 50, topNodePosition.y);
     CGPoint topRight = ccp(arc4random_uniform(abs(winSize.width - bottomLeft.x) * 2/5) + bottomLeft.x + 50,
                            topNodePosition.y + arc4random_uniform(abs(winSize.height/2) + 50));

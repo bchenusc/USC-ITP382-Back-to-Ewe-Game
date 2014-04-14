@@ -83,8 +83,16 @@
 }
 
 -(void)setPositionAndCenter:(CGPoint)point {
-    self.position = point;
-    m_CenterPosition = point;
+    if(m_EnemyType == horizontalMover) {
+        self.position = ccp(self.position.x, point.y);
+        m_CenterPosition = ccp(m_CenterPosition.x, point.y);
+    } else if(m_EnemyType == verticalMover) {
+        self.position = point;
+        m_CenterPosition = point;
+    } else {
+        self.position = point;
+        m_CenterPosition = point;
+    }
 }
 
 -(void)update:(CCTime)delta {

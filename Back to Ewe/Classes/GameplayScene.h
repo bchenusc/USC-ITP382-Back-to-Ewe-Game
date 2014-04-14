@@ -23,7 +23,7 @@
  *  The main scene
  */
 @interface GameplayScene : CCScene <CCPhysicsCollisionDelegate> {
-    Sheep* sheep;
+    Sheep* m_Sheep;
     CCPhysicsNode* physics;
     NSMutableArray* nodes;
     NSMutableArray* nodesToDelete;
@@ -47,7 +47,7 @@
     
     bool bossLevel;
     
-    float score;
+    float m_Score;
     int m_PlayerLives;
     bool m_Dead;
     
