@@ -26,7 +26,7 @@
     self = [super init];
     if (self) {
         
-        m_Speed = 0;
+        m_Speed = 75;
         self.position = initialPosition;
         m_Target = ccp((projectileTarget.x - initialPosition.x)*m_Speed, (projectileTarget.y - initialPosition.y)*m_Speed);
         

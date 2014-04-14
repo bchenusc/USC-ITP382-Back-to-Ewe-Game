@@ -22,12 +22,18 @@
     self = [super init];
     if (self) {
         CGSize winSize = [[CCDirector sharedDirector] viewSize];
-        self.position = ccp(winSize.width / 2, winSize.height);
         
-        m_Radius = winSize.width / 2;
-        [self drawDot:ccp(0, 0) radius:m_Radius color:[CCColor yellowColor]];
+        //[self drawDot:ccp(0, 0) radius:m_Radius color:[CCColor yellowColor]];
         
-        CCPhysicsBody* physics = [CCPhysicsBody bodyWithRect:CGRectMake(-m_Radius, -m_Radius, m_Radius, 0) cornerRadius:0.0f];
+        CCSprite* sprite = [CCSprite spriteWithImageNamed:@"ewe_mothership.png"];
+        sprite.position = ccp(0, 0);
+        sprite.scale = 1.5;
+        [self addChild:sprite];
+        
+        m_Radius = sprite.contentSize.width / 2 * 1.5;
+        self.position = ccp(winSize.width / 2, winSize.height + m_Radius);
+        
+        CCPhysicsBody* physics = [CCPhysicsBody bodyWithCircleOfRadius:m_Radius andCenter:self.anchorPointInPoints];
         
         physics.type = CCPhysicsBodyTypeStatic;
         physics.collisionCategories = @[@"boss"];

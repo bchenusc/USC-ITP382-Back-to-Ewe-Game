@@ -15,7 +15,7 @@ enum BossType {
     BOSSNONE
 };
 
-@interface Boss : CCDrawNode {
+@interface Boss : CCNode {
     
     float m_Radius;
     

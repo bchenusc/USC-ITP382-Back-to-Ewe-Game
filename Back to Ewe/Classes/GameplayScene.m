@@ -176,7 +176,7 @@
         
         m_Sheep.position = ccp (m_Sheep.position.x, m_Sheep.position.y - translation);
         topNode = ccp(topNode.x, topNode.y - translation);
-newNodePoint = ccp(newNodePoint.x, newNodePoint.y - translation);
+        newNodePoint = ccp(newNodePoint.x, newNodePoint.y - translation);
         
         m_Score += translation;
         [m_UILayer setScoreLabel:m_Score];
@@ -304,7 +304,7 @@ newNodePoint = ccp(newNodePoint.x, newNodePoint.y - translation);
         CGSize winSize = [[CCDirector sharedDirector] viewSize];
         m_Boss = [Boss node];
         m_Boss.position = ccp(winSize.width / 2, winSize.height + m_Boss.Radius);
-        [m_Boss runAction:[CCActionMoveTo actionWithDuration:3.0f position:ccp(winSize.width / 2, winSize.height)]];
+        [m_Boss runAction:[CCActionMoveTo actionWithDuration:3.0f position:ccp(winSize.width / 2, winSize.height - m_Boss.Radius)]];
         [physics addChild: m_Boss];
         
         m_NextProjectileSpawnYPos = m_Score + m_ProjectileSpacing;

@@ -19,9 +19,12 @@
     if (self) {
         CGSize winSize = [[CCDirector sharedDirector] viewSize];
         self.position = ccp(winSize.width / 2, winSize.height / 2);
-        m_Radius = 10;
+        m_Radius = 18;
         
-        [self drawDot:ccp(0, 0) radius:m_Radius color:[CCColor orangeColor]];
+        m_Sprite = [CCSprite spriteWithImageNamed:@"shield_boost.png"];
+        m_Sprite.position = ccp(0, 0);
+        m_Sprite.scale = 0.55f;
+        [self addChild:m_Sprite];
         
         CCPhysicsBody* physics = [CCPhysicsBody bodyWithCircleOfRadius:m_Radius andCenter:self.anchorPointInPoints];
         physics.type = CCPhysicsBodyTypeStatic;
@@ -48,15 +51,30 @@
     switch(m_PowerupType) {
         case shield:
             [m_PowerupLabel setString:@"S"];
+            [self removeChild:m_Sprite];
+            m_Sprite = [CCSprite spriteWithImageNamed:@"shield_boost.png"];
+            m_Sprite.position = ccp(0, 0);
+            m_Sprite.scale = 0.55f;
+            [self addChild:m_Sprite];
             break;
         case unlimitedWool:
             [m_PowerupLabel setString:@"W"];
             break;
         case puffBomb:
             [m_PowerupLabel setString:@"B"];
+            [self removeChild:m_Sprite];
+            m_Sprite = [CCSprite spriteWithImageNamed:@"puff_boost.png"];
+            m_Sprite.position = ccp(0, 0);
+            m_Sprite.scale = 0.55f;
+            [self addChild:m_Sprite];
             break;
         case health:
             [m_PowerupLabel setString:@"H"];
+            [self removeChild:m_Sprite];
+            m_Sprite = [CCSprite spriteWithImageNamed:@"health_boost.png"];
+            m_Sprite.position = ccp(0, 0);
+            m_Sprite.scale = 0.55f;
+            [self addChild:m_Sprite];
             break;
         case projectile:
             [m_PowerupLabel setString:@"P"];
