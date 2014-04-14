@@ -32,7 +32,7 @@
 		// Use a 16 bit color buffer: 
 //		CCSetupPixelFormat: kEAGLColorFormatRGB565,
 		// Use a simplified coordinate system that is shared across devices.
-//		CCSetupScreenMode: CCScreenModeFixed,
+		CCSetupScreenMode: CCScreenModeFlexible,
 		// Run in portrait mode.
 		CCSetupScreenOrientation: CCScreenOrientationPortrait,
 		// Run at a reduced framerate.
@@ -42,6 +42,8 @@
 		// Make iPad's act like they run at a 2x content scale. (iPad retina 4x)
 //		CCSetupTabletScale2X: @(YES),
 	}];
+    
+    
 	
 	return YES;
 }

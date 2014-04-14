@@ -46,6 +46,8 @@
     float powerupSpacing;
     float powerupSpacingTolerance;
     
+    bool bossLevel;
+    
     float score;
     int m_PlayerLives;
     bool m_Dead;

@@ -11,6 +11,9 @@
 		0023EA6118F398C700C27528 /* Grass.m in Sources */ = {isa = PBXBuildFile; fileRef = 0023EA6018F398C700C27528 /* Grass.m */; };
 		3B7F57D018EA644200B8A237 /* NodeGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7F57CF18EA644200B8A237 /* NodeGenerator.m */; };
 		3BC52A7318EA676F00A35420 /* NodePattern.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC52A7218EA676F00A35420 /* NodePattern.m */; };
+		3BD376CF18FB635200A990BB /* itp382ewe_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BD376CC18FB635200A990BB /* itp382ewe_bg.png */; };
+		3BD376D018FB635200A990BB /* itp382ewe_title2-iphone5hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BD376CD18FB635200A990BB /* itp382ewe_title2-iphone5hd.png */; };
+		3BD376D118FB635200A990BB /* itp382sheep.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BD376CE18FB635200A990BB /* itp382sheep.png */; };
 		5688381718F38DFB00A79F78 /* Enemy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5688381618F38DFB00A79F78 /* Enemy.m */; };
 		5688381A18F3902200A79F78 /* EnemyGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5688381918F3902200A79F78 /* EnemyGenerator.m */; };
 		C37A37CF18FA613E0064C912 /* Powerup.m in Sources */ = {isa = PBXBuildFile; fileRef = C37A37CE18FA613E0064C912 /* Powerup.m */; };
@@ -246,6 +249,9 @@
 		3B7F57CF18EA644200B8A237 /* NodeGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NodeGenerator.m; path = Classes/NodeGenerator.m; sourceTree = "<group>"; };
 		3BC52A7118EA676E00A35420 /* NodePattern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NodePattern.h; path = Classes/NodePattern.h; sourceTree = "<group>"; };
 		3BC52A7218EA676F00A35420 /* NodePattern.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NodePattern.m; path = Classes/NodePattern.m; sourceTree = "<group>"; };
+		3BD376CC18FB635200A990BB /* itp382ewe_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = itp382ewe_bg.png; path = Resources/itp382ewe_bg.png; sourceTree = "<group>"; };
+		3BD376CD18FB635200A990BB /* itp382ewe_title2-iphone5hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "itp382ewe_title2-iphone5hd.png"; path = "Resources/itp382ewe_title2-iphone5hd.png"; sourceTree = "<group>"; };
+		3BD376CE18FB635200A990BB /* itp382sheep.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = itp382sheep.png; path = Resources/itp382sheep.png; sourceTree = "<group>"; };
 		5688381518F38DFB00A79F78 /* Enemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Enemy.h; sourceTree = "<group>"; };
 		5688381618F38DFB00A79F78 /* Enemy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Enemy.m; sourceTree = "<group>"; };
 		5688381818F3902200A79F78 /* EnemyGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EnemyGenerator.h; path = Classes/EnemyGenerator.h; sourceTree = "<group>"; };
@@ -763,6 +769,9 @@
 		D13104A118EA18500093C94A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				3BD376CC18FB635200A990BB /* itp382ewe_bg.png */,
+				3BD376CD18FB635200A990BB /* itp382ewe_title2-iphone5hd.png */,
+				3BD376CE18FB635200A990BB /* itp382sheep.png */,
 				D13104A218EA18500093C94A /* Default.png */,
 				D13104A418EA18500093C94A /* Default@2x.png */,
 				D13104A618EA18500093C94A /* Default-568h@2x.png */,
@@ -1683,13 +1692,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3BD376D018FB635200A990BB /* itp382ewe_title2-iphone5hd.png in Resources */,
 				D13104A518EA18500093C94A /* Default@2x.png in Resources */,
 				D13104B818EA18500093C94A /* Icon-120.png in Resources */,
 				D13106BC18EA18520093C94A /* LICENSE_CCBReader.txt in Resources */,
 				D13104AE18EA18500093C94A /* Icon@2x.png in Resources */,
+				3BD376D118FB635200A990BB /* itp382sheep.png in Resources */,
 				D13104C018EA18500093C94A /* Icon-Small@2x.png in Resources */,
 				D13104B218EA18500093C94A /* Icon-72@2x.png in Resources */,
 				D13104A318EA18500093C94A /* Default.png in Resources */,
+				3BD376CF18FB635200A990BB /* itp382ewe_bg.png in Resources */,
 				D13104AC18EA18500093C94A /* Icon.png in Resources */,
 				D13104BA18EA18500093C94A /* Icon-iPad-Spotlight-iOS7@2x.png in Resources */,
 				D13104A918EA18500093C94A /* Default-Landscape~ipad.png in Resources */,

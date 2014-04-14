@@ -34,21 +34,26 @@
     self = [super init];
     if (!self) return(nil);
     
-    // Create a colored background (Dark Grey)
+    /*// Create a colored background (Dark Grey)
     CCNodeColor *background = [CCNodeColor nodeWithColor:[CCColor colorWithRed:0.2f green:0.2f blue:0.2f alpha:1.0f]];
+    [self addChild:background];*/
+    CGSize winSize = self.contentSize;
+    CCSprite *background = [CCSprite spriteWithImageNamed:@"itp382ewe_title2.png"];
+    background.position = ccp(winSize.width / 2, winSize.height/2);
     [self addChild:background];
     
-    // Hello world
+    /*// Hello world
     CCLabelTTF *label = [CCLabelTTF labelWithString:@"Hello World" fontName:@"Chalkduster" fontSize:36.0f];
     label.positionType = CCPositionTypeNormalized;
     label.color = [CCColor redColor];
     label.position = ccp(0.5f, 0.5f); // Middle of screen
     [self addChild:label];
+     */
     
     // Helloworld scene button
     CCButton *helloWorldButton = [CCButton buttonWithTitle:@"[ Start ]" fontName:@"Verdana-Bold" fontSize:18.0f];
     helloWorldButton.positionType = CCPositionTypeNormalized;
-    helloWorldButton.position = ccp(0.5f, 0.35f);
+    helloWorldButton.position = ccp(0.5f, 0.25f);
     [helloWorldButton setTarget:self selector:@selector(onSpinningClicked:)];
     [self addChild:helloWorldButton];
 
