@@ -346,7 +346,8 @@
 -(BOOL) ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair sheep:(Sheep *)_sheep enemy:(Enemy *)enemy
 {
     if(_sheep.CurrentPowerup != shield) {
-        m_UILayer.Health -= 10.0f;
+        _sheep.CurrentHealth -= 10.0f;
+        m_UILayer.Health = _sheep.CurrentHealth;
     }
     [self removeEnemy];
     [self spawnNewEnemy];
