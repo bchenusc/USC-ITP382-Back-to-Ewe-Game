@@ -12,7 +12,7 @@
 enum BossType {
     spaceBoss,
     BossTypeMax,
-    NONE
+    BOSSNONE
 };
 
 @interface Boss : CCDrawNode {

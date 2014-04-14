@@ -44,8 +44,11 @@
     
     nodes = [[NSMutableArray alloc] init];
     nodesToDelete = [[NSMutableArray alloc]init];
-    enemies = [[NSMutableArray alloc] init];
+    m_Enemies = [[NSMutableArray alloc] init];
+    m_EnemiesToDelete = [[NSMutableArray alloc] init];
     grass = [[NSMutableArray alloc] init];
+    m_Powerups = [[NSMutableArray alloc] init];
+    m_PowerupsToDelete = [[NSMutableArray alloc] init];
     
     // Enable touch handling on scene node
     self.userInteractionEnabled = YES;
@@ -77,21 +80,22 @@
     nodeGenerator = [NodeGenerator node];
     
     enemyGenerator = [EnemyGenerator node];
-    topEnemy = nil;
     m_CanSpawnEnemies = YES;
+    enemySpacing = 333.3f;
+    nextEnemySpawnYPos = enemySpacing;
     
     grassGenerator = [GrassGenerator node];
     topGrass = nil;
     
     powerupGenerator = [PowerupGenerator node];
-    topPowerup = nil;
     nextPowerupSpawnYPos = 1000.0f;
     powerupSpacing = 750.0f;
     
     bossLevel = NO;
-    m_BossLevelTriggerYPos = 15000.0f;
+    m_BossLevelTriggerYPos = 10000.0f;
+    m_Boss = nil;
     
-    m_PlayerLives = 3;
+    m_PlayerLives = 1000;
     m_Dead = NO;
     
     //UI Layer
@@ -123,7 +127,29 @@
     [nodes removeObjectsInArray:nodesToDelete];
     [nodesToDelete removeAllObjects];
     
-    /*if (bossLevel){
+    for (Enemy* enemy  in m_EnemiesToDelete){
+        @try{
+            [physics removeChild:enemy];
+        }
+        @catch (NSException* e) {
+            
+        }
+    }
+    [m_Enemies removeObjectsInArray:m_EnemiesToDelete];
+    [m_EnemiesToDelete removeAllObjects];
+    
+    for (Powerup* powerup in m_PowerupsToDelete){
+        @try{
+            [physics removeChild:powerup];
+        }
+        @catch (NSException* e) {
+            
+        }
+    }
+    [m_Powerups removeObjectsInArray:m_PowerupsToDelete];
+    [m_PowerupsToDelete removeAllObjects];
+    
+    if (bossLevel){
         //Translates automatically.
         float translation = delta * 100;
         for(Node* node in nodes){
@@ -133,23 +159,21 @@
             }
         }
         //Scrolling
-        for(Enemy* enemy in enemies) {
+        for(Enemy* enemy in m_Enemies) {
             [enemy setPositionAndCenter:ccp(enemy.position.x, enemy.position.y - translation)];
         }
         for (Grass* _grass in grass) {
             _grass.position =ccp(_grass.position.x, _grass.position.y - translation);
         }
-        if(topPowerup != nil) {
-            topPowerup.position = ccp(topPowerup.position.x, topPowerup.position.y - translation);
-        }
         
         m_Sheep.position = ccp (m_Sheep.position.x, m_Sheep.position.y - translation);
         topNode = ccp(topNode.x, topNode.y - translation);
-
-        m_UILayer.Score = score;
+newNodePoint = ccp(newNodePoint.x, newNodePoint.y - translation);
         
-    }*/
-   // else
+        m_Score += translation;
+        [m_UILayer setScoreLabel:m_Score];
+        
+    } else
     if (m_Sheep.position.y > 170 && m_Sheep.physicsBody.velocity.y > 0){
         float translation = delta * m_Sheep.physicsBody.velocity.y;
         
@@ -163,14 +187,14 @@
         //TODO: Need to cleanup enemies and grass
         
         //Scrolling
-        for(Enemy* enemy in enemies) {
+        for(Enemy* enemy in m_Enemies) {
             [enemy setPositionAndCenter:ccp(enemy.position.x, enemy.position.y - translation)];
         }
         for (Grass* _grass in grass) {
             _grass.position =ccp(_grass.position.x, _grass.position.y - translation);
         }
-        if(topPowerup != nil) {
-            topPowerup.position = ccp(topPowerup.position.x, topPowerup.position.y - translation);
+        for (Powerup* _powerup in m_Powerups) {
+            _powerup.position = ccp(_powerup.position.x, _powerup.position.y - translation);
         }
         
         m_Background1.position = ccp(m_Background1.position.x, roundf(m_Background1.position.y - translation/3));
@@ -180,6 +204,28 @@
             CCSprite* temp = m_Background1;
             m_Background1 = m_Background2;
             m_Background2 = temp;
+        }
+        
+        for(Powerup* _powerup in m_Powerups) {
+            if(_powerup.position. y < -_powerup.radius) {
+                [m_PowerupsToDelete addObject:_powerup];
+            }
+        }
+        
+        for(Enemy* _enemy in m_Enemies) {
+            if(_enemy.position. y < -_enemy.radius) {
+                [m_EnemiesToDelete addObject:_enemy];
+            }
+        }
+        
+        if(m_Score >= nextPowerupSpawnYPos) {
+            [self spawnNewPowerup];
+            nextPowerupSpawnYPos += powerupSpacing + arc4random() % (int)powerupSpacing;
+        }
+        
+        if(m_Score >= nextEnemySpawnYPos) {
+            [self spawnNewEnemy];
+            nextEnemySpawnYPos += enemySpacing + arc4random() % (int)enemySpacing;
         }
         
         m_Sheep.position = ccp (m_Sheep.position.x, m_Sheep.position.y - translation);
@@ -196,13 +242,6 @@
         topNode = [nodeGenerator generatePattern:self];
     }
     
-    
-    if(topPowerup != nil) {
-        if(topPowerup.position.y < -topPowerup.radius) {
-            [self removePowerup];
-        }
-    }
-    
     if (m_Sheep.position.y < 0) {
         [self playerDeath];
         if (m_PlayerLives == 0) {
@@ -211,26 +250,22 @@
         return;
     }
     
-    if(topEnemy == nil) {
-        [self spawnNewEnemy];
-    } else if(topEnemy.position.y < 0) {
-        [self removeEnemy];
-        [self spawnNewEnemy];
-    }
     if (topGrass == nil) {
         [self spawnNewGrass];
     } else if (topGrass.position.y < 0) {
         [self removeGrass];
         [self spawnNewGrass];
     }
-    if(m_Score >= nextPowerupSpawnYPos) {
-        [self spawnNewPowerup];
-    }
     
+    if(m_Score >= m_BossLevelTriggerYPos && bossLevel == NO) {
+        [self setupBossBattle];
+    }
 }
+
 -(void) setNewNodePoint : (CGPoint) point {
     newNodePoint = point;
 }
+
 -(CGPoint) getNewNodePoint{
     return newNodePoint;
 }
@@ -239,32 +274,42 @@
     topNode = [nodeGenerator generatePattern:self];
 }
 
--(void)spawnNewPowerup {
-    [self removePowerup];
-    topPowerup = [powerupGenerator spawnPowerup];
-    nextPowerupSpawnYPos += powerupSpacing + arc4random() % (int)powerupSpacing;
-    [physics addChild:topPowerup];
+-(void)setupBossBattle {
+    bossLevel = YES;
+    if(m_Boss == nil) {
+        m_Boss = [Boss node];
+        [physics addChild: m_Boss];
+    }
 }
 
--(void)removePowerup {
-    if(topPowerup != nil) {
-        [physics removeChild:topPowerup];
-        topPowerup = nil;
+-(void)spawnNewPowerup {
+    Powerup* newPowerup = [powerupGenerator spawnPowerup];
+    [m_Powerups addObject:newPowerup];
+    [physics addChild:newPowerup];
+}
+
+-(void)removePowerup:(Powerup*) _powerup {
+    if(_powerup != nil) {
+        [physics removeChild:_powerup];
+        _powerup = nil;
     }
+}
+
+-(void)spawnNewProjectile {
+    
 }
 
 -(void)spawnNewEnemy {
     if(m_CanSpawnEnemies) {
-        topEnemy = [enemyGenerator spawnEnemy];
-        [enemies addObject: topEnemy];
-        [physics addChild:topEnemy];
+        Enemy* newEnemy = [enemyGenerator spawnEnemy];
+        [m_Enemies addObject: newEnemy];
+        [physics addChild:newEnemy];
     }
 }
 
--(void)removeEnemy {
-    [enemies removeObject:topEnemy];
-    [physics removeChild:topEnemy];
-    topEnemy = nil;
+-(void)removeEnemy:(Enemy*) _enemy {
+    [m_Enemies removeObject:_enemy];
+    [physics removeChild:_enemy];
 }
 
 - (void) spawnNewGrass {
@@ -283,8 +328,8 @@
 - (void) detonateBomb {
     m_CanSpawnEnemies = NO;
     [self scheduleOnce:@selector(allowEnemySpawn) delay:5.0f];
-    while(enemies.count > 0) {
-        [self removeEnemy];
+    for(Enemy* _enemy in m_Enemies) {
+        [m_EnemiesToDelete addObject:_enemy];
     }
     m_Sheep.NumPuffBombs--;
     if(m_Sheep.NumPuffBombs == 0) {
@@ -374,22 +419,20 @@
     }
     [grass removeAllObjects];
     
-    for(Enemy* e in enemies) {
+    for(Enemy* e in m_Enemies) {
         [physics removeChild:e];
     }
-    [enemies removeAllObjects];
+    [m_Enemies removeAllObjects];
     
     newNodePoint = ccp(0, 0);
     
     topNode = ccp(0, 0);
     
-    topEnemy = nil;
+    [m_EnemiesToDelete addObjectsFromArray:m_Enemies];
     
     topGrass = nil;
     
-    topPowerup = nil;
-    
-    powerupToDelete = nil;
+    [m_PowerupsToDelete addObjectsFromArray:m_Powerups];
     
     [self detonateBomb];
     m_Sheep.NumPuffBombs = 0;
@@ -445,8 +488,8 @@
         _sheep.CurrentHealth -= 10.0f;
         m_UILayer.Health = _sheep.CurrentHealth;
     }
-    [self removeEnemy];
-    [self spawnNewEnemy];
+    
+    [m_EnemiesToDelete addObject:enemy];
     
     if (_sheep.CurrentHealth <= 0) {
         [self playerDeath];
@@ -473,7 +516,7 @@
         [physics addChild:newProjectile];
     }
     
-    [self removePowerup];
+    [m_PowerupsToDelete addObject:powerup];
     
     return YES;
 }
