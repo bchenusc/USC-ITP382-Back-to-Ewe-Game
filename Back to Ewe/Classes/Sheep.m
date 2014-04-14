@@ -67,7 +67,10 @@
     }
     
     m_WoolString = [[WoolString node] initWithStringFromSheep:self toNode:node];
-    m_currentWool -= [m_WoolString findCurrentStringLength];
+    
+    if([m_CurrentPowerups indexOfObject:[NSNumber numberWithInt:unlimitedWool]] == NSNotFound) {
+        m_currentWool -= [m_WoolString findCurrentStringLength];
+    }
     [self addChild:m_WoolString];
 }
 
@@ -97,15 +100,12 @@
 }
 
 -(void) cancelCurrentPowerup {
-    [m_CurrentPowerups removeObjectAtIndex:0];
+    if(m_CurrentPowerups.count != 0) {
+        [m_CurrentPowerups removeObjectAtIndex:0];
+    }
 }
 
 - (void) update:(CCTime)delta {
-    if(m_CurrentPowerups.count != 0) {
-        if([[m_CurrentPowerups objectAtIndex:0] intValue] == shield) {
-            self.color = [CCColor yellowColor];
-        }
-    }
     m_WoolString.start = self.position;
     m_WoolString.end = m_AttachedNode.position;
 }
