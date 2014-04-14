@@ -136,10 +136,11 @@
 
         m_UILayer.Score = score;
         
-    }
-    else
+    }*/
+   // else
     if (m_Sheep.position.y > 170 && m_Sheep.physicsBody.velocity.y > 0){
         float translation = delta * m_Sheep.physicsBody.velocity.y;
+        
         for(Node* node in nodes){
             node.position = ccp(node.position.x, node.position.y - translation);
             if (node.position.y < 0){
@@ -161,6 +162,7 @@
         }
         
         m_Sheep.position = ccp (m_Sheep.position.x, m_Sheep.position.y - translation);
+        newNodePoint = ccp(newNodePoint.x, newNodePoint.y - translation);
         topNode = ccp(topNode.x, topNode.y - translation);
         //NSLog(@"Scroll position : %f", newNodePoint.y);
     
@@ -169,6 +171,7 @@
     }
     
     if (m_Sheep.position.y >= topNode.y) {
+        //NSLog(@"topNode is : %f", topNode.y);
         topNode = [nodeGenerator generatePattern:self];
     }
     

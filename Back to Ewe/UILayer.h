@@ -10,6 +10,8 @@
 #import "cocos2d.h"
 #import "CCButton.h"
 
+@class GameplayScene;
+
 @interface UILayer : CCNode {
     float m_woolRemaining;
     float m_woolCapacity;

@@ -156,7 +156,6 @@
     [m_scoreLabel setString:[NSString stringWithFormat:@"Score: %.f", m_Score]];
     
     [m_livesLabel setString:[NSString stringWithFormat:@"Lives: %i", m_Lives]];
-    
 }
 
 @end
