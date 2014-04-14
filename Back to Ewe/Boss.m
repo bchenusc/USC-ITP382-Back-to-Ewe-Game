@@ -7,6 +7,7 @@
 //
 
 #import "Boss.h"
+#import "CCActionInterval.h"
 
 
 @implementation Boss
@@ -40,6 +41,8 @@
         m_Health = 100;
         m_DamageFromProjectile = 15;
         m_DamageFromSheep = 35;
+        
+        m_CanTakeDamage = YES;
     }
     return self;
 }
@@ -52,6 +55,28 @@
         default:
             break;
     }
+}
+
+-(void) hitBossWithSheep {
+    if(m_CanTakeDamage) {
+        m_CanTakeDamage = NO;
+        m_Health -= m_DamageFromSheep;
+        [self runAction:[CCActionBlink actionWithDuration:2.0f blinks:10]];
+        [self scheduleOnce:@selector(enableDamage) delay:2.0f];
+    }
+}
+
+-(void) hitBossWithProjectile {
+    if(m_CanTakeDamage) {
+        m_CanTakeDamage = NO;
+        m_Health -= m_DamageFromProjectile;
+        [self runAction:[CCActionBlink actionWithDuration:2.0f blinks:10]];
+        [self scheduleOnce:@selector(enableDamage) delay:2.0f];
+    }
+}
+
+-(void)enableDamage {
+    m_CanTakeDamage = YES;
 }
 
 - (CGRect) rect {

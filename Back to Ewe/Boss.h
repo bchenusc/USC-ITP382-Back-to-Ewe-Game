@@ -24,6 +24,8 @@ enum BossType {
     int m_DamageFromProjectile;
     
     enum BossType m_BossType;
+    
+    BOOL m_CanTakeDamage;
 }
 
 @property enum BossType BOSSTYPE;
@@ -33,6 +35,10 @@ enum BossType {
 @property (readonly) int DamageFromProjectile;
 
 -(void) setBossType;
+
+-(void) hitBossWithSheep;
+
+-(void) hitBossWithProjectile;
 
 - (CGRect) rect;
 

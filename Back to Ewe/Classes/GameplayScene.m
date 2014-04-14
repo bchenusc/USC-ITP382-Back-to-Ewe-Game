@@ -316,7 +316,10 @@ newNodePoint = ccp(newNodePoint.x, newNodePoint.y - translation);
     bossLevel = false;
     [physics removeChild:m_Boss];
     m_Boss = nil;
-    m_BossLevelTriggerYPos = m_Score + m_BossEnemySpacing;
+    m_BossLevelTriggerYPos = m_Score + m_BossLevelSpacing;
+    
+    m_NextPowerupSpawnYPos = m_Score + powerupSpacing;
+    nextEnemySpawnYPos = m_Score + enemySpacing;
 }
 
 -(void)spawnNewPowerup {
@@ -523,13 +526,13 @@ newNodePoint = ccp(newNodePoint.x, newNodePoint.y - translation);
 }
 
 -(BOOL) ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair sheep:(Sheep *)_sheep boss:(Boss* )boss {
-    boss.Health -= boss.DamageFromSheep;
+    [boss hitBossWithSheep];
     
     return YES;
 }
 
 -(BOOL) ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair projectile:(Projectile *)_projectile boss:(Boss *)boss {
-    boss.Health -= boss.DamageFromProjectile;
+    [boss hitBossWithProjectile];
     
     return YES;
 }
@@ -537,7 +540,7 @@ newNodePoint = ccp(newNodePoint.x, newNodePoint.y - translation);
 -(BOOL) ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair sheep:(Sheep *)_sheep enemy:(Enemy *)enemy
 {
     if([_sheep.CurrentPowerups indexOfObject:[NSNumber numberWithInt:shield]] == NSNotFound) {
-        _sheep.CurrentHealth -= 10.0f;
+        [_sheep hitEnemy];
         m_UILayer.Health = _sheep.CurrentHealth;
     }
     

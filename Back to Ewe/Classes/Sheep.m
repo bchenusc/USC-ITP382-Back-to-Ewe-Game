@@ -45,6 +45,8 @@
         m_CurrentPowerups = [NSMutableArray new];
         
         m_numPuffBombs = 0;
+        
+        m_CanTakeDamage = YES;
     }
     return self;
 }
@@ -94,6 +96,18 @@
     if(m_CurrentPowerups.count != 0) {
         [m_CurrentPowerups removeObjectAtIndex:0];
     }
+}
+
+-(void) hitEnemy {
+    if(m_CanTakeDamage) {
+        m_currentHealth -= 10.0f;
+        m_CanTakeDamage = NO;
+        [self runAction:[CCActionBlink actionWithDuration:2.0f blinks:10]];
+        [self scheduleOnce:@selector(enableDamage) delay:2.0f];
+    }
+}
+-(void)enableDamage {
+    m_CanTakeDamage = YES;
 }
 
 - (void) update:(CCTime)delta {
