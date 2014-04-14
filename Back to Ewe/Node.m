@@ -46,7 +46,6 @@
         }
         
         CGFloat lerpFactor = m_ShrinkTime / 3.0f;
-        lerpFactor = clampf(lerpFactor, 0, 1);
         self.scale = 1 * lerpFactor + 0.2f * (1 - lerpFactor);
     }
 }

@@ -10,6 +10,8 @@
 #import "cocos2d.h"
 #import "CCButton.h"
 
+@class GameplayScene;
+
 @interface UILayer : CCNode {
     float m_woolRemaining;
     float m_woolCapacity;
@@ -38,17 +40,14 @@
 
 @property float Wool;
 @property float Health;
-@property float Score;
-@property int Lives;
 
 //----//
 - (void) setGameplayScene:(GameplayScene*)g;
-- (void) showGameOverLabel:(BOOL) choice;
--(void) setScoreString:(NSString*) string;
--(void) setLivesString:(NSString*) string;
--(void) setBombsLabel:(NSString*) string;
-- (void) resetGame;
-- (void) showPauseMenu;
+- (void) gameOver;
+- (void) reset;
+
+- (void) setScoreLabel:(CGFloat)score;
+- (void) setLivesLabel:(int)lives;
 //----//
 
 @end
