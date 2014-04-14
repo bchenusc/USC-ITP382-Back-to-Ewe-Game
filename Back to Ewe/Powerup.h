@@ -32,6 +32,8 @@ enum PowerupType {
 
 -(void) setRandomPowerupType;
 
+- (void) setProjectileType;
+
 - (CGRect) rect;
 
 - (BOOL) isPointInPowerup:(CGPoint)point;

@@ -16,6 +16,7 @@
 #import "Powerup.h"
 #import "ScreenPhysicsBorders.h"
 #import "Projectile.h"
+#import "CCActionInterval.h"
 
 // -----------------------------------------------------------------------
 #pragma mark - HelloWorldScene
@@ -91,8 +92,12 @@
     nextPowerupSpawnYPos = 1000.0f;
     powerupSpacing = 750.0f;
     
+    m_ProjectileSpacing = 200.0f;
+    m_BossEnemySpacing = 300.0f;
+    
     bossLevel = NO;
-    m_BossLevelTriggerYPos = 10000.0f;
+    m_BossLevelTriggerYPos = 1000.0f;
+    m_BossLevelSpacing = 15000.0f;
     m_Boss = nil;
     
     m_PlayerLives = 1000;
@@ -165,6 +170,9 @@
         for (Grass* _grass in grass) {
             _grass.position =ccp(_grass.position.x, _grass.position.y - translation);
         }
+        for (Powerup* _powerup in m_Powerups) {
+            _powerup.position = ccp(_powerup.position.x, _powerup.position.y - translation);
+        }
         
         m_Sheep.position = ccp (m_Sheep.position.x, m_Sheep.position.y - translation);
         topNode = ccp(topNode.x, topNode.y - translation);
@@ -172,6 +180,20 @@ newNodePoint = ccp(newNodePoint.x, newNodePoint.y - translation);
         
         m_Score += translation;
         [m_UILayer setScoreLabel:m_Score];
+        
+        if(m_Score >= m_NextProjectileSpawnYPos) {
+            [self spawnNewProjectile];
+            m_NextProjectileSpawnYPos += m_ProjectileSpacing + arc4random() % (int)m_ProjectileSpacing;
+        }
+        
+        if(m_Score >= m_NextBossEnemySpawnYPos) {
+            [self spawnNewEnemy];
+            m_NextBossEnemySpawnYPos += m_BossEnemySpacing + arc4random() % (int)m_BossEnemySpacing;
+        }
+        
+        if(m_Boss.Health <= 0) {
+            [self endBossLevel];
+        }
         
     } else
     if (m_Sheep.position.y > 170 && m_Sheep.physicsBody.velocity.y > 0){
@@ -276,10 +298,28 @@ newNodePoint = ccp(newNodePoint.x, newNodePoint.y - translation);
 
 -(void)setupBossBattle {
     bossLevel = YES;
+    m_BossLevelTriggerYPos = m_Score + m_BossEnemySpacing + arc4random() % (int)m_BossEnemySpacing;
+    m_NextProjectileSpawnYPos = m_Score + m_ProjectileSpacing + arc4random() % (int)m_ProjectileSpacing;
     if(m_Boss == nil) {
+        CGSize winSize = [[CCDirector sharedDirector] viewSize];
         m_Boss = [Boss node];
+        m_Boss.position = ccp(winSize.width / 2, winSize.height + m_Boss.Radius);
+        [m_Boss runAction:[CCActionMoveTo actionWithDuration:3.0f position:ccp(winSize.width / 2, winSize.height)]];
         [physics addChild: m_Boss];
+        
+        m_NextProjectileSpawnYPos = m_Score + m_ProjectileSpacing;
+        m_NextBossEnemySpawnYPos = m_Score + m_BossEnemySpacing;
     }
+}
+
+-(void)endBossLevel {
+    bossLevel = false;
+    [physics removeChild:m_Boss];
+    m_Boss = nil;
+    m_BossLevelTriggerYPos = m_Score + m_BossLevelSpacing;
+    
+    m_NextPowerupSpawnYPos = m_Score + powerupSpacing;
+    nextEnemySpawnYPos = m_Score + enemySpacing;
 }
 
 -(void)spawnNewPowerup {
@@ -296,7 +336,10 @@ newNodePoint = ccp(newNodePoint.x, newNodePoint.y - translation);
 }
 
 -(void)spawnNewProjectile {
-    
+    Powerup* newPowerup = [powerupGenerator spawnPowerup];
+    [newPowerup setProjectileType];
+    [m_Powerups addObject:newPowerup];
+    [physics addChild:newPowerup];
 }
 
 -(void)spawnNewEnemy {
@@ -482,10 +525,22 @@ newNodePoint = ccp(newNodePoint.x, newNodePoint.y - translation);
     return YES;
 }
 
+-(BOOL) ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair sheep:(Sheep *)_sheep boss:(Boss* )boss {
+    [boss hitBossWithSheep];
+    
+    return YES;
+}
+
+-(BOOL) ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair projectile:(Projectile *)_projectile boss:(Boss *)boss {
+    [boss hitBossWithProjectile];
+    
+    return YES;
+}
+
 -(BOOL) ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair sheep:(Sheep *)_sheep enemy:(Enemy *)enemy
 {
     if([_sheep.CurrentPowerups indexOfObject:[NSNumber numberWithInt:shield]] == NSNotFound) {
-        _sheep.CurrentHealth -= 10.0f;
+        [_sheep hitEnemy];
         m_UILayer.Health = _sheep.CurrentHealth;
     }
     

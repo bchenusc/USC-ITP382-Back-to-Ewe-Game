@@ -19,12 +19,26 @@ enum BossType {
     
     float m_Radius;
     
+    int m_Health;
+    int m_DamageFromSheep;
+    int m_DamageFromProjectile;
+    
     enum BossType m_BossType;
+    
+    BOOL m_CanTakeDamage;
 }
 
 @property enum BossType BOSSTYPE;
+@property float Radius;
+@property int Health;
+@property (readonly) int DamageFromSheep;
+@property (readonly) int DamageFromProjectile;
 
 -(void) setBossType;
+
+-(void) hitBossWithSheep;
+
+-(void) hitBossWithProjectile;
 
 - (CGRect) rect;
 

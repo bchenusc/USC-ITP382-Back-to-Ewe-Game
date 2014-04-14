@@ -54,7 +54,15 @@
     
     bool bossLevel;
     float m_BossLevelTriggerYPos;
+    float m_BossLevelSpacing;
     Boss* m_Boss;
+    
+    float m_NextPowerupSpawnYPos;
+    float m_NextProjectileSpawnYPos;
+    float m_ProjectileSpacing;
+    
+    float m_NextBossEnemySpawnYPos;
+    float m_BossEnemySpacing;
     
     float m_Score;
     int m_PlayerLives;
