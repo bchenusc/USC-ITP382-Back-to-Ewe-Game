@@ -51,13 +51,6 @@
     CCNodeColor *background = [CCNodeColor nodeWithColor:[CCColor colorWithRed:0.2f green:0.2f blue:0.2f alpha:1.0f]];
     [self addChild:background];
     
-    // Create a back button
-    CCButton *backButton = [CCButton buttonWithTitle:@"[ Menu ]" fontName:@"Verdana-Bold" fontSize:18.0f];
-    backButton.positionType = CCPositionTypeNormalized;
-    backButton.position = ccp(0.85f, 0.95f); // Top Right of screen
-    [backButton setTarget:self selector:@selector(onBackClicked:)];
-    [self addChild:backButton];
-    
     // Create physics stuff
     physics = [CCPhysicsNode node];
     physics.collisionDelegate = self;
@@ -84,12 +77,15 @@
     powerupSpacing = 1000.0f;
     powerupSpacingTolerance = 200.0f;
     
+    bossLevel = true;
+    
     m_PlayerLives = 3;
     m_Dead = NO;
     
     //UI Layer
     m_UILayer = [UILayer node];
     m_UILayer.Lives = m_PlayerLives;
+    [m_UILayer setGameplayScene:self];
     [self addChild:m_UILayer];
     
     m_Paused = NO;
@@ -105,19 +101,53 @@
     if (m_Paused) return;
     
     for (Node* node  in nodesToDelete){
+        @try{
         [physics removeChild:node];
+        }
+        @catch (NSException* e) {
+                
+        }
     }
     [nodes removeObjectsInArray:nodesToDelete];
     [nodesToDelete removeAllObjects];
     
-    if (sheep.position.y > 170 && sheep.physicsBody.velocity.y > 0){
-        float translation = delta * sheep.physicsBody.velocity.y;
+    /*if (bossLevel){
+        //Translates automatically.
+        float translation = delta * 100;
         for(Node* node in nodes){
             node.position = ccp(node.position.x, node.position.y - translation);
             if (node.position.y < 0){
                 [nodesToDelete addObject:node];
             }
         }
+        //Scrolling
+        for(Enemy* enemy in enemies) {
+            [enemy setPositionAndCenter:ccp(enemy.position.x, enemy.position.y - translation)];
+        }
+        for (Grass* _grass in grass) {
+            _grass.position =ccp(_grass.position.x, _grass.position.y - translation);
+        }
+        if(topPowerup != nil) {
+            topPowerup.position = ccp(topPowerup.position.x, topPowerup.position.y - translation);
+        }
+        
+        sheep.position = ccp (sheep.position.x, sheep.position.y - translation);
+        topNode = ccp(topNode.x, topNode.y - translation);
+
+        m_UILayer.Score = score;
+        
+    }*/
+   // else
+    if (sheep.position.y > 170 && sheep.physicsBody.velocity.y > 0){
+        float translation = delta * sheep.physicsBody.velocity.y;
+        
+        for(Node* node in nodes){
+            node.position = ccp(node.position.x, node.position.y - translation);
+            if (node.position.y < 0){
+                [nodesToDelete addObject:node];
+            }
+        }
+        
         //TODO: Need to cleanup enemies and grass
         
         //Scrolling
@@ -132,15 +162,19 @@
         }
         
         sheep.position = ccp (sheep.position.x, sheep.position.y - translation);
+        newNodePoint = ccp(newNodePoint.x, newNodePoint.y - translation);
         topNode = ccp(topNode.x, topNode.y - translation);
+        //NSLog(@"Scroll position : %f", newNodePoint.y);
     
         score += translation;
         m_UILayer.Score = score;
     }
     
     if (sheep.position.y >= topNode.y) {
+        //NSLog(@"topNode is : %f", topNode.y);
         topNode = [nodeGenerator generatePattern:self];
     }
+    
     
     if(topPowerup != nil) {
         if(topPowerup.position.y < -topPowerup.radius) {
@@ -228,6 +262,9 @@
 }
 
 -(void) addNode : (Node*) n Position:(CGPoint)point{
+    /*if (nodes.count > 10){
+        [nodesToDelete addObject:[nodes objectAtIndex:(nodes.count - 1)]];
+    }*/
     n.position = point;
     [n setGameplayScene:self];
     [nodes addObject:n];
@@ -249,6 +286,8 @@
         m_PlayerLives--;
         m_UILayer.Lives = m_PlayerLives;
         m_Dead = YES;
+        sheep.visible = NO;
+        sheep.physicsBody.velocity = ccp(0,0);
         if (sheep.attachedNode) {
             [sheep breakString];
         }
@@ -265,6 +304,9 @@
     sheep.position = ccp(winSize.width/2, winSize.height/3);
     sheep.physicsBody.velocity = ccp(0, 500);
     sheep.visible = YES;
+    sheep.CurrentHealth = sheep.MaxHealth;
+    sheep.CurrentWool = sheep.MaxWool;
+    m_UILayer.Health = sheep.CurrentHealth;
     m_Dead = NO;
 }
 
@@ -275,16 +317,18 @@
 }
 
 - (void) resetGame {
-    m_Paused = YES;
+    [self pause];
     
     sheep.visible = NO;
+    [sheep breakString];
     
-    for(Node* n in nodes) {
+    /*for(Node* n in nodes) {
         [physics removeChild:n];
     }
-    [nodes removeAllObjects];
+    [nodes removeAllObjects];*/
     
-    [nodesToDelete removeAllObjects];
+    
+    [nodesToDelete addObjectsFromArray:nodes];
     
     for(Grass* g in grass) {
         [physics removeChild:g];
@@ -314,7 +358,7 @@
     
     m_Dead = NO;
     
-    [m_UILayer resetGame];
+    [m_UILayer reset];
     
     [self newGame];
 }
@@ -324,17 +368,28 @@
     [self spawnNewEnemy];
     [self spawnNewGrass];
     [self respawnPlayer];
-    m_Paused = NO;
+    [self resume];
 }
 
--(BOOL) ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair sheep:(Sheep *)sheep node:(Node *)node
+- (void) pause {
+    m_Paused = YES;
+    physics.paused = YES;
+}
+
+- (void) resume {
+    m_Paused = NO;
+    physics.paused = NO;
+}
+
+//unused
+/*-(BOOL) ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair sheep:(Sheep *)sheep node:(Node *)node
 {
     static int collisionCountSheepNode = 0;
     collisionCountSheepNode++;
 	//NSLog(@"Collision %d between sheep and node.", collisionCountSheepNode);
 
     return YES;
-}
+}*/
 
 -(BOOL) ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair sheep:(Sheep *)_sheep grass:(Grass *)_grass {
     _sheep.CurrentWool += _grass.RCVAmount;
@@ -357,6 +412,10 @@
     }
     [self removeEnemy];
     [self spawnNewEnemy];
+    
+    if (_sheep.CurrentHealth <= 0) {
+        [self playerDeath];
+    }
     
     return YES;
 }
@@ -404,6 +463,10 @@
 // -----------------------------------------------------------------------
 
 - (void) touchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
+    if (m_Paused) {
+        return;
+    }
+    
     if (m_Dead) {
         return;
     }
@@ -429,16 +492,4 @@
     }
 }
 
-// -----------------------------------------------------------------------
-#pragma mark - Button Callbacks
-// -----------------------------------------------------------------------
-
-- (void) onBackClicked:(id)sender
-{
-    // back to intro scene with transition
-    [[CCDirector sharedDirector] replaceScene:[MainMenuScene scene]
-                               withTransition:[CCTransition transitionPushWithDirection:CCTransitionDirectionRight duration:1.0f]];
-}
-
-// -----------------------------------------------------------------------
 @end

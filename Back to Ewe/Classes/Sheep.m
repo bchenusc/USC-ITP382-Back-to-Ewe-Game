@@ -81,6 +81,7 @@
         [m_WoolString invalidate];
         [self removeChild:m_WoolString];
         m_WoolString = nil;
+        m_AttachedNode = nil;
     }
 }
 

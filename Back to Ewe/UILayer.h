@@ -27,6 +27,13 @@
     CCButton* m_bombsButton;
     
     CCLabelTTF* m_GameOverLabel;
+    
+    CCButton* m_PauseButton;
+    CCButton* m_NewGameButton;
+    CCButton* m_MainMenuButton;
+    CCButton* m_ResumeButton;
+    
+    GameplayScene* m_gameplayScene;
 }
 
 @property float Wool;
@@ -35,6 +42,7 @@
 @property int Lives;
 
 //----//
+- (void) setGameplayScene:(GameplayScene*)g;
 - (void) showGameOverLabel:(BOOL) choice;
 -(void) setScoreString:(NSString*) string;
 -(void) setLivesString:(NSString*) string;
