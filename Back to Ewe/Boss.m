@@ -19,7 +19,7 @@
         CGSize winSize = [[CCDirector sharedDirector] viewSize];
         self.position = ccp(winSize.width / 2, winSize.height);
         
-        m_Radius = 30.0f;
+        m_Radius = winSize.width / 2;
         
         [self drawDot:ccp(0, 0) radius:m_Radius color:[CCColor whiteColor]];
         
