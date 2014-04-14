@@ -17,6 +17,7 @@
 @synthesize MaxWool = m_maxWool;
 @synthesize CurrentHealth = m_currentHealth;
 @synthesize MaxHealth = m_maxHealth;
+@synthesize CurrentPowerups = m_CurrentPowerups;
 
 - (instancetype)init {
     self = [super init];
@@ -42,6 +43,7 @@
         m_maxHealth = 100;
         m_currentHealth = 100;
         
+        m_CurrentPowerups = [NSMutableArray new];
         m_CurrentPowerup = NONE;
     }
     return self;
@@ -78,6 +80,7 @@
 }
 
 -(void)setPowerup:(enum PowerupType)powerup {
+    [m_CurrentPowerups addObject:[NSNumber numberWithInt:powerup]];
     m_CurrentPowerup = powerup;
 
     if(powerup == puffBomb) {
@@ -86,11 +89,7 @@
         [self schedule:@selector(blinkShield) interval: 7.0f];
     }
     
-    [self schedule:@selector(cancelCurrentPowerup) interval:10.0f];
-}
-
--(void)removePowerup {
-    m_CurrentPowerup = NONE;
+    [self scheduleOnce:@selector(cancelCurrentPowerup) delay:10.0f];
 }
 
 -(void) blinkShield {
@@ -98,12 +97,14 @@
 }
 
 -(void) cancelCurrentPowerup {
-    m_CurrentPowerup = NONE;
+    [m_CurrentPowerups removeObjectAtIndex:0];
 }
 
 - (void) update:(CCTime)delta {
-    if(m_CurrentPowerup == shield) {
-        [self drawDot:self.position radius:40 color:[CCColor lightGrayColor]];
+    if(m_CurrentPowerups.count != 0) {
+        if([[m_CurrentPowerups objectAtIndex:0] intValue] == shield) {
+            self.color = [CCColor yellowColor];
+        }
     }
     m_WoolString.start = self.position;
     m_WoolString.end = m_AttachedNode.position;

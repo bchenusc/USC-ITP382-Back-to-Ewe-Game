@@ -351,7 +351,10 @@
 
 -(BOOL) ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair sheep:(Sheep *)_sheep enemy:(Enemy *)enemy
 {
-    if(_sheep.CurrentPowerup != shield) {
+    if(_sheep.CurrentPowerups.count == 0) {
+        _sheep.CurrentHealth -= 10.0f;
+        m_UILayer.Health = _sheep.CurrentHealth;
+    } else if([_sheep.CurrentPowerups.firstObject intValue] != shield) {
         _sheep.CurrentHealth -= 10.0f;
         m_UILayer.Health = _sheep.CurrentHealth;
     }
