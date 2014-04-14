@@ -58,6 +58,9 @@
         case health:
             [m_PowerupLabel setString:@"H"];
             break;
+        case projectile:
+            [m_PowerupLabel setString:@"P"];
+            break;
         default:
             [m_PowerupLabel setString:@"N"];
             break;

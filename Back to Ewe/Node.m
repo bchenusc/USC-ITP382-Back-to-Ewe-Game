@@ -16,11 +16,12 @@
 - (instancetype) init {
     self = [super init];
     if (self) {
-        CGSize winSize = [[CCDirector sharedDirector] viewSize];
-        self.position = ccp(winSize.width / 2, winSize.height / 2);
-        m_Radius = 20;
+        CCSprite* sprite = [CCSprite spriteWithImageNamed:@"asteroid.png"];
+        sprite.position = ccp(0, 0);
+        [self addChild:sprite];
+        
+        m_Radius = max(sprite.contentSize.width / 2, sprite.contentSize.height / 2) * 1.2f;
         m_BeingRemoved = NO;
-        [self drawDot:ccp(0, 0) radius:m_Radius color:[CCColor redColor]];
         
         CCPhysicsBody* physics = [CCPhysicsBody bodyWithCircleOfRadius:m_Radius andCenter:self.anchorPointInPoints];
         physics.type = CCPhysicsBodyTypeStatic;
@@ -71,9 +72,10 @@
 
 - (bool) isPointInNode:(CGPoint)point {
     CGFloat distanceSqr = ccpDistanceSQ(point, self.position);
-    CGFloat radiusSqr = m_Radius * m_Radius;
+    CGFloat forgiveness = m_Radius * 5 / 4;
+    CGFloat forgivenessSqr = forgiveness * forgiveness;
     
-    return distanceSqr <= radiusSqr;
+    return distanceSqr <= forgivenessSqr;
 }
 
 @end

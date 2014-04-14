@@ -11,7 +11,7 @@
 
 @class GameplayScene;
 
-@interface Node : CCDrawNode {
+@interface Node : CCNode {
     CGFloat m_Radius;
     GameplayScene* m_GameplayScene;
     bool m_BeingRemoved;

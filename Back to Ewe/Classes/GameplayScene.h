@@ -16,6 +16,7 @@
 #import "EnemyGenerator.h"
 #import "GrassGenerator.h"
 #import "PowerupGenerator.h"
+#import "Boss.h"
 
 // -----------------------------------------------------------------------
 
@@ -28,31 +29,41 @@
     NSMutableArray* nodes;
     NSMutableArray* nodesToDelete;
     NSMutableArray* grass;
-    NSMutableArray* enemies;
+    NSMutableArray* m_Enemies;
+    NSMutableArray* m_EnemiesToDelete;
+    NSMutableArray* m_Powerups;
+    NSMutableArray* m_PowerupsToDelete;
     
     CGPoint newNodePoint;
     
     UILayer* m_UILayer;
     NodeGenerator* nodeGenerator;
     CGPoint topNode;
+    
     EnemyGenerator* enemyGenerator;
-    Enemy* topEnemy;
     BOOL m_CanSpawnEnemies;
+    float nextEnemySpawnYPos;
+    float enemySpacing;
+    
     GrassGenerator* grassGenerator;
     Grass* topGrass;
+    
     PowerupGenerator* powerupGenerator;
-    Powerup* topPowerup;
-    Powerup* powerupToDelete;
     float nextPowerupSpawnYPos;
     float powerupSpacing;
     
     bool bossLevel;
+    float m_BossLevelTriggerYPos;
+    Boss* m_Boss;
     
     float m_Score;
     int m_PlayerLives;
     bool m_Dead;
     
     bool m_Paused;
+    
+    CCSprite* m_Background1;
+    CCSprite* m_Background2;
 }
 
 // -----------------------------------------------------------------------
