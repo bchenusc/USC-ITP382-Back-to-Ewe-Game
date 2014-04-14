@@ -29,8 +29,26 @@
         physics.collisionType = @"node";
         physics.sensor = YES;
         self.physicsBody = physics;
+        
+        m_ShrinkTime = 3.0f;
     }
     return self;
+}
+
+- (void) update:(CCTime)delta {
+    if (m_BeingRemoved) {
+        m_ShrinkTime -= delta;
+        
+        if (m_ShrinkTime <= 0) {
+            m_BeingRemoved = NO;
+            [m_GameplayScene removeNode:self];
+            return;
+        }
+        
+        CGFloat lerpFactor = m_ShrinkTime / 3.0f;
+        lerpFactor = clampf(lerpFactor, 0, 1);
+        self.scale = 1 * lerpFactor + 0.2f * (1 - lerpFactor);
+    }
 }
 
 - (void) setGameplayScene:(GameplayScene*)g {
@@ -41,20 +59,8 @@
 
 - (void) shrinkAndRemove {
     if (!m_BeingRemoved) {
-        [self scheduleOnce:@selector(remove) delay:3.0f];
-        [self runAction:[CCActionScaleTo actionWithDuration:3.0f scale:0.15f]];
         m_BeingRemoved = YES;
     }
-}
-
-- (void) remove {
-    [m_GameplayScene removeNode:self];
-}
-
-- (void) onExit {
-    [self unscheduleAllSelectors];
-    
-    [super onExit];
 }
 
 - (CGRect) rect {
@@ -64,7 +70,7 @@
                       self.contentSize.height);
 }
 
-- (BOOL) isPointInNode:(CGPoint)point {
+- (bool) isPointInNode:(CGPoint)point {
     CGFloat distanceSqr = ccpDistanceSQ(point, self.position);
     CGFloat radiusSqr = m_Radius * m_Radius;
     

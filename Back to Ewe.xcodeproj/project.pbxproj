@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		001B61B518FA0D04006EFCE0 /* GrassGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 001B61B418FA0D04006EFCE0 /* GrassGenerator.m */; };
 		0023EA6118F398C700C27528 /* Grass.m in Sources */ = {isa = PBXBuildFile; fileRef = 0023EA6018F398C700C27528 /* Grass.m */; };
+		00DEC68118FB74A900382BBD /* Projectile.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DEC68018FB74A900382BBD /* Projectile.m */; };
 		3B7F57D018EA644200B8A237 /* NodeGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7F57CF18EA644200B8A237 /* NodeGenerator.m */; };
 		3BC52A7318EA676F00A35420 /* NodePattern.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC52A7218EA676F00A35420 /* NodePattern.m */; };
 		3BD376CF18FB635200A990BB /* itp382ewe_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BD376CC18FB635200A990BB /* itp382ewe_bg.png */; };
@@ -245,6 +246,8 @@
 		001B61B418FA0D04006EFCE0 /* GrassGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GrassGenerator.m; path = Classes/GrassGenerator.m; sourceTree = "<group>"; };
 		0023EA5F18F398C700C27528 /* Grass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Grass.h; sourceTree = "<group>"; };
 		0023EA6018F398C700C27528 /* Grass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Grass.m; sourceTree = "<group>"; };
+		00DEC67F18FB74A900382BBD /* Projectile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Projectile.h; path = Classes/Projectile.h; sourceTree = "<group>"; };
+		00DEC68018FB74A900382BBD /* Projectile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Projectile.m; path = Classes/Projectile.m; sourceTree = "<group>"; };
 		3B7F57CE18EA644200B8A237 /* NodeGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NodeGenerator.h; path = Classes/NodeGenerator.h; sourceTree = "<group>"; };
 		3B7F57CF18EA644200B8A237 /* NodeGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NodeGenerator.m; path = Classes/NodeGenerator.m; sourceTree = "<group>"; };
 		3BC52A7118EA676E00A35420 /* NodePattern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NodePattern.h; path = Classes/NodePattern.h; sourceTree = "<group>"; };
@@ -1620,6 +1623,8 @@
 				C37A37CE18FA613E0064C912 /* Powerup.m */,
 				C37A37D018FA66B60064C912 /* PowerupGenerator.h */,
 				C37A37D118FA66B60064C912 /* PowerupGenerator.m */,
+				00DEC67F18FB74A900382BBD /* Projectile.h */,
+				00DEC68018FB74A900382BBD /* Projectile.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -1833,6 +1838,7 @@
 				D131065518EA18510093C94A /* OALAudioFile.m in Sources */,
 				D131057B18EA18510093C94A /* ccShaders.m in Sources */,
 				D131068F18EA18520093C94A /* matrix.c in Sources */,
+				00DEC68118FB74A900382BBD /* Projectile.m in Sources */,
 				D13105A118EA18510093C94A /* CCTiledMapLayer.m in Sources */,
 				D131073518EA18520093C94A /* GameplayScene.m in Sources */,
 				D131069518EA18520093C94A /* neon_matrix_impl.c in Sources */,

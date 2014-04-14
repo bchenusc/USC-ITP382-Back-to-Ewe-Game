@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
+#import "cocos2d-ui.h"
+
+@class GameplayScene;
 
 @interface UILayer : CCNode {
     float m_woolRemaining;
@@ -23,6 +26,13 @@
     CCLabelTTF* m_livesLabel;
     
     CCLabelTTF* m_GameOverLabel;
+    
+    CCButton* m_PauseButton;
+    CCButton* m_NewGameButton;
+    CCButton* m_MainMenuButton;
+    CCButton* m_ResumeButton;
+    
+    GameplayScene* m_gameplayScene;
 }
 
 @property float Wool;
@@ -31,9 +41,9 @@
 @property int Lives;
 
 //----//
+- (void) setGameplayScene:(GameplayScene*)g;
 - (void) showGameOverLabel:(BOOL) choice;
-- (void) resetGame;
-- (void) showPauseMenu;
+- (void) reset;
 //----//
 
 @end

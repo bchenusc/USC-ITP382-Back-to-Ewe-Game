@@ -51,13 +51,6 @@
     CCNodeColor *background = [CCNodeColor nodeWithColor:[CCColor colorWithRed:0.2f green:0.2f blue:0.2f alpha:1.0f]];
     [self addChild:background];
     
-    // Create a back button
-    CCButton *backButton = [CCButton buttonWithTitle:@"[ Menu ]" fontName:@"Verdana-Bold" fontSize:18.0f];
-    backButton.positionType = CCPositionTypeNormalized;
-    backButton.position = ccp(0.85f, 0.95f); // Top Right of screen
-    [backButton setTarget:self selector:@selector(onBackClicked:)];
-    [self addChild:backButton];
-    
     // Create physics stuff
     physics = [CCPhysicsNode node];
     physics.collisionDelegate = self;
@@ -92,6 +85,7 @@
     //UI Layer
     m_UILayer = [UILayer node];
     m_UILayer.Lives = m_PlayerLives;
+    [m_UILayer setGameplayScene:self];
     [self addChild:m_UILayer];
     
     m_Paused = NO;
@@ -311,6 +305,7 @@
     sheep.physicsBody.velocity = ccp(0, 500);
     sheep.visible = YES;
     sheep.CurrentHealth = sheep.MaxHealth;
+    sheep.CurrentWool = sheep.MaxWool;
     m_UILayer.Health = sheep.CurrentHealth;
     m_Dead = NO;
 }
@@ -322,9 +317,10 @@
 }
 
 - (void) resetGame {
-    m_Paused = YES;
+    [self pause];
     
     sheep.visible = NO;
+    [sheep breakString];
     
     /*for(Node* n in nodes) {
         [physics removeChild:n];
@@ -362,7 +358,7 @@
     
     m_Dead = NO;
     
-    [m_UILayer resetGame];
+    [m_UILayer reset];
     
     [self newGame];
 }
@@ -372,17 +368,28 @@
     [self spawnNewEnemy];
     [self spawnNewGrass];
     [self respawnPlayer];
-    m_Paused = NO;
+    [self resume];
 }
 
--(BOOL) ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair sheep:(Sheep *)sheep node:(Node *)node
+- (void) pause {
+    m_Paused = YES;
+    physics.paused = YES;
+}
+
+- (void) resume {
+    m_Paused = NO;
+    physics.paused = NO;
+}
+
+//unused
+/*-(BOOL) ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair sheep:(Sheep *)sheep node:(Node *)node
 {
     static int collisionCountSheepNode = 0;
     collisionCountSheepNode++;
 	//NSLog(@"Collision %d between sheep and node.", collisionCountSheepNode);
 
     return YES;
-}
+}*/
 
 -(BOOL) ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair sheep:(Sheep *)_sheep grass:(Grass *)_grass {
     _sheep.CurrentWool += _grass.RCVAmount;
@@ -456,6 +463,10 @@
 // -----------------------------------------------------------------------
 
 - (void) touchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
+    if (m_Paused) {
+        return;
+    }
+    
     if (m_Dead) {
         return;
     }
@@ -481,16 +492,4 @@
     }
 }
 
-// -----------------------------------------------------------------------
-#pragma mark - Button Callbacks
-// -----------------------------------------------------------------------
-
-- (void) onBackClicked:(id)sender
-{
-    // back to intro scene with transition
-    [[CCDirector sharedDirector] replaceScene:[MainMenuScene scene]
-                               withTransition:[CCTransition transitionPushWithDirection:CCTransitionDirectionRight duration:1.0f]];
-}
-
-// -----------------------------------------------------------------------
 @end

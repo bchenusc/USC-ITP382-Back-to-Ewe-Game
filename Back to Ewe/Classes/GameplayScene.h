@@ -9,7 +9,6 @@
 
 // Importing cocos2d.h and cocos2d-ui.h, will import anything you need to start using Cocos2D v3
 #import "cocos2d.h"
-#import "cocos2d-ui.h"
 #import "Sheep.h"
 #import "UILayer.h"
 @class NodeGenerator;
@@ -72,6 +71,8 @@
 - (void) resetGame;
 - (void) respawnPlayer;
 - (void) gameOver;
+- (void) pause;
+- (void) resume;
 
 // -----------------------------------------------------------------------
 @end

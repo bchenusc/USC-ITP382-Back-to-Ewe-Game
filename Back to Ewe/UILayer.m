@@ -9,6 +9,8 @@
 #import "UILayer.h"
 #import "CCDrawingPrimitives.h"
 #import "CCLabelTTF.h"
+#import "MainMenuScene.h"
+#import "GameplayScene.h"
 
 
 @implementation UILayer
@@ -23,6 +25,7 @@
     self = [super init];
     if (self) {
         CGSize size = [[CCDirector sharedDirector] viewSize];
+        self.contentSize = size;
         
         m_woolRemaining = 10000.0f;
         m_woolCapacity = 10000.0f;
@@ -47,8 +50,87 @@
         m_GameOverLabel.position = ccp(size.width/2, size.height/2);
         [self addChild:m_GameOverLabel];
         
+        // Create a back button
+        m_PauseButton = [CCButton buttonWithTitle:@"[ Pause ]" fontName:@"Verdana-Bold" fontSize:18.0f];
+        m_PauseButton.positionType = CCPositionTypeNormalized;
+        m_PauseButton.position = ccp(0.85f, 0.95f); // Top Right of screen
+        [m_PauseButton setTarget:self selector:@selector(onPauseClicked:)];
+        [self addChild:m_PauseButton];
+        
+        // New game button
+        m_NewGameButton = [CCButton buttonWithTitle:@"[ New Game ]" fontName:@"Verdana-Bold" fontSize:18.0f];
+        m_NewGameButton.positionType = CCPositionTypeNormalized;
+        m_NewGameButton.position = ccp(0.25f, 0.5f); // Middle Left of screen
+        [m_NewGameButton setTarget:self selector:@selector(onNewGameClicked:)];
+        [self addChild:m_NewGameButton];
+        m_NewGameButton.visible = NO;
+        
+        // Menu Button
+        m_MainMenuButton = [CCButton buttonWithTitle:@"[ Main Menu ]" fontName:@"Verdana-Bold" fontSize:18.0f];
+        m_MainMenuButton.positionType = CCPositionTypeNormalized;
+        m_MainMenuButton.position = ccp(0.75f, 0.5f); // Middle Right of screen
+        [m_MainMenuButton setTarget:self selector:@selector(onMainMenuClicked:)];
+        [self addChild:m_MainMenuButton];
+        m_MainMenuButton.visible = NO;
+        
+        // Resume button
+        m_ResumeButton = [CCButton buttonWithTitle:@"[ Resume ]" fontName:@"Verdana-Bold" fontSize:18.0f];
+        m_ResumeButton.positionType = CCPositionTypeNormalized;
+        m_ResumeButton.position = ccp(0.5f, 0.4f); // Middle Right of screen
+        [m_ResumeButton setTarget:self selector:@selector(onResumeClicked:)];
+        [self addChild:m_ResumeButton];
+        m_ResumeButton.visible = NO;
     }
     return self;
+}
+
+- (void) setGameplayScene:(GameplayScene*)g {
+    NSAssert(g != nil, @"Argument must be non nil.");
+    
+    m_gameplayScene = g;
+}
+
+// -----------------------------------------------------------------------
+#pragma mark - Button Callbacks
+// -----------------------------------------------------------------------
+
+- (void) onPauseClicked:(id)sender {
+    m_PauseButton.visible = NO;
+    m_NewGameButton.visible = YES;
+    m_MainMenuButton.visible = YES;
+    m_ResumeButton.visible = YES;
+    [m_gameplayScene pause];
+}
+
+- (void) onNewGameClicked:(id)sender {
+    [m_gameplayScene resetGame];
+}
+
+- (void) onMainMenuClicked:(id)sender {
+    // back to intro scene with transition
+    [[CCDirector sharedDirector] replaceScene:[MainMenuScene scene]
+                               withTransition:[CCTransition transitionPushWithDirection:CCTransitionDirectionRight duration:1.0f]];
+}
+
+- (void) onResumeClicked:(id)sender {
+    m_PauseButton.visible = YES;
+    m_NewGameButton.visible = NO;
+    m_MainMenuButton.visible = NO;
+    m_ResumeButton.visible = NO;
+    m_gameplayScene.paused = NO;
+    [m_gameplayScene resume];
+}
+
+// -----------------------------------------------------------------------
+
+- (void) reset {
+    m_PauseButton.visible = YES;
+    m_NewGameButton.visible = NO;
+    m_MainMenuButton.visible = NO;
+    m_ResumeButton.visible = NO;
+    m_gameplayScene.paused = NO;
+    
+    m_GameOverLabel.visible = NO;
 }
 
 - (void) showGameOverLabel:(BOOL)choice {
