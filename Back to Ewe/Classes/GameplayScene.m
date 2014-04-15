@@ -199,6 +199,16 @@
             _powerup.position = ccp(_powerup.position.x, _powerup.position.y - translation);
         }
         
+        m_Background1.position = ccp(m_Background1.position.x, roundf(m_Background1.position.y - translation/3));
+        m_Background2.position = ccp(m_Background2.position.x, roundf(m_Background2.position.y - translation/3));
+        if (m_Background1.position.y <= -self.contentSize.height/2) {
+            m_Background1.position = ccp(m_Background1.position.x, m_Background2.position.y + self.contentSize.height);
+            CCSprite* temp = m_Background1;
+            m_Background1 = m_Background2;
+            m_Background2 = temp;
+        }
+
+        
         m_Sheep.position = ccp (m_Sheep.position.x, m_Sheep.position.y - translation);
         topNode = ccp(topNode.x, topNode.y - translation);
         newNodePoint = ccp(newNodePoint.x, newNodePoint.y - translation);
@@ -489,12 +499,6 @@
     m_Sheep.visible = NO;
     [m_Sheep breakString];
     
-    /*for(Node* n in nodes) {
-        [physics removeChild:n];
-    }
-    [nodes removeAllObjects];*/
-    
-    
     [nodesToDelete addObjectsFromArray:nodes];
     
     for(Grass* g in grass) {
@@ -522,6 +526,8 @@
     m_Score = 0;
     
     m_PlayerLives = 3;
+    
+    m_Sheep.CurrentWool = m_Sheep.MaxWool;
     
     m_Dead = NO;
     
@@ -673,9 +679,9 @@
     if (m_Dead) {
         return;
     }
-    CGPoint touchLoc = [touch locationInNode:self];
     
     // Check if user clicked on a node
+    CGPoint touchLoc = [touch locationInNode:self];
     bool nodeTouched = NO;
     for (Node* n in nodes) {
         if ([n isPointInNode:touchLoc]) {

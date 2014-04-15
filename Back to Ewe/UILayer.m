@@ -25,8 +25,8 @@
         CGSize size = [[CCDirector sharedDirector] viewSize];
         self.contentSize = size;
         
-        m_woolRemaining = 10000.0f;
-        m_woolCapacity = 10000.0f;
+        m_woolRemaining = 4000;
+        m_woolCapacity = 4000;
         
         m_healthRemaining = 100.0f;
         m_healthCapacity = 100.0f;
@@ -115,6 +115,7 @@
 
 - (void) onNewGameClicked:(id)sender {
     [m_gameplayScene resetGame];
+    [OALSimpleAudio sharedInstance].paused = false;
 }
 
 - (void) onMainMenuClicked:(id)sender {
@@ -122,6 +123,7 @@
     [[CCDirector sharedDirector] replaceScene:[MainMenuScene scene]
                                withTransition:[CCTransition transitionPushWithDirection:CCTransitionDirectionRight duration:1.0f]];
     [[OALSimpleAudio sharedInstance] stopAllEffects];
+    [OALSimpleAudio sharedInstance].paused = false;
 }
 
 - (void) onResumeClicked:(id)sender {
