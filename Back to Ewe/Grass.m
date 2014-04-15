@@ -21,7 +21,11 @@
         
         m_Radius = 30;
         
-        [self drawDot:ccp(0, 0) radius:m_Radius color:[CCColor greenColor]];
+        //[self drawDot:ccp(0, 0) radius:m_Radius color:[CCColor greenColor]];
+        
+        CCSprite* sprite = [CCSprite spriteWithImageNamed:@"grass.png"];
+        sprite.position = ccp(0, 0);
+        [self addChild:sprite];
         
         CCPhysicsBody* physics = [CCPhysicsBody bodyWithCircleOfRadius:30 andCenter:self.anchorPointInPoints];
         

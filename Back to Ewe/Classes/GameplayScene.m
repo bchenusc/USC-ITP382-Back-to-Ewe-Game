@@ -113,7 +113,7 @@
     m_BossLevelSpacing = 15000.0f;
     m_Boss = nil;
     
-    m_PlayerLives = 1;
+    m_PlayerLives = 5;
     m_Dead = NO;
     
     //UI Layer
