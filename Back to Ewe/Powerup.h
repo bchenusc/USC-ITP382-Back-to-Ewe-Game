@@ -14,8 +14,8 @@ enum PowerupType {
     unlimitedWool,
     puffBomb,
     health,
-    projectile,
     powerupTypeMax,
+    projectile,
     NONE
 };
 

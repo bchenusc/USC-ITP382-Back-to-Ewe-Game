@@ -9,7 +9,7 @@
 #import "CCDrawNode.h"
 #import "cocos2d.h"
 
-@interface Grass : CCDrawNode {
+@interface Grass : CCNode {
     float m_rcvAmount;
     float m_Radius;
 }

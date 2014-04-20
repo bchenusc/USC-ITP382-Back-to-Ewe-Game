@@ -11,6 +11,9 @@
 #import "MainMenuScene.h"
 #import "GameplayScene.h"
 
+// -----------------------------------------------------------------------
+#define BACKGROUND_MUSIC @"bgmusic.mp3"
+
 @implementation AppDelegate
 
 // 
@@ -51,6 +54,13 @@
 -(CCScene *)startScene
 {
 	// This method should return the very first scene to be run when your app starts.
+    // Sound
+    [OALSimpleAudio sharedInstance].allowIpod = NO;
+    [OALSimpleAudio sharedInstance].honorSilentSwitch = YES;
+    [[OALSimpleAudio sharedInstance] preloadEffect:BACKGROUND_MUSIC];
+
+    [[OALSimpleAudio sharedInstance] playBg:BACKGROUND_MUSIC loop:YES];
+    
 	return [MainMenuScene scene];
 }
 

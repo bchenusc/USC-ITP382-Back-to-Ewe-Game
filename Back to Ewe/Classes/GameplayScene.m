@@ -19,6 +19,19 @@
 #import "CCActionInterval.h"
 
 // -----------------------------------------------------------------------
+#define BACKGROUND_MUSIC @"bgmusic.mp3"
+#define BOING_SOUND @"boing.mp3"
+#define SHEEP_HIT_SOUND @"sheepHit.mp3"
+#define SHEEP_DEATH_SOUND @"sheepDeath.mp3"
+#define BOSS_HIT_SOUND @"bossHit.mp3"
+#define BOSS_DEATH_SOUND @"bossDeath.mp3"
+#define POWERUP_SOUND @"powerup.mp3"
+#define BOMB_SOUND @"bomb.mp3"
+#define PROJECTILE_SOUND @"projectile.mp3"
+#define GAMEOVER_SOUND @"gameOver.mp3"
+#define GET_GRASS_SOUND @"getGrass.mp3"
+
+// -----------------------------------------------------------------------
 #pragma mark - HelloWorldScene
 // -----------------------------------------------------------------------
 
@@ -68,7 +81,7 @@
     // Create physics stuff
     physics = [CCPhysicsNode node];
     physics.collisionDelegate = self;
-    physics.debugDraw = YES;
+    physics.debugDraw = NO;
     physics.gravity = ccp(0, -350);
     [self addChild:physics];
     
@@ -96,11 +109,11 @@
     m_BossEnemySpacing = 300.0f;
     
     bossLevel = NO;
-    m_BossLevelTriggerYPos = 1000.0f;
+    m_BossLevelTriggerYPos = 10000.0f;
     m_BossLevelSpacing = 15000.0f;
     m_Boss = nil;
     
-    m_PlayerLives = 1000;
+    m_PlayerLives = 5;
     m_Dead = NO;
     
     //UI Layer
@@ -110,6 +123,18 @@
     [self addChild:m_UILayer];
     
     m_Paused = NO;
+    
+    // Sound
+    [[OALSimpleAudio sharedInstance] preloadEffect:BOING_SOUND];
+    [[OALSimpleAudio sharedInstance] preloadEffect:SHEEP_HIT_SOUND];
+    [[OALSimpleAudio sharedInstance] preloadEffect:SHEEP_DEATH_SOUND];
+    [[OALSimpleAudio sharedInstance] preloadEffect:BOSS_HIT_SOUND];
+    [[OALSimpleAudio sharedInstance] preloadEffect:BOSS_DEATH_SOUND];
+    [[OALSimpleAudio sharedInstance] preloadEffect:POWERUP_SOUND];
+    [[OALSimpleAudio sharedInstance] preloadEffect:BOMB_SOUND];
+    [[OALSimpleAudio sharedInstance] preloadEffect:PROJECTILE_SOUND];
+    [[OALSimpleAudio sharedInstance] preloadEffect:GAMEOVER_SOUND];
+    [[OALSimpleAudio sharedInstance] preloadEffect:GET_GRASS_SOUND];
     
     [self newGame];
     
@@ -173,6 +198,16 @@
         for (Powerup* _powerup in m_Powerups) {
             _powerup.position = ccp(_powerup.position.x, _powerup.position.y - translation);
         }
+        
+        m_Background1.position = ccp(m_Background1.position.x, roundf(m_Background1.position.y - translation/3));
+        m_Background2.position = ccp(m_Background2.position.x, roundf(m_Background2.position.y - translation/3));
+        if (m_Background1.position.y <= -self.contentSize.height/2) {
+            m_Background1.position = ccp(m_Background1.position.x, m_Background2.position.y + self.contentSize.height);
+            CCSprite* temp = m_Background1;
+            m_Background1 = m_Background2;
+            m_Background2 = temp;
+        }
+
         
         m_Sheep.position = ccp (m_Sheep.position.x, m_Sheep.position.y - translation);
         topNode = ccp(topNode.x, topNode.y - translation);
@@ -313,6 +348,10 @@
 }
 
 -(void)endBossLevel {
+    [[OALSimpleAudio sharedInstance] playEffect:BOSS_DEATH_SOUND];
+    [[OALSimpleAudio sharedInstance] playEffect:BOSS_DEATH_SOUND];
+    [[OALSimpleAudio sharedInstance] playEffect:BOSS_DEATH_SOUND];
+    [[OALSimpleAudio sharedInstance] playEffect:BOSS_DEATH_SOUND];
     bossLevel = false;
     [physics removeChild:m_Boss];
     m_Boss = nil;
@@ -369,13 +408,17 @@
 }
 
 - (void) detonateBomb {
+    if(m_Sheep.NumPuffBombs > 0 && m_Dead != YES) {
+        [[OALSimpleAudio sharedInstance] playEffect:BOMB_SOUND];
+    }
     m_CanSpawnEnemies = NO;
     [self scheduleOnce:@selector(allowEnemySpawn) delay:5.0f];
     for(Enemy* _enemy in m_Enemies) {
         [m_EnemiesToDelete addObject:_enemy];
     }
     m_Sheep.NumPuffBombs--;
-    if(m_Sheep.NumPuffBombs == 0) {
+    if(m_Sheep.NumPuffBombs <= 0) {
+        m_Sheep.NumPuffBombs = 0;
         [m_UILayer setBombsButtonInactive];
     }
 }
@@ -409,6 +452,8 @@
 
 - (void) playerDeath {
     if (!m_Dead) {
+        [[OALSimpleAudio sharedInstance] playEffect:SHEEP_DEATH_SOUND];
+        
         NSLog(@"Player died");
         m_PlayerLives--;
         [m_UILayer setLivesLabel:m_PlayerLives];
@@ -441,21 +486,18 @@
 
 - (void) gameOver {
     NSLog(@"Game Over");
+    [[OALSimpleAudio sharedInstance] playEffect:GAMEOVER_SOUND];
     [m_UILayer gameOver];
     
 }
 
 - (void) resetGame {
+    [[OALSimpleAudio sharedInstance] stopAllEffects];
+    
     [self pause];
     
     m_Sheep.visible = NO;
     [m_Sheep breakString];
-    
-    /*for(Node* n in nodes) {
-        [physics removeChild:n];
-    }
-    [nodes removeAllObjects];*/
-    
     
     [nodesToDelete addObjectsFromArray:nodes];
     
@@ -480,11 +522,12 @@
     [m_PowerupsToDelete addObjectsFromArray:m_Powerups];
     
     [self detonateBomb];
-    m_Sheep.NumPuffBombs = 0;
     
     m_Score = 0;
     
     m_PlayerLives = 3;
+    
+    m_Sheep.CurrentWool = m_Sheep.MaxWool;
     
     m_Dead = NO;
     
@@ -515,6 +558,8 @@
 }
 
 -(BOOL) ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair sheep:(Sheep *)_sheep grass:(Grass *)_grass {
+    [[OALSimpleAudio sharedInstance] playEffect:GET_GRASS_SOUND];
+    
     _sheep.CurrentWool += _grass.RCVAmount;
     if (_sheep.CurrentWool >= _sheep.MaxWool) {
         _sheep.CurrentWool = m_Sheep.MaxWool;
@@ -528,12 +573,14 @@
 }
 
 -(BOOL) ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair sheep:(Sheep *)_sheep boss:(Boss* )boss {
+    [[OALSimpleAudio sharedInstance] playEffect:BOSS_HIT_SOUND];
     [boss hitBossWithSheep];
     
     return YES;
 }
 
 -(BOOL) ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair projectile:(Projectile *)_projectile boss:(Boss *)boss {
+    [[OALSimpleAudio sharedInstance] playEffect:BOSS_HIT_SOUND];
     [boss hitBossWithProjectile];
     
     return YES;
@@ -542,6 +589,7 @@
 -(BOOL) ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair sheep:(Sheep *)_sheep enemy:(Enemy *)enemy
 {
     if([_sheep.CurrentPowerups indexOfObject:[NSNumber numberWithInt:shield]] == NSNotFound) {
+        [[OALSimpleAudio sharedInstance] playEffect:SHEEP_HIT_SOUND];
         [_sheep hitEnemy];
         m_UILayer.Health = _sheep.CurrentHealth;
     }
@@ -557,6 +605,10 @@
 
 -(BOOL) ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair sheep:(Sheep *)_sheep powerup:(Powerup *)powerup
 {
+    if(powerup.POWERUPTYPE != projectile) {
+        [[OALSimpleAudio sharedInstance] playEffect:POWERUP_SOUND];
+    }
+    
     [_sheep addPowerup:powerup.POWERUPTYPE];
     
     if(powerup.POWERUPTYPE == puffBomb) {
@@ -568,6 +620,7 @@
             [m_UILayer setHealth:_sheep.CurrentHealth];
         }
     } else if(powerup.POWERUPTYPE == projectile) {
+        [[OALSimpleAudio sharedInstance] playEffect:PROJECTILE_SOUND];
         CGSize winSize = [[CCDirector sharedDirector] viewSize];
         Projectile* newProjectile = [[Projectile node] initWithTarget:ccp(winSize.width/2, winSize.height) atPosition:powerup.position];
         [physics addChild:newProjectile];
@@ -626,15 +679,16 @@
     if (m_Dead) {
         return;
     }
-    CGPoint touchLoc = [touch locationInNode:self];
     
     // Check if user clicked on a node
+    CGPoint touchLoc = [touch locationInNode:self];
     bool nodeTouched = NO;
     for (Node* n in nodes) {
         if ([n isPointInNode:touchLoc]) {
             nodeTouched = YES;
             
             if (n != m_Sheep.attachedNode) {
+                [[OALSimpleAudio sharedInstance] playEffect:BOING_SOUND];
                 [m_Sheep stringToNode:n];
                 [n shrinkAndRemove];
                 m_UILayer.Wool = m_Sheep.CurrentWool;

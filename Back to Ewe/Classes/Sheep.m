@@ -36,7 +36,7 @@
         m_WoolString = nil;
         m_AttachedNode = nil;
         
-        m_maxWool = 10000.0f;
+        m_maxWool = 4000;
         m_currentWool = m_maxWool;
         
         m_maxHealth = 100;

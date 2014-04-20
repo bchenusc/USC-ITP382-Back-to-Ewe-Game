@@ -25,8 +25,8 @@
         CGSize size = [[CCDirector sharedDirector] viewSize];
         self.contentSize = size;
         
-        m_woolRemaining = 10000.0f;
-        m_woolCapacity = 10000.0f;
+        m_woolRemaining = 4000;
+        m_woolCapacity = 4000;
         
         m_healthRemaining = 100.0f;
         m_healthCapacity = 100.0f;
@@ -110,16 +110,20 @@
     m_MainMenuButton.visible = YES;
     m_ResumeButton.visible = YES;
     [m_gameplayScene pause];
+    [OALSimpleAudio sharedInstance].paused = true;
 }
 
 - (void) onNewGameClicked:(id)sender {
     [m_gameplayScene resetGame];
+    [OALSimpleAudio sharedInstance].paused = false;
 }
 
 - (void) onMainMenuClicked:(id)sender {
     // back to intro scene with transition
     [[CCDirector sharedDirector] replaceScene:[MainMenuScene scene]
                                withTransition:[CCTransition transitionPushWithDirection:CCTransitionDirectionRight duration:1.0f]];
+    [[OALSimpleAudio sharedInstance] stopAllEffects];
+    [OALSimpleAudio sharedInstance].paused = false;
 }
 
 - (void) onResumeClicked:(id)sender {
@@ -129,6 +133,7 @@
     m_ResumeButton.visible = NO;
     m_gameplayScene.paused = NO;
     [m_gameplayScene resume];
+    [OALSimpleAudio sharedInstance].paused = false;
 }
 
 - (void) onBombsClicked:(id)sender {
