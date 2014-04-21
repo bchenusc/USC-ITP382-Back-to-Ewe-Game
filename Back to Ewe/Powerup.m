@@ -13,6 +13,7 @@
 
 @synthesize radius = m_Radius;
 @synthesize POWERUPTYPE = m_PowerupType;
+@synthesize Active = m_isActive;
 
 - (instancetype)init {
     self = [super init];
@@ -35,6 +36,9 @@
         self.physicsBody = physics;
         
         m_PowerupType = NONE;
+        
+        m_MaxTime = 10.0f;
+        m_CurrentTime = 0.0f;
         
         m_PowerupLabel = [CCLabelTTF node];
         [m_PowerupLabel setFontName:@"Verdana"];
@@ -113,6 +117,15 @@
     CGFloat radiusSqr = m_Radius * m_Radius;
     
     return distanceSqr <= radiusSqr;
+}
+
+- (void) update:(CCTime)delta {
+    m_CurrentTime -= delta;
+    if (m_CurrentTime <= 0) {
+        m_CurrentTime = 0;
+        m_isActive = false;
+    }
+    
 }
 
 @end
