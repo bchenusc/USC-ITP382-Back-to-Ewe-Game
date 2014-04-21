@@ -103,6 +103,11 @@
 -(void) setProjectileType {
     m_PowerupType = projectile;
     [m_PowerupLabel setString:@"P"];
+    [self removeChild:m_Sprite];
+    m_Sprite = [CCSprite spriteWithImageNamed:@"missile_boost.png"];
+    m_Sprite.position = ccp(0, 0);
+    m_Sprite.scale = 0.80f;
+    [self addChild:m_Sprite];
 }
 
 - (CGRect) rect {

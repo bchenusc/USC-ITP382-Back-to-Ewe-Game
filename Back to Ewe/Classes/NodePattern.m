@@ -76,7 +76,7 @@
 
 -(CGPoint) ScrollPosition{
     topNodePosition = [gameplayScene getNewNodePoint];
-    return ccp(0, topNodePosition.y + 240);
+    return ccp(0, topNodePosition.y + 100);
 }
 
 
