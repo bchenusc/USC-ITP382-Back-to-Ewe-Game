@@ -10,6 +10,7 @@
 		001B61B518FA0D04006EFCE0 /* GrassGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 001B61B418FA0D04006EFCE0 /* GrassGenerator.m */; };
 		0023EA6118F398C700C27528 /* Grass.m in Sources */ = {isa = PBXBuildFile; fileRef = 0023EA6018F398C700C27528 /* Grass.m */; };
 		00DEC68118FB74A900382BBD /* Projectile.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DEC68018FB74A900382BBD /* Projectile.m */; };
+		3B3154511905E55F0061BFC8 /* grass-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B3154501905E55F0061BFC8 /* grass-2.png */; };
 		3B5B38E718FBAEAC0064D669 /* asteroid.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B5B38E618FBAEAC0064D669 /* asteroid.png */; };
 		3B5B38E918FBBE020064D669 /* ewe_mothership.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B5B38E818FBBE020064D669 /* ewe_mothership.png */; };
 		3B5B38EB18FBE23E0064D669 /* ewe_missile.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B5B38EA18FBE23E0064D669 /* ewe_missile.png */; };
@@ -273,6 +274,7 @@
 		0023EA6018F398C700C27528 /* Grass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Grass.m; sourceTree = "<group>"; };
 		00DEC67F18FB74A900382BBD /* Projectile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Projectile.h; path = Classes/Projectile.h; sourceTree = "<group>"; };
 		00DEC68018FB74A900382BBD /* Projectile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Projectile.m; path = Classes/Projectile.m; sourceTree = "<group>"; };
+		3B3154501905E55F0061BFC8 /* grass-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "grass-2.png"; path = "Resources/grass-2.png"; sourceTree = "<group>"; };
 		3B5B38E618FBAEAC0064D669 /* asteroid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = asteroid.png; path = Resources/asteroid.png; sourceTree = "<group>"; };
 		3B5B38E818FBBE020064D669 /* ewe_mothership.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ewe_mothership.png; path = Resources/ewe_mothership.png; sourceTree = "<group>"; };
 		3B5B38EA18FBE23E0064D669 /* ewe_missile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ewe_missile.png; path = Resources/ewe_missile.png; sourceTree = "<group>"; };
@@ -842,6 +844,7 @@
 		D13104A118EA18500093C94A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				3B3154501905E55F0061BFC8 /* grass-2.png */,
 				C3E25C4418FC997700EB23D2 /* Sounds */,
 				3B5B38FA18FBF9CD0064D669 /* grass.png */,
 				3B5B38F818FBF63C0064D669 /* missile_boost.png */,
@@ -1820,6 +1823,7 @@
 				D13104BC18EA18500093C94A /* Icon-Small-50.png in Resources */,
 				D1A613D818FBCB2B00E1887B /* itp382ewe_title2-iphone5hd.png in Resources */,
 				3B5B38EB18FBE23E0064D669 /* ewe_missile.png in Resources */,
+				3B3154511905E55F0061BFC8 /* grass-2.png in Resources */,
 				D13106A518EA18520093C94A /* LICENSE_Kazmath.txt in Resources */,
 				C3E25C4C18FCA03B00EB23D2 /* powerup.mp3 in Resources */,
 				D13104B018EA18500093C94A /* Icon-72.png in Resources */,
