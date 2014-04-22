@@ -70,9 +70,9 @@
     for(int i = 1; i <= 10; i++) {
         long int currentHighScore = [m_HighScoresList integerForKey:[NSString stringWithFormat:@"%d", i]];
         if(score > currentHighScore) {
-            for(int j = i + 1; j <= 9; j++) {
-                long int previousScore = [m_HighScoresList integerForKey:[NSString stringWithFormat:@"%d", j - 1]];
-                [m_HighScoresList setInteger:previousScore forKey:[NSString stringWithFormat:@"%d", j]];
+            for(int j = 9; j >= i; j--) {
+                long int previousScore = [m_HighScoresList integerForKey:[NSString stringWithFormat:@"%d", j]];
+                [m_HighScoresList setInteger:previousScore forKey:[NSString stringWithFormat:@"%d", j + 1]];
             }
             [m_HighScoresList setInteger:score forKey:[NSString stringWithFormat:@"%d", i]];
             break;
