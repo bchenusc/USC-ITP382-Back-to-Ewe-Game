@@ -55,7 +55,7 @@
     self = [super init];
     if (!self) return(nil);
     
-    CCLOG(@"SIZE: (%.f, %.f)", self.contentSize.width, self.contentSize.height);
+    //CCLOG(@"SIZE: (%.f, %.f)", self.contentSize.width, self.contentSize.height);
     
     nodes = [[NSMutableArray alloc] init];
     nodesToDelete = [[NSMutableArray alloc]init];
@@ -459,7 +459,7 @@
     if (!m_Dead) {
         [[OALSimpleAudio sharedInstance] playEffect:SHEEP_DEATH_SOUND];
         
-        NSLog(@"Player died");
+        //NSLog(@"Player died");
         m_PlayerLives--;
         [m_UILayer setLivesLabel:m_PlayerLives];
         m_Dead = YES;
@@ -490,7 +490,7 @@
 }
 
 - (void) gameOver {
-    NSLog(@"Game Over");
+    //NSLog(@"Game Over");
     [m_HighScoresLayer addScore:(int)m_Score];
     [[OALSimpleAudio sharedInstance] playEffect:GAMEOVER_SOUND];
     [m_UILayer gameOver];
