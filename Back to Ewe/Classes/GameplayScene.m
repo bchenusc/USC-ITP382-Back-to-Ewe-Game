@@ -124,7 +124,7 @@
     [self addChild:m_UILayer];
     
     // Scores
-    m_HighScoresLayer = [HighScoresLayer node];
+    m_HighScoresLayer = [HighScoresScene node];
     
     m_Paused = NO;
     
@@ -498,9 +498,11 @@
 }
 
 - (void) resetGame {
-    [[OALSimpleAudio sharedInstance] stopAllEffects];
-    
     [self pause];
+    
+    [self unscheduleAllSelectors];
+    
+    [[OALSimpleAudio sharedInstance] stopAllEffects];
     
     m_Sheep.visible = NO;
     [m_Sheep reset];

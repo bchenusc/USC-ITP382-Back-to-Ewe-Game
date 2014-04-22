@@ -17,7 +17,7 @@
 #import "GrassGenerator.h"
 #import "PowerupGenerator.h"
 #import "Boss.h"
-#import "HighScoresLayer.h"
+#import "HighScoresScene.h"
 
 // -----------------------------------------------------------------------
 
@@ -38,7 +38,7 @@
     CGPoint newNodePoint;
     
     UILayer* m_UILayer;
-    HighScoresLayer* m_HighScoresLayer;
+    HighScoresScene* m_HighScoresLayer;
     
     NodeGenerator* nodeGenerator;
     CGPoint topNode;
