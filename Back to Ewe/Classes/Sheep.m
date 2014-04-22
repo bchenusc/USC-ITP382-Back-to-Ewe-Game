@@ -8,6 +8,76 @@
 
 #import "Sheep.h"
 
+@interface SheepPowerup : NSObject {
+    CGFloat duration;
+    CGFloat timeRemaining;
+}
+
+@property (readonly) enum PowerupType type;
+@property (readonly) BOOL active;
+
+- (instancetype) initWithType:(enum PowerupType)type;
+- (void) activate;
+- (void) activateWithDuration:(CGFloat)_duration;
+- (void) deactivate;
+- (void) reset;
+- (void) update:(CCTime)dt;
+@end
+
+@implementation SheepPowerup
+@synthesize type, active;
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        type = NONE;
+        active = NO;
+        duration = 8.0f;
+        timeRemaining = duration;
+    }
+    return self;
+}
+
+- (instancetype) initWithType:(enum PowerupType)pType {
+    type = pType;
+    
+    return self;
+}
+
+- (void) reset {
+    active = NO;
+    timeRemaining = 0;
+}
+
+- (void) activate {
+    [self activateWithDuration:duration];
+}
+
+- (void) activateWithDuration:(CGFloat)_duration {
+    active = YES;
+    timeRemaining = _duration;
+    
+    //NSLog(@"%d activated", type);
+}
+
+- (void) deactivate {
+    active = NO;
+    timeRemaining = 0;
+}
+
+- (void) update:(CCTime)dt {
+    if (active) {
+        timeRemaining -= dt;
+        
+        if (timeRemaining <= 0) {
+            timeRemaining = 0;
+            active = NO;
+            //NSLog(@"%d deactivated", type);
+        }
+    }
+}
+
+@end
 
 @implementation Sheep
 
@@ -40,24 +110,24 @@
         m_currentWool = m_maxWool;
         
         m_maxHealth = 100;
-        m_currentHealth = 100;
+        m_currentHealth = m_maxHealth;
         
         m_CurrentPowerups = [NSMutableArray new];
+        [m_CurrentPowerups addObject:[[[SheepPowerup alloc] init] initWithType:shield]];
+        [m_CurrentPowerups addObject:[[[SheepPowerup alloc] init] initWithType:unlimitedWool]];
         
         m_numPuffBombs = 0;
-        
-        m_CanTakeDamage = YES;
     }
     return self;
 }
 
-- (void) stringToNode:(Node*)node {
+- (bool) stringToNode:(Node*)node {
     NSAssert(node != nil, @"Argument must be non-nil");
     
     if (m_currentWool <= 0) {
         m_currentWool = 0;
         //NSLog(@"No wool");
-        return;
+        return NO;
     }
     
     m_AttachedNode = node;
@@ -70,10 +140,19 @@
     
     m_WoolString = [[WoolString node] initWithStringFromSheep:self toNode:node];
     
-    if([m_CurrentPowerups indexOfObject:[NSNumber numberWithInt:unlimitedWool]] == NSNotFound) {
-        m_currentWool -= [m_WoolString findCurrentStringLength];
+    for (SheepPowerup* sp in m_CurrentPowerups) {
+        if (sp.type == unlimitedWool) {
+            if (!sp.active) {
+                m_currentWool -= [m_WoolString findCurrentStringLength];
+            }
+            
+            break;
+        }
     }
+    
     [self addChild:m_WoolString];
+    
+    return YES;
 }
 
 - (void) breakString {
@@ -85,34 +164,42 @@
     }
 }
 
--(void)addPowerup:(enum PowerupType)powerup {
-    if(powerup == shield || powerup == unlimitedWool) {
-        [m_CurrentPowerups addObject:[NSNumber numberWithInt:powerup]];
-        [self scheduleOnce:@selector(cancelOldestPowerup) delay:10.0f];
-    }
-}
-
--(void) cancelOldestPowerup {
-    if(m_CurrentPowerups.count != 0) {
-        [m_CurrentPowerups removeObjectAtIndex:0];
+-(void) addPowerup:(enum PowerupType)powerup {
+    for (SheepPowerup* sp in m_CurrentPowerups) {
+        if (sp.type == powerup) {
+            [sp activate];
+            break;
+        }
     }
 }
 
 -(void) hitEnemy {
-    if(m_CanTakeDamage) {
-        m_currentHealth -= 10.0f;
-        m_CanTakeDamage = NO;
-        [self runAction:[CCActionBlink actionWithDuration:2.0f blinks:10]];
-        [self scheduleOnce:@selector(enableDamage) delay:2.0f];
+    for (SheepPowerup* sp in m_CurrentPowerups) {
+        if (sp.type == shield) {
+            if (!sp.active) {
+                m_currentHealth -= 10.0f;
+                [sp activateWithDuration:2.0f];
+                [self runAction:[CCActionBlink actionWithDuration:2.0f blinks:10]];
+            }
+            
+            break;
+        }
     }
 }
--(void)enableDamage {
-    m_CanTakeDamage = YES;
+
+- (void) reset {
+    for (SheepPowerup* sp in m_CurrentPowerups) {
+        [sp deactivate];
+    }
 }
 
 - (void) update:(CCTime)delta {
     m_WoolString.start = self.position;
     m_WoolString.end = m_AttachedNode.position;
+    
+    for (SheepPowerup* sp in m_CurrentPowerups) {
+        [sp update:delta];
+    }
 }
 
 @end

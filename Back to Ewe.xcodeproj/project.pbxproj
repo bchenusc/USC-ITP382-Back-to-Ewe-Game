@@ -42,6 +42,7 @@
 		C3E25C5C18FCA86F00EB23D2 /* sheepHit.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C3E25C5B18FCA86F00EB23D2 /* sheepHit.mp3 */; };
 		C3E25C5E18FCA99700EB23D2 /* gameOver.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C3E25C5D18FCA99700EB23D2 /* gameOver.mp3 */; };
 		C3E25C6218FCAFA700EB23D2 /* getGrass.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C3E25C6118FCAFA700EB23D2 /* getGrass.mp3 */; };
+		D126F4EF1905EE81005520C7 /* Blip_Select115.wav in Resources */ = {isa = PBXBuildFile; fileRef = D126F4EE1905EE81005520C7 /* Blip_Select115.wav */; };
 		D131048918EA18500093C94A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D131048818EA18500093C94A /* QuartzCore.framework */; };
 		D131048B18EA18500093C94A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D131048A18EA18500093C94A /* OpenGLES.framework */; };
 		D131048D18EA18500093C94A /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D131048C18EA18500093C94A /* OpenAL.framework */; };
@@ -315,6 +316,7 @@
 		C3E25C5B18FCA86F00EB23D2 /* sheepHit.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = sheepHit.mp3; sourceTree = "<group>"; };
 		C3E25C5D18FCA99700EB23D2 /* gameOver.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = gameOver.mp3; sourceTree = "<group>"; };
 		C3E25C6118FCAFA700EB23D2 /* getGrass.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = getGrass.mp3; sourceTree = "<group>"; };
+		D126F4EE1905EE81005520C7 /* Blip_Select115.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Blip_Select115.wav; path = ../../Blip_Select115.wav; sourceTree = "<group>"; };
 		D131048518EA18500093C94A /* Back to Ewe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Back to Ewe.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D131048818EA18500093C94A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		D131048A18EA18500093C94A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -783,6 +785,7 @@
 		C3E25C4418FC997700EB23D2 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D126F4EE1905EE81005520C7 /* Blip_Select115.wav */,
 				C3E25C5D18FCA99700EB23D2 /* gameOver.mp3 */,
 				C3E25C5918FCA3AA00EB23D2 /* bomb.mp3 */,
 				C3E25C5718FCA31000EB23D2 /* bossHit.mp3 */,
@@ -1809,6 +1812,7 @@
 				C3E25C5818FCA31000EB23D2 /* bossHit.mp3 in Resources */,
 				D13106BC18EA18520093C94A /* LICENSE_CCBReader.txt in Resources */,
 				D13104AE18EA18500093C94A /* Icon@2x.png in Resources */,
+				D126F4EF1905EE81005520C7 /* Blip_Select115.wav in Resources */,
 				3BD376D118FB635200A990BB /* itp382sheep.png in Resources */,
 				D13104C018EA18500093C94A /* Icon-Small@2x.png in Resources */,
 				D1A613D418FBCB2B00E1887B /* itp382ewe_bg-iphone5hd.png in Resources */,
