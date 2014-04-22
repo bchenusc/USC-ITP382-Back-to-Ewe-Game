@@ -497,6 +497,7 @@
     [self pause];
     
     m_Sheep.visible = NO;
+    [m_Sheep reset];
     [m_Sheep breakString];
     
     [nodesToDelete addObjectsFromArray:nodes];

@@ -27,15 +27,11 @@ enum PowerupType {
     CCLabelTTF* m_PowerupLabel;
     
     CCSprite* m_Sprite;
-    
-    float m_CurrentTime, m_MaxTime;
-    
-    bool m_isActive;
 }
 
 @property CGFloat radius;
 @property enum PowerupType POWERUPTYPE;
-@property(nonatomic, readonly) bool Active;
+@property (nonatomic, readonly) bool active;
 
 
 -(void) setRandomPowerupType;
@@ -45,7 +41,5 @@ enum PowerupType {
 - (CGRect) rect;
 
 - (BOOL) isPointInPowerup:(CGPoint)point;
-
-- (void) update:(CCTime)delta;
 
 @end
