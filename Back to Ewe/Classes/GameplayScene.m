@@ -113,7 +113,7 @@
     m_BossLevelSpacing = 15000.0f;
     m_Boss = nil;
     
-    m_PlayerLives = 5;
+    m_PlayerLives = 3;
     m_Dead = NO;
     
     //UI Layer
@@ -121,6 +121,9 @@
     [m_UILayer setLivesLabel:m_PlayerLives];
     [m_UILayer setGameplayScene:self];
     [self addChild:m_UILayer];
+    
+    // Scores
+    m_HighScoresLayer = [HighScoresLayer node];
     
     m_Paused = NO;
     
@@ -486,6 +489,7 @@
 
 - (void) gameOver {
     NSLog(@"Game Over");
+    [m_HighScoresLayer addScore:(int)m_Score];
     [[OALSimpleAudio sharedInstance] playEffect:GAMEOVER_SOUND];
     [m_UILayer gameOver];
     
@@ -510,6 +514,10 @@
         [physics removeChild:e];
     }
     [m_Enemies removeAllObjects];
+    
+    m_CanSpawnEnemies = YES;
+    enemySpacing = 333.3f;
+    nextEnemySpawnYPos = enemySpacing;
     
     newNodePoint = ccp(0, 0);
     

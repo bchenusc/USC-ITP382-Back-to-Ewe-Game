@@ -10,6 +10,7 @@
 // Import the interfaces
 #import "MainMenuScene.h"
 #import "GameplayScene.h"
+#import "HighScoresLayer.h"
 
 // -----------------------------------------------------------------------
 #pragma mark - IntroScene
@@ -48,6 +49,13 @@
     [playGameButton setTarget:self selector:@selector(onStartClicked:)];
     [self addChild:playGameButton];
     
+    // High score button
+    CCButton *highScoreButton = [CCButton buttonWithTitle:@"[ High Scores ]" fontName:@"Verdana-Bold" fontSize:18.0f];
+    highScoreButton.positionType = CCPositionTypeNormalized;
+    highScoreButton.position = ccp(0.5f, 0.1f);
+    [highScoreButton setTarget:self selector:@selector(onScoresClicked:)];
+    [self addChild:highScoreButton];
+    
 	return self;
 }
 
@@ -59,6 +67,11 @@
 {
     // start spinning scene with transition
     [[CCDirector sharedDirector] replaceScene:[GameplayScene scene]
+                               withTransition:[CCTransition transitionPushWithDirection:CCTransitionDirectionLeft duration:1.0f]];
+}
+
+-(void)onScoresClicked:(id)sender {
+    [[CCDirector sharedDirector] replaceScene:[HighScoresLayer scene]
                                withTransition:[CCTransition transitionPushWithDirection:CCTransitionDirectionLeft duration:1.0f]];
 }
 

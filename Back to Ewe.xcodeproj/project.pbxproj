@@ -30,6 +30,7 @@
 		C350D6D118FBBE8300D1B662 /* Boss.m in Sources */ = {isa = PBXBuildFile; fileRef = C350D6D018FBBE8300D1B662 /* Boss.m */; };
 		C37A37CF18FA613E0064C912 /* Powerup.m in Sources */ = {isa = PBXBuildFile; fileRef = C37A37CE18FA613E0064C912 /* Powerup.m */; };
 		C37A37D218FA66B60064C912 /* PowerupGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = C37A37D118FA66B60064C912 /* PowerupGenerator.m */; };
+		C37BE8FD1905EB5E00D3DC75 /* HighScoresLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C37BE8FC1905EB5E00D3DC75 /* HighScoresLayer.m */; };
 		C3E25C4618FC998900EB23D2 /* bgmusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C3E25C4518FC998900EB23D2 /* bgmusic.mp3 */; };
 		C3E25C4818FC9CAD00EB23D2 /* boing.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C3E25C4718FC9CAD00EB23D2 /* boing.mp3 */; };
 		C3E25C4C18FCA03B00EB23D2 /* powerup.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C3E25C4B18FCA03B00EB23D2 /* powerup.mp3 */; };
@@ -301,6 +302,8 @@
 		C37A37CE18FA613E0064C912 /* Powerup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Powerup.m; sourceTree = "<group>"; };
 		C37A37D018FA66B60064C912 /* PowerupGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PowerupGenerator.h; sourceTree = "<group>"; };
 		C37A37D118FA66B60064C912 /* PowerupGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PowerupGenerator.m; sourceTree = "<group>"; };
+		C37BE8FB1905EB5E00D3DC75 /* HighScoresLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HighScoresLayer.h; sourceTree = "<group>"; };
+		C37BE8FC1905EB5E00D3DC75 /* HighScoresLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HighScoresLayer.m; sourceTree = "<group>"; };
 		C3E25C4518FC998900EB23D2 /* bgmusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bgmusic.mp3; sourceTree = "<group>"; };
 		C3E25C4718FC9CAD00EB23D2 /* boing.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = boing.mp3; sourceTree = "<group>"; };
 		C3E25C4B18FCA03B00EB23D2 /* powerup.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = powerup.mp3; sourceTree = "<group>"; };
@@ -1699,6 +1702,8 @@
 				3B7F57CF18EA644200B8A237 /* NodeGenerator.m */,
 				3BC52A7118EA676E00A35420 /* NodePattern.h */,
 				3BC52A7218EA676F00A35420 /* NodePattern.m */,
+				C37BE8FB1905EB5E00D3DC75 /* HighScoresLayer.h */,
+				C37BE8FC1905EB5E00D3DC75 /* HighScoresLayer.m */,
 				D1AA4E1418EA6EED0030745C /* UILayer.h */,
 				D1AA4E1518EA6EED0030745C /* UILayer.m */,
 				D1A995C118F398F90022C814 /* ScreenPhysicsBorders.h */,
@@ -1948,6 +1953,7 @@
 				D131064418EA18510093C94A /* OALSuspendHandler.m in Sources */,
 				D13106A318EA18520093C94A /* vec4.c in Sources */,
 				D13105B518EA18510093C94A /* CCDirectorIOS.m in Sources */,
+				C37BE8FD1905EB5E00D3DC75 /* HighScoresLayer.m in Sources */,
 				D131058C18EA18510093C94A /* CCSpriteFrameCache.m in Sources */,
 				D131064B18EA18510093C94A /* mach_timing.c in Sources */,
 				D131062F18EA18510093C94A /* ALListener.m in Sources */,
