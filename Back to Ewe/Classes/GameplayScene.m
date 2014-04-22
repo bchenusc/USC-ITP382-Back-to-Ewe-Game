@@ -531,6 +531,7 @@
     m_PlayerLives = 3;
     
     m_Sheep.CurrentWool = m_Sheep.MaxWool;
+    [m_UILayer setWool:m_Sheep.CurrentWool];
     
     m_Dead = NO;
     
