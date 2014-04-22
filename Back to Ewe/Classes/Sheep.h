@@ -35,7 +35,7 @@
 @property float MaxHealth;
 @property int NumPuffBombs;
 
-- (void) stringToNode:(Node*)node;
+- (bool) stringToNode:(Node*)node;
 
 - (void) addPowerup:(enum PowerupType)powerup;
 

@@ -16,7 +16,7 @@
 - (instancetype) init {
     self = [super init];
     if (self) {
-        CCSprite* sprite = [CCSprite spriteWithImageNamed:@"asteroid.png"];
+        CCSprite* sprite = [CCSprite spriteWithImageNamed:@"grass.png"];
         sprite.position = ccp(0, 0);
         [self addChild:sprite];
         

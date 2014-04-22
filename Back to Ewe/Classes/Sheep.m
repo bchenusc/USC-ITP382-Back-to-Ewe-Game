@@ -121,13 +121,13 @@
     return self;
 }
 
-- (void) stringToNode:(Node*)node {
+- (bool) stringToNode:(Node*)node {
     NSAssert(node != nil, @"Argument must be non-nil");
     
     if (m_currentWool <= 0) {
         m_currentWool = 0;
         //NSLog(@"No wool");
-        return;
+        return NO;
     }
     
     m_AttachedNode = node;
@@ -151,6 +151,8 @@
     }
     
     [self addChild:m_WoolString];
+    
+    return YES;
 }
 
 - (void) breakString {

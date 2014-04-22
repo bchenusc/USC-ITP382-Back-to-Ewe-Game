@@ -30,6 +30,7 @@
 #define PROJECTILE_SOUND @"projectile.mp3"
 #define GAMEOVER_SOUND @"gameOver.mp3"
 #define GET_GRASS_SOUND @"getGrass.mp3"
+#define OUT_OF_WOOLF_SOUND @"Blip_Select115.wav"
 
 // -----------------------------------------------------------------------
 #pragma mark - HelloWorldScene
@@ -135,6 +136,7 @@
     [[OALSimpleAudio sharedInstance] preloadEffect:PROJECTILE_SOUND];
     [[OALSimpleAudio sharedInstance] preloadEffect:GAMEOVER_SOUND];
     [[OALSimpleAudio sharedInstance] preloadEffect:GET_GRASS_SOUND];
+    [[OALSimpleAudio sharedInstance] preloadEffect:OUT_OF_WOOLF_SOUND];
     
     [self newGame];
     
@@ -689,10 +691,13 @@
             nodeTouched = YES;
             
             if (n != m_Sheep.attachedNode) {
-                [[OALSimpleAudio sharedInstance] playEffect:BOING_SOUND];
-                [m_Sheep stringToNode:n];
-                [n shrinkAndRemove];
-                m_UILayer.Wool = m_Sheep.CurrentWool;
+                if ([m_Sheep stringToNode:n]) {
+                    [[OALSimpleAudio sharedInstance] playEffect:BOING_SOUND];
+                    [n shrinkAndRemove];
+                    m_UILayer.Wool = m_Sheep.CurrentWool;
+                } else {
+                    [[OALSimpleAudio sharedInstance] playEffect:OUT_OF_WOOLF_SOUND];
+                }
             }
         }
     }

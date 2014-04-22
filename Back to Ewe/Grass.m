@@ -21,7 +21,7 @@
         
         //[self drawDot:ccp(0, 0) radius:m_Radius color:[CCColor greenColor]];
         
-        CCSprite* sprite = [CCSprite spriteWithImageNamed:@"grass.png"];
+        CCSprite* sprite = [CCSprite spriteWithImageNamed:@"grass-2.png"];
         sprite.position = ccp(0, 0);
         [self addChild:sprite];
         
