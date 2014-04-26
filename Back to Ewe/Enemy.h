@@ -20,6 +20,7 @@ enum EnemyType {
 @interface Enemy : CCNode {
     CGFloat m_Radius;
     CGFloat m_OriginalRadius;
+    CCSprite* sprite;
     
     enum EnemyType m_EnemyType;
     
@@ -34,6 +35,8 @@ enum EnemyType {
 -(void) setRandomEnemyType;
 
 -(void) setPositionAndCenter:(CGPoint)point;
+
+-(void) setSprite:(CCSprite*) newSprite;
 
 - (CGRect) rect;
 

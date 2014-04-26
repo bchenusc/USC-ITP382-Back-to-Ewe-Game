@@ -16,6 +16,7 @@
     GameplayScene* m_GameplayScene;
     bool m_BeingRemoved;
     CGFloat m_ShrinkTime;
+    CCSprite* sprite;
 }
 
 @property (readonly) CGFloat radius;
@@ -23,6 +24,8 @@
 - (void) setGameplayScene:(GameplayScene*)g;
 
 - (void) shrinkAndRemove;
+
+- (void) setSprite:(CCSprite*) newSprite;
 
 - (CGRect) rect;
 

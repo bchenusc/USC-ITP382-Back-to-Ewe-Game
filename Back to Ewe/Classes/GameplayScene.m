@@ -68,6 +68,16 @@
     // Enable touch handling on scene node
     self.userInteractionEnabled = YES;
     
+    //Populate the array of different skins
+    m_Backgrounds = [[NSMutableArray alloc] init];
+    [m_Backgrounds addObject:[CCSprite spriteWithImageNamed:@"itp382ewe_bg.png"]];
+    
+    m_NodeSprites = [[NSMutableArray alloc] init];
+    [m_NodeSprites addObject:@"grass.png"];
+    
+    m_EnemySprites = [[NSMutableArray alloc] init];
+    [m_EnemySprites addObject:@"enemy_alien.png"];
+    
     // Create backgrounds for scrolling
     m_Background1 = [CCSprite spriteWithImageNamed:@"itp382ewe_bg.png"];
     m_Background1.position = ccp(self.contentSize.width / 2, self.contentSize.height/2);

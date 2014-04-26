@@ -42,11 +42,13 @@
     
     NodeGenerator* nodeGenerator;
     CGPoint topNode;
+    NSMutableArray* m_NodeSprites;
     
     EnemyGenerator* enemyGenerator;
     BOOL m_CanSpawnEnemies;
     float nextEnemySpawnYPos;
     float enemySpacing;
+    NSMutableArray* m_EnemySprites;
     
     GrassGenerator* grassGenerator;
     Grass* topGrass;
@@ -75,6 +77,7 @@
     
     CCSprite* m_Background1;
     CCSprite* m_Background2;
+    NSMutableArray* m_Backgrounds;
 }
 
 // -----------------------------------------------------------------------
