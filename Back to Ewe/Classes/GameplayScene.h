@@ -17,7 +17,7 @@
 #import "GrassGenerator.h"
 #import "PowerupGenerator.h"
 #import "Boss.h"
-#import "HighScoresLayer.h"
+#import "HighScoresScene.h"
 
 // -----------------------------------------------------------------------
 
@@ -38,15 +38,17 @@
     CGPoint newNodePoint;
     
     UILayer* m_UILayer;
-    HighScoresLayer* m_HighScoresLayer;
+    HighScoresScene* m_HighScoresLayer;
     
     NodeGenerator* nodeGenerator;
     CGPoint topNode;
+    NSMutableArray* m_NodeSprites;
     
     EnemyGenerator* enemyGenerator;
     BOOL m_CanSpawnEnemies;
     float nextEnemySpawnYPos;
     float enemySpacing;
+    NSMutableArray* m_EnemySprites;
     
     GrassGenerator* grassGenerator;
     Grass* topGrass;
@@ -75,6 +77,13 @@
     
     CCSprite* m_Background1;
     CCSprite* m_Background2;
+    NSMutableArray* m_Backgrounds;
+    
+    enum gameLevel {
+        level1 = 0,
+        level2,
+    };
+    enum gameLevel currentLevel;
 }
 
 // -----------------------------------------------------------------------

@@ -55,7 +55,7 @@
     self = [super init];
     if (!self) return(nil);
     
-    CCLOG(@"SIZE: (%.f, %.f)", self.contentSize.width, self.contentSize.height);
+    //CCLOG(@"SIZE: (%.f, %.f)", self.contentSize.width, self.contentSize.height);
     
     nodes = [[NSMutableArray alloc] init];
     nodesToDelete = [[NSMutableArray alloc]init];
@@ -67,6 +67,16 @@
     
     // Enable touch handling on scene node
     self.userInteractionEnabled = YES;
+    
+    //Populate the array of different skins
+    m_Backgrounds = [[NSMutableArray alloc] init];
+    [m_Backgrounds addObject:[CCSprite spriteWithImageNamed:@"itp382ewe_bg.png"]];
+    
+    m_NodeSprites = [[NSMutableArray alloc] init];
+    [m_NodeSprites addObject:@"grass.png"];
+    
+    m_EnemySprites = [[NSMutableArray alloc] init];
+    [m_EnemySprites addObject:@"enemy_alien.png"];
     
     // Create backgrounds for scrolling
     m_Background1 = [CCSprite spriteWithImageNamed:@"itp382ewe_bg.png"];
@@ -124,7 +134,10 @@
     [self addChild:m_UILayer];
     
     // Scores
-    m_HighScoresLayer = [HighScoresLayer node];
+    m_HighScoresLayer = [HighScoresScene node];
+    
+    // Levels
+    currentLevel = level1;
     
     m_Paused = NO;
     
@@ -246,7 +259,6 @@
             }
         }
         
-        //TODO: Need to cleanup enemies and grass
         
         //Scrolling
         for(Enemy* enemy in m_Enemies) {
@@ -464,7 +476,7 @@
     if (!m_Dead) {
         [[OALSimpleAudio sharedInstance] playEffect:SHEEP_DEATH_SOUND];
         
-        NSLog(@"Player died");
+        //NSLog(@"Player died");
         m_PlayerLives--;
         [m_UILayer setLivesLabel:m_PlayerLives];
         m_Dead = YES;
@@ -491,11 +503,12 @@
     m_Sheep.CurrentHealth = m_Sheep.MaxHealth;
     m_Sheep.CurrentWool = m_Sheep.MaxWool;
     m_UILayer.Health = m_Sheep.CurrentHealth;
+    m_UILayer.Wool = m_Sheep.CurrentWool;
     m_Dead = NO;
 }
 
 - (void) gameOver {
-    NSLog(@"Game Over");
+    //NSLog(@"Game Over");
     [m_HighScoresLayer addScore:(int)m_Score];
     [[OALSimpleAudio sharedInstance] playEffect:GAMEOVER_SOUND];
     [m_UILayer gameOver];
@@ -503,9 +516,11 @@
 }
 
 - (void) resetGame {
-    [[OALSimpleAudio sharedInstance] stopAllEffects];
-    
     [self pause];
+    
+    [self unscheduleAllSelectors];
+    
+    [[OALSimpleAudio sharedInstance] stopAllEffects];
     
     m_Sheep.visible = NO;
     [m_Sheep reset];
@@ -714,6 +729,7 @@
                     [[OALSimpleAudio sharedInstance] playEffect:BOING_SOUND];
                     [n shrinkAndRemove];
                     m_UILayer.Wool = m_Sheep.CurrentWool;
+                    [n setSprite:[CCSprite spriteWithImageNamed:[m_NodeSprites objectAtIndex:currentLevel]]];
                 } else {
                     [[OALSimpleAudio sharedInstance] playEffect:OUT_OF_WOOLF_SOUND];
                 }

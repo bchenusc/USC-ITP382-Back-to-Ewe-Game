@@ -6,13 +6,13 @@
 //  Copyright 2014 Silly Landmine Studios. All rights reserved.
 //
 
-#import "HighScoresLayer.h"
+#import "HighScoresScene.h"
 #import "MainMenuScene.h"
 
 
-@implementation HighScoresLayer
+@implementation HighScoresScene
 
-+ (HighScoresLayer *)scene
++ (HighScoresScene *)scene
 {
 	return [[self alloc] init];
 }
@@ -25,7 +25,7 @@
     
     // Background
     CGSize winSize = self.contentSize;
-    CCSprite *background = [CCSprite spriteWithImageNamed:@"itp382ewe_title2.png"];
+    CCSprite *background = [CCSprite spriteWithImageNamed:@"itp382ewe_bg.png"];
     background.position = ccp(winSize.width / 2, winSize.height/2);
     [background setBlendFunc:(ccBlendFunc){GL_ONE,GL_ZERO}];
     [self addChild:background];
@@ -62,7 +62,7 @@
 - (void)onBackButtonClicked:(id)sender
 {
     [[CCDirector sharedDirector] replaceScene:[MainMenuScene scene]
-                               withTransition:[CCTransition transitionPushWithDirection:CCTransitionDirectionLeft duration:1.0f]];
+                               withTransition:[CCTransition transitionPushWithDirection:CCTransitionDirectionDown duration:1.0f]];
 }
 
 // -----------------------------------------------------------------------
@@ -70,9 +70,9 @@
     for(int i = 1; i <= 10; i++) {
         long int currentHighScore = [m_HighScoresList integerForKey:[NSString stringWithFormat:@"%d", i]];
         if(score > currentHighScore) {
-            for(int j = i + 1; j <= 9; j++) {
-                long int previousScore = [m_HighScoresList integerForKey:[NSString stringWithFormat:@"%d", j - 1]];
-                [m_HighScoresList setInteger:previousScore forKey:[NSString stringWithFormat:@"%d", j]];
+            for(int j = 9; j >= i; j--) {
+                long int previousScore = [m_HighScoresList integerForKey:[NSString stringWithFormat:@"%d", j]];
+                [m_HighScoresList setInteger:previousScore forKey:[NSString stringWithFormat:@"%d", j + 1]];
             }
             [m_HighScoresList setInteger:score forKey:[NSString stringWithFormat:@"%d", i]];
             break;

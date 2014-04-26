@@ -21,7 +21,7 @@
         CGSize winSize = [[CCDirector sharedDirector] viewSize];
         self.position = ccp(winSize.width / 2, winSize.height / 2);
         
-        CCSprite* sprite = [CCSprite spriteWithImageNamed:@"enemy_alien.png"];
+        sprite = [CCSprite spriteWithImageNamed:@"enemy_alien.png"];
         sprite.position = ccp(0, 0);
         [self addChild:sprite];
         
@@ -97,6 +97,15 @@
         self.position = point;
         m_CenterPosition = point;
     }
+}
+
+-(void) setSprite:(CCSprite *)newSprite {
+    if (sprite) {
+        [self removeChild:sprite];
+    }
+    sprite = newSprite;
+    sprite.position = ccp(0, 0);
+    [self addChild:sprite];
 }
 
 -(void)update:(CCTime)delta {

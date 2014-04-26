@@ -10,7 +10,7 @@
 // Import the interfaces
 #import "MainMenuScene.h"
 #import "GameplayScene.h"
-#import "HighScoresLayer.h"
+#import "HighScoresScene.h"
 
 // -----------------------------------------------------------------------
 #pragma mark - IntroScene
@@ -67,12 +67,12 @@
 {
     // start spinning scene with transition
     [[CCDirector sharedDirector] replaceScene:[GameplayScene scene]
-                               withTransition:[CCTransition transitionPushWithDirection:CCTransitionDirectionLeft duration:1.0f]];
+                               withTransition:[CCTransition transitionPushWithDirection:CCTransitionDirectionUp duration:1.0f]];
 }
 
 -(void)onScoresClicked:(id)sender {
-    [[CCDirector sharedDirector] replaceScene:[HighScoresLayer scene]
-                               withTransition:[CCTransition transitionPushWithDirection:CCTransitionDirectionLeft duration:1.0f]];
+    [[CCDirector sharedDirector] replaceScene:[HighScoresScene scene]
+                               withTransition:[CCTransition transitionPushWithDirection:CCTransitionDirectionUp duration:1.0f]];
 }
 
 // -----------------------------------------------------------------------

@@ -130,7 +130,7 @@
 - (void) onMainMenuClicked:(id)sender {
     // back to intro scene with transition
     [[CCDirector sharedDirector] replaceScene:[MainMenuScene scene]
-                               withTransition:[CCTransition transitionPushWithDirection:CCTransitionDirectionRight duration:1.0f]];
+                               withTransition:[CCTransition transitionPushWithDirection:CCTransitionDirectionDown duration:1.0f]];
     [[OALSimpleAudio sharedInstance] stopAllEffects];
     [OALSimpleAudio sharedInstance].paused = false;
 }

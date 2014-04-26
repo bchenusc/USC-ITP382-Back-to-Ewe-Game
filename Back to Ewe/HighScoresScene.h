@@ -10,11 +10,11 @@
 #import "cocos2d.h"
 #import "CCButton.h"
 
-@interface HighScoresLayer : CCScene {
+@interface HighScoresScene : CCScene {
     NSUserDefaults* m_HighScoresList;
 }
 
-+ (HighScoresLayer *)scene;
++ (HighScoresScene *)scene;
 - (id)init;
 
 -(void)addScore:(int)score;

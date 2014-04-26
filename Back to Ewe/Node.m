@@ -16,7 +16,7 @@
 - (instancetype) init {
     self = [super init];
     if (self) {
-        CCSprite* sprite = [CCSprite spriteWithImageNamed:@"grass.png"];
+        sprite = [CCSprite spriteWithImageNamed:@"grass.png"];
         sprite.position = ccp(0, 0);
         [self addChild:sprite];
         
@@ -34,6 +34,15 @@
         m_ShrinkTime = 3.0f;
     }
     return self;
+}
+
+- (void) setSprite:(CCSprite*) newSprite {
+    if (sprite) {
+        [self removeChild:sprite];
+    }
+    sprite = newSprite;
+    sprite.position = ccp(0,0);
+    [self addChild:sprite];
 }
 
 - (void) update:(CCTime)delta {
