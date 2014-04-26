@@ -246,7 +246,6 @@
             }
         }
         
-        //TODO: Need to cleanup enemies and grass
         
         //Scrolling
         for(Enemy* enemy in m_Enemies) {
@@ -486,6 +485,7 @@
     m_Sheep.CurrentHealth = m_Sheep.MaxHealth;
     m_Sheep.CurrentWool = m_Sheep.MaxWool;
     m_UILayer.Health = m_Sheep.CurrentHealth;
+    m_UILayer.Wool = m_Sheep.CurrentWool;
     m_Dead = NO;
 }
 
