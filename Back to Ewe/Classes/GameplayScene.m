@@ -136,6 +136,9 @@
     // Scores
     m_HighScoresLayer = [HighScoresScene node];
     
+    // Levels
+    currentLevel = level1;
+    
     m_Paused = NO;
     
     // Sound
@@ -716,6 +719,7 @@
                     [[OALSimpleAudio sharedInstance] playEffect:BOING_SOUND];
                     [n shrinkAndRemove];
                     m_UILayer.Wool = m_Sheep.CurrentWool;
+                    [n setSprite:[CCSprite spriteWithImageNamed:[m_NodeSprites objectAtIndex:currentLevel]]];
                 } else {
                     [[OALSimpleAudio sharedInstance] playEffect:OUT_OF_WOOLF_SOUND];
                 }

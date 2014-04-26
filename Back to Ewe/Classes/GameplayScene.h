@@ -78,6 +78,12 @@
     CCSprite* m_Background1;
     CCSprite* m_Background2;
     NSMutableArray* m_Backgrounds;
+    
+    enum gameLevel {
+        level1 = 0,
+        level2,
+    };
+    enum gameLevel currentLevel;
 }
 
 // -----------------------------------------------------------------------
