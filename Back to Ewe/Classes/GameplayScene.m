@@ -377,12 +377,27 @@
     [[OALSimpleAudio sharedInstance] playEffect:BOSS_DEATH_SOUND];
     bossLevel = false;
     [physics removeChild:m_Boss];
+    
+    [self detonateBomb];
+    
+    [nodesToDelete addObjectsFromArray:nodes];
+    
+    topGrass = nil;
+    
+    [m_PowerupsToDelete addObjectsFromArray:m_Powerups];
+    
+    [m_Sheep spinIntoCenter];
+    
     m_Boss = nil;
     m_BossLevelTriggerYPos = m_Score + m_BossLevelSpacing;
     
-    m_NextPowerupSpawnYPos = m_Score + powerupSpacing;
-    nextEnemySpawnYPos = m_Score + enemySpacing;
+    m_NextPowerupSpawnYPos = m_Score + powerupSpacing * 2;
+    nextEnemySpawnYPos = m_Score + enemySpacing * 2;
     
+    [self scheduleOnce:@selector(switchToNextLevel) delay:3.1f];
+}
+
+-(void)switchToNextLevel {
     [[GameplayVariables get] switchCurrentLevel];
     NSString* newBackgroundImages;
     switch([GameplayVariables get].CurrentLevel) {
@@ -397,15 +412,16 @@
             break;
     }
     [self removeChild:m_Background1];
-    m_Background1 = [CCSprite spriteWithImageNamed:newBackgroundImages];
-    m_Background1.position = ccp(self.contentSize.width / 2, self.contentSize.height/2);
-    [m_Background1 setBlendFunc:(ccBlendFunc){GL_ONE,GL_ZERO}];
-    [self addChild:m_Background1 z:-1];
-    [self removeChild:m_Background2];
-    m_Background2 = [CCSprite spriteWithImageNamed:newBackgroundImages];
-    m_Background2.position = ccp(self.contentSize.width / 2, self.contentSize.height/2 + self.contentSize.height);
-    [m_Background2 setBlendFunc:(ccBlendFunc){GL_ONE,GL_ZERO}];
-    [self addChild:m_Background2 z:-1];
+     m_Background1 = [CCSprite spriteWithImageNamed:newBackgroundImages];
+     m_Background1.position = ccp(self.contentSize.width / 2, self.contentSize.height/2);
+     [m_Background1 setBlendFunc:(ccBlendFunc){GL_ONE,GL_ZERO}];
+     [self addChild:m_Background1 z:-1];
+     [self removeChild:m_Background2];
+     m_Background2 = [CCSprite spriteWithImageNamed:newBackgroundImages];
+     m_Background2.position = ccp(self.contentSize.width / 2, self.contentSize.height/2 + self.contentSize.height);
+     [m_Background2 setBlendFunc:(ccBlendFunc){GL_ONE,GL_ZERO}];
+     [self addChild:m_Background2 z:-1];
+    [self respawnPlayer];
 }
 
 -(void)spawnNewPowerup {

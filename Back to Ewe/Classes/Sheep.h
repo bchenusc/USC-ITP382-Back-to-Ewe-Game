@@ -45,4 +45,6 @@
 
 - (void) reset;
 
+-(void) spinIntoCenter;
+
 @end

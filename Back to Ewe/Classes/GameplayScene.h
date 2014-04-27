@@ -50,14 +50,16 @@
     float enemySpacing;
     NSMutableArray* m_EnemySprites;
     
+    BOOL m_CanSpawnGrass;
     GrassGenerator* grassGenerator;
     Grass* topGrass;
     
+    BOOL m_CanSpawnPowerup;
     PowerupGenerator* powerupGenerator;
     float nextPowerupSpawnYPos;
     float powerupSpacing;
     
-    bool bossLevel;
+    BOOL bossLevel;
     float m_BossLevelTriggerYPos;
     float m_BossLevelSpacing;
     Boss* m_Boss;
@@ -100,6 +102,7 @@
 - (void) gameOver;
 - (void) pause;
 - (void) resume;
+- (void) switchToNextLevel;
 
 // -----------------------------------------------------------------------
 @end

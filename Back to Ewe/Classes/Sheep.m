@@ -202,4 +202,31 @@
     }
 }
 
+-(void) spinIntoCenter {
+    CGSize viewSize = [[CCDirector sharedDirector] viewSize];
+    
+    self.physicsBody.sensor = YES;
+    self.physicsBody.velocity = ccp(0,0);
+    self.physicsBody.force = ccp(0, 0);
+    self.physicsBody.affectedByGravity = NO;
+    [self.physicsBody applyForce:ccp(0, 10000)];
+    
+    if (m_WoolString) {
+        [m_WoolString invalidate];
+        [self removeChild:m_WoolString];
+        m_WoolString = nil;
+    }
+    
+    [self runAction:[CCActionMoveTo actionWithDuration:3.0f position:ccp(viewSize.width / 2, viewSize.height / 2)]];
+    [self runAction:[CCActionRotateBy actionWithDuration:3.0f angle:1080]];
+    [self runAction:[CCActionScaleTo actionWithDuration:3.0f scale:0.0f]];
+    [self scheduleOnce:@selector(doneTeleporting) delay:3.2f];
+}
+
+-(void) doneTeleporting {
+    self.physicsBody.sensor = NO;
+    self.physicsBody.affectedByGravity = YES;
+    self.scale = 1.0f;
+}
+
 @end
