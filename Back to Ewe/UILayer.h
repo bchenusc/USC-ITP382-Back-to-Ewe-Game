@@ -30,6 +30,8 @@
     
     CCLabelTTF* m_GameOverLabel;
     
+    CCLabelTTF* m_BossAlertLabel;
+    
     CCButton* m_PauseButton;
     CCButton* m_NewGameButton;
     CCButton* m_MainMenuButton;
@@ -50,6 +52,7 @@
 - (void) setLivesLabel:(int)lives;
 - (void) setBombsButtonActive;
 - (void) setBombsButtonInactive;
+- (void) showBossAlertLabel:(NSString*)vulnerability;;
 //----//
 
 @end

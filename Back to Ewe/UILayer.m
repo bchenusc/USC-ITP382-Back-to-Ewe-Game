@@ -90,7 +90,16 @@
         [m_bombsButton setTarget:self selector:@selector(onBombsClicked:)];
         [self addChild:m_bombsButton];
         m_bombsButton.visible = NO;
+        
+        // BOSS ALERT LABEL
+        m_BossAlertLabel = [CCLabelTTF labelWithString:@"BOSS DETECTED" fontName:@"Verdana-Bold" fontSize:18.0f];
+        m_BossAlertLabel.visible = NO;
+        m_BossAlertLabel.positionType = CCPositionTypeNormalized;
+        m_BossAlertLabel.position = ccp(0.5f, 0.5f);
+        //[m_BossAlertLabel]
+        [self addChild:m_BossAlertLabel];
     }
+    
     return self;
 }
 
@@ -187,6 +196,18 @@
     [m_scoreLabel setPosition:ccp(m_scoreLabel.texture.contentSize.width / 2, size.height - m_scoreLabel.texture.contentSize.height / 2)];
     
     [m_livesLabel setPosition:ccp(m_livesLabel.texture.contentSize.width / 2, size.height - m_livesLabel.texture.contentSize.height - m_scoreLabel.texture.contentSize.height / 2)];
+}
+
+-(void)showBossAlertLabel:(NSString *)vulnerability {
+    NSString* alertString = [@"BOSS INCOMING\nWEAKNESS: " stringByAppendingString:vulnerability];
+    [m_BossAlertLabel setString:alertString];
+    m_BossAlertLabel.visible = YES;
+    [m_BossAlertLabel runAction:[CCActionBlink actionWithDuration:2.0f  blinks:4]];
+    [self schedule:@selector(hideBossAlertLabel) interval:2.1f];
+}
+
+-(void)hideBossAlertLabel {
+    m_BossAlertLabel.visible = false;
 }
 
 @end

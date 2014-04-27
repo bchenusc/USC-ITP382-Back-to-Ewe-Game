@@ -120,11 +120,11 @@
     m_BossEnemySpacing = 300.0f;
     
     bossLevel = NO;
-    m_BossLevelTriggerYPos = 10000.0f;
-    m_BossLevelSpacing = 15000.0f;
+    m_BossLevelTriggerYPos = 900.0f;
+    m_BossLevelSpacing = 10000.0f;
     m_Boss = nil;
     
-    m_PlayerLives = 3;
+    m_PlayerLives = 20;
     m_Dead = NO;
     
     //UI Layer
@@ -350,24 +350,29 @@
 
 -(void)setupBossBattle {
     bossLevel = YES;
+    
+    [m_UILayer showBossAlertLabel:@"PROJECTILES"];
+    
     m_BossLevelTriggerYPos = m_Score + m_BossEnemySpacing + arc4random() % (int)m_BossEnemySpacing;
     m_NextProjectileSpawnYPos = m_Score + m_ProjectileSpacing + arc4random() % (int)m_ProjectileSpacing;
+    [self scheduleOnce:@selector(showBoss) delay:2.1f];
+    
     if(m_Boss == nil) {
-        CGSize winSize = [[CCDirector sharedDirector] viewSize];
         m_Boss = [Boss node];
-        m_Boss.position = ccp(winSize.width / 2, winSize.height + m_Boss.Radius);
-        [m_Boss runAction:[CCActionMoveTo actionWithDuration:3.0f position:ccp(winSize.width / 2, winSize.height - m_Boss.Radius)]];
-        [physics addChild: m_Boss];
-        
-        m_NextProjectileSpawnYPos = m_Score + m_ProjectileSpacing;
-        m_NextBossEnemySpawnYPos = m_Score + m_BossEnemySpacing;
     }
+    
+    m_NextProjectileSpawnYPos = m_Score + m_ProjectileSpacing;
+    m_NextBossEnemySpawnYPos = m_Score + m_BossEnemySpacing;
+}
+
+-(void)showBoss {
+    CGSize winSize = [[CCDirector sharedDirector] viewSize];
+    m_Boss.position = ccp(winSize.width / 2, winSize.height + m_Boss.Radius);
+    [m_Boss runAction:[CCActionMoveTo actionWithDuration:3.0f position:ccp(winSize.width / 2, winSize.height - m_Boss.Radius)]];
+    [physics addChild: m_Boss];
 }
 
 -(void)endBossLevel {
-    [[OALSimpleAudio sharedInstance] playEffect:BOSS_DEATH_SOUND];
-    [[OALSimpleAudio sharedInstance] playEffect:BOSS_DEATH_SOUND];
-    [[OALSimpleAudio sharedInstance] playEffect:BOSS_DEATH_SOUND];
     [[OALSimpleAudio sharedInstance] playEffect:BOSS_DEATH_SOUND];
     bossLevel = false;
     [physics removeChild:m_Boss];
@@ -536,6 +541,11 @@
     m_CanSpawnEnemies = YES;
     enemySpacing = 333.3f;
     nextEnemySpawnYPos = enemySpacing;
+    
+    bossLevel = false;
+    [physics removeChild:m_Boss];
+    m_BossLevelTriggerYPos = m_BossLevelSpacing + arc4random() % ((int)m_BossLevelSpacing / 2);
+    m_Boss = nil;
     
     newNodePoint = ccp(0, 0);
     
