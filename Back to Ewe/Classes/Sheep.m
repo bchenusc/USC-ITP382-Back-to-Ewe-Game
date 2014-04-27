@@ -173,18 +173,21 @@
     }
 }
 
--(void) hitEnemy {
+-(BOOL) hitEnemy {
     for (SheepPowerup* sp in m_CurrentPowerups) {
         if (sp.type == shield) {
             if (!sp.active) {
                 m_currentHealth -= 10.0f;
                 [sp activateWithDuration:2.0f];
                 [self runAction:[CCActionBlink actionWithDuration:2.0f blinks:10]];
+                return YES;
             }
             
             break;
         }
     }
+    
+    return NO;
 }
 
 - (void) reset {

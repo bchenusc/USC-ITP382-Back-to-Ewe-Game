@@ -673,9 +673,8 @@
 
 -(BOOL) ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair sheep:(Sheep *)_sheep enemy:(Enemy *)enemy
 {
-    if([_sheep.CurrentPowerups indexOfObject:[NSNumber numberWithInt:shield]] == NSNotFound) {
+    if([_sheep hitEnemy]) {
         [[OALSimpleAudio sharedInstance] playEffect:SHEEP_HIT_SOUND];
-        [_sheep hitEnemy];
         m_UILayer.Health = _sheep.CurrentHealth;
     }
     
