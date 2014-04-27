@@ -256,7 +256,7 @@
         }
         
     } else
-    if (m_Sheep.position.y > 170 && m_Sheep.physicsBody.velocity.y > 0){
+    if (m_Sheep.position.y > 130 && m_Sheep.physicsBody.velocity.y > 0){
         float translation = delta * m_Sheep.physicsBody.velocity.y;
         
         for(Node* node in nodes){
@@ -505,6 +505,7 @@
         [nodesToDelete addObject:[nodes objectAtIndex:(nodes.count - 1)]];
     }*/
     n.position = point;
+    n.rotation = arc4random_uniform(360);
     [n setGameplayScene:self];
     [nodes addObject:n];
     [physics addChild:n];

@@ -10,6 +10,9 @@
 		001B61B518FA0D04006EFCE0 /* GrassGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 001B61B418FA0D04006EFCE0 /* GrassGenerator.m */; };
 		0023EA6118F398C700C27528 /* Grass.m in Sources */ = {isa = PBXBuildFile; fileRef = 0023EA6018F398C700C27528 /* Grass.m */; };
 		00DEC68118FB74A900382BBD /* Projectile.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DEC68018FB74A900382BBD /* Projectile.m */; };
+		3B041758190DAC5700043156 /* itp382ewe_bg-jungle-iphone5hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B041755190DAC5700043156 /* itp382ewe_bg-jungle-iphone5hd.png */; };
+		3B04175A190DAC5700043156 /* jungle_node.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B041757190DAC5700043156 /* jungle_node.png */; };
+		3B04175C190DACB200043156 /* itp382sheep.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B04175B190DACB200043156 /* itp382sheep.png */; };
 		3B3154511905E55F0061BFC8 /* grass-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B3154501905E55F0061BFC8 /* grass-2.png */; };
 		3B5B38E718FBAEAC0064D669 /* asteroid.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B5B38E618FBAEAC0064D669 /* asteroid.png */; };
 		3B5B38E918FBBE020064D669 /* ewe_mothership.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B5B38E818FBBE020064D669 /* ewe_mothership.png */; };
@@ -24,14 +27,11 @@
 		3B5B38FB18FBF9CD0064D669 /* grass.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B5B38FA18FBF9CD0064D669 /* grass.png */; };
 		3B7F57D018EA644200B8A237 /* NodeGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7F57CF18EA644200B8A237 /* NodeGenerator.m */; };
 		3BC52A7318EA676F00A35420 /* NodePattern.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC52A7218EA676F00A35420 /* NodePattern.m */; };
-		3BD376D118FB635200A990BB /* itp382sheep.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BD376CE18FB635200A990BB /* itp382sheep.png */; };
 		5688381718F38DFB00A79F78 /* Enemy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5688381618F38DFB00A79F78 /* Enemy.m */; };
 		5688381A18F3902200A79F78 /* EnemyGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5688381918F3902200A79F78 /* EnemyGenerator.m */; };
 		C3482F1F190C912F0027DE9D /* GameplayVariables.m in Sources */ = {isa = PBXBuildFile; fileRef = C3482F1E190C912F0027DE9D /* GameplayVariables.m */; };
 		C3482F21190CA1CD0027DE9D /* enemy_monkey.png in Resources */ = {isa = PBXBuildFile; fileRef = C3482F20190CA1CD0027DE9D /* enemy_monkey.png */; };
-		C3482F23190CA1D50027DE9D /* itp382ewe_bg-jungle.png in Resources */ = {isa = PBXBuildFile; fileRef = C3482F22190CA1D50027DE9D /* itp382ewe_bg-jungle.png */; };
 		C3482F26190CA6090027DE9D /* ewe_missile-jng.png in Resources */ = {isa = PBXBuildFile; fileRef = C3482F24190CA6090027DE9D /* ewe_missile-jng.png */; };
-		C3482F27190CA6090027DE9D /* jungle_node.png in Resources */ = {isa = PBXBuildFile; fileRef = C3482F25190CA6090027DE9D /* jungle_node.png */; };
 		C350D6D118FBBE8300D1B662 /* Boss.m in Sources */ = {isa = PBXBuildFile; fileRef = C350D6D018FBBE8300D1B662 /* Boss.m */; };
 		C37A37CF18FA613E0064C912 /* Powerup.m in Sources */ = {isa = PBXBuildFile; fileRef = C37A37CE18FA613E0064C912 /* Powerup.m */; };
 		C37A37D218FA66B60064C912 /* PowerupGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = C37A37D118FA66B60064C912 /* PowerupGenerator.m */; };
@@ -282,6 +282,9 @@
 		0023EA6018F398C700C27528 /* Grass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Grass.m; sourceTree = "<group>"; };
 		00DEC67F18FB74A900382BBD /* Projectile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Projectile.h; path = Classes/Projectile.h; sourceTree = "<group>"; };
 		00DEC68018FB74A900382BBD /* Projectile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Projectile.m; path = Classes/Projectile.m; sourceTree = "<group>"; };
+		3B041755190DAC5700043156 /* itp382ewe_bg-jungle-iphone5hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "itp382ewe_bg-jungle-iphone5hd.png"; path = "Resources/itp382ewe_bg-jungle-iphone5hd.png"; sourceTree = "<group>"; };
+		3B041757190DAC5700043156 /* jungle_node.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = jungle_node.png; path = Resources/jungle_node.png; sourceTree = "<group>"; };
+		3B04175B190DACB200043156 /* itp382sheep.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = itp382sheep.png; path = Resources/itp382sheep.png; sourceTree = "<group>"; };
 		3B3154501905E55F0061BFC8 /* grass-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "grass-2.png"; path = "Resources/grass-2.png"; sourceTree = "<group>"; };
 		3B5B38E618FBAEAC0064D669 /* asteroid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = asteroid.png; path = Resources/asteroid.png; sourceTree = "<group>"; };
 		3B5B38E818FBBE020064D669 /* ewe_mothership.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ewe_mothership.png; path = Resources/ewe_mothership.png; sourceTree = "<group>"; };
@@ -298,7 +301,6 @@
 		3B7F57CF18EA644200B8A237 /* NodeGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NodeGenerator.m; path = Classes/NodeGenerator.m; sourceTree = "<group>"; };
 		3BC52A7118EA676E00A35420 /* NodePattern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NodePattern.h; path = Classes/NodePattern.h; sourceTree = "<group>"; };
 		3BC52A7218EA676F00A35420 /* NodePattern.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NodePattern.m; path = Classes/NodePattern.m; sourceTree = "<group>"; };
-		3BD376CE18FB635200A990BB /* itp382sheep.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = itp382sheep.png; path = Resources/itp382sheep.png; sourceTree = "<group>"; };
 		5688381518F38DFB00A79F78 /* Enemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Enemy.h; sourceTree = "<group>"; };
 		5688381618F38DFB00A79F78 /* Enemy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Enemy.m; sourceTree = "<group>"; };
 		5688381818F3902200A79F78 /* EnemyGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EnemyGenerator.h; path = Classes/EnemyGenerator.h; sourceTree = "<group>"; };
@@ -306,9 +308,7 @@
 		C3482F1D190C912F0027DE9D /* GameplayVariables.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameplayVariables.h; sourceTree = "<group>"; };
 		C3482F1E190C912F0027DE9D /* GameplayVariables.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameplayVariables.m; sourceTree = "<group>"; };
 		C3482F20190CA1CD0027DE9D /* enemy_monkey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enemy_monkey.png; sourceTree = "<group>"; };
-		C3482F22190CA1D50027DE9D /* itp382ewe_bg-jungle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "itp382ewe_bg-jungle.png"; sourceTree = "<group>"; };
 		C3482F24190CA6090027DE9D /* ewe_missile-jng.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ewe_missile-jng.png"; sourceTree = "<group>"; };
-		C3482F25190CA6090027DE9D /* jungle_node.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jungle_node.png; sourceTree = "<group>"; };
 		C350D6CF18FBBE8300D1B662 /* Boss.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Boss.h; sourceTree = "<group>"; };
 		C350D6D018FBBE8300D1B662 /* Boss.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Boss.m; sourceTree = "<group>"; };
 		C37A37CD18FA613E0064C912 /* Powerup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Powerup.h; sourceTree = "<group>"; };
@@ -864,8 +864,9 @@
 		D13104A118EA18500093C94A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				3B04175B190DACB200043156 /* itp382sheep.png */,
+				3B041757190DAC5700043156 /* jungle_node.png */,
 				C3482F24190CA6090027DE9D /* ewe_missile-jng.png */,
-				C3482F25190CA6090027DE9D /* jungle_node.png */,
 				C3482F20190CA1CD0027DE9D /* enemy_monkey.png */,
 				3B3154501905E55F0061BFC8 /* grass-2.png */,
 				C3E25C4418FC997700EB23D2 /* Sounds */,
@@ -881,7 +882,6 @@
 				3B5B38EA18FBE23E0064D669 /* ewe_missile.png */,
 				3B5B38E818FBBE020064D669 /* ewe_mothership.png */,
 				3B5B38E618FBAEAC0064D669 /* asteroid.png */,
-				3BD376CE18FB635200A990BB /* itp382sheep.png */,
 				D13104A218EA18500093C94A /* Default.png */,
 				D13104A418EA18500093C94A /* Default@2x.png */,
 				D13104A618EA18500093C94A /* Default-568h@2x.png */,
@@ -1747,7 +1747,7 @@
 		D1A613CE18FBCB0E00E1887B /* Backgrounds */ = {
 			isa = PBXGroup;
 			children = (
-				C3482F22190CA1D50027DE9D /* itp382ewe_bg-jungle.png */,
+				3B041755190DAC5700043156 /* itp382ewe_bg-jungle-iphone5hd.png */,
 				D1A613D918FBCE2100E1887B /* itp382ewe_bg.png */,
 				D1A613CF18FBCB2B00E1887B /* itp382ewe_bg-iphone5hd.png */,
 				D1A613D218FBCB2B00E1887B /* itp382ewe_title2.png */,
@@ -1826,7 +1826,6 @@
 			files = (
 				C3E25C5A18FCA3AA00EB23D2 /* bomb.mp3 in Resources */,
 				3B5B38F118FBEBFC0064D669 /* shield_boost.png in Resources */,
-				C3482F23190CA1D50027DE9D /* itp382ewe_bg-jungle.png in Resources */,
 				D13104A518EA18500093C94A /* Default@2x.png in Resources */,
 				3B5B38E718FBAEAC0064D669 /* asteroid.png in Resources */,
 				3B5B38F618FBF36E0064D669 /* puff_bomb.png in Resources */,
@@ -1836,7 +1835,6 @@
 				D13106BC18EA18520093C94A /* LICENSE_CCBReader.txt in Resources */,
 				D13104AE18EA18500093C94A /* Icon@2x.png in Resources */,
 				D126F4EF1905EE81005520C7 /* Blip_Select115.wav in Resources */,
-				3BD376D118FB635200A990BB /* itp382sheep.png in Resources */,
 				D13104C018EA18500093C94A /* Icon-Small@2x.png in Resources */,
 				D1A613D418FBCB2B00E1887B /* itp382ewe_bg-iphone5hd.png in Resources */,
 				3B5B38F018FBEBFC0064D669 /* puff_boost.png in Resources */,
@@ -1864,7 +1862,10 @@
 				C3E25C5618FCA2C800EB23D2 /* projectile.mp3 in Resources */,
 				C3E25C5018FCA0C100EB23D2 /* bossDeath.mp3 in Resources */,
 				D13105FE18EA18510093C94A /* LICENSE_cocos2d.txt in Resources */,
+				3B04175C190DACB200043156 /* itp382sheep.png in Resources */,
 				D13104A718EA18500093C94A /* Default-568h@2x.png in Resources */,
+				3B04175A190DAC5700043156 /* jungle_node.png in Resources */,
+				3B041758190DAC5700043156 /* itp382ewe_bg-jungle-iphone5hd.png in Resources */,
 				C3E25C5C18FCA86F00EB23D2 /* sheepHit.mp3 in Resources */,
 				3B5B38F918FBF63C0064D669 /* missile_boost.png in Resources */,
 				D13104C718EA18500093C94A /* iTunesArtwork in Resources */,
@@ -1876,7 +1877,6 @@
 				D13104C418EA18500093C94A /* Icon-Spotlight-iOS7@2x.png in Resources */,
 				3B5B38E918FBBE020064D669 /* ewe_mothership.png in Resources */,
 				3B5B38EF18FBEBFC0064D669 /* health_boost.png in Resources */,
-				C3482F27190CA6090027DE9D /* jungle_node.png in Resources */,
 				D13104B418EA18500093C94A /* Icon-76.png in Resources */,
 				D1A613DA18FBCE2100E1887B /* itp382ewe_bg.png in Resources */,
 				D131068A18EA18520093C94A /* ChangeLog in Resources */,
