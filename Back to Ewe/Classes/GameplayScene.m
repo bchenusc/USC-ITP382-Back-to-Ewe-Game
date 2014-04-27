@@ -158,8 +158,8 @@
     
     [self newGame];
     
-    NSMutableArray* files = [NSMutableArray arrayWithObjects:@"explode01.png", @"explode02.png", @"explode04.png", @"explode05.png", @"explode06.png", nil];
-    AnimatingSprite* exp = [[AnimatingSprite node] initWithFiles:files repeat:NO destroyOnFinish:YES delay:0.1f];
+   arr_explosion = [NSMutableArray arrayWithObjects:@"explode01.png", @"explode02.png", @"explode04.png", @"explode05.png", @"explode06.png", nil];
+    AnimatingSprite* exp = [[AnimatingSprite node] initWithFiles:arr_explosion repeat:NO destroyOnFinish:YES delay:0.1f];
     exp.position = ccp(self.contentSize.width / 2, self.contentSize.height / 2);
     [self addChild: exp];
     
@@ -667,7 +667,10 @@
 -(BOOL) ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair projectile:(Projectile *)_projectile boss:(Boss *)boss {
     [[OALSimpleAudio sharedInstance] playEffect:BOSS_HIT_SOUND];
     [boss hitBossWithProjectile];
-    
+    AnimatingSprite* exp = [[AnimatingSprite node] initWithFiles:arr_explosion repeat:NO destroyOnFinish:YES delay:0.1f];
+    exp.position = ccp(_projectile.position.x, _projectile.position.y);
+    [self addChild: exp];
+    [physics removeChild:_projectile];
     return YES;
 }
 
@@ -716,8 +719,10 @@
 }
 
 -(BOOL) ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair projectile:(Projectile *)bullet border:(ScreenPhysicsBorders *)screenWall {
+    AnimatingSprite* exp = [[AnimatingSprite node] initWithFiles:arr_explosion repeat:NO destroyOnFinish:YES delay:0.1f];
+    exp.position = ccp(bullet.position.x, bullet.position.y);
+    [self addChild: exp];
     [physics removeChild:bullet];
-    
     return YES;
 }
 

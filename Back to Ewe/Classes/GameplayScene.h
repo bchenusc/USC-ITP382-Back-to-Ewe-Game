@@ -80,6 +80,9 @@
     CCSprite* m_Background1;
     CCSprite* m_Background2;
     NSMutableArray* m_Backgrounds;
+    
+    //Animation
+    NSMutableArray* arr_explosion;
 }
 
 // -----------------------------------------------------------------------
