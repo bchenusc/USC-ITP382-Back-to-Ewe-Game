@@ -878,7 +878,6 @@
 		D13104A018EA18500093C94A /* Back to Ewe */ = {
 			isa = PBXGroup;
 			children = (
-				3B041768190DC6A700043156 /* itp382sheep-2-shield.png */,
 				3B04175D190DBD0500043156 /* explosion */,
 				D13104A118EA18500093C94A /* Resources */,
 				D13104CA18EA18500093C94A /* Libraries */,
@@ -891,6 +890,7 @@
 		D13104A118EA18500093C94A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				3B041768190DC6A700043156 /* itp382sheep-2-shield.png */,
 				3B04175B190DACB200043156 /* itp382sheep.png */,
 				3B041757190DAC5700043156 /* jungle_node.png */,
 				C3482F24190CA6090027DE9D /* ewe_missile-jng.png */,
