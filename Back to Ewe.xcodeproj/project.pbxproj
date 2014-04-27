@@ -29,7 +29,7 @@
 		5688381A18F3902200A79F78 /* EnemyGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5688381918F3902200A79F78 /* EnemyGenerator.m */; };
 		C3482F1F190C912F0027DE9D /* GameplayVariables.m in Sources */ = {isa = PBXBuildFile; fileRef = C3482F1E190C912F0027DE9D /* GameplayVariables.m */; };
 		C3482F21190CA1CD0027DE9D /* enemy_monkey.png in Resources */ = {isa = PBXBuildFile; fileRef = C3482F20190CA1CD0027DE9D /* enemy_monkey.png */; };
-		C3482F23190CA1D50027DE9D /* itp382ewe_bg-jungle.png in Resources */ = {isa = PBXBuildFile; fileRef = C3482F22190CA1D50027DE9D /* itp382ewe_bg-jungle.png */; };
+		C3482F23190CA1D50027DE9D /* itp382ewe_bg-jungle-iphone5hd.png in Resources */ = {isa = PBXBuildFile; fileRef = C3482F22190CA1D50027DE9D /* itp382ewe_bg-jungle-iphone5hd.png */; };
 		C3482F26190CA6090027DE9D /* ewe_missile-jng.png in Resources */ = {isa = PBXBuildFile; fileRef = C3482F24190CA6090027DE9D /* ewe_missile-jng.png */; };
 		C3482F27190CA6090027DE9D /* jungle_node.png in Resources */ = {isa = PBXBuildFile; fileRef = C3482F25190CA6090027DE9D /* jungle_node.png */; };
 		C350D6D118FBBE8300D1B662 /* Boss.m in Sources */ = {isa = PBXBuildFile; fileRef = C350D6D018FBBE8300D1B662 /* Boss.m */; };
@@ -305,7 +305,7 @@
 		C3482F1D190C912F0027DE9D /* GameplayVariables.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameplayVariables.h; sourceTree = "<group>"; };
 		C3482F1E190C912F0027DE9D /* GameplayVariables.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameplayVariables.m; sourceTree = "<group>"; };
 		C3482F20190CA1CD0027DE9D /* enemy_monkey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enemy_monkey.png; sourceTree = "<group>"; };
-		C3482F22190CA1D50027DE9D /* itp382ewe_bg-jungle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "itp382ewe_bg-jungle.png"; sourceTree = "<group>"; };
+		C3482F22190CA1D50027DE9D /* itp382ewe_bg-jungle-iphone5hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "itp382ewe_bg-jungle-iphone5hd.png"; sourceTree = "<group>"; };
 		C3482F24190CA6090027DE9D /* ewe_missile-jng.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ewe_missile-jng.png"; sourceTree = "<group>"; };
 		C3482F25190CA6090027DE9D /* jungle_node.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jungle_node.png; sourceTree = "<group>"; };
 		C350D6CF18FBBE8300D1B662 /* Boss.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Boss.h; sourceTree = "<group>"; };
@@ -1742,7 +1742,7 @@
 		D1A613CE18FBCB0E00E1887B /* Backgrounds */ = {
 			isa = PBXGroup;
 			children = (
-				C3482F22190CA1D50027DE9D /* itp382ewe_bg-jungle.png */,
+				C3482F22190CA1D50027DE9D /* itp382ewe_bg-jungle-iphone5hd.png */,
 				D1A613D918FBCE2100E1887B /* itp382ewe_bg.png */,
 				D1A613CF18FBCB2B00E1887B /* itp382ewe_bg-iphone5hd.png */,
 				D1A613D218FBCB2B00E1887B /* itp382ewe_title2.png */,
@@ -1821,7 +1821,7 @@
 			files = (
 				C3E25C5A18FCA3AA00EB23D2 /* bomb.mp3 in Resources */,
 				3B5B38F118FBEBFC0064D669 /* shield_boost.png in Resources */,
-				C3482F23190CA1D50027DE9D /* itp382ewe_bg-jungle.png in Resources */,
+				C3482F23190CA1D50027DE9D /* itp382ewe_bg-jungle-iphone5hd.png in Resources */,
 				D13104A518EA18500093C94A /* Default@2x.png in Resources */,
 				3B5B38E718FBAEAC0064D669 /* asteroid.png in Resources */,
 				3B5B38F618FBF36E0064D669 /* puff_bomb.png in Resources */,
