@@ -41,10 +41,10 @@
 
 - (void) breakString;
 
-- (void) hitEnemy;
+- (BOOL) hitEnemy;
 
 - (void) reset;
 
--(void) spinIntoCenter;
+- (void) spinIntoCenter;
 
 @end
