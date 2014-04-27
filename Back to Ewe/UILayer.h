@@ -9,12 +9,14 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 #import "CCButton.h"
+#import "UIWoolMeter.h"
 
 @class GameplayScene;
 
 @interface UILayer : CCNode {
     float m_woolRemaining;
     float m_woolCapacity;
+    UIWoolMeter* m_WoolMeter;
     
     float m_healthRemaining;
     float m_healthCapacity;

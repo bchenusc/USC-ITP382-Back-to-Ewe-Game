@@ -12,6 +12,19 @@
 @interface UIWoolMeter : CCNode {
     CCClippingNode* m_WoolFrame;
     CCSprite* m_Stick;
+    CCSprite* m_Wool;
+    CCNode* m_WoolFrameStencil;
+    
+    float m_WoolModifier;
 }
+
+@property float Wool;
+
+/**
+ Sets the proportion of the wool that is shown.
+ 
+ @param newWool Number from 0.0f to 1.0f that shows proportion of the wool that will be shown.
+ */
+- (void) setCurrentWool:(float) newWool;
 
 @end
