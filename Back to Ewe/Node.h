@@ -8,24 +8,22 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
-
-@class GameplayScene;
+#import "GameplayScene.h"
 
 @interface Node : CCNode {
     CGFloat m_Radius;
     GameplayScene* m_GameplayScene;
     bool m_BeingRemoved;
     CGFloat m_ShrinkTime;
-    CCSprite* sprite;
 }
 
 @property (readonly) CGFloat radius;
 
+- (void) initWithSprite:(enum GameLevel) level;
+
 - (void) setGameplayScene:(GameplayScene*)g;
 
 - (void) shrinkAndRemove;
-
-- (void) setSprite:(CCSprite*) newSprite;
 
 - (CGRect) rect;
 

@@ -16,7 +16,7 @@
 #import "Powerup.h"
 #import "ScreenPhysicsBorders.h"
 #import "Projectile.h"
-#import "CCActionInterval.h"
+#import "CCActionInterval.h" 
 
 // -----------------------------------------------------------------------
 #define BACKGROUND_MUSIC @"bgmusic.mp3"
@@ -137,7 +137,7 @@
     m_HighScoresLayer = [HighScoresScene node];
     
     // Levels
-    currentLevel = level1;
+    currentLevel = space;
     
     m_Paused = NO;
     
@@ -729,7 +729,6 @@
                     [[OALSimpleAudio sharedInstance] playEffect:BOING_SOUND];
                     [n shrinkAndRemove];
                     m_UILayer.Wool = m_Sheep.CurrentWool;
-                    [n setSprite:[CCSprite spriteWithImageNamed:[m_NodeSprites objectAtIndex:currentLevel]]];
                 } else {
                     [[OALSimpleAudio sharedInstance] playEffect:OUT_OF_WOOLF_SOUND];
                 }

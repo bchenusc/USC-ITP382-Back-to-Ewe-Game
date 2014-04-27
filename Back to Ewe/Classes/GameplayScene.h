@@ -11,7 +11,6 @@
 #import "cocos2d.h"
 #import "Sheep.h"
 #import "UILayer.h"
-@class NodeGenerator;
 #import "NodeGenerator.h"
 #import "EnemyGenerator.h"
 #import "GrassGenerator.h"
@@ -20,6 +19,12 @@
 #import "HighScoresScene.h"
 
 // -----------------------------------------------------------------------
+
+enum GameLevel {
+    space = 0,
+    jungle,
+    TOTAL_LEVELS
+} GameLevel;
 
 /**
  *  The main scene
@@ -79,11 +84,7 @@
     CCSprite* m_Background2;
     NSMutableArray* m_Backgrounds;
     
-    enum gameLevel {
-        level1 = 0,
-        level2,
-    };
-    enum gameLevel currentLevel;
+    enum GameLevel currentLevel;
 }
 
 // -----------------------------------------------------------------------
