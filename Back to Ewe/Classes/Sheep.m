@@ -7,6 +7,7 @@
 //
 
 #import "Sheep.h"
+#import "CCTextureCache.h"
 
 @interface SheepPowerup : NSObject {
     CGFloat duration;
@@ -113,8 +114,8 @@
         m_currentHealth = m_maxHealth;
         
         m_CurrentPowerups = [NSMutableArray new];
-        [m_CurrentPowerups addObject:[[[SheepPowerup alloc] init] initWithType:shield]];
-        [m_CurrentPowerups addObject:[[[SheepPowerup alloc] init] initWithType:unlimitedWool]];
+        [m_CurrentPowerups addObject:[[SheepPowerup new] initWithType:shield]];
+        [m_CurrentPowerups addObject:[[SheepPowerup new] initWithType:unlimitedWool]];
         
         m_numPuffBombs = 0;
     }
@@ -165,6 +166,11 @@
 }
 
 -(void) addPowerup:(enum PowerupType)powerup {
+    if (powerup == shield) {
+        [self setTexture:[[CCTextureCache sharedTextureCache] addImage:@"itp382sheep-2-shield.png"]];
+        [self scheduleOnce:@selector(resetSprite) delay:8.0f];
+    }
+    
     for (SheepPowerup* sp in m_CurrentPowerups) {
         if (sp.type == powerup) {
             [sp activate];
@@ -190,10 +196,17 @@
     return NO;
 }
 
+- (void) resetSprite {
+    [self setTexture:[[CCTextureCache sharedTextureCache] addImage:@"itp382sheep.png"]];
+    [self unscheduleAllSelectors];
+}
+
 - (void) reset {
     for (SheepPowerup* sp in m_CurrentPowerups) {
         [sp deactivate];
     }
+    
+    [self resetSprite];
 }
 
 - (void) update:(CCTime)delta {
@@ -230,6 +243,7 @@
     self.physicsBody.sensor = NO;
     self.physicsBody.affectedByGravity = YES;
     self.scale = 1.0f;
+    [self setTexture:[[CCTextureCache sharedTextureCache] addImage:@"itp382sheep.png"]];
 }
 
 @end

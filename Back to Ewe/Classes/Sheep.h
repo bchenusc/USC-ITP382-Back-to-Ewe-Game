@@ -43,6 +43,8 @@
 
 - (BOOL) hitEnemy;
 
+- (void) resetSprite;
+
 - (void) reset;
 
 - (void) spinIntoCenter;

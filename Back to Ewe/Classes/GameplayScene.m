@@ -530,6 +530,7 @@
         m_Dead = YES;
         m_Sheep.visible = NO;
         m_Sheep.physicsBody.velocity = ccp(0,0);
+        [m_Sheep resetSprite];
         if (m_Sheep.attachedNode) {
             [m_Sheep breakString];
         }
