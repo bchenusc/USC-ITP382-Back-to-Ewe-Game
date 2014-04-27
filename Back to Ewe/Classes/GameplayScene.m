@@ -754,6 +754,7 @@
                     [[OALSimpleAudio sharedInstance] playEffect:BOING_SOUND];
                     [n shrinkAndRemove];
                     m_UILayer.Wool = m_Sheep.CurrentWool;
+                    [m_UILayer setWoolMeter:0.0f];
                 } else {
                     [[OALSimpleAudio sharedInstance] playEffect:OUT_OF_WOOLF_SOUND];
                 }

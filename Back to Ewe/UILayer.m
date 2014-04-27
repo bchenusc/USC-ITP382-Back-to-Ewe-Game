@@ -184,6 +184,10 @@
     m_livesLabel.string = [NSString stringWithFormat:@"Lives: %d", lives];
 }
 
+- (void) setWoolMeter:(float)wool {
+    [m_WoolMeter setWool:wool];
+}
+
 -(void)setBombsButtonActive {
     m_bombsButton.visible = YES;
 }

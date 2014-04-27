@@ -52,6 +52,7 @@
 
 - (void) setScoreLabel:(CGFloat)score;
 - (void) setLivesLabel:(int)lives;
+- (void) setWoolMeter:(float)wool;
 - (void) setBombsButtonActive;
 - (void) setBombsButtonInactive;
 - (void) showBossAlertLabel:(NSString*)vulnerability;;

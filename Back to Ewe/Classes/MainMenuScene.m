@@ -56,6 +56,7 @@
     [highScoreButton setTarget:self selector:@selector(onScoresClicked:)];
     [self addChild:highScoreButton];
     
+    
 	return self;
 }
 
