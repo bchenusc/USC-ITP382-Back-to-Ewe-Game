@@ -505,7 +505,7 @@
         [nodesToDelete addObject:[nodes objectAtIndex:(nodes.count - 1)]];
     }*/
     n.position = point;
-    n.rotation = arc4random_uniform(360);
+    n.rotation = (int)arc4random_uniform(90) - 45;
     [n setGameplayScene:self];
     [nodes addObject:n];
     [physics addChild:n];
@@ -767,11 +767,8 @@
     
     // Check if user clicked on a node
     CGPoint touchLoc = [touch locationInNode:self];
-    bool nodeTouched = NO;
     for (Node* n in nodes) {
         if ([n isPointInNode:touchLoc]) {
-            nodeTouched = YES;
-            
             if (n != m_Sheep.attachedNode) {
                 if ([m_Sheep stringToNode:n]) {
                     [[OALSimpleAudio sharedInstance] playEffect:BOING_SOUND];
@@ -783,11 +780,18 @@
             }
         }
     }
-    
-    // If node wasn't touched, break the current Wool
-    if (!nodeTouched) {
-        [m_Sheep breakString];
+}
+
+- (void) touchEnded:(UITouch *)touch withEvent:(UIEvent *)event {
+    if (m_Paused) {
+        return;
     }
+    
+    if (m_Dead) {
+        return;
+    }
+    
+    [m_Sheep breakString];
 }
 
 @end
