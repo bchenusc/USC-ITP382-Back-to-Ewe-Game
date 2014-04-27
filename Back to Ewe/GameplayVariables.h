@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "cocos2d.h"
 
 enum GameLevel {
     space = 0,
@@ -15,8 +14,14 @@ enum GameLevel {
     TOTAL_LEVELS
 };
 
-@interface GameplayVariables : CCNode {
-    
+@interface GameplayVariables : NSObject {
+    enum GameLevel m_CurrentLevel;
 }
+
+@property enum GameLevel CurrentLevel;
+
++(GameplayVariables *)get;
+
+-(void)switchCurrentLevel;
 
 @end

@@ -8,6 +8,7 @@
 
 #import "Node.h"
 #import "GameplayScene.h"
+#import "GameplayVariables.h"
 
 @implementation Node
 
@@ -16,7 +17,18 @@
 - (instancetype) init {
     self = [super init];
     if (self) {
-        CCSprite* sprite = [CCSprite spriteWithImageNamed:@"grass.png"];
+        CCSprite* sprite;
+        switch([GameplayVariables get].CurrentLevel) {
+            case space:
+                sprite = [CCSprite spriteWithImageNamed:@"grass.png"];
+                break;
+            case jungle:
+                sprite = [CCSprite spriteWithImageNamed:@"asteroid.png"];
+                break;
+            default:
+                sprite = [CCSprite spriteWithImageNamed:@"grass.png"];
+                break;
+        }
         sprite.position = ccp(0, 0);
         [self addChild:sprite];
         
@@ -35,11 +47,6 @@
     }
     return self;
 }
-
-- (void) initWithSprite:(enum GameLevel)level {
-    
-}
-
 
 - (void) update:(CCTime)delta {
     if (m_BeingRemoved) {

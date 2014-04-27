@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 @class GameplayScene;
-#import "GameplayVariables.h"
 
 @interface Node : CCNode {
     CGFloat m_Radius;
@@ -19,8 +18,6 @@
 }
 
 @property (readonly) CGFloat radius;
-
-- (void) initWithSprite:(enum GameLevel) level;
 
 - (void) setGameplayScene:(GameplayScene*)g;
 

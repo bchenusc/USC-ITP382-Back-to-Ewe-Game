@@ -11,4 +11,23 @@
 
 @implementation GameplayVariables
 
++(GameplayVariables *)get {
+    static dispatch_once_t once;
+    static GameplayVariables* instance;
+    dispatch_once(&once, ^{
+        instance = [[GameplayVariables alloc] init];
+    });
+    return instance;
+}
+
+@synthesize CurrentLevel = m_CurrentLevel;
+
+-(void)switchCurrentLevel {
+    enum GameLevel previousLevel = m_CurrentLevel;
+    while(previousLevel == m_CurrentLevel) {
+        m_CurrentLevel = arc4random() % TOTAL_LEVELS;
+    }
+    m_CurrentLevel =jungle;
+}
+
 @end

@@ -18,7 +18,6 @@
 #import "PowerupGenerator.h"
 #import "Boss.h"
 #import "HighScoresScene.h"
-#import "GameplayVariables.h"
 
 // -----------------------------------------------------------------------
 
@@ -79,8 +78,6 @@
     CCSprite* m_Background1;
     CCSprite* m_Background2;
     NSMutableArray* m_Backgrounds;
-    
-    enum GameLevel currentLevel;
 }
 
 // -----------------------------------------------------------------------
