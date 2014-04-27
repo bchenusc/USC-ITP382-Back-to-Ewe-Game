@@ -892,6 +892,7 @@
 		D13104A118EA18500093C94A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				3B041768190DC6A700043156 /* itp382sheep-2-shield.png */,
 				3B04176C190DCFB800043156 /* ewe_gorilla.png */,
 				3B04175B190DACB200043156 /* itp382sheep.png */,
 				3B041757190DAC5700043156 /* jungle_node.png */,
