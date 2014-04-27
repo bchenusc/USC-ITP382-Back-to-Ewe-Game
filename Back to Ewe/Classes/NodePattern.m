@@ -252,10 +252,10 @@ scrollPosition = [self ScrollPosition];
                                                   topLeftY)];
     //Top node
     if (topLeftY > topRightY){
-        topNodePosition =ccp(0, topLeftY + 200);
+        topNodePosition =ccp(0, topLeftY + 100);
         
     }else{
-        topNodePosition =ccp(0, topRightY + 200);
+        topNodePosition =ccp(0, topRightY + 100);
     }
     [gameplayScene setNewNodePoint:topNodePosition];
     return scrollPosition;

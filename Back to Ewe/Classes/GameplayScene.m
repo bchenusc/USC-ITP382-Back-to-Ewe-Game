@@ -158,7 +158,7 @@
     
     [self newGame];
     
-    NSMutableArray* files = [NSMutableArray arrayWithObjects:@"grass.png", @"grass-2.png", nil];
+    NSMutableArray* files = [NSMutableArray arrayWithObjects:@"explode01.png", @"explode02.png", @"explode03.png", @"explode04.png", @"explode05.png", @"explode06.png", nil];
     AnimatingSprite* exp = [[AnimatingSprite node] initWithFiles:files repeat:NO destroyOnFinish:YES delay:0.1f];
     exp.position = ccp(self.contentSize.width / 2, self.contentSize.height / 2);
     [self addChild: exp];
