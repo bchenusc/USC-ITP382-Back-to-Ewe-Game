@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		001B61B518FA0D04006EFCE0 /* GrassGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 001B61B418FA0D04006EFCE0 /* GrassGenerator.m */; };
 		0023EA6118F398C700C27528 /* Grass.m in Sources */ = {isa = PBXBuildFile; fileRef = 0023EA6018F398C700C27528 /* Grass.m */; };
+		00716982190D994800A771E5 /* ClippingNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 00716981190D994800A771E5 /* ClippingNode.m */; };
 		00DEC68118FB74A900382BBD /* Projectile.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DEC68018FB74A900382BBD /* Projectile.m */; };
 		3B3154511905E55F0061BFC8 /* grass-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B3154501905E55F0061BFC8 /* grass-2.png */; };
 		3B5B38E718FBAEAC0064D669 /* asteroid.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B5B38E618FBAEAC0064D669 /* asteroid.png */; };
@@ -279,6 +280,8 @@
 		001B61B418FA0D04006EFCE0 /* GrassGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GrassGenerator.m; path = Classes/GrassGenerator.m; sourceTree = "<group>"; };
 		0023EA5F18F398C700C27528 /* Grass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Grass.h; sourceTree = "<group>"; };
 		0023EA6018F398C700C27528 /* Grass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Grass.m; sourceTree = "<group>"; };
+		00716980190D994800A771E5 /* ClippingNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ClippingNode.h; path = Classes/ClippingNode.h; sourceTree = "<group>"; };
+		00716981190D994800A771E5 /* ClippingNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ClippingNode.m; path = Classes/ClippingNode.m; sourceTree = "<group>"; };
 		00DEC67F18FB74A900382BBD /* Projectile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Projectile.h; path = Classes/Projectile.h; sourceTree = "<group>"; };
 		00DEC68018FB74A900382BBD /* Projectile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Projectile.m; path = Classes/Projectile.m; sourceTree = "<group>"; };
 		3B3154501905E55F0061BFC8 /* grass-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "grass-2.png"; path = "Resources/grass-2.png"; sourceTree = "<group>"; };
@@ -1697,6 +1700,8 @@
 			children = (
 				D131073018EA18520093C94A /* AppDelegate.h */,
 				D131073118EA18520093C94A /* AppDelegate.m */,
+				00716980190D994800A771E5 /* ClippingNode.h */,
+				00716981190D994800A771E5 /* ClippingNode.m */,
 				5688381518F38DFB00A79F78 /* Enemy.h */,
 				5688381618F38DFB00A79F78 /* Enemy.m */,
 				5688381818F3902200A79F78 /* EnemyGenerator.h */,
@@ -1983,6 +1988,7 @@
 				D131064B18EA18510093C94A /* mach_timing.c in Sources */,
 				D131062F18EA18510093C94A /* ALListener.m in Sources */,
 				D131050818EA18500093C94A /* ccFPSImages.m in Sources */,
+				00716982190D994800A771E5 /* ClippingNode.m in Sources */,
 				D13105DF18EA18510093C94A /* ccUtils.c in Sources */,
 				D131055018EA18510093C94A /* CCPhysicsShape.m in Sources */,
 				D131055818EA18510093C94A /* CCRenderTexture.m in Sources */,
