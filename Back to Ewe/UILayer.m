@@ -93,6 +93,7 @@
         
         // BOSS ALERT LABEL
         m_BossAlertLabel = [CCLabelTTF labelWithString:@"BOSS DETECTED" fontName:@"Verdana-Bold" fontSize:18.0f];
+        m_BossAlertLabel.horizontalAlignment =  CCTextAlignmentCenter;
         m_BossAlertLabel.visible = NO;
         m_BossAlertLabel.positionType = CCPositionTypeNormalized;
         m_BossAlertLabel.position = ccp(0.5f, 0.5f);

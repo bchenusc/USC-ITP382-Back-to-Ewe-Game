@@ -610,8 +610,8 @@
 }
 
 -(BOOL) ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair sheep:(Sheep *)_sheep boss:(Boss* )boss {
-    [[OALSimpleAudio sharedInstance] playEffect:BOSS_HIT_SOUND];
-    [boss hitBossWithSheep];
+    //[[OALSimpleAudio sharedInstance] playEffect:BOSS_HIT_SOUND];
+    //[boss hitBossWithSheep];
     
     return YES;
 }

@@ -45,7 +45,7 @@
         m_BossType = spaceBoss;
         
         m_Health = 100;
-        m_DamageFromProjectile = 15;
+        m_DamageFromProjectile = 25;
         m_DamageFromSheep = 35;
         
         m_CanTakeDamage = YES;
