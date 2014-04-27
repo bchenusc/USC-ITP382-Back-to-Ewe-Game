@@ -8,7 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
-#import "GameplayScene.h"
+@class GameplayScene;
+#import "GameplayVariables.h"
 
 @interface Node : CCNode {
     CGFloat m_Radius;

@@ -137,7 +137,7 @@
     m_HighScoresLayer = [HighScoresScene node];
     
     // Levels
-    currentLevel = space;
+    //currentLevel = space;
     
     m_Paused = NO;
     

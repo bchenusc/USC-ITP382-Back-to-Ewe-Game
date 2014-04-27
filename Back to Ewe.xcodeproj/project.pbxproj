@@ -27,6 +27,7 @@
 		3BD376D118FB635200A990BB /* itp382sheep.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BD376CE18FB635200A990BB /* itp382sheep.png */; };
 		5688381718F38DFB00A79F78 /* Enemy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5688381618F38DFB00A79F78 /* Enemy.m */; };
 		5688381A18F3902200A79F78 /* EnemyGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5688381918F3902200A79F78 /* EnemyGenerator.m */; };
+		C3482F1F190C912F0027DE9D /* GameplayVariables.m in Sources */ = {isa = PBXBuildFile; fileRef = C3482F1E190C912F0027DE9D /* GameplayVariables.m */; };
 		C350D6D118FBBE8300D1B662 /* Boss.m in Sources */ = {isa = PBXBuildFile; fileRef = C350D6D018FBBE8300D1B662 /* Boss.m */; };
 		C37A37CF18FA613E0064C912 /* Powerup.m in Sources */ = {isa = PBXBuildFile; fileRef = C37A37CE18FA613E0064C912 /* Powerup.m */; };
 		C37A37D218FA66B60064C912 /* PowerupGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = C37A37D118FA66B60064C912 /* PowerupGenerator.m */; };
@@ -297,6 +298,8 @@
 		5688381618F38DFB00A79F78 /* Enemy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Enemy.m; sourceTree = "<group>"; };
 		5688381818F3902200A79F78 /* EnemyGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EnemyGenerator.h; path = Classes/EnemyGenerator.h; sourceTree = "<group>"; };
 		5688381918F3902200A79F78 /* EnemyGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EnemyGenerator.m; path = Classes/EnemyGenerator.m; sourceTree = "<group>"; };
+		C3482F1D190C912F0027DE9D /* GameplayVariables.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameplayVariables.h; sourceTree = "<group>"; };
+		C3482F1E190C912F0027DE9D /* GameplayVariables.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameplayVariables.m; sourceTree = "<group>"; };
 		C350D6CF18FBBE8300D1B662 /* Boss.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Boss.h; sourceTree = "<group>"; };
 		C350D6D018FBBE8300D1B662 /* Boss.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Boss.m; sourceTree = "<group>"; };
 		C37A37CD18FA613E0064C912 /* Powerup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Powerup.h; sourceTree = "<group>"; };
@@ -1719,6 +1722,8 @@
 				00DEC68018FB74A900382BBD /* Projectile.m */,
 				C350D6CF18FBBE8300D1B662 /* Boss.h */,
 				C350D6D018FBBE8300D1B662 /* Boss.m */,
+				C3482F1D190C912F0027DE9D /* GameplayVariables.h */,
+				C3482F1E190C912F0027DE9D /* GameplayVariables.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -1988,6 +1993,7 @@
 				D131069918EA18520093C94A /* quaternion.c in Sources */,
 				D131054D18EA18510093C94A /* CCPhysicsNode.m in Sources */,
 				D131063318EA18510093C94A /* ALSoundSourcePool.m in Sources */,
+				C3482F1F190C912F0027DE9D /* GameplayVariables.m in Sources */,
 				D131054218EA18510093C94A /* CCParticleSystemBase.m in Sources */,
 				D13105D918EA18510093C94A /* CCColor.m in Sources */,
 				D131062618EA18510093C94A /* ALChannelSource.m in Sources */,

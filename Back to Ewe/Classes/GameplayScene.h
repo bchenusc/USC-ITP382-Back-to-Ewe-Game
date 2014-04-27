@@ -11,20 +11,16 @@
 #import "cocos2d.h"
 #import "Sheep.h"
 #import "UILayer.h"
+@class NodeGenerator;
 #import "NodeGenerator.h"
 #import "EnemyGenerator.h"
 #import "GrassGenerator.h"
 #import "PowerupGenerator.h"
 #import "Boss.h"
 #import "HighScoresScene.h"
+#import "GameplayVariables.h"
 
 // -----------------------------------------------------------------------
-
-enum GameLevel {
-    space = 0,
-    jungle,
-    TOTAL_LEVELS
-} GameLevel;
 
 /**
  *  The main scene
