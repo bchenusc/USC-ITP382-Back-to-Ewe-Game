@@ -262,6 +262,7 @@
 		D1BCE1D618EA4E6200C5FCC1 /* Sheep.m in Sources */ = {isa = PBXBuildFile; fileRef = D1BCE1D518EA4E6200C5FCC1 /* Sheep.m */; };
 		D1BCE1D918EA54D000C5FCC1 /* Node.m in Sources */ = {isa = PBXBuildFile; fileRef = D1BCE1D818EA54D000C5FCC1 /* Node.m */; };
 		D1BCE1DC18EA568D00C5FCC1 /* WoolString.m in Sources */ = {isa = PBXBuildFile; fileRef = D1BCE1DB18EA568D00C5FCC1 /* WoolString.m */; };
+		D1C355DB190DA9BE00E370E8 /* AnimatingSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = D1C355DA190DA9BE00E370E8 /* AnimatingSprite.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -770,6 +771,8 @@
 		D1BCE1D818EA54D000C5FCC1 /* Node.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Node.m; sourceTree = "<group>"; };
 		D1BCE1DA18EA568D00C5FCC1 /* WoolString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WoolString.h; sourceTree = "<group>"; };
 		D1BCE1DB18EA568D00C5FCC1 /* WoolString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WoolString.m; sourceTree = "<group>"; };
+		D1C355D9190DA9BE00E370E8 /* AnimatingSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimatingSprite.h; sourceTree = "<group>"; };
+		D1C355DA190DA9BE00E370E8 /* AnimatingSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimatingSprite.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1735,6 +1738,8 @@
 				C350D6D018FBBE8300D1B662 /* Boss.m */,
 				C3482F1D190C912F0027DE9D /* GameplayVariables.h */,
 				C3482F1E190C912F0027DE9D /* GameplayVariables.m */,
+				D1C355D9190DA9BE00E370E8 /* AnimatingSprite.h */,
+				D1C355DA190DA9BE00E370E8 /* AnimatingSprite.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -1917,6 +1922,7 @@
 				D13104FA18EA18500093C94A /* ccDeprecated.m in Sources */,
 				D131062918EA18510093C94A /* ALContext.m in Sources */,
 				D131050518EA18500093C94A /* CCDrawNode.m in Sources */,
+				D1C355DB190DA9BE00E370E8 /* AnimatingSprite.m in Sources */,
 				D13105D618EA18510093C94A /* CCFileUtils.m in Sources */,
 				D131065918EA18510093C94A /* OALTools.m in Sources */,
 				D131050F18EA18500093C94A /* ccGLStateCache.m in Sources */,

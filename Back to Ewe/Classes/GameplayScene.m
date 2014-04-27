@@ -18,6 +18,7 @@
 #import "Projectile.h"
 #import "CCActionInterval.h" 
 #import "GameplayVariables.h"
+#import "AnimatingSprite.h"
 
 // -----------------------------------------------------------------------
 #define BACKGROUND_MUSIC @"bgmusic.mp3"
@@ -156,6 +157,11 @@
     [[OALSimpleAudio sharedInstance] preloadEffect:OUT_OF_WOOLF_SOUND];
     
     [self newGame];
+    
+    NSMutableArray* files = [NSMutableArray arrayWithObjects:@"grass.png", @"grass-2.png", nil];
+    AnimatingSprite* exp = [[AnimatingSprite node] initWithFiles:files repeat:NO destroyOnFinish:YES delay:0.1f];
+    exp.position = ccp(self.contentSize.width / 2, self.contentSize.height / 2);
+    [self addChild: exp];
     
 	return self;
      
@@ -557,9 +563,9 @@
 }
 
 - (void) resetGame {
-    [self pause];
-    
     [self unscheduleAllSelectors];
+    
+    [self pause];
     
     [[OALSimpleAudio sharedInstance] stopAllEffects];
     
