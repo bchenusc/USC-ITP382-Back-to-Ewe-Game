@@ -23,7 +23,7 @@
                 sprite = [CCSprite spriteWithImageNamed:@"grass.png"];
                 break;
             case jungle:
-                sprite = [CCSprite spriteWithImageNamed:@"asteroid.png"];
+                sprite = [CCSprite spriteWithImageNamed:@"jungle_node.png"];
                 break;
             default:
                 sprite = [CCSprite spriteWithImageNamed:@"grass.png"];

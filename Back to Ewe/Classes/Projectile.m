@@ -7,7 +7,7 @@
 //
 
 #import "Projectile.h"
-
+#import "GameplayVariables.h"
 
 @implementation Projectile
 
@@ -36,7 +36,18 @@
         self.anchorPoint = ccp(0, 0);
         self.rotation = angle;
         
-        CCSprite* sprite = [CCSprite spriteWithImageNamed:@"ewe_missile.png"];
+        CCSprite* sprite;
+        switch([GameplayVariables get].CurrentLevel) {
+            case space:
+                sprite = [CCSprite spriteWithImageNamed:@"ewe_missile.png"];
+                break;
+            case jungle:
+                sprite = [CCSprite spriteWithImageNamed:@"ewe_missile-jng.png"];
+                break;
+            default:
+                sprite = [CCSprite spriteWithImageNamed:@"ewe_missile.png"];
+                break;
+        }
         sprite.position = ccp(0, 0);
         [self addChild:sprite];
         

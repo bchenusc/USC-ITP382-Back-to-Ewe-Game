@@ -17,6 +17,7 @@
 #import "ScreenPhysicsBorders.h"
 #import "Projectile.h"
 #import "CCActionInterval.h" 
+#import "GameplayVariables.h"
 
 // -----------------------------------------------------------------------
 #define BACKGROUND_MUSIC @"bgmusic.mp3"
@@ -381,6 +382,30 @@
     
     m_NextPowerupSpawnYPos = m_Score + powerupSpacing;
     nextEnemySpawnYPos = m_Score + enemySpacing;
+    
+    [[GameplayVariables get] switchCurrentLevel];
+    NSString* newBackgroundImages;
+    switch([GameplayVariables get].CurrentLevel) {
+        case space:
+            newBackgroundImages = @"itp382ewe_bg.png";
+            break;
+        case jungle:
+            newBackgroundImages = @"itp382ewe_bg-jungle.png";
+            break;
+        default:
+            newBackgroundImages = @"itp382ewe_bg.png";
+            break;
+    }
+    [self removeChild:m_Background1];
+    m_Background1 = [CCSprite spriteWithImageNamed:newBackgroundImages];
+    m_Background1.position = ccp(self.contentSize.width / 2, self.contentSize.height/2);
+    [m_Background1 setBlendFunc:(ccBlendFunc){GL_ONE,GL_ZERO}];
+    [self addChild:m_Background1 z:-1];
+    [self removeChild:m_Background2];
+    m_Background2 = [CCSprite spriteWithImageNamed:newBackgroundImages];
+    m_Background2.position = ccp(self.contentSize.width / 2, self.contentSize.height/2 + self.contentSize.height);
+    [m_Background2 setBlendFunc:(ccBlendFunc){GL_ONE,GL_ZERO}];
+    [self addChild:m_Background2 z:-1];
 }
 
 -(void)spawnNewPowerup {

@@ -7,7 +7,7 @@
 //
 
 #import "Enemy.h"
-//#import "chipmunk_unsafe.h"
+#import "GameplayVariables.h"
 
 
 @implementation Enemy
@@ -21,7 +21,17 @@
         CGSize winSize = [[CCDirector sharedDirector] viewSize];
         self.position = ccp(winSize.width / 2, winSize.height / 2);
         
-        sprite = [CCSprite spriteWithImageNamed:@"enemy_alien.png"];
+        switch([GameplayVariables get].CurrentLevel) {
+            case space:
+                sprite = [CCSprite spriteWithImageNamed:@"enemy_alien.png"];
+                break;
+            case jungle:
+                sprite = [CCSprite spriteWithImageNamed:@"enemy_monkey.png"];
+                break;
+            default:
+                sprite = [CCSprite spriteWithImageNamed:@"enemy_alien.png"];
+                break;
+        }
         sprite.position = ccp(0, 0);
         [self addChild:sprite];
         

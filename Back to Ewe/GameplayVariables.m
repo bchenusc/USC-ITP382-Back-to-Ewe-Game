@@ -27,7 +27,6 @@
     while(previousLevel == m_CurrentLevel) {
         m_CurrentLevel = arc4random() % TOTAL_LEVELS;
     }
-    m_CurrentLevel =jungle;
 }
 
 @end
