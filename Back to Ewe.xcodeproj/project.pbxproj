@@ -13,6 +13,7 @@
 		00716986190D9B4B00A771E5 /* ewe_wool-stick.png in Resources */ = {isa = PBXBuildFile; fileRef = 00716983190D9B4B00A771E5 /* ewe_wool-stick.png */; };
 		00716987190D9B4B00A771E5 /* ewe_wool-thread-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 00716984190D9B4B00A771E5 /* ewe_wool-thread-2.png */; };
 		00716988190D9B4B00A771E5 /* ewe_wool-thread.png in Resources */ = {isa = PBXBuildFile; fileRef = 00716985190D9B4B00A771E5 /* ewe_wool-thread.png */; };
+		0071698B190D9FD900A771E5 /* UIWoolMeter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0071698A190D9FD900A771E5 /* UIWoolMeter.m */; };
 		00DEC68118FB74A900382BBD /* Projectile.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DEC68018FB74A900382BBD /* Projectile.m */; };
 		3B3154511905E55F0061BFC8 /* grass-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B3154501905E55F0061BFC8 /* grass-2.png */; };
 		3B5B38E718FBAEAC0064D669 /* asteroid.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B5B38E618FBAEAC0064D669 /* asteroid.png */; };
@@ -288,6 +289,8 @@
 		00716983190D9B4B00A771E5 /* ewe_wool-stick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ewe_wool-stick.png"; path = "Resources/ewe_wool-stick.png"; sourceTree = "<group>"; };
 		00716984190D9B4B00A771E5 /* ewe_wool-thread-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ewe_wool-thread-2.png"; path = "Resources/ewe_wool-thread-2.png"; sourceTree = "<group>"; };
 		00716985190D9B4B00A771E5 /* ewe_wool-thread.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ewe_wool-thread.png"; path = "Resources/ewe_wool-thread.png"; sourceTree = "<group>"; };
+		00716989190D9FD900A771E5 /* UIWoolMeter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIWoolMeter.h; path = Classes/UIWoolMeter.h; sourceTree = "<group>"; };
+		0071698A190D9FD900A771E5 /* UIWoolMeter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIWoolMeter.m; path = Classes/UIWoolMeter.m; sourceTree = "<group>"; };
 		00DEC67F18FB74A900382BBD /* Projectile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Projectile.h; path = Classes/Projectile.h; sourceTree = "<group>"; };
 		00DEC68018FB74A900382BBD /* Projectile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Projectile.m; path = Classes/Projectile.m; sourceTree = "<group>"; };
 		3B3154501905E55F0061BFC8 /* grass-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "grass-2.png"; path = "Resources/grass-2.png"; sourceTree = "<group>"; };
@@ -1737,6 +1740,8 @@
 				C37BE8FC1905EB5E00D3DC75 /* HighScoresScene.m */,
 				D1AA4E1418EA6EED0030745C /* UILayer.h */,
 				D1AA4E1518EA6EED0030745C /* UILayer.m */,
+				00716989190D9FD900A771E5 /* UIWoolMeter.h */,
+				0071698A190D9FD900A771E5 /* UIWoolMeter.m */,
 				D1A995C118F398F90022C814 /* ScreenPhysicsBorders.h */,
 				D1A995C218F398F90022C814 /* ScreenPhysicsBorders.m */,
 				C37A37CD18FA613E0064C912 /* Powerup.h */,
@@ -2011,6 +2016,7 @@
 				D131057B18EA18510093C94A /* ccShaders.m in Sources */,
 				D131068F18EA18520093C94A /* matrix.c in Sources */,
 				00DEC68118FB74A900382BBD /* Projectile.m in Sources */,
+				0071698B190D9FD900A771E5 /* UIWoolMeter.m in Sources */,
 				D13105A118EA18510093C94A /* CCTiledMapLayer.m in Sources */,
 				D131073518EA18520093C94A /* GameplayScene.m in Sources */,
 				D131069518EA18520093C94A /* neon_matrix_impl.c in Sources */,
