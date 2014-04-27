@@ -7,7 +7,7 @@
 //
 
 #import "Node.h"
-#import "GameplayScene.h"
+//#import "GameplayScene.h"
 
 @implementation Node
 
@@ -16,7 +16,7 @@
 - (instancetype) init {
     self = [super init];
     if (self) {
-        sprite = [CCSprite spriteWithImageNamed:@"grass.png"];
+        CCSprite* sprite = [CCSprite spriteWithImageNamed:@"grass.png"];
         sprite.position = ccp(0, 0);
         [self addChild:sprite];
         
@@ -36,14 +36,10 @@
     return self;
 }
 
-- (void) setSprite:(CCSprite*) newSprite {
-    if (sprite) {
-        [self removeChild:sprite];
-    }
-    sprite = newSprite;
-    sprite.position = ccp(0,0);
-    [self addChild:sprite];
+- (void) initWithSprite:(enum GameLevel)level {
+    
 }
+
 
 - (void) update:(CCTime)delta {
     if (m_BeingRemoved) {
