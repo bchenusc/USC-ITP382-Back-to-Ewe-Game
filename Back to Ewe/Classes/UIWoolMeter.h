@@ -10,7 +10,8 @@
 #import "cocos2d.h"
 
 @interface UIWoolMeter : CCNode {
-    
+    CCClippingNode* m_WoolFrame;
+    CCSprite* m_Stick;
 }
 
 @end

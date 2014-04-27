@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		001B61B518FA0D04006EFCE0 /* GrassGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 001B61B418FA0D04006EFCE0 /* GrassGenerator.m */; };
 		0023EA6118F398C700C27528 /* Grass.m in Sources */ = {isa = PBXBuildFile; fileRef = 0023EA6018F398C700C27528 /* Grass.m */; };
-		00716982190D994800A771E5 /* ClippingNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 00716981190D994800A771E5 /* ClippingNode.m */; };
 		00716986190D9B4B00A771E5 /* ewe_wool-stick.png in Resources */ = {isa = PBXBuildFile; fileRef = 00716983190D9B4B00A771E5 /* ewe_wool-stick.png */; };
 		00716987190D9B4B00A771E5 /* ewe_wool-thread-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 00716984190D9B4B00A771E5 /* ewe_wool-thread-2.png */; };
 		00716988190D9B4B00A771E5 /* ewe_wool-thread.png in Resources */ = {isa = PBXBuildFile; fileRef = 00716985190D9B4B00A771E5 /* ewe_wool-thread.png */; };
@@ -284,8 +283,6 @@
 		001B61B418FA0D04006EFCE0 /* GrassGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GrassGenerator.m; path = Classes/GrassGenerator.m; sourceTree = "<group>"; };
 		0023EA5F18F398C700C27528 /* Grass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Grass.h; sourceTree = "<group>"; };
 		0023EA6018F398C700C27528 /* Grass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Grass.m; sourceTree = "<group>"; };
-		00716980190D994800A771E5 /* ClippingNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ClippingNode.h; path = Classes/ClippingNode.h; sourceTree = "<group>"; };
-		00716981190D994800A771E5 /* ClippingNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ClippingNode.m; path = Classes/ClippingNode.m; sourceTree = "<group>"; };
 		00716983190D9B4B00A771E5 /* ewe_wool-stick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ewe_wool-stick.png"; path = "Resources/ewe_wool-stick.png"; sourceTree = "<group>"; };
 		00716984190D9B4B00A771E5 /* ewe_wool-thread-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ewe_wool-thread-2.png"; path = "Resources/ewe_wool-thread-2.png"; sourceTree = "<group>"; };
 		00716985190D9B4B00A771E5 /* ewe_wool-thread.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ewe_wool-thread.png"; path = "Resources/ewe_wool-thread.png"; sourceTree = "<group>"; };
@@ -1712,8 +1709,6 @@
 			children = (
 				D131073018EA18520093C94A /* AppDelegate.h */,
 				D131073118EA18520093C94A /* AppDelegate.m */,
-				00716980190D994800A771E5 /* ClippingNode.h */,
-				00716981190D994800A771E5 /* ClippingNode.m */,
 				5688381518F38DFB00A79F78 /* Enemy.h */,
 				5688381618F38DFB00A79F78 /* Enemy.m */,
 				5688381818F3902200A79F78 /* EnemyGenerator.h */,
@@ -2005,7 +2000,6 @@
 				D131064B18EA18510093C94A /* mach_timing.c in Sources */,
 				D131062F18EA18510093C94A /* ALListener.m in Sources */,
 				D131050818EA18500093C94A /* ccFPSImages.m in Sources */,
-				00716982190D994800A771E5 /* ClippingNode.m in Sources */,
 				D13105DF18EA18510093C94A /* ccUtils.c in Sources */,
 				D131055018EA18510093C94A /* CCPhysicsShape.m in Sources */,
 				D131055818EA18510093C94A /* CCRenderTexture.m in Sources */,

@@ -11,4 +11,13 @@
 
 @implementation UIWoolMeter
 
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        m_WoolFrame = 
+    }
+    return self;
+}
 @end
