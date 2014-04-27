@@ -10,6 +10,9 @@
 		001B61B518FA0D04006EFCE0 /* GrassGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 001B61B418FA0D04006EFCE0 /* GrassGenerator.m */; };
 		0023EA6118F398C700C27528 /* Grass.m in Sources */ = {isa = PBXBuildFile; fileRef = 0023EA6018F398C700C27528 /* Grass.m */; };
 		00716982190D994800A771E5 /* ClippingNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 00716981190D994800A771E5 /* ClippingNode.m */; };
+		00716986190D9B4B00A771E5 /* ewe_wool-stick.png in Resources */ = {isa = PBXBuildFile; fileRef = 00716983190D9B4B00A771E5 /* ewe_wool-stick.png */; };
+		00716987190D9B4B00A771E5 /* ewe_wool-thread-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 00716984190D9B4B00A771E5 /* ewe_wool-thread-2.png */; };
+		00716988190D9B4B00A771E5 /* ewe_wool-thread.png in Resources */ = {isa = PBXBuildFile; fileRef = 00716985190D9B4B00A771E5 /* ewe_wool-thread.png */; };
 		00DEC68118FB74A900382BBD /* Projectile.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DEC68018FB74A900382BBD /* Projectile.m */; };
 		3B3154511905E55F0061BFC8 /* grass-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B3154501905E55F0061BFC8 /* grass-2.png */; };
 		3B5B38E718FBAEAC0064D669 /* asteroid.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B5B38E618FBAEAC0064D669 /* asteroid.png */; };
@@ -282,6 +285,9 @@
 		0023EA6018F398C700C27528 /* Grass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Grass.m; sourceTree = "<group>"; };
 		00716980190D994800A771E5 /* ClippingNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ClippingNode.h; path = Classes/ClippingNode.h; sourceTree = "<group>"; };
 		00716981190D994800A771E5 /* ClippingNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ClippingNode.m; path = Classes/ClippingNode.m; sourceTree = "<group>"; };
+		00716983190D9B4B00A771E5 /* ewe_wool-stick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ewe_wool-stick.png"; path = "Resources/ewe_wool-stick.png"; sourceTree = "<group>"; };
+		00716984190D9B4B00A771E5 /* ewe_wool-thread-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ewe_wool-thread-2.png"; path = "Resources/ewe_wool-thread-2.png"; sourceTree = "<group>"; };
+		00716985190D9B4B00A771E5 /* ewe_wool-thread.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ewe_wool-thread.png"; path = "Resources/ewe_wool-thread.png"; sourceTree = "<group>"; };
 		00DEC67F18FB74A900382BBD /* Projectile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Projectile.h; path = Classes/Projectile.h; sourceTree = "<group>"; };
 		00DEC68018FB74A900382BBD /* Projectile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Projectile.m; path = Classes/Projectile.m; sourceTree = "<group>"; };
 		3B3154501905E55F0061BFC8 /* grass-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "grass-2.png"; path = "Resources/grass-2.png"; sourceTree = "<group>"; };
@@ -864,6 +870,9 @@
 		D13104A118EA18500093C94A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				00716983190D9B4B00A771E5 /* ewe_wool-stick.png */,
+				00716984190D9B4B00A771E5 /* ewe_wool-thread-2.png */,
+				00716985190D9B4B00A771E5 /* ewe_wool-thread.png */,
 				C3482F24190CA6090027DE9D /* ewe_missile-jng.png */,
 				C3482F25190CA6090027DE9D /* jungle_node.png */,
 				C3482F20190CA1CD0027DE9D /* enemy_monkey.png */,
@@ -1854,11 +1863,14 @@
 				D13104BE18EA18500093C94A /* Icon-Small.png in Resources */,
 				C3E25C5418FCA1E200EB23D2 /* sheepDeath.mp3 in Resources */,
 				D13104BC18EA18500093C94A /* Icon-Small-50.png in Resources */,
+				00716987190D9B4B00A771E5 /* ewe_wool-thread-2.png in Resources */,
 				D1A613D818FBCB2B00E1887B /* itp382ewe_title2-iphone5hd.png in Resources */,
 				3B5B38EB18FBE23E0064D669 /* ewe_missile.png in Resources */,
 				C3482F26190CA6090027DE9D /* ewe_missile-jng.png in Resources */,
 				3B3154511905E55F0061BFC8 /* grass-2.png in Resources */,
 				D13106A518EA18520093C94A /* LICENSE_Kazmath.txt in Resources */,
+				00716988190D9B4B00A771E5 /* ewe_wool-thread.png in Resources */,
+				00716986190D9B4B00A771E5 /* ewe_wool-stick.png in Resources */,
 				C3E25C4C18FCA03B00EB23D2 /* powerup.mp3 in Resources */,
 				D13104B018EA18500093C94A /* Icon-72.png in Resources */,
 				C3E25C5618FCA2C800EB23D2 /* projectile.mp3 in Resources */,
