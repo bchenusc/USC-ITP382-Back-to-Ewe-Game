@@ -41,8 +41,12 @@
 
 - (void) breakString;
 
-- (void) hitEnemy;
+- (BOOL) hitEnemy;
+
+- (void) resetSprite;
 
 - (void) reset;
+
+- (void) spinIntoCenter;
 
 @end

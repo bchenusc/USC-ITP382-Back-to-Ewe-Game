@@ -18,6 +18,7 @@
 #import "Projectile.h"
 #import "CCActionInterval.h" 
 #import "GameplayVariables.h"
+#import "AnimatingSprite.h"
 
 // -----------------------------------------------------------------------
 #define BACKGROUND_MUSIC @"bgmusic.mp3"
@@ -250,7 +251,7 @@
         }
         
     } else
-    if (m_Sheep.position.y > 170 && m_Sheep.physicsBody.velocity.y > 0){
+    if (m_Sheep.position.y > 130 && m_Sheep.physicsBody.velocity.y > 0){
         float translation = delta * m_Sheep.physicsBody.velocity.y;
         
         for(Node* node in nodes){
@@ -377,12 +378,27 @@
     [[OALSimpleAudio sharedInstance] playEffect:BOSS_DEATH_SOUND];
     bossLevel = false;
     [physics removeChild:m_Boss];
+    
+    [self detonateBomb];
+    
+    [nodesToDelete addObjectsFromArray:nodes];
+    
+    topGrass = nil;
+    
+    [m_PowerupsToDelete addObjectsFromArray:m_Powerups];
+    
+    [m_Sheep spinIntoCenter];
+    
     m_Boss = nil;
     m_BossLevelTriggerYPos = m_Score + m_BossLevelSpacing;
     
-    m_NextPowerupSpawnYPos = m_Score + powerupSpacing;
-    nextEnemySpawnYPos = m_Score + enemySpacing;
+    m_NextPowerupSpawnYPos = m_Score + powerupSpacing * 2;
+    nextEnemySpawnYPos = m_Score + enemySpacing * 2;
     
+    [self scheduleOnce:@selector(switchToNextLevel) delay:3.1f];
+}
+
+-(void)switchToNextLevel {
     [[GameplayVariables get] switchCurrentLevel];
     NSString* newBackgroundImages;
     switch([GameplayVariables get].CurrentLevel) {
@@ -397,15 +413,16 @@
             break;
     }
     [self removeChild:m_Background1];
-    m_Background1 = [CCSprite spriteWithImageNamed:newBackgroundImages];
-    m_Background1.position = ccp(self.contentSize.width / 2, self.contentSize.height/2);
-    [m_Background1 setBlendFunc:(ccBlendFunc){GL_ONE,GL_ZERO}];
-    [self addChild:m_Background1 z:-1];
-    [self removeChild:m_Background2];
-    m_Background2 = [CCSprite spriteWithImageNamed:newBackgroundImages];
-    m_Background2.position = ccp(self.contentSize.width / 2, self.contentSize.height/2 + self.contentSize.height);
-    [m_Background2 setBlendFunc:(ccBlendFunc){GL_ONE,GL_ZERO}];
-    [self addChild:m_Background2 z:-1];
+     m_Background1 = [CCSprite spriteWithImageNamed:newBackgroundImages];
+     m_Background1.position = ccp(self.contentSize.width / 2, self.contentSize.height/2);
+     [m_Background1 setBlendFunc:(ccBlendFunc){GL_ONE,GL_ZERO}];
+     [self addChild:m_Background1 z:-1];
+     [self removeChild:m_Background2];
+     m_Background2 = [CCSprite spriteWithImageNamed:newBackgroundImages];
+     m_Background2.position = ccp(self.contentSize.width / 2, self.contentSize.height/2 + self.contentSize.height);
+     [m_Background2 setBlendFunc:(ccBlendFunc){GL_ONE,GL_ZERO}];
+     [self addChild:m_Background2 z:-1];
+    [self respawnPlayer];
 }
 
 -(void)spawnNewPowerup {
@@ -483,6 +500,7 @@
         [nodesToDelete addObject:[nodes objectAtIndex:(nodes.count - 1)]];
     }*/
     n.position = point;
+    n.rotation = (int)arc4random_uniform(90) - 45;
     [n setGameplayScene:self];
     [nodes addObject:n];
     [physics addChild:n];
@@ -507,6 +525,7 @@
         m_Dead = YES;
         m_Sheep.visible = NO;
         m_Sheep.physicsBody.velocity = ccp(0,0);
+        [m_Sheep resetSprite];
         if (m_Sheep.attachedNode) {
             [m_Sheep breakString];
         }
@@ -541,9 +560,9 @@
 }
 
 - (void) resetGame {
-    [self pause];
-    
     [self unscheduleAllSelectors];
+    
+    [self pause];
     
     [[OALSimpleAudio sharedInstance] stopAllEffects];
     
@@ -645,15 +664,17 @@
 -(BOOL) ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair projectile:(Projectile *)_projectile boss:(Boss *)boss {
     [[OALSimpleAudio sharedInstance] playEffect:BOSS_HIT_SOUND];
     [boss hitBossWithProjectile];
-    
+    AnimatingSprite* exp = [[AnimatingSprite node] initWithFiles:arr_explosion repeat:NO destroyOnFinish:YES delay:0.1f];
+    exp.position = ccp(_projectile.position.x, _projectile.position.y);
+    [self addChild: exp];
+    [physics removeChild:_projectile];
     return YES;
 }
 
 -(BOOL) ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair sheep:(Sheep *)_sheep enemy:(Enemy *)enemy
 {
-    if([_sheep.CurrentPowerups indexOfObject:[NSNumber numberWithInt:shield]] == NSNotFound) {
+    if([_sheep hitEnemy]) {
         [[OALSimpleAudio sharedInstance] playEffect:SHEEP_HIT_SOUND];
-        [_sheep hitEnemy];
         m_UILayer.Health = _sheep.CurrentHealth;
     }
     
@@ -695,8 +716,10 @@
 }
 
 -(BOOL) ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair projectile:(Projectile *)bullet border:(ScreenPhysicsBorders *)screenWall {
+    AnimatingSprite* exp = [[AnimatingSprite node] initWithFiles:arr_explosion repeat:NO destroyOnFinish:YES delay:0.1f];
+    exp.position = ccp(bullet.position.x, bullet.position.y);
+    [self addChild: exp];
     [physics removeChild:bullet];
-    
     return YES;
 }
 
@@ -745,11 +768,8 @@
     
     // Check if user clicked on a node
     CGPoint touchLoc = [touch locationInNode:self];
-    bool nodeTouched = NO;
     for (Node* n in nodes) {
         if ([n isPointInNode:touchLoc]) {
-            nodeTouched = YES;
-            
             if (n != m_Sheep.attachedNode) {
                 if ([m_Sheep stringToNode:n]) {
                     [[OALSimpleAudio sharedInstance] playEffect:BOING_SOUND];
@@ -762,11 +782,18 @@
             }
         }
     }
-    
-    // If node wasn't touched, break the current Wool
-    if (!nodeTouched) {
-        [m_Sheep breakString];
+}
+
+- (void) touchEnded:(UITouch *)touch withEvent:(UIEvent *)event {
+    if (m_Paused) {
+        return;
     }
+    
+    if (m_Dead) {
+        return;
+    }
+    
+    [m_Sheep breakString];
 }
 
 @end

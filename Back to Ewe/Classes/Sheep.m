@@ -7,6 +7,7 @@
 //
 
 #import "Sheep.h"
+#import "CCTextureCache.h"
 
 @interface SheepPowerup : NSObject {
     CGFloat duration;
@@ -113,8 +114,8 @@
         m_currentHealth = m_maxHealth;
         
         m_CurrentPowerups = [NSMutableArray new];
-        [m_CurrentPowerups addObject:[[[SheepPowerup alloc] init] initWithType:shield]];
-        [m_CurrentPowerups addObject:[[[SheepPowerup alloc] init] initWithType:unlimitedWool]];
+        [m_CurrentPowerups addObject:[[SheepPowerup new] initWithType:shield]];
+        [m_CurrentPowerups addObject:[[SheepPowerup new] initWithType:unlimitedWool]];
         
         m_numPuffBombs = 0;
     }
@@ -165,6 +166,11 @@
 }
 
 -(void) addPowerup:(enum PowerupType)powerup {
+    if (powerup == shield) {
+        [self setTexture:[[CCTextureCache sharedTextureCache] addImage:@"itp382sheep-2-shield.png"]];
+        [self scheduleOnce:@selector(resetSprite) delay:8.0f];
+    }
+    
     for (SheepPowerup* sp in m_CurrentPowerups) {
         if (sp.type == powerup) {
             [sp activate];
@@ -173,24 +179,34 @@
     }
 }
 
--(void) hitEnemy {
+-(BOOL) hitEnemy {
     for (SheepPowerup* sp in m_CurrentPowerups) {
         if (sp.type == shield) {
             if (!sp.active) {
                 m_currentHealth -= 10.0f;
                 [sp activateWithDuration:2.0f];
                 [self runAction:[CCActionBlink actionWithDuration:2.0f blinks:10]];
+                return YES;
             }
             
             break;
         }
     }
+    
+    return NO;
+}
+
+- (void) resetSprite {
+    [self setTexture:[[CCTextureCache sharedTextureCache] addImage:@"itp382sheep.png"]];
+    [self unscheduleAllSelectors];
 }
 
 - (void) reset {
     for (SheepPowerup* sp in m_CurrentPowerups) {
         [sp deactivate];
     }
+    
+    [self resetSprite];
 }
 
 - (void) update:(CCTime)delta {
@@ -200,6 +216,34 @@
     for (SheepPowerup* sp in m_CurrentPowerups) {
         [sp update:delta];
     }
+}
+
+-(void) spinIntoCenter {
+    CGSize viewSize = [[CCDirector sharedDirector] viewSize];
+    
+    self.physicsBody.sensor = YES;
+    self.physicsBody.velocity = ccp(0,0);
+    self.physicsBody.force = ccp(0, 0);
+    self.physicsBody.affectedByGravity = NO;
+    [self.physicsBody applyForce:ccp(0, 10000)];
+    
+    if (m_WoolString) {
+        [m_WoolString invalidate];
+        [self removeChild:m_WoolString];
+        m_WoolString = nil;
+    }
+    
+    [self runAction:[CCActionMoveTo actionWithDuration:3.0f position:ccp(viewSize.width / 2, viewSize.height / 2)]];
+    [self runAction:[CCActionRotateBy actionWithDuration:3.0f angle:1080]];
+    [self runAction:[CCActionScaleTo actionWithDuration:3.0f scale:0.0f]];
+    [self scheduleOnce:@selector(doneTeleporting) delay:3.2f];
+}
+
+-(void) doneTeleporting {
+    self.physicsBody.sensor = NO;
+    self.physicsBody.affectedByGravity = YES;
+    self.scale = 1.0f;
+    [self setTexture:[[CCTextureCache sharedTextureCache] addImage:@"itp382sheep.png"]];
 }
 
 @end

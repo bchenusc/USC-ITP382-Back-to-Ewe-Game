@@ -11,6 +11,7 @@
 
 enum BossType {
     spaceBoss,
+    jungleBoss,
     BossTypeMax,
     BOSSNONE
 };

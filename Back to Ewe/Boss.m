@@ -8,6 +8,7 @@
 
 #import "Boss.h"
 #import "CCActionInterval.h"
+#import "GameplayVariables.h"
 
 
 @implementation Boss
@@ -23,12 +24,27 @@
     if (self) {
         CGSize winSize = [[CCDirector sharedDirector] viewSize];
         
-        //[self drawDot:ccp(0, 0) radius:m_Radius color:[CCColor yellowColor]];
-        
-        CCSprite* sprite = [CCSprite spriteWithImageNamed:@"ewe_mothership.png"];
-        sprite.position = ccp(0, 0);
-        sprite.scale = 1.5;
-        [self addChild:sprite];
+        CCSprite* sprite;
+        switch ([GameplayVariables get].CurrentLevel) {
+            case space:
+                sprite = [CCSprite spriteWithImageNamed:@"ewe_mothership.png"];
+                sprite.position = ccp(0, 0);
+                sprite.scale = 1.5;
+                [self addChild:sprite];
+                m_BossType = spaceBoss;
+                break;
+                
+            case jungle:
+                sprite = [CCSprite spriteWithImageNamed:@"ewe_gorilla.png"];
+                sprite.position = ccp(0, 0);
+                sprite.scale = 1.5;
+                [self addChild:sprite];
+                m_BossType = jungleBoss;
+                break;
+                
+            default:
+                break;
+        }
         
         m_Radius = sprite.contentSize.width / 2 * 1.5;
         self.position = ccp(winSize.width / 2, winSize.height + m_Radius);
@@ -41,8 +57,6 @@
         physics.collisionType = @"boss";
         physics.sensor = YES;
         self.physicsBody = physics;
-        
-        m_BossType = spaceBoss;
         
         m_Health = 100;
         m_DamageFromProjectile = 25;
