@@ -29,6 +29,7 @@
 		C37A37CF18FA613E0064C912 /* Powerup.m in Sources */ = {isa = PBXBuildFile; fileRef = C37A37CE18FA613E0064C912 /* Powerup.m */; };
 		C37A37D218FA66B60064C912 /* PowerupGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = C37A37D118FA66B60064C912 /* PowerupGenerator.m */; };
 		C37BE8FD1905EB5E00D3DC75 /* HighScoresScene.m in Sources */ = {isa = PBXBuildFile; fileRef = C37BE8FC1905EB5E00D3DC75 /* HighScoresScene.m */; };
+		C3B0ED65190E281C00C3C604 /* lovenesstwo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C3B0ED64190E256500C3C604 /* lovenesstwo.ttf */; };
 		C3E25C4618FC998900EB23D2 /* bgmusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C3E25C4518FC998900EB23D2 /* bgmusic.mp3 */; };
 		C3E25C4818FC9CAD00EB23D2 /* boing.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C3E25C4718FC9CAD00EB23D2 /* boing.mp3 */; };
 		C3E25C4C18FCA03B00EB23D2 /* powerup.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C3E25C4B18FCA03B00EB23D2 /* powerup.mp3 */; };
@@ -303,6 +304,7 @@
 		C37A37D118FA66B60064C912 /* PowerupGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PowerupGenerator.m; sourceTree = "<group>"; };
 		C37BE8FB1905EB5E00D3DC75 /* HighScoresScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HighScoresScene.h; sourceTree = "<group>"; };
 		C37BE8FC1905EB5E00D3DC75 /* HighScoresScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HighScoresScene.m; sourceTree = "<group>"; };
+		C3B0ED64190E256500C3C604 /* lovenesstwo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = lovenesstwo.ttf; sourceTree = "<group>"; };
 		C3E25C4518FC998900EB23D2 /* bgmusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bgmusic.mp3; sourceTree = "<group>"; };
 		C3E25C4718FC9CAD00EB23D2 /* boing.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = boing.mp3; sourceTree = "<group>"; };
 		C3E25C4B18FCA03B00EB23D2 /* powerup.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = powerup.mp3; sourceTree = "<group>"; };
@@ -849,6 +851,7 @@
 		D13104A118EA18500093C94A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C3B0ED64190E256500C3C604 /* lovenesstwo.ttf */,
 				3B041770190E151800043156 /* ewe-sprites.plist */,
 				3B041771190E151800043156 /* ewe-sprites.png */,
 				0071698C190DC65C00A771E5 /* ewe_wool-blank.png */,
@@ -856,9 +859,6 @@
 				00716984190D9B4B00A771E5 /* ewe_wool-thread-2.png */,
 				00716985190D9B4B00A771E5 /* ewe_wool-thread.png */,
 				00A95841190E01EA00E5DAAF /* ewe_power-symbol.png */,
-				C3482F24190CA6090027DE9D /* ewe_missile-jng.png */,
-				C3482F20190CA1CD0027DE9D /* enemy_monkey.png */,
-				3B3154501905E55F0061BFC8 /* grass-2.png */,
 				C3E25C4418FC997700EB23D2 /* Sounds */,
 				D1A613CE18FBCB0E00E1887B /* Backgrounds */,
 				3B04176E190E119700043156 /* Default@2x.png */,
@@ -1808,6 +1808,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C3E25C5A18FCA3AA00EB23D2 /* bomb.mp3 in Resources */,
+				C3B0ED65190E281C00C3C604 /* lovenesstwo.ttf in Resources */,
 				C3E25C5E18FCA99700EB23D2 /* gameOver.mp3 in Resources */,
 				3B04176F190E119700043156 /* Default@2x.png in Resources */,
 				D13104B818EA18500093C94A /* Icon-120.png in Resources */,

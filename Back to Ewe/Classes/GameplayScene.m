@@ -110,11 +110,11 @@
     m_BossEnemySpacing = 300.0f;
     
     bossLevel = NO;
-    m_BossLevelTriggerYPos = 900.0f;
+    m_BossLevelTriggerYPos = 10000.0f;
     m_BossLevelSpacing = 10000.0f;
     m_Boss = nil;
     
-    m_PlayerLives = 20;
+    m_PlayerLives = 5;
     m_Dead = NO;
     
     //UI Layer
@@ -632,7 +632,7 @@
     
     m_Score = 0;
     
-    m_PlayerLives = 3;
+    m_PlayerLives = 5;
     
     m_Sheep.CurrentWool = m_Sheep.MaxWool;
     [m_UILayer setWool:m_Sheep.CurrentWool];
