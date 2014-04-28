@@ -38,7 +38,6 @@
 
 - (void) setCurrentWool:(float)newWool {
     m_WoolFrameStencil.scaleY = newWool;
-    NSLog(@"blah");
 }
 
 

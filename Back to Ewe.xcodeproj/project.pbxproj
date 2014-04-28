@@ -1718,6 +1718,8 @@
 				5688381918F3902200A79F78 /* EnemyGenerator.m */,
 				D131073318EA18520093C94A /* GameplayScene.h */,
 				D131073418EA18520093C94A /* GameplayScene.m */,
+				C3482F1D190C912F0027DE9D /* GameplayVariables.h */,
+				C3482F1E190C912F0027DE9D /* GameplayVariables.m */,
 				0023EA5F18F398C700C27528 /* Grass.h */,
 				0023EA6018F398C700C27528 /* Grass.m */,
 				001B61B318FA0D04006EFCE0 /* GrassGenerator.h */,
@@ -1750,8 +1752,6 @@
 				00DEC68018FB74A900382BBD /* Projectile.m */,
 				C350D6CF18FBBE8300D1B662 /* Boss.h */,
 				C350D6D018FBBE8300D1B662 /* Boss.m */,
-				C3482F1D190C912F0027DE9D /* GameplayVariables.h */,
-				C3482F1E190C912F0027DE9D /* GameplayVariables.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";

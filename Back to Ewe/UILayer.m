@@ -25,9 +25,10 @@
         CGSize size = [[CCDirector sharedDirector] viewSize];
         self.contentSize = size;
         
+        //Wool meter
         m_WoolMeter = [UIWoolMeter node];
         m_WoolMeter.positionType = CCPositionTypeNormalized;
-        m_WoolMeter.position = ccp(0.5f, 0.5f);
+        m_WoolMeter.position = ccp(0.1f, 0.15f);
         [self addChild:m_WoolMeter];
         
         m_woolRemaining = 4000;
@@ -185,7 +186,6 @@
 }
 
 - (void) setWoolMeter:(float)wool {
-    NSLog(@"Called");
     [m_WoolMeter setCurrentWool:wool];
 }
 

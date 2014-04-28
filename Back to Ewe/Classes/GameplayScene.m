@@ -630,6 +630,7 @@
     [self spawnNewGrass];
     
     m_UILayer.Wool = _sheep.CurrentWool;
+    [m_UILayer setWoolMeter:m_Sheep.CurrentWool / m_Sheep.MaxWool];
     
     return YES;
 }
@@ -753,7 +754,7 @@
                 if ([m_Sheep stringToNode:n]) {
                     [[OALSimpleAudio sharedInstance] playEffect:BOING_SOUND];
                     [n shrinkAndRemove];
-                    [m_UILayer setWoolMeter:0.9f];
+                    [m_UILayer setWoolMeter:m_Sheep.CurrentWool / m_Sheep.MaxWool];
                     m_UILayer.Wool = m_Sheep.CurrentWool;
                 } else {
                     [[OALSimpleAudio sharedInstance] playEffect:OUT_OF_WOOLF_SOUND];
