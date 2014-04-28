@@ -41,6 +41,7 @@
     HighScoresScene* m_HighScoresLayer;
     
     NodeGenerator* nodeGenerator;
+    BOOL m_CanSpawnNodes;
     CGPoint topNode;
     NSMutableArray* m_NodeSprites;
     

@@ -24,4 +24,6 @@ enum GameLevel {
 
 -(void)switchCurrentLevel;
 
+-(void)switchToLevel:(enum GameLevel)levelType;
+
 @end

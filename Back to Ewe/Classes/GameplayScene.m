@@ -143,6 +143,11 @@
     
     m_Paused = NO;
     
+    m_CanSpawnEnemies = YES;
+    m_CanSpawnGrass = YES;
+    m_CanSpawnNodes = YES;
+    m_CanSpawnPowerup = YES;
+    
     // Sound
     [[OALSimpleAudio sharedInstance] preloadEffect:BOING_SOUND];
     [[OALSimpleAudio sharedInstance] preloadEffect:SHEEP_HIT_SOUND];
@@ -320,7 +325,9 @@
     
     if (m_Sheep.position.y >= topNode.y) {
         //NSLog(@"topNode is : %f", topNode.y);
+        if(m_CanSpawnNodes) {
         topNode = [nodeGenerator generatePattern:self];
+        }
     }
     
     if (m_Sheep.position.y < 0) {
@@ -352,7 +359,9 @@
 }
 
 -(void) spawnNewPattern{
-    topNode = [nodeGenerator generatePattern:self];
+    if(m_CanSpawnNodes) {
+        topNode = [nodeGenerator generatePattern:self];
+    }
 }
 
 -(void)setupBossBattle {
@@ -400,6 +409,11 @@
     m_NextPowerupSpawnYPos = m_Score + powerupSpacing * 2;
     nextEnemySpawnYPos = m_Score + enemySpacing * 2;
     
+    m_CanSpawnEnemies = NO;
+    m_CanSpawnGrass = NO;
+    m_CanSpawnNodes = NO;
+    m_CanSpawnPowerup = NO;
+    
     [self scheduleOnce:@selector(switchToNextLevel) delay:3.1f];
 }
 
@@ -417,6 +431,15 @@
             newBackgroundImages = @"itp382ewe_bg.png";
             break;
     }
+    
+    
+    m_CanSpawnEnemies = YES;
+    m_CanSpawnGrass = YES;
+    m_CanSpawnNodes = YES;
+    m_CanSpawnPowerup = YES;
+    
+    topNode = [nodeGenerator generateFirstPattern:self];
+    
     [self removeChild:m_Background1];
      m_Background1 = [CCSprite spriteWithImageNamed:newBackgroundImages];
      m_Background1.position = ccp(self.contentSize.width / 2, self.contentSize.height/2);
@@ -426,14 +449,17 @@
      m_Background2 = [CCSprite spriteWithImageNamed:newBackgroundImages];
      m_Background2.position = ccp(self.contentSize.width / 2, self.contentSize.height/2 + self.contentSize.height);
      [m_Background2 setBlendFunc:(ccBlendFunc){GL_ONE,GL_ZERO}];
-     [self addChild:m_Background2 z:-1];
+    [self addChild:m_Background2 z:-1];
+    
     [self respawnPlayer];
 }
 
 -(void)spawnNewPowerup {
-    Powerup* newPowerup = [powerupGenerator spawnPowerup];
-    [m_Powerups addObject:newPowerup];
-    [physics addChild:newPowerup];
+    if(m_CanSpawnPowerup) {
+        Powerup* newPowerup = [powerupGenerator spawnPowerup];
+        [m_Powerups addObject:newPowerup];
+        [physics addChild:newPowerup];
+    }
 }
 
 -(void)removePowerup:(Powerup*) _powerup {
@@ -464,9 +490,11 @@
 }
 
 - (void) spawnNewGrass {
-    topGrass = [grassGenerator spawnNewGrass];
-    [grass addObject:topGrass];
-    [physics addChild:topGrass];
+    if(m_CanSpawnGrass) {
+        topGrass = [grassGenerator spawnNewGrass];
+        [grass addObject:topGrass];
+        [physics addChild:topGrass];
+    }
     
 }
 
@@ -571,6 +599,8 @@
     
     [[OALSimpleAudio sharedInstance] stopAllEffects];
     
+    [[GameplayVariables get] switchToLevel:space];
+    
     m_Sheep.visible = NO;
     [m_Sheep reset];
     [m_Sheep breakString];
@@ -617,12 +647,30 @@
     
     m_Dead = NO;
     
+    m_CanSpawnGrass = YES;
+    m_CanSpawnNodes = YES;
+    m_CanSpawnPowerup = YES;
+    
+    NSString* newBackgroundImages = @"itp382ewe_bg.png";
+    [self removeChild:m_Background1];
+    m_Background1 = [CCSprite spriteWithImageNamed:newBackgroundImages];
+    m_Background1.position = ccp(self.contentSize.width / 2, self.contentSize.height/2);
+    [m_Background1 setBlendFunc:(ccBlendFunc){GL_ONE,GL_ZERO}];
+    [self addChild:m_Background1 z:-1];
+    [self removeChild:m_Background2];
+    m_Background2 = [CCSprite spriteWithImageNamed:newBackgroundImages];
+    m_Background2.position = ccp(self.contentSize.width / 2, self.contentSize.height/2 + self.contentSize.height);
+    [m_Background2 setBlendFunc:(ccBlendFunc){GL_ONE,GL_ZERO}];
+    [self addChild:m_Background2 z:-1];
+
+    
     [m_UILayer reset];
     
     [self newGame];
 }
 
 - (void) newGame {
+    [[GameplayVariables get] switchToLevel:space];
     topNode = [nodeGenerator generateFirstPattern:self];
     [self detonateBomb];
     m_Sheep.NumPuffBombs = 0;

@@ -29,4 +29,8 @@
     }
 }
 
+-(void)switchToLevel:(enum GameLevel)levelType {
+    m_CurrentLevel = levelType;
+}
+
 @end
