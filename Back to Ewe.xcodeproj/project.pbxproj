@@ -16,6 +16,7 @@
 		0071698D190DC65C00A771E5 /* ewe_wool-blank.png in Resources */ = {isa = PBXBuildFile; fileRef = 0071698C190DC65C00A771E5 /* ewe_wool-blank.png */; };
 		00A95842190E01EA00E5DAAF /* ewe_power-symbol.png in Resources */ = {isa = PBXBuildFile; fileRef = 00A95841190E01EA00E5DAAF /* ewe_power-symbol.png */; };
 		00A95845190E287300E5DAAF /* UIHealthMeter.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A95844190E287300E5DAAF /* UIHealthMeter.m */; };
+		00A95847190E56EA00E5DAAF /* ewe_health-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 00A95846190E56EA00E5DAAF /* ewe_health-icon.png */; };
 		00DEC68118FB74A900382BBD /* Projectile.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DEC68018FB74A900382BBD /* Projectile.m */; };
 		3B041758190DAC5700043156 /* itp382ewe_bg-jungle-iphone5hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B041755190DAC5700043156 /* itp382ewe_bg-jungle-iphone5hd.png */; };
 		3B04176F190E119700043156 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B04176E190E119700043156 /* Default@2x.png */; };
@@ -284,6 +285,7 @@
 		00A95841190E01EA00E5DAAF /* ewe_power-symbol.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ewe_power-symbol.png"; path = "Resources/ewe_power-symbol.png"; sourceTree = "<group>"; };
 		00A95843190E287300E5DAAF /* UIHealthMeter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIHealthMeter.h; path = Classes/UIHealthMeter.h; sourceTree = "<group>"; };
 		00A95844190E287300E5DAAF /* UIHealthMeter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIHealthMeter.m; path = Classes/UIHealthMeter.m; sourceTree = "<group>"; };
+		00A95846190E56EA00E5DAAF /* ewe_health-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ewe_health-icon.png"; path = "Resources/ewe_health-icon.png"; sourceTree = "<group>"; };
 		00DEC67F18FB74A900382BBD /* Projectile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Projectile.h; path = Classes/Projectile.h; sourceTree = "<group>"; };
 		00DEC68018FB74A900382BBD /* Projectile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Projectile.m; path = Classes/Projectile.m; sourceTree = "<group>"; };
 		3B041755190DAC5700043156 /* itp382ewe_bg-jungle-iphone5hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "itp382ewe_bg-jungle-iphone5hd.png"; path = "Resources/itp382ewe_bg-jungle-iphone5hd.png"; sourceTree = "<group>"; };
@@ -857,6 +859,7 @@
 		D13104A118EA18500093C94A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				00A95846190E56EA00E5DAAF /* ewe_health-icon.png */,
 				C3B0ED64190E256500C3C604 /* lovenesstwo.ttf */,
 				3B041770190E151800043156 /* ewe-sprites.plist */,
 				3B041771190E151800043156 /* ewe-sprites.png */,
@@ -1818,6 +1821,7 @@
 				C3E25C5A18FCA3AA00EB23D2 /* bomb.mp3 in Resources */,
 				C3B0ED65190E281C00C3C604 /* lovenesstwo.ttf in Resources */,
 				C3E25C5E18FCA99700EB23D2 /* gameOver.mp3 in Resources */,
+				00A95847190E56EA00E5DAAF /* ewe_health-icon.png in Resources */,
 				3B04176F190E119700043156 /* Default@2x.png in Resources */,
 				D13104B818EA18500093C94A /* Icon-120.png in Resources */,
 				C3E25C5818FCA31000EB23D2 /* bossHit.mp3 in Resources */,
