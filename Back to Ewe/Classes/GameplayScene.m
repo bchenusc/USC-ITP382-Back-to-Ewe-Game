@@ -659,6 +659,9 @@
     }
     
     [m_EnemiesToDelete addObject:enemy];
+    AnimatingSprite* exp = [[AnimatingSprite node] initWithFiles:arr_explosion repeat:NO destroyOnFinish:YES delay:0.1f];
+    exp.position = enemy.position;
+    [self addChild: exp];
     
     if (_sheep.CurrentHealth <= 0) {
         [self playerDeath];
