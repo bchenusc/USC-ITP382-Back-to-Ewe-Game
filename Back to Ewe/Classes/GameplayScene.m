@@ -156,7 +156,12 @@
     [[OALSimpleAudio sharedInstance] preloadEffect:GET_GRASS_SOUND];
     [[OALSimpleAudio sharedInstance] preloadEffect:OUT_OF_WOOLF_SOUND];
     
+    // Animation
+    arr_explosion = [NSMutableArray arrayWithObjects:@"explode01.png", @"explode02.png", @"explode04.png", @"explode05.png", @"explode06.png", nil];
+    
     [self newGame];
+    
+
     
 	return self;
      
