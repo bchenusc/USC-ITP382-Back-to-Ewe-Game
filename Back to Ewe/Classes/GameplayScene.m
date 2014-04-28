@@ -355,7 +355,11 @@
 -(void)setupBossBattle {
     bossLevel = YES;
     
-    [m_UILayer showBossAlertLabel:@"PROJECTILES"];
+    if([[GameplayVariables get] CurrentLevel] == space) {
+        [m_UILayer showBossAlertLabel:@"PROJECTILES"];
+    } else if([[GameplayVariables get] CurrentLevel] == jungle) {
+        [m_UILayer showBossAlertLabel:@"SHEEPIES"];
+    }
     
     m_BossLevelTriggerYPos = m_Score + m_BossEnemySpacing + arc4random() % (int)m_BossEnemySpacing;
     m_NextProjectileSpawnYPos = m_Score + m_ProjectileSpacing + arc4random() % (int)m_ProjectileSpacing;
@@ -420,13 +424,10 @@
             break;
     }
     
-    
     m_CanSpawnEnemies = YES;
     m_CanSpawnGrass = YES;
     m_CanSpawnNodes = YES;
     m_CanSpawnPowerup = YES;
-    
-    topNode = [nodeGenerator generateFirstPattern:self];
     
     [self removeChild:m_Background1];
      m_Background1 = [CCSprite spriteWithImageNamed:newBackgroundImages];
@@ -440,6 +441,9 @@
     [self addChild:m_Background2 z:-1];
     
     [self respawnPlayer];
+    
+    topNode = [nodeGenerator generateFirstPattern:self];
+    topNode = [nodeGenerator generatePattern:self];
 }
 
 -(void)spawnNewPowerup {
@@ -698,15 +702,19 @@
 }
 
 -(BOOL) ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair sheep:(Sheep *)_sheep boss:(Boss* )boss {
-    //[[OALSimpleAudio sharedInstance] playEffect:BOSS_HIT_SOUND];
-    //[boss hitBossWithSheep];
+    if([[GameplayVariables get] CurrentLevel] == jungle) {
+        [[OALSimpleAudio sharedInstance] playEffect:BOSS_HIT_SOUND];
+        [boss hitBossWithSheep];
+    }
     
     return YES;
 }
 
 -(BOOL) ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair projectile:(Projectile *)_projectile boss:(Boss *)boss {
-    [[OALSimpleAudio sharedInstance] playEffect:BOSS_HIT_SOUND];
-    [boss hitBossWithProjectile];
+    if([[GameplayVariables get] CurrentLevel] == space) {
+        [[OALSimpleAudio sharedInstance] playEffect:BOSS_HIT_SOUND];
+        [boss hitBossWithProjectile];
+    }
     AnimatingSprite* exp = [[AnimatingSprite node] initWithFiles:arr_explosion repeat:NO destroyOnFinish:YES delay:0.1f];
     exp.position = ccp(_projectile.position.x, _projectile.position.y);
     [self addChild: exp];

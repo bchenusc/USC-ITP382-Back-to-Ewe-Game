@@ -108,6 +108,8 @@
         m_BossAlertLabel.position = ccp(0.5f, 0.5f);
         //[m_BossAlertLabel]
         [self addChild:m_BossAlertLabel];
+        
+        m_HighScoresScene = [HighScoresScene node];
     }
     
     return self;
@@ -138,6 +140,7 @@
 }
 
 - (void) onMainMenuClicked:(id)sender {
+    [m_HighScoresScene addScore:(int)m_Score + 1];
     // back to intro scene with transition
     [[CCDirector sharedDirector] replaceScene:[MainMenuScene scene]
                                withTransition:[CCTransition transitionPushWithDirection:CCTransitionDirectionDown duration:1.0f]];
@@ -181,6 +184,7 @@
 }
 
 - (void) setScoreLabel:(CGFloat)score {
+    m_Score = score;
     m_scoreLabel.string = [NSString stringWithFormat:@"Score: %.f", score];
 }
 
@@ -216,7 +220,7 @@
     NSString* alertString = [@"BOSS INCOMING\nWEAKNESS: " stringByAppendingString:vulnerability];
     [m_BossAlertLabel setString:alertString];
     m_BossAlertLabel.visible = YES;
-    [m_BossAlertLabel runAction:[CCActionBlink actionWithDuration:2.0f  blinks:4]];
+    [m_BossAlertLabel runAction:[CCActionBlink actionWithDuration:1.0f  blinks:4]];
     [self schedule:@selector(hideBossAlertLabel) interval:2.1f];
 }
 

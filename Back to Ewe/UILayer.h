@@ -10,6 +10,7 @@
 #import "cocos2d.h"
 #import "CCButton.h"
 #import "UIWoolMeter.h"
+#import "HighScoresScene.h"
 
 @class GameplayScene;
 
@@ -40,6 +41,8 @@
     CCButton* m_ResumeButton;
     
     GameplayScene* m_gameplayScene;
+    
+    HighScoresScene* m_HighScoresScene;
 }
 
 @property float Wool;
