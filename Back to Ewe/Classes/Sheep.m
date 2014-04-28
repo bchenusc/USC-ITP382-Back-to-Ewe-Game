@@ -168,6 +168,7 @@
 -(void) addPowerup:(enum PowerupType)powerup {
     if (powerup == shield) {
         [self setSpriteFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"itp382sheep-2-shield.png"]];
+        [self unschedule:@selector(resetSprite)];
         [self scheduleOnce:@selector(resetSprite) delay:8.0f];
     }
     
@@ -197,8 +198,8 @@
 }
 
 - (void) resetSprite {
+    [self unschedule:@selector(resetSprite)];
     [self setSpriteFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"itp382sheep.png"]];
-    [self unscheduleAllSelectors];
 }
 
 - (void) reset {
