@@ -382,6 +382,23 @@
 
 -(void)endBossLevel {
     [[OALSimpleAudio sharedInstance] playEffect:BOSS_DEATH_SOUND];
+    
+    AnimatingSprite* exp1 = [[AnimatingSprite node] initWithFiles:arr_explosion repeat:NO destroyOnFinish:YES delay:0.1f];
+    exp1.position = m_Boss.position;
+    [self addChild: exp1];
+    
+    AnimatingSprite* exp2 = [[AnimatingSprite node] initWithFiles:arr_explosion repeat:NO destroyOnFinish:YES delay:0.1f];
+    exp2.position = ccp(m_Boss.position.x - self.contentSize.width / 5, m_Boss.position.y);
+    [self addChild: exp2];
+    
+    AnimatingSprite* exp3 = [[AnimatingSprite node] initWithFiles:arr_explosion repeat:NO destroyOnFinish:YES delay:0.1f];
+    exp3.position = ccp(m_Boss.position.x + self.contentSize.width / 5, m_Boss.position.y);
+    [self addChild: exp3];
+    
+    AnimatingSprite* exp4 = [[AnimatingSprite node] initWithFiles:arr_explosion repeat:NO destroyOnFinish:YES delay:0.1f];
+    exp4.position = ccp(m_Boss.position.x, m_Boss.position.y - self.contentSize.width / 5);
+    [self addChild: exp4];
+    
     bossLevel = false;
     [physics removeChild:m_Boss];
     
