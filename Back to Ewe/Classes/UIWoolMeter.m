@@ -20,13 +20,15 @@
         m_Stick = [CCSprite spriteWithImageNamed:@"ewe_wool-stick.png"];
         [self addChild:m_Stick];
         
-        m_WoolModifier = 0.5f;
+        m_WoolModifier = 1.0f;
         m_WoolFrameStencil = [CCSprite spriteWithImageNamed:@"ewe_wool-blank.png"];
-        [m_WoolFrameStencil setContentSize:CGSizeMake([m_Wool contentSize].width, [m_Wool contentSize].height*m_WoolModifier)];
+        //[m_WoolFrameStencil setContentSize:CGSizeMake([m_Wool contentSize].width, [m_Wool contentSize].height*m_WoolModifier)];
+        m_WoolFrameStencil.scaleY = 0.8f;
+        m_WoolFrameStencil.position = ccp(0, 20/112);
         
         m_WoolFrame = [[CCClippingNode alloc] initWithStencil:m_WoolFrameStencil];
         m_Wool = [CCSprite spriteWithImageNamed:@"ewe_wool-thread-2.png"];
-        m_WoolFrame.inverted = YES;
+        m_WoolFrame.inverted = NO;
         [m_WoolFrame addChild:m_Wool];
         
         [self addChild:m_WoolFrame];
@@ -35,8 +37,7 @@
 }
 
 - (void) setCurrentWool:(float)newWool {
-    m_WoolModifier = newWool;
-    [m_WoolFrameStencil setContentSize:CGSizeMake([m_Wool contentSize].width, [m_Wool contentSize].height*m_WoolModifier)];
+    m_WoolFrameStencil.scaleY = newWool;
 }
 
 
