@@ -20,7 +20,6 @@
 		3B04176F190E119700043156 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B04176E190E119700043156 /* Default@2x.png */; };
 		3B041772190E151800043156 /* ewe-sprites.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B041770190E151800043156 /* ewe-sprites.plist */; };
 		3B041773190E151800043156 /* ewe-sprites.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B041771190E151800043156 /* ewe-sprites.png */; };
-		3B041775190E259400043156 /* portal.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B041774190E259400043156 /* portal.png */; };
 		3B7F57D018EA644200B8A237 /* NodeGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7F57CF18EA644200B8A237 /* NodeGenerator.m */; };
 		3BC52A7318EA676F00A35420 /* NodePattern.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC52A7218EA676F00A35420 /* NodePattern.m */; };
 		5688381718F38DFB00A79F78 /* Enemy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5688381618F38DFB00A79F78 /* Enemy.m */; };
@@ -286,7 +285,6 @@
 		3B04176E190E119700043156 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "Resources/Default@2x.png"; sourceTree = "<group>"; };
 		3B041770190E151800043156 /* ewe-sprites.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "ewe-sprites.plist"; path = "Resources/ewe-sprites.plist"; sourceTree = "<group>"; };
 		3B041771190E151800043156 /* ewe-sprites.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ewe-sprites.png"; path = "Resources/ewe-sprites.png"; sourceTree = "<group>"; };
-		3B041774190E259400043156 /* portal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = portal.png; path = Resources/portal.png; sourceTree = "<group>"; };
 		3B7F57CE18EA644200B8A237 /* NodeGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NodeGenerator.h; path = Classes/NodeGenerator.h; sourceTree = "<group>"; };
 		3B7F57CF18EA644200B8A237 /* NodeGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NodeGenerator.m; path = Classes/NodeGenerator.m; sourceTree = "<group>"; };
 		3BC52A7118EA676E00A35420 /* NodePattern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NodePattern.h; path = Classes/NodePattern.h; sourceTree = "<group>"; };
@@ -851,7 +849,6 @@
 		D13104A118EA18500093C94A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				3B041774190E259400043156 /* portal.png */,
 				3B041770190E151800043156 /* ewe-sprites.plist */,
 				3B041771190E151800043156 /* ewe-sprites.png */,
 				0071698C190DC65C00A771E5 /* ewe_wool-blank.png */,
@@ -1821,7 +1818,6 @@
 				D13104B218EA18500093C94A /* Icon-72@2x.png in Resources */,
 				D13104A318EA18500093C94A /* Default.png in Resources */,
 				D13104AC18EA18500093C94A /* Icon.png in Resources */,
-				3B041775190E259400043156 /* portal.png in Resources */,
 				00A95842190E01EA00E5DAAF /* ewe_power-symbol.png in Resources */,
 				C3E25C6218FCAFA700EB23D2 /* getGrass.mp3 in Resources */,
 				D1A613D718FBCB2B00E1887B /* itp382ewe_title2.png in Resources */,
