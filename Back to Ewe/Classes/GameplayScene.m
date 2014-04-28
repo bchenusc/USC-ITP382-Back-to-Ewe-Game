@@ -144,19 +144,6 @@
     m_CanSpawnNodes = YES;
     m_CanSpawnPowerup = YES;
     
-    // Sound
-    [[OALSimpleAudio sharedInstance] preloadEffect:BOING_SOUND];
-    [[OALSimpleAudio sharedInstance] preloadEffect:SHEEP_HIT_SOUND];
-    [[OALSimpleAudio sharedInstance] preloadEffect:SHEEP_DEATH_SOUND];
-    [[OALSimpleAudio sharedInstance] preloadEffect:BOSS_HIT_SOUND];
-    [[OALSimpleAudio sharedInstance] preloadEffect:BOSS_DEATH_SOUND];
-    [[OALSimpleAudio sharedInstance] preloadEffect:POWERUP_SOUND];
-    [[OALSimpleAudio sharedInstance] preloadEffect:BOMB_SOUND];
-    [[OALSimpleAudio sharedInstance] preloadEffect:PROJECTILE_SOUND];
-    [[OALSimpleAudio sharedInstance] preloadEffect:GAMEOVER_SOUND];
-    [[OALSimpleAudio sharedInstance] preloadEffect:GET_GRASS_SOUND];
-    [[OALSimpleAudio sharedInstance] preloadEffect:OUT_OF_WOOLF_SOUND];
-    
     // Animation
     arr_explosion = [NSMutableArray arrayWithObjects:@"explode01.png", @"explode02.png", @"explode04.png", @"explode05.png", @"explode06.png", nil];
     
