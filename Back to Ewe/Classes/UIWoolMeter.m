@@ -23,7 +23,7 @@
         m_WoolModifier = 1.0f;
         m_WoolFrameStencil = [CCSprite spriteWithImageNamed:@"ewe_wool-blank.png"];
         //[m_WoolFrameStencil setContentSize:CGSizeMake([m_Wool contentSize].width, [m_Wool contentSize].height*m_WoolModifier)];
-        m_WoolFrameStencil.scaleY = 0.8f;
+        m_WoolFrameStencil.scaleY = 1.0f;
         m_WoolFrameStencil.position = ccp(0, 20/112);
         
         m_WoolFrame = [[CCClippingNode alloc] initWithStencil:m_WoolFrameStencil];
@@ -38,6 +38,7 @@
 
 - (void) setCurrentWool:(float)newWool {
     m_WoolFrameStencil.scaleY = newWool;
+    NSLog(@"blah");
 }
 
 

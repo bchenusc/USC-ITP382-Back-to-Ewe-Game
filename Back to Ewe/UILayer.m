@@ -185,7 +185,8 @@
 }
 
 - (void) setWoolMeter:(float)wool {
-    [m_WoolMeter setWool:wool];
+    NSLog(@"Called");
+    [m_WoolMeter setCurrentWool:wool];
 }
 
 -(void)setBombsButtonActive {
