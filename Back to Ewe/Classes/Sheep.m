@@ -167,7 +167,7 @@
 
 -(void) addPowerup:(enum PowerupType)powerup {
     if (powerup == shield) {
-        [self setTexture:[[CCTextureCache sharedTextureCache] addImage:@"itp382sheep-2-shield.png"]];
+        [self setSpriteFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"itp382sheep-2-shield.png"]];
         [self scheduleOnce:@selector(resetSprite) delay:8.0f];
     }
     
@@ -197,7 +197,7 @@
 }
 
 - (void) resetSprite {
-    [self setTexture:[[CCTextureCache sharedTextureCache] addImage:@"itp382sheep.png"]];
+    [self setSpriteFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"itp382sheep.png"]];
     [self unscheduleAllSelectors];
 }
 
@@ -243,7 +243,7 @@
     self.physicsBody.sensor = NO;
     self.physicsBody.affectedByGravity = YES;
     self.scale = 1.0f;
-    [self setTexture:[[CCTextureCache sharedTextureCache] addImage:@"itp382sheep.png"]];
+    [self setSpriteFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"itp382sheep.png"]];
 }
 
 @end
