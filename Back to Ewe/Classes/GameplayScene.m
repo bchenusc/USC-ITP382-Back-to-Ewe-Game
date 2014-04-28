@@ -21,18 +21,6 @@
 #import "AnimatingSprite.h"
 
 // -----------------------------------------------------------------------
-#define BACKGROUND_MUSIC @"bgmusic.mp3"
-#define BOING_SOUND @"boing.mp3"
-#define SHEEP_HIT_SOUND @"sheepHit.mp3"
-#define SHEEP_DEATH_SOUND @"sheepDeath.mp3"
-#define BOSS_HIT_SOUND @"bossHit.mp3"
-#define BOSS_DEATH_SOUND @"bossDeath.mp3"
-#define POWERUP_SOUND @"powerup.mp3"
-#define BOMB_SOUND @"bomb.mp3"
-#define PROJECTILE_SOUND @"projectile.mp3"
-#define GAMEOVER_SOUND @"gameOver.mp3"
-#define GET_GRASS_SOUND @"getGrass.mp3"
-#define OUT_OF_WOOLF_SOUND @"Blip_Select115.wav"
 
 // -----------------------------------------------------------------------
 #pragma mark - HelloWorldScene
@@ -142,19 +130,6 @@
     //currentLevel = space;
     
     m_Paused = NO;
-    
-    // Sound
-    [[OALSimpleAudio sharedInstance] preloadEffect:BOING_SOUND];
-    [[OALSimpleAudio sharedInstance] preloadEffect:SHEEP_HIT_SOUND];
-    [[OALSimpleAudio sharedInstance] preloadEffect:SHEEP_DEATH_SOUND];
-    [[OALSimpleAudio sharedInstance] preloadEffect:BOSS_HIT_SOUND];
-    [[OALSimpleAudio sharedInstance] preloadEffect:BOSS_DEATH_SOUND];
-    [[OALSimpleAudio sharedInstance] preloadEffect:POWERUP_SOUND];
-    [[OALSimpleAudio sharedInstance] preloadEffect:BOMB_SOUND];
-    [[OALSimpleAudio sharedInstance] preloadEffect:PROJECTILE_SOUND];
-    [[OALSimpleAudio sharedInstance] preloadEffect:GAMEOVER_SOUND];
-    [[OALSimpleAudio sharedInstance] preloadEffect:GET_GRASS_SOUND];
-    [[OALSimpleAudio sharedInstance] preloadEffect:OUT_OF_WOOLF_SOUND];
     
     // Animation
     arr_explosion = [NSMutableArray arrayWithObjects:@"explode01.png", @"explode02.png", @"explode04.png", @"explode05.png", @"explode06.png", nil];
