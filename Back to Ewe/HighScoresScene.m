@@ -31,7 +31,7 @@
     [self addChild:background];
     
     // Back button
-    CCButton *backButton = [CCButton buttonWithTitle:@"[ Back ]" fontName:@"Verdana-Bold" fontSize:18.0f];
+    CCButton *backButton = [CCButton buttonWithTitle:@"[ Back ]" fontName:@"lovenesstwo" fontSize:16.0f];
     backButton.positionType = CCPositionTypeNormalized;
     backButton.position = ccp(0.5f, 0.1f);
     [backButton setTarget:self selector:@selector(onBackButtonClicked:)];
@@ -43,7 +43,7 @@
         [defaultScores setValue:0 forKey:[NSString stringWithFormat:@"%d", i]];
     }
     
-    CCLabelTTF* highScoresTitle = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"HIGH SCORES"] fontName:@"Verdana-Bold" fontSize:16.0f];
+    CCLabelTTF* highScoresTitle = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"HIGH SCORES"] fontName:@"lovenesstwo" fontSize:16.0f];
     highScoresTitle.horizontalAlignment = CCTextAlignmentCenter;
     highScoresTitle.positionType = CCPositionTypeNormalized;
     highScoresTitle.position = ccp(0.5f, 0.9f);
@@ -52,7 +52,7 @@
     // Scores
     for(int i = 1; i <= 10; i++) {
         long int currentHighScore = [m_HighScoresList integerForKey:[NSString stringWithFormat:@"%d", i]];
-        CCLabelTTF* currentHighScoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%u: %ld", i, currentHighScore] fontName:@"Verdana-Bold" fontSize:16.0f];
+        CCLabelTTF* currentHighScoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%u: %ld", i, currentHighScore] fontName:@"lovenesstwo" fontSize:16.0f];
         currentHighScoreLabel.horizontalAlignment = CCTextAlignmentLeft;
         currentHighScoreLabel.positionType = CCPositionTypeNormalized;
         currentHighScoreLabel.position = ccp(0.5f, 1.0f - ((float)i) / 15.0f - 0.1f);

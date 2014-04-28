@@ -63,5 +63,11 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>ATSApplicationFontsPath</key>
+	<string>lovenesstwo.ttf</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>lovenesstwo.ttf</string>
+	</array>
 </dict>
 </plist>

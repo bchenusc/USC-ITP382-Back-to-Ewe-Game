@@ -33,34 +33,34 @@
         m_healthCapacity = 100.0f;
         
         m_Score = 0;
-        m_scoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Score: %.f", m_Score] fontName:@"Verdana-Bold" fontSize:18.0f];
+        m_scoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Score: %.f", m_Score] fontName:@"lovenesstwo" fontSize:16.0f];
         m_scoreLabel.horizontalAlignment = CCTextAlignmentLeft;
         //m_scoreLabel.positionType = CCPositionTypeNormalized;
         m_scoreLabel.position = ccp(0.15f, 0.98f);
         [self addChild:m_scoreLabel];
         
         m_Lives = 0;
-        m_livesLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Lives: %d", m_Lives] fontName:@"Verdana-Bold" fontSize:18.0f];
+        m_livesLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Lives: %d", m_Lives] fontName:@"lovenesstwo" fontSize:16.0f];
         //m_livesLabel.positionType = CCPositionTypeNormalized;
         m_livesLabel.position = ccp(0.15f, 0.95f);
         [self addChild:m_livesLabel];
         
         // Game Over label
-        m_GameOverLabel = [CCLabelTTF labelWithString:@"Game Over!" fontName:@"Marker Felt" fontSize:36.0f ];
+        m_GameOverLabel = [CCLabelTTF labelWithString:@"Game Over!" fontName:@"lovenesstwo" fontSize:36.0f ];
         m_GameOverLabel.visible = NO;
         m_GameOverLabel.positionType = CCPositionTypeNormalized;
         m_GameOverLabel.position = ccp(0.5f, 0.6f);
         [self addChild:m_GameOverLabel];
         
         // Pause button
-        m_PauseButton = [CCButton buttonWithTitle:@"[ Pause ]" fontName:@"Verdana-Bold" fontSize:18.0f];
+        m_PauseButton = [CCButton buttonWithTitle:@"[ Pause ]" fontName:@"lovenesstwo" fontSize:16.0f];
         m_PauseButton.positionType = CCPositionTypeNormalized;
-        m_PauseButton.position = ccp(0.85f, 0.98f);
+        m_PauseButton.position = ccp(0.9f, 0.98f);
         [m_PauseButton setTarget:self selector:@selector(onPauseClicked:)];
         [self addChild:m_PauseButton];
         
         // New game button
-        m_NewGameButton = [CCButton buttonWithTitle:@"[ New Game ]" fontName:@"Verdana-Bold" fontSize:18.0f];
+        m_NewGameButton = [CCButton buttonWithTitle:@"[ New Game ]" fontName:@"lovenesstwo" fontSize:16.0f];
         m_NewGameButton.positionType = CCPositionTypeNormalized;
         m_NewGameButton.position = ccp(0.25f, 0.5f); // Middle Left of screen
         [m_NewGameButton setTarget:self selector:@selector(onNewGameClicked:)];
@@ -68,7 +68,7 @@
         m_NewGameButton.visible = NO;
         
         // Menu Button
-        m_MainMenuButton = [CCButton buttonWithTitle:@"[ Main Menu ]" fontName:@"Verdana-Bold" fontSize:18.0f];
+        m_MainMenuButton = [CCButton buttonWithTitle:@"[ Main Menu ]" fontName:@"lovenesstwo" fontSize:16.0f];
         m_MainMenuButton.positionType = CCPositionTypeNormalized;
         m_MainMenuButton.position = ccp(0.75f, 0.5f); // Middle Right of screen
         [m_MainMenuButton setTarget:self selector:@selector(onMainMenuClicked:)];
@@ -76,7 +76,7 @@
         m_MainMenuButton.visible = NO;
         
         // Resume button
-        m_ResumeButton = [CCButton buttonWithTitle:@"[ Resume ]" fontName:@"Verdana-Bold" fontSize:18.0f];
+        m_ResumeButton = [CCButton buttonWithTitle:@"[ Resume ]" fontName:@"lovenesstwo" fontSize:16.0f];
         m_ResumeButton.positionType = CCPositionTypeNormalized;
         m_ResumeButton.position = ccp(0.5f, 0.4f); // Middle Right of screen
         [m_ResumeButton setTarget:self selector:@selector(onResumeClicked:)];
@@ -85,7 +85,7 @@
         
         // Bombs button
         m_Bombs = 0;
-        //m_bombsButton = [CCButton buttonWithTitle:@"Bomb" fontName:@"Verdana-Bold" fontSize:18.0f];
+        //m_bombsButton = [CCButton buttonWithTitle:@"Bomb" fontName:@"lovenesstwo" fontSize:16.0f];
         m_bombsButton = [CCButton buttonWithTitle:@"Bomb" spriteFrame:[CCSpriteFrame frameWithImageNamed:@"ewe_power-symbol.png"]];
         m_bombsButton.positionType = CCPositionTypeNormalized;
         m_bombsButton.position = ccp(.9f, .15f); // Middle Right of screen
@@ -101,7 +101,7 @@
         [self addChild:m_WoolMeter];
         
         // BOSS ALERT LABEL
-        m_BossAlertLabel = [CCLabelTTF labelWithString:@"BOSS DETECTED" fontName:@"Verdana-Bold" fontSize:18.0f];
+        m_BossAlertLabel = [CCLabelTTF labelWithString:@"BOSS DETECTED" fontName:@"lovenesstwo" fontSize:16.0f];
         m_BossAlertLabel.horizontalAlignment =  CCTextAlignmentCenter;
         m_BossAlertLabel.visible = NO;
         m_BossAlertLabel.positionType = CCPositionTypeNormalized;

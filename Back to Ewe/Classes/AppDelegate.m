@@ -63,6 +63,7 @@
     [[OALSimpleAudio sharedInstance] preloadEffect:GAMEOVER_SOUND];
     [[OALSimpleAudio sharedInstance] preloadEffect:GET_GRASS_SOUND];
     [[OALSimpleAudio sharedInstance] preloadEffect:OUT_OF_WOOLF_SOUND];
+    [[OALSimpleAudio sharedInstance] preloadEffect:CENTIPEDE];
     
     // SPRITES
     [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"ewe-sprites.plist"];

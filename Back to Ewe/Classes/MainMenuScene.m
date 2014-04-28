@@ -43,16 +43,19 @@
     [self addChild:background];
     
     // Play game button
-    CCButton *playGameButton = [CCButton buttonWithTitle:@"[ Start ]" fontName:@"Verdana-Bold" fontSize:18.0f];
+    
+    CCButton *playGameButton = [CCButton buttonWithTitle:@"[ Start ]" fontName:@"lovenesstwo" fontSize:24.0f];
     playGameButton.positionType = CCPositionTypeNormalized;
     playGameButton.position = ccp(0.5f, 0.25f);
     [playGameButton setTarget:self selector:@selector(onStartClicked:)];
     [self addChild:playGameButton];
+    playGameButton.visible = YES;
+    
     
     // High score button
-    CCButton *highScoreButton = [CCButton buttonWithTitle:@"[ High Scores ]" fontName:@"Verdana-Bold" fontSize:18.0f];
+    CCButton *highScoreButton = [CCButton buttonWithTitle:@"[ High Scores ]" fontName:@"lovenesstwo" fontSize:24.0f];
     highScoreButton.positionType = CCPositionTypeNormalized;
-    highScoreButton.position = ccp(0.5f, 0.1f);
+    highScoreButton.position = ccp(0.5f, 0.07f);
     [highScoreButton setTarget:self selector:@selector(onScoresClicked:)];
     [self addChild:highScoreButton];
     

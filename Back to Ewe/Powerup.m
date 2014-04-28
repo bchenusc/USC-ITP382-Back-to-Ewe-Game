@@ -37,7 +37,7 @@
         m_PowerupType = NONE;
         
         m_PowerupLabel = [CCLabelTTF node];
-        [m_PowerupLabel setFontName:@"Verdana"];
+        [m_PowerupLabel setFontName:@"lovenesstwo"];
         [m_PowerupLabel setFontSize:10.0f];
         [m_PowerupLabel setPosition:ccp(0, 0)];
         [m_PowerupLabel setString:@"N"];

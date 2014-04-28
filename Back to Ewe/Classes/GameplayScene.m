@@ -72,11 +72,13 @@
     m_Background1 = [CCSprite spriteWithImageNamed:@"itp382ewe_bg.png"];
     m_Background1.position = ccp(self.contentSize.width / 2, self.contentSize.height/2);
     [m_Background1 setBlendFunc:(ccBlendFunc){GL_ONE,GL_ZERO}];
+    m_Background1.zOrder = -2;
     [self addChild:m_Background1];
     
     m_Background2 = [CCSprite spriteWithImageNamed:@"itp382ewe_bg.png"];
     m_Background2.position = ccp(self.contentSize.width / 2, self.contentSize.height/2 + self.contentSize.height);
     [m_Background2 setBlendFunc:(ccBlendFunc){GL_ONE,GL_ZERO}];
+    m_Background2.zOrder = -2;
     [self addChild:m_Background2];
     
     // Create physics stuff
@@ -110,11 +112,11 @@
     m_BossEnemySpacing = 300.0f;
     
     bossLevel = NO;
-    m_BossLevelTriggerYPos = 900.0f;
+    m_BossLevelTriggerYPos = 10000.0f;
     m_BossLevelSpacing = 10000.0f;
     m_Boss = nil;
     
-    m_PlayerLives = 20;
+    m_PlayerLives = 5;
     m_Dead = NO;
     
     //UI Layer
@@ -129,25 +131,18 @@
     // Levels
     //currentLevel = space;
     
+    m_Portal = [CCSprite spriteWithImageNamed:@"portal.png"];
+    m_Portal.positionType = CCPositionTypeNormalized;
+    m_Portal.position = ccp(0.5f, 0.5f);
+    m_Portal.visible = false;
+    [self addChild:m_Portal];
+    
     m_Paused = NO;
     
     m_CanSpawnEnemies = YES;
     m_CanSpawnGrass = YES;
     m_CanSpawnNodes = YES;
     m_CanSpawnPowerup = YES;
-    
-    // Sound
-    [[OALSimpleAudio sharedInstance] preloadEffect:BOING_SOUND];
-    [[OALSimpleAudio sharedInstance] preloadEffect:SHEEP_HIT_SOUND];
-    [[OALSimpleAudio sharedInstance] preloadEffect:SHEEP_DEATH_SOUND];
-    [[OALSimpleAudio sharedInstance] preloadEffect:BOSS_HIT_SOUND];
-    [[OALSimpleAudio sharedInstance] preloadEffect:BOSS_DEATH_SOUND];
-    [[OALSimpleAudio sharedInstance] preloadEffect:POWERUP_SOUND];
-    [[OALSimpleAudio sharedInstance] preloadEffect:BOMB_SOUND];
-    [[OALSimpleAudio sharedInstance] preloadEffect:PROJECTILE_SOUND];
-    [[OALSimpleAudio sharedInstance] preloadEffect:GAMEOVER_SOUND];
-    [[OALSimpleAudio sharedInstance] preloadEffect:GET_GRASS_SOUND];
-    [[OALSimpleAudio sharedInstance] preloadEffect:OUT_OF_WOOLF_SOUND];
     
     // Animation
     arr_explosion = [NSMutableArray arrayWithObjects:@"explode01.png", @"explode02.png", @"explode04.png", @"explode05.png", @"explode06.png", nil];
@@ -382,6 +377,23 @@
 
 -(void)endBossLevel {
     [[OALSimpleAudio sharedInstance] playEffect:BOSS_DEATH_SOUND];
+    
+    AnimatingSprite* exp1 = [[AnimatingSprite node] initWithFiles:arr_explosion repeat:NO destroyOnFinish:YES delay:0.1f];
+    exp1.position = m_Boss.position;
+    [self addChild: exp1];
+    
+    AnimatingSprite* exp2 = [[AnimatingSprite node] initWithFiles:arr_explosion repeat:NO destroyOnFinish:YES delay:0.1f];
+    exp2.position = ccp(m_Boss.position.x - self.contentSize.width / 5, m_Boss.position.y);
+    [self addChild: exp2];
+    
+    AnimatingSprite* exp3 = [[AnimatingSprite node] initWithFiles:arr_explosion repeat:NO destroyOnFinish:YES delay:0.1f];
+    exp3.position = ccp(m_Boss.position.x + self.contentSize.width / 5, m_Boss.position.y);
+    [self addChild: exp3];
+    
+    AnimatingSprite* exp4 = [[AnimatingSprite node] initWithFiles:arr_explosion repeat:NO destroyOnFinish:YES delay:0.1f];
+    exp4.position = ccp(m_Boss.position.x, m_Boss.position.y - self.contentSize.width / 5);
+    [self addChild: exp4];
+    
     bossLevel = false;
     [physics removeChild:m_Boss];
     
@@ -406,10 +418,16 @@
     m_CanSpawnNodes = NO;
     m_CanSpawnPowerup = NO;
     
+    m_Portal.scale = 0.0f;
+    m_Portal.zOrder = -1;
+    m_Portal.visible = true;
+    [m_Portal runAction:[CCActionScaleTo actionWithDuration:3.0f scale:0.5f]];
+    
     [self scheduleOnce:@selector(switchToNextLevel) delay:3.1f];
 }
 
 -(void)switchToNextLevel {
+    m_Portal.visible = NO;
     [[GameplayVariables get] switchCurrentLevel];
     NSString* newBackgroundImages;
     switch([GameplayVariables get].CurrentLevel) {
@@ -433,17 +451,29 @@
      m_Background1 = [CCSprite spriteWithImageNamed:newBackgroundImages];
      m_Background1.position = ccp(self.contentSize.width / 2, self.contentSize.height/2);
      [m_Background1 setBlendFunc:(ccBlendFunc){GL_ONE,GL_ZERO}];
-     [self addChild:m_Background1 z:-1];
+     [self addChild:m_Background1 z:-2];
      [self removeChild:m_Background2];
      m_Background2 = [CCSprite spriteWithImageNamed:newBackgroundImages];
      m_Background2.position = ccp(self.contentSize.width / 2, self.contentSize.height/2 + self.contentSize.height);
      [m_Background2 setBlendFunc:(ccBlendFunc){GL_ONE,GL_ZERO}];
-    [self addChild:m_Background2 z:-1];
+    [self addChild:m_Background2 z:-2];
     
     [self respawnPlayer];
     
     topNode = [nodeGenerator generateFirstPattern:self];
     topNode = [nodeGenerator generatePattern:self];
+    
+    switch([GameplayVariables get].CurrentLevel) {
+        case space:
+            [[OALSimpleAudio sharedInstance] playBg:BACKGROUND_MUSIC loop:YES];
+            break;
+        case jungle:
+            [[OALSimpleAudio sharedInstance] playBg:CENTIPEDE loop:YES];
+            break;
+        default:
+            [[OALSimpleAudio sharedInstance] playBg:BACKGROUND_MUSIC loop:YES];
+            break;
+    }
 }
 
 -(void)spawnNewPowerup {
@@ -585,6 +615,12 @@
 }
 
 - (void) resetGame {
+    if([[GameplayVariables get] CurrentLevel] != space) {
+        [[OALSimpleAudio sharedInstance] playBg:BACKGROUND_MUSIC loop:YES];
+    }
+    
+    m_Portal.visible = NO;
+    
     [self unscheduleAllSelectors];
     
     [self pause];
@@ -632,7 +668,7 @@
     
     m_Score = 0;
     
-    m_PlayerLives = 3;
+    m_PlayerLives = 5;
     
     m_Sheep.CurrentWool = m_Sheep.MaxWool;
     [m_UILayer setWool:m_Sheep.CurrentWool];
@@ -648,12 +684,12 @@
     m_Background1 = [CCSprite spriteWithImageNamed:newBackgroundImages];
     m_Background1.position = ccp(self.contentSize.width / 2, self.contentSize.height/2);
     [m_Background1 setBlendFunc:(ccBlendFunc){GL_ONE,GL_ZERO}];
-    [self addChild:m_Background1 z:-1];
+    [self addChild:m_Background1 z:-2];
     [self removeChild:m_Background2];
     m_Background2 = [CCSprite spriteWithImageNamed:newBackgroundImages];
     m_Background2.position = ccp(self.contentSize.width / 2, self.contentSize.height/2 + self.contentSize.height);
     [m_Background2 setBlendFunc:(ccBlendFunc){GL_ONE,GL_ZERO}];
-    [self addChild:m_Background2 z:-1];
+    [self addChild:m_Background2 z:-2];
 
     
     [m_UILayer reset];

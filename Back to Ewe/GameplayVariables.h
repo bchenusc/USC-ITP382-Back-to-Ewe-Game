@@ -20,6 +20,7 @@
 #define GAMEOVER_SOUND @"gameOver.mp3"
 #define GET_GRASS_SOUND @"getGrass.mp3"
 #define OUT_OF_WOOLF_SOUND @"Blip_Select115.wav"
+#define CENTIPEDE @"Not_A_Centipede.mp3"
 
 enum GameLevel {
     space = 0,
