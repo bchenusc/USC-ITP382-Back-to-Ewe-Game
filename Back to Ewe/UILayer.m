@@ -11,6 +11,7 @@
 #import "CCLabelTTF.h"
 #import "MainMenuScene.h"
 #import "GameplayScene.h"
+#import "GameplayVariables.h"
 
 
 @implementation UILayer
@@ -146,6 +147,7 @@
                                withTransition:[CCTransition transitionPushWithDirection:CCTransitionDirectionDown duration:1.0f]];
     [[OALSimpleAudio sharedInstance] stopAllEffects];
     [OALSimpleAudio sharedInstance].paused = false;
+    [[OALSimpleAudio sharedInstance] playBg:BACKGROUND_MUSIC loop:YES];
 }
 
 - (void) onResumeClicked:(id)sender {

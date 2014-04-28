@@ -534,6 +534,9 @@
     [self scheduleOnce:@selector(allowEnemySpawn) delay:5.0f];
     for(Enemy* _enemy in m_Enemies) {
         [m_EnemiesToDelete addObject:_enemy];
+        AnimatingSprite* exp = [[AnimatingSprite node] initWithFiles:arr_explosion repeat:NO destroyOnFinish:YES delay:0.1f];
+        exp.position = _enemy.position;
+        [self addChild: exp];
     }
     m_Sheep.NumPuffBombs--;
     if(m_Sheep.NumPuffBombs <= 0) {
