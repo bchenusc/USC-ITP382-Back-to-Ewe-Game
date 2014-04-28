@@ -112,11 +112,11 @@
     m_BossEnemySpacing = 300.0f;
     
     bossLevel = NO;
-    m_BossLevelTriggerYPos = 500.0f;
+    m_BossLevelTriggerYPos = 10000.0f;
     m_BossLevelSpacing = 10000.0f;
     m_Boss = nil;
     
-    m_PlayerLives = 10;
+    m_PlayerLives = 5;
     m_Dead = NO;
     
     //UI Layer
