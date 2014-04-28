@@ -72,11 +72,13 @@
     m_Background1 = [CCSprite spriteWithImageNamed:@"itp382ewe_bg.png"];
     m_Background1.position = ccp(self.contentSize.width / 2, self.contentSize.height/2);
     [m_Background1 setBlendFunc:(ccBlendFunc){GL_ONE,GL_ZERO}];
+    m_Background1.zOrder = -2;
     [self addChild:m_Background1];
     
     m_Background2 = [CCSprite spriteWithImageNamed:@"itp382ewe_bg.png"];
     m_Background2.position = ccp(self.contentSize.width / 2, self.contentSize.height/2 + self.contentSize.height);
     [m_Background2 setBlendFunc:(ccBlendFunc){GL_ONE,GL_ZERO}];
+    m_Background2.zOrder = -2;
     [self addChild:m_Background2];
     
     // Create physics stuff
@@ -110,11 +112,11 @@
     m_BossEnemySpacing = 300.0f;
     
     bossLevel = NO;
-    m_BossLevelTriggerYPos = 10000.0f;
+    m_BossLevelTriggerYPos = 500.0f;
     m_BossLevelSpacing = 10000.0f;
     m_Boss = nil;
     
-    m_PlayerLives = 5;
+    m_PlayerLives = 10;
     m_Dead = NO;
     
     //UI Layer
@@ -128,6 +130,12 @@
     
     // Levels
     //currentLevel = space;
+    
+    m_Portal = [CCSprite spriteWithImageNamed:@"portal.png"];
+    m_Portal.positionType = CCPositionTypeNormalized;
+    m_Portal.position = ccp(0.5f, 0.5f);
+    m_Portal.visible = false;
+    [self addChild:m_Portal];
     
     m_Paused = NO;
     
@@ -423,10 +431,16 @@
     m_CanSpawnNodes = NO;
     m_CanSpawnPowerup = NO;
     
+    m_Portal.scale = 0.0f;
+    m_Portal.zOrder = -1;
+    m_Portal.visible = true;
+    [m_Portal runAction:[CCActionScaleTo actionWithDuration:3.0f scale:0.5f]];
+    
     [self scheduleOnce:@selector(switchToNextLevel) delay:3.1f];
 }
 
 -(void)switchToNextLevel {
+    m_Portal.visible = NO;
     [[GameplayVariables get] switchCurrentLevel];
     NSString* newBackgroundImages;
     switch([GameplayVariables get].CurrentLevel) {
@@ -450,12 +464,12 @@
      m_Background1 = [CCSprite spriteWithImageNamed:newBackgroundImages];
      m_Background1.position = ccp(self.contentSize.width / 2, self.contentSize.height/2);
      [m_Background1 setBlendFunc:(ccBlendFunc){GL_ONE,GL_ZERO}];
-     [self addChild:m_Background1 z:-1];
+     [self addChild:m_Background1 z:-2];
      [self removeChild:m_Background2];
      m_Background2 = [CCSprite spriteWithImageNamed:newBackgroundImages];
      m_Background2.position = ccp(self.contentSize.width / 2, self.contentSize.height/2 + self.contentSize.height);
      [m_Background2 setBlendFunc:(ccBlendFunc){GL_ONE,GL_ZERO}];
-    [self addChild:m_Background2 z:-1];
+    [self addChild:m_Background2 z:-2];
     
     [self respawnPlayer];
     
@@ -602,6 +616,8 @@
 }
 
 - (void) resetGame {
+    m_Portal.visible = NO;
+    
     [self unscheduleAllSelectors];
     
     [self pause];
@@ -665,12 +681,12 @@
     m_Background1 = [CCSprite spriteWithImageNamed:newBackgroundImages];
     m_Background1.position = ccp(self.contentSize.width / 2, self.contentSize.height/2);
     [m_Background1 setBlendFunc:(ccBlendFunc){GL_ONE,GL_ZERO}];
-    [self addChild:m_Background1 z:-1];
+    [self addChild:m_Background1 z:-2];
     [self removeChild:m_Background2];
     m_Background2 = [CCSprite spriteWithImageNamed:newBackgroundImages];
     m_Background2.position = ccp(self.contentSize.width / 2, self.contentSize.height/2 + self.contentSize.height);
     [m_Background2 setBlendFunc:(ccBlendFunc){GL_ONE,GL_ZERO}];
-    [self addChild:m_Background2 z:-1];
+    [self addChild:m_Background2 z:-2];
 
     
     [m_UILayer reset];

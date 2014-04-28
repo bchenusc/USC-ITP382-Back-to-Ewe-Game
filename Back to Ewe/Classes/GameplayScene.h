@@ -82,6 +82,8 @@
     CCSprite* m_Background2;
     NSMutableArray* m_Backgrounds;
     
+    CCSprite* m_Portal;
+    
     //Animation
     NSMutableArray* arr_explosion;
 }
