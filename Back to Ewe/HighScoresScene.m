@@ -14,7 +14,7 @@
 
 + (HighScoresScene *)scene
 {
-	return [[self alloc] init];
+	return [self new];
 }
 
 - (id)init

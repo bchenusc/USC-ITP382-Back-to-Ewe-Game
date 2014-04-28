@@ -47,25 +47,25 @@
     
     //CCLOG(@"SIZE: (%.f, %.f)", self.contentSize.width, self.contentSize.height);
     
-    nodes = [[NSMutableArray alloc] init];
-    nodesToDelete = [[NSMutableArray alloc]init];
-    m_Enemies = [[NSMutableArray alloc] init];
-    m_EnemiesToDelete = [[NSMutableArray alloc] init];
-    grass = [[NSMutableArray alloc] init];
-    m_Powerups = [[NSMutableArray alloc] init];
-    m_PowerupsToDelete = [[NSMutableArray alloc] init];
+    nodes = [NSMutableArray new];
+    nodesToDelete = [NSMutableArray new];
+    m_Enemies = [NSMutableArray new];
+    m_EnemiesToDelete = [NSMutableArray new];
+    grass = [NSMutableArray new];
+    m_Powerups = [NSMutableArray new];
+    m_PowerupsToDelete = [NSMutableArray new];
     
     // Enable touch handling on scene node
     self.userInteractionEnabled = YES;
     
     //Populate the array of different skins
-    m_Backgrounds = [[NSMutableArray alloc] init];
+    m_Backgrounds = [NSMutableArray new];
     [m_Backgrounds addObject:[CCSprite spriteWithImageNamed:@"itp382ewe_bg.png"]];
     
-    m_NodeSprites = [[NSMutableArray alloc] init];
+    m_NodeSprites = [NSMutableArray new];
     [m_NodeSprites addObject:@"grass.png"];
     
-    m_EnemySprites = [[NSMutableArray alloc] init];
+    m_EnemySprites = [NSMutableArray new];
     [m_EnemySprites addObject:@"enemy_alien.png"];
     
     // Create backgrounds for scrolling
@@ -730,6 +730,9 @@
     }
     
     [m_EnemiesToDelete addObject:enemy];
+    AnimatingSprite* exp = [[AnimatingSprite node] initWithFiles:arr_explosion repeat:NO destroyOnFinish:YES delay:0.1f];
+    exp.position = enemy.position;
+    [self addChild: exp];
     
     if (_sheep.CurrentHealth <= 0) {
         [self playerDeath];
