@@ -11,6 +11,7 @@
 #import "CCButton.h"
 #import "UIWoolMeter.h"
 #import "HighScoresScene.h"
+#import "UIHealthMeter.h"
 
 @class GameplayScene;
 
@@ -21,6 +22,7 @@
     
     float m_healthRemaining;
     float m_healthCapacity;
+    UIHealthMeter* m_HealthMeter;
     
     float m_Score;
     CCLabelTTF *m_scoreLabel;

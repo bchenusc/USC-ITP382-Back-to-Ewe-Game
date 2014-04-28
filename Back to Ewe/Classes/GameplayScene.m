@@ -606,6 +606,7 @@
     m_Sheep.CurrentWool = m_Sheep.MaxWool;
     m_UILayer.Health = m_Sheep.CurrentHealth;
     m_UILayer.Wool = m_Sheep.CurrentWool;
+    [m_UILayer setWoolMeter:m_Sheep.CurrentWool/m_Sheep.MaxWool];
     m_Dead = NO;
 }
 
@@ -704,9 +705,7 @@
     [[GameplayVariables get] switchToLevel:space];
     topNode = [nodeGenerator generateFirstPattern:self];
     [self detonateBomb];
-    m_Sheep.NumPuffBombs = 3;
-    //debug
-    [m_UILayer setBombsButtonActive];
+    m_Sheep.NumPuffBombs = 0;
     nextPowerupSpawnYPos = powerupSpacing;
     [self spawnNewEnemy];
     [self spawnNewGrass];
