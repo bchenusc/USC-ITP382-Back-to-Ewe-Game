@@ -625,7 +625,9 @@
 - (void) newGame {
     topNode = [nodeGenerator generateFirstPattern:self];
     [self detonateBomb];
-    m_Sheep.NumPuffBombs = 0;
+    m_Sheep.NumPuffBombs = 3;
+    //debug
+    [m_UILayer setBombsButtonActive];
     nextPowerupSpawnYPos = powerupSpacing;
     [self spawnNewEnemy];
     [self spawnNewGrass];
