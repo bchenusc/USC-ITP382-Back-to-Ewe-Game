@@ -475,6 +475,18 @@
     
     topNode = [nodeGenerator generateFirstPattern:self];
     topNode = [nodeGenerator generatePattern:self];
+    
+    switch([GameplayVariables get].CurrentLevel) {
+        case space:
+            [[OALSimpleAudio sharedInstance] playBg:BACKGROUND_MUSIC loop:YES];
+            break;
+        case jungle:
+            [[OALSimpleAudio sharedInstance] playBg:CENTIPEDE loop:YES];
+            break;
+        default:
+            [[OALSimpleAudio sharedInstance] playBg:BACKGROUND_MUSIC loop:YES];
+            break;
+    }
 }
 
 -(void)spawnNewPowerup {
@@ -616,6 +628,10 @@
 }
 
 - (void) resetGame {
+    if([[GameplayVariables get] CurrentLevel] != space) {
+        [[OALSimpleAudio sharedInstance] playBg:BACKGROUND_MUSIC loop:YES];
+    }
+    
     m_Portal.visible = NO;
     
     [self unscheduleAllSelectors];
