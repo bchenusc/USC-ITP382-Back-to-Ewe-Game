@@ -902,6 +902,11 @@
 		D13104A118EA18500093C94A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				3B04175D190DBD0500043156 /* explosion */,
+				3B041768190DC6A700043156 /* itp382sheep-2-shield.png */,
+				3B04176C190DCFB800043156 /* ewe_gorilla.png */,
+				3B04175B190DACB200043156 /* itp382sheep.png */,
+				3B041757190DAC5700043156 /* jungle_node.png */,
 				0071698C190DC65C00A771E5 /* ewe_wool-blank.png */,
 				00716983190D9B4B00A771E5 /* ewe_wool-stick.png */,
 				00716984190D9B4B00A771E5 /* ewe_wool-thread-2.png */,
@@ -1780,6 +1785,10 @@
 				00DEC68018FB74A900382BBD /* Projectile.m */,
 				C350D6CF18FBBE8300D1B662 /* Boss.h */,
 				C350D6D018FBBE8300D1B662 /* Boss.m */,
+				C3482F1D190C912F0027DE9D /* GameplayVariables.h */,
+				C3482F1E190C912F0027DE9D /* GameplayVariables.m */,
+				D1C355D9190DA9BE00E370E8 /* AnimatingSprite.h */,
+				D1C355DA190DA9BE00E370E8 /* AnimatingSprite.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
