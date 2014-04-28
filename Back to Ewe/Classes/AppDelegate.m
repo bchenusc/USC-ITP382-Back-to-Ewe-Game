@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 #import "MainMenuScene.h"
 #import "GameplayScene.h"
+#import "GameplayVariables.h"
 
 // -----------------------------------------------------------------------
 #define BACKGROUND_MUSIC @"bgmusic.mp3"
@@ -46,7 +47,25 @@
 //		CCSetupTabletScale2X: @(YES),
 	}];
     
+    // AUDIO
+    [OALSimpleAudio sharedInstance].allowIpod = NO;
+    [OALSimpleAudio sharedInstance].honorSilentSwitch = YES;
+    [[OALSimpleAudio sharedInstance] preloadEffect:BACKGROUND_MUSIC];
     
+    [[OALSimpleAudio sharedInstance] preloadEffect:BOING_SOUND];
+    [[OALSimpleAudio sharedInstance] preloadEffect:SHEEP_HIT_SOUND];
+    [[OALSimpleAudio sharedInstance] preloadEffect:SHEEP_DEATH_SOUND];
+    [[OALSimpleAudio sharedInstance] preloadEffect:BOSS_HIT_SOUND];
+    [[OALSimpleAudio sharedInstance] preloadEffect:BOSS_DEATH_SOUND];
+    [[OALSimpleAudio sharedInstance] preloadEffect:POWERUP_SOUND];
+    [[OALSimpleAudio sharedInstance] preloadEffect:BOMB_SOUND];
+    [[OALSimpleAudio sharedInstance] preloadEffect:PROJECTILE_SOUND];
+    [[OALSimpleAudio sharedInstance] preloadEffect:GAMEOVER_SOUND];
+    [[OALSimpleAudio sharedInstance] preloadEffect:GET_GRASS_SOUND];
+    [[OALSimpleAudio sharedInstance] preloadEffect:OUT_OF_WOOLF_SOUND];
+    
+    // SPRITES
+    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"ewe-sprites.plist"];
 	
 	return YES;
 }
@@ -55,9 +74,6 @@
 {
 	// This method should return the very first scene to be run when your app starts.
     // Sound
-    [OALSimpleAudio sharedInstance].allowIpod = NO;
-    [OALSimpleAudio sharedInstance].honorSilentSwitch = YES;
-    [[OALSimpleAudio sharedInstance] preloadEffect:BACKGROUND_MUSIC];
 
     [[OALSimpleAudio sharedInstance] playBg:BACKGROUND_MUSIC loop:YES];
     
