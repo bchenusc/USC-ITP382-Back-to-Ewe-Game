@@ -24,12 +24,7 @@
     if (self) {
         CGSize size = [[CCDirector sharedDirector] viewSize];
         self.contentSize = size;
-        
-        //Wool meter
-        m_WoolMeter = [UIWoolMeter node];
-        m_WoolMeter.positionType = CCPositionTypeNormalized;
-        m_WoolMeter.position = ccp(0.1f, 0.15f);
-        [self addChild:m_WoolMeter];
+
         
         m_woolRemaining = 4000;
         m_woolCapacity = 4000;
@@ -90,12 +85,20 @@
         
         // Bombs button
         m_Bombs = 0;
-        m_bombsButton = [CCButton buttonWithTitle:@"Bomb" fontName:@"Verdana-Bold" fontSize:18.0f];
+        //m_bombsButton = [CCButton buttonWithTitle:@"Bomb" fontName:@"Verdana-Bold" fontSize:18.0f];
+        m_bombsButton = [CCButton buttonWithTitle:@"Bomb" spriteFrame:[CCSpriteFrame frameWithImageNamed:@"ewe_power-symbol.png"]];
         m_bombsButton.positionType = CCPositionTypeNormalized;
-        m_bombsButton.position = ccp(.9f, 0.1f); // Middle Right of screen
+        m_bombsButton.position = ccp(.9f, .15f); // Middle Right of screen
         [m_bombsButton setTarget:self selector:@selector(onBombsClicked:)];
         [self addChild:m_bombsButton];
-        m_bombsButton.visible = NO;
+        m_bombsButton.visible = YES;
+        
+        //Wool meter
+        m_WoolMeter = [UIWoolMeter node];
+        m_WoolMeter.positionType = CCPositionTypeNormalized;
+        m_WoolMeter.position = ccp(0.9f, 0.15f);
+        
+        [self addChild:m_WoolMeter];
         
         // BOSS ALERT LABEL
         m_BossAlertLabel = [CCLabelTTF labelWithString:@"BOSS DETECTED" fontName:@"Verdana-Bold" fontSize:18.0f];
