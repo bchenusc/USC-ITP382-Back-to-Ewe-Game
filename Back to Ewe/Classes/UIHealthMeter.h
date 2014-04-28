@@ -10,7 +10,13 @@
 #import "cocos2d.h"
 
 @interface UIHealthMeter : CCNode {
+    int m_CurrentLives;
     
+    CCSprite* m_LivesIcon;
+    CCLabelTTF* m_LivesLabel;
 }
+
+@property int Lives;
+
 
 @end
