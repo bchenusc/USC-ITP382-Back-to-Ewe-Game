@@ -12,8 +12,7 @@
 @interface UIHealthMeter : CCNode {
     int m_CurrentLives;
     
-    CCSprite* m_LivesIcon;
-    CCLabelTTF* m_LivesLabel;
+    CCSprite* m_HealthBar;
 }
 
 @property int Lives;
