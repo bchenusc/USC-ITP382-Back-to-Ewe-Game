@@ -26,6 +26,9 @@
 		3B041767190DBD0500043156 /* explode06.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B041762190DBD0500043156 /* explode06.png */; };
 		3B041769190DC6A700043156 /* itp382sheep-2-shield.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B041768190DC6A700043156 /* itp382sheep-2-shield.png */; };
 		3B04176D190DCFB800043156 /* ewe_gorilla.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B04176C190DCFB800043156 /* ewe_gorilla.png */; };
+		3B04176F190E119700043156 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B04176E190E119700043156 /* Default@2x.png */; };
+		3B041772190E151800043156 /* ewe-sprites.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B041770190E151800043156 /* ewe-sprites.plist */; };
+		3B041773190E151800043156 /* ewe-sprites.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B041771190E151800043156 /* ewe-sprites.png */; };
 		3B3154511905E55F0061BFC8 /* grass-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B3154501905E55F0061BFC8 /* grass-2.png */; };
 		3B5B38E718FBAEAC0064D669 /* asteroid.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B5B38E618FBAEAC0064D669 /* asteroid.png */; };
 		3B5B38E918FBBE020064D669 /* ewe_mothership.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B5B38E818FBBE020064D669 /* ewe_mothership.png */; };
@@ -72,7 +75,6 @@
 		D131049918EA18500093C94A /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D131049818EA18500093C94A /* CoreText.framework */; };
 		D131049F18EA18500093C94A /* libObjectiveChipmunk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D131049C18EA18500093C94A /* libObjectiveChipmunk.a */; };
 		D13104A318EA18500093C94A /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = D13104A218EA18500093C94A /* Default.png */; };
-		D13104A518EA18500093C94A /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D13104A418EA18500093C94A /* Default@2x.png */; };
 		D13104A718EA18500093C94A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D13104A618EA18500093C94A /* Default-568h@2x.png */; };
 		D13104A918EA18500093C94A /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = D13104A818EA18500093C94A /* Default-Landscape~ipad.png */; };
 		D13104AC18EA18500093C94A /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D13104AB18EA18500093C94A /* Icon.png */; };
@@ -312,6 +314,9 @@
 		3B041762190DBD0500043156 /* explode06.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = explode06.png; sourceTree = "<group>"; };
 		3B041768190DC6A700043156 /* itp382sheep-2-shield.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "itp382sheep-2-shield.png"; path = "Resources/itp382sheep-2-shield.png"; sourceTree = "<group>"; };
 		3B04176C190DCFB800043156 /* ewe_gorilla.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ewe_gorilla.png; path = Resources/ewe_gorilla.png; sourceTree = "<group>"; };
+		3B04176E190E119700043156 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "Resources/Default@2x.png"; sourceTree = "<group>"; };
+		3B041770190E151800043156 /* ewe-sprites.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "ewe-sprites.plist"; path = "Resources/ewe-sprites.plist"; sourceTree = "<group>"; };
+		3B041771190E151800043156 /* ewe-sprites.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ewe-sprites.png"; path = "Resources/ewe-sprites.png"; sourceTree = "<group>"; };
 		3B3154501905E55F0061BFC8 /* grass-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "grass-2.png"; path = "Resources/grass-2.png"; sourceTree = "<group>"; };
 		3B5B38E618FBAEAC0064D669 /* asteroid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = asteroid.png; path = Resources/asteroid.png; sourceTree = "<group>"; };
 		3B5B38E818FBBE020064D669 /* ewe_mothership.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ewe_mothership.png; path = Resources/ewe_mothership.png; sourceTree = "<group>"; };
@@ -368,7 +373,6 @@
 		D131049818EA18500093C94A /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		D131049C18EA18500093C94A /* libObjectiveChipmunk.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libObjectiveChipmunk.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D13104A218EA18500093C94A /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Resources/Default.png; sourceTree = "<group>"; };
-		D13104A418EA18500093C94A /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "Resources/Default@2x.png"; sourceTree = "<group>"; };
 		D13104A618EA18500093C94A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "Resources/Default-568h@2x.png"; sourceTree = "<group>"; };
 		D13104A818EA18500093C94A /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape~ipad.png"; path = "Resources/Default-Landscape~ipad.png"; sourceTree = "<group>"; };
 		D13104AB18EA18500093C94A /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = Resources/Icons/Icon.png; sourceTree = "<group>"; };
@@ -904,6 +908,8 @@
 		D13104A118EA18500093C94A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				3B041770190E151800043156 /* ewe-sprites.plist */,
+				3B041771190E151800043156 /* ewe-sprites.png */,
 				3B04175D190DBD0500043156 /* explosion */,
 				3B041768190DC6A700043156 /* itp382sheep-2-shield.png */,
 				3B04176C190DCFB800043156 /* ewe_gorilla.png */,
@@ -928,10 +934,10 @@
 				3B5B38EE18FBEBFC0064D669 /* shield_boost.png */,
 				D1A613CE18FBCB0E00E1887B /* Backgrounds */,
 				3B5B38EA18FBE23E0064D669 /* ewe_missile.png */,
+				3B04176E190E119700043156 /* Default@2x.png */,
 				3B5B38E818FBBE020064D669 /* ewe_mothership.png */,
 				3B5B38E618FBAEAC0064D669 /* asteroid.png */,
 				D13104A218EA18500093C94A /* Default.png */,
-				D13104A418EA18500093C94A /* Default@2x.png */,
 				D13104A618EA18500093C94A /* Default-568h@2x.png */,
 				D13104A818EA18500093C94A /* Default-Landscape~ipad.png */,
 				D13104C518EA18500093C94A /* Info.plist */,
@@ -1878,11 +1884,11 @@
 			files = (
 				C3E25C5A18FCA3AA00EB23D2 /* bomb.mp3 in Resources */,
 				3B5B38F118FBEBFC0064D669 /* shield_boost.png in Resources */,
-				D13104A518EA18500093C94A /* Default@2x.png in Resources */,
 				3B041767190DBD0500043156 /* explode06.png in Resources */,
 				3B5B38E718FBAEAC0064D669 /* asteroid.png in Resources */,
 				3B5B38F618FBF36E0064D669 /* puff_bomb.png in Resources */,
 				C3E25C5E18FCA99700EB23D2 /* gameOver.mp3 in Resources */,
+				3B04176F190E119700043156 /* Default@2x.png in Resources */,
 				D13104B818EA18500093C94A /* Icon-120.png in Resources */,
 				C3E25C5818FCA31000EB23D2 /* bossHit.mp3 in Resources */,
 				D13106BC18EA18520093C94A /* LICENSE_CCBReader.txt in Resources */,
@@ -1923,6 +1929,7 @@
 				D13104B018EA18500093C94A /* Icon-72.png in Resources */,
 				C3E25C5618FCA2C800EB23D2 /* projectile.mp3 in Resources */,
 				C3E25C5018FCA0C100EB23D2 /* bossDeath.mp3 in Resources */,
+				3B041772190E151800043156 /* ewe-sprites.plist in Resources */,
 				D13105FE18EA18510093C94A /* LICENSE_cocos2d.txt in Resources */,
 				3B04175C190DACB200043156 /* itp382sheep.png in Resources */,
 				D13104A718EA18500093C94A /* Default-568h@2x.png in Resources */,
@@ -1938,6 +1945,7 @@
 				3B5B38F518FBF36E0064D669 /* enemy_alien.png in Resources */,
 				D13104C418EA18500093C94A /* Icon-Spotlight-iOS7@2x.png in Resources */,
 				3B5B38E918FBBE020064D669 /* ewe_mothership.png in Resources */,
+				3B041773190E151800043156 /* ewe-sprites.png in Resources */,
 				3B041765190DBD0500043156 /* explode04.png in Resources */,
 				3B5B38EF18FBEBFC0064D669 /* health_boost.png in Resources */,
 				D13104B418EA18500093C94A /* Icon-76.png in Resources */,
