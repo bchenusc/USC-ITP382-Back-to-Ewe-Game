@@ -158,11 +158,6 @@
     
     [self newGame];
     
-   arr_explosion = [NSMutableArray arrayWithObjects:@"explode01.png", @"explode02.png", @"explode04.png", @"explode05.png", @"explode06.png", nil];
-    AnimatingSprite* exp = [[AnimatingSprite node] initWithFiles:arr_explosion repeat:NO destroyOnFinish:YES delay:0.1f];
-    exp.position = ccp(self.contentSize.width / 2, self.contentSize.height / 2);
-    [self addChild: exp];
-    
 	return self;
      
 }
