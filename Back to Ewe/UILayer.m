@@ -105,7 +105,7 @@
         //Health meter
         m_HealthMeter = [UIHealthMeter node];
         m_HealthMeter.positionType = CCPositionTypeNormalized;
-        m_HealthMeter.position = ccp(0.1f, 0.9f);
+        m_HealthMeter.position = ccp(0.1f, 0.06f);
         [self addChild:m_HealthMeter];
         
         // BOSS ALERT LABEL
@@ -218,7 +218,7 @@
     
     //ccDrawSolidRect(ccp(0, 0), ccp((m_woolRemaining/m_woolCapacity)*(size.width), 10), [CCColor greenColor]);
     
-    ccDrawSolidRect(ccp(40, 500), ccp(((m_healthRemaining/m_healthCapacity)*(150)) + 40, 520), [CCColor redColor]);
+    ccDrawSolidRect(ccp(40, 23), ccp(((m_healthRemaining/m_healthCapacity)*(150)) + 40, 43), [CCColor redColor]);
     
     [m_scoreLabel setPosition:ccp(m_scoreLabel.texture.contentSize.width / 2, size.height - m_scoreLabel.texture.contentSize.height / 2)];
     
