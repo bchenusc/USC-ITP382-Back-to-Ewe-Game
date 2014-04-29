@@ -97,8 +97,9 @@
         //Wool meter
         m_WoolMeter = [UIWoolMeter node];
         m_WoolMeter.positionType = CCPositionTypeNormalized;
-        m_WoolMeter.position = ccp(0.9f, 0.15f);
-        
+        m_WoolMeter.position = ccp(0.9f, 0.06f);
+        m_WoolMeter.scale = 0.75f;
+        m_WoolMeter.scaleY = 0.8f;
         [self addChild:m_WoolMeter];
         
         //Health meter
