@@ -87,9 +87,11 @@
         // Bombs button
         m_Bombs = 0;
         //m_bombsButton = [CCButton buttonWithTitle:@"Bomb" fontName:@"lovenesstwo" fontSize:16.0f];
-        m_bombsButton = [CCButton buttonWithTitle:@"Bomb" spriteFrame:[CCSpriteFrame frameWithImageNamed:@"ewe_power-symbol.png"]];
+        m_bombsButton = [CCButton buttonWithTitle:@" " spriteFrame:[CCSpriteFrame frameWithImageNamed:@"ewe_power-symbol.png"]];
         m_bombsButton.positionType = CCPositionTypeNormalized;
-        m_bombsButton.position = ccp(.9f, .15f); // Middle Right of screen
+        m_bombsButton.position = ccp(.9f, .06f);
+        m_bombsButton.scale = 0.75f;
+        m_bombsButton.scaleY = 0.8f;
         [m_bombsButton setTarget:self selector:@selector(onBombsClicked:)];
         [self addChild:m_bombsButton];
         m_bombsButton.visible = YES;
