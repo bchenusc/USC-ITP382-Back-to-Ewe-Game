@@ -105,8 +105,8 @@
     topGrass = nil;
     
     powerupGenerator = [PowerupGenerator node];
-    nextPowerupSpawnYPos = 1000.0f;
-    powerupSpacing = 750.0f;
+    nextPowerupSpawnYPos = 750.0f;
+    powerupSpacing = 500.0f;
     
     m_ProjectileSpacing = 200.0f;
     m_BossEnemySpacing = 300.0f;
